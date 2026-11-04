@@ -1,0 +1,1662 @@
+{
+  "site": {
+    "skip": "Aller au contenu",
+    "backToTop": "Retour en haut de page"
+  },
+  "header": {
+    "announce": "Réservations ouvertes pour les prochaines semaines",
+    "cta": "Demander un devis",
+    "search": "Rechercher",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "toggleSub": "Afficher le sous-menu",
+    "mainNav": "Navigation principale"
+  },
+  "nav": {
+    "home": "Accueil",
+    "homeMain": "Accueil batch cooking",
+    "homeAlt": "Accueil événements",
+    "about": "À propos",
+    "services": "Services",
+    "allServices": "Nos services",
+    "singleService": "Fiche service",
+    "pages": "Pages",
+    "team": "Notre équipe",
+    "singleMember": "Fiche membre",
+    "portfolio": "Réalisations",
+    "singlePortfolio": "Fiche réalisation",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "journal": "Journal",
+    "blog": "Blog, barre droite",
+    "blogGrid": "Blog en grille",
+    "blogLeft": "Blog, barre gauche",
+    "article": "Article",
+    "contact": "Contact"
+  },
+  "footer": {
+    "eyebrow": "Planifiez votre semaine",
+    "title": "Votre table est prête.",
+    "text": "Dites-nous la date, le nombre de convives et vos envies. Nous répondons sous un jour ouvré.",
+    "ctaPrimary": "Demander un devis",
+    "ctaCall": "Appeler le {phone}",
+    "about": "Des repas faits maison, préparés à l'avance pour toute la semaine, pour les familles, les couples et les actifs.",
+    "services": "Services",
+    "company": "Entreprise",
+    "visit": "Contact",
+    "servicesLinks": {
+      "weekly": "Batch cooking hebdomadaire",
+      "family": "Formule famille",
+      "events": "Événements",
+      "gift": "Carte cadeau",
+      "menus": "Menus types"
+    },
+    "companyLinks": {
+      "about": "À propos",
+      "team": "Notre équipe",
+      "portfolio": "Réalisations",
+      "journal": "Journal",
+      "faq": "FAQ"
+    },
+    "rights": "© 2026 {name}. Tous droits réservés.",
+    "legal": {
+      "terms": "Conditions de réservation",
+      "gift": "Offrir un repas",
+      "contact": "Contact"
+    },
+    "crafted": "Cuisiné avec soin en France",
+    "social": "Réseaux sociaux"
+  },
+  "home": {
+    "hero": {
+      "label": "Dîners privés à Charleston et dans le Lowcountry",
+      "headline": "Votre table.",
+      "accent": "Une soirée remarquable.",
+      "description": "Votre chef privé compose un menu autour de vos invités, le cuisine dans votre cuisine ou sur votre lieu de réception et sert chaque plat à table. Vous recevez ; nous nous occupons du reste, jusqu'à la dernière assiette.",
+      "primary": "Planifier votre dîner",
+      "secondary": "Découvrir des menus types",
+      "meta": "4,9 sur 380 hôtes · Menus de saison du Lowcountry",
+      "imageAlt": "Chef privé en tablier vert servant un plat dressé à des invités attablés à la lueur des bougies",
+      "captionKicker": "Samedi dernier",
+      "captionTitle": "Sept plats pour douze convives",
+      "captionText": "Un dîner d'anniversaire à domicile à Mount Pleasant"
+    },
+    "inquiry": {
+      "kicker": "Demande rapide d'événement",
+      "title": "Dites-nous l'essentiel",
+      "dateLabel": "Date souhaitée",
+      "guestsLabel": "Nombre d'invités",
+      "guestsPlaceholder": "Combien d'invités ?",
+      "guestsOptions": [
+        "2 à 6 invités",
+        "7 à 12 invités",
+        "13 à 24 invités",
+        "25 à 50 invités",
+        "51 à 100 invités",
+        "Plus de 100 invités"
+      ],
+      "locationLabel": "Lieu",
+      "locationPlaceholder": "Domicile, villa ou lieu de réception",
+      "button": "Commencer à planifier",
+      "note": "Les dates sont des demandes tant que notre équipe n'a pas confirmé la disponibilité, généralement sous un jour ouvré."
+    },
+    "experiences": {
+      "kicker": "Expériences culinaires",
+      "title": "Chaque soirée, cuisinée pour l'occasion",
+      "intro": "Choisissez le type de soirée que vous organisez. Chaque menu est écrit pour vos invités, votre espace et la saison.",
+      "cards": [
+        {
+          "title": "Dîners entre proches",
+          "text": "Des repas intimes à domicile, cuisinés et servis par votre chef privé.",
+          "meta": "2 à 24 invités",
+          "icon": "tools-kitchen-2",
+          "linkText": "Découvrir l'expérience",
+          "alt": "Des amis partageant un dîner aux chandelles à la maison pendant qu'un chef privé dresse les assiettes"
+        },
+        {
+          "title": "Célébrations",
+          "text": "Anniversaires, fêtes et occasions spéciales, organisés autour des personnes que vous aimez.",
+          "meta": "À partir de 95 $ par invité",
+          "icon": "cake",
+          "linkText": "Découvrir l'expérience",
+          "alt": "Couple trinquant au champagne lors d'un dîner de célébration avec un gâteau d'anniversaire"
+        },
+        {
+          "title": "Dîners en villa et en vacances",
+          "text": "Des repas cuisinés par un chef pour les invités séjournant dans des villas privées et des maisons de vacances.",
+          "meta": "Îles et complexes hôteliers",
+          "icon": "building-cottage",
+          "linkText": "Découvrir l'expérience",
+          "alt": "Chef privé servant des fruits de mer grillés sur une terrasse de villa au crépuscule"
+        }
+      ]
+    },
+    "chef": {
+      "kicker": "Rencontrez le chef",
+      "title": "Julien Marchetti",
+      "subtitle": "Chef exécutif et fondateur",
+      "paragraphs": [
+        "Julien cuisine les produits de saison du Lowcountry avec une technique française : crevettes de Shem Creek, légumes verts de Johns Island et sauces réalisées lentement. Ses menus sont généreux plutôt que sophistiqués, construits autour de ce qu'il y a de meilleur cette semaine-là et des personnes attablées.",
+        "Il cuisine encore lui-même la plupart des dîners Savrio, et il appelle chaque hôte avant d'écrire un menu."
+      ],
+      "stats": [
+        {
+          "icon": "chef-hat",
+          "value": "18",
+          "label": "années en cuisine"
+        },
+        {
+          "icon": "tools-kitchen-2",
+          "value": "1 100+",
+          "label": "dîners privés"
+        },
+        {
+          "icon": "leaf",
+          "value": "30",
+          "label": "fermes et pêcheurs locaux"
+        }
+      ],
+      "quote": {
+        "text": "Je cuisine comme je le ferais pour ma propre famille : généreux, de saison et jamais pressé.",
+        "author": "Julien Marchetti"
+      },
+      "listTitle": "Parcours",
+      "items": [
+        "18 ans en cuisine professionnelle à Lyon, New York et Charleston",
+        "A fondé Savrio en 2012, avec plus de 1 100 dîners privés cuisinés depuis",
+        "Certifié ServSafe Food Protection Manager",
+        "Menus pour invités sans gluten, sans lactose, sans fruits à coque et végétaux"
+      ],
+      "link": "Rencontrer votre chef",
+      "caption": "Cuisine en privé depuis 2012",
+      "badgeValue": "4,9 / 5",
+      "badgeText": "selon 380 hôtes",
+      "imageAlt": "Portrait du chef Julien Marchetti en tablier vert forêt dans une cuisine lumineuse",
+      "insetAlt": "Le chef choisissant des produits sur un marché fermier de Charleston"
+    },
+    "about": {
+      "label": "À PROPOS",
+      "title": "Un chef privé pour les soirées qui comptent",
+      "intro": "Nous cuisinons des menus de saison du Lowcountry dans les domiciles, locations et lieux de réception de nos clients. Vous choisissez la date et les invités ; nous apportons le chef, le menu, le service et la sérénité.",
+      "badgeValue": "25+",
+      "badgeText": "Années de dîners privés",
+      "qualityTitle": "Cuisiné frais, servi à domicile",
+      "qualityText": "Chaque menu est écrit pour une seule table et cuisiné le soir même avec des ingrédients achetés le matin.",
+      "qualityNote": "Nous planifions chaque dîner autour de vos invités, de leurs goûts et de leurs allergies.",
+      "features": [
+        "Menus dégustation de saison",
+        "Accords mets-vins et cocktails",
+        "Service à table et nettoyage complet"
+      ],
+      "button": "En savoir plus sur nous",
+      "images": [
+        "Mains du chef dressant une assiette avant le service",
+        "Repas servi à une table dressée pour des invités",
+        "Une table de salle à manger dressée avec linge, bougies et cartes de menu avant l'arrivée des invités"
+      ]
+    },
+    "menus": {
+      "kicker": "Menus types",
+      "title": "Un aperçu de ce que nous cuisinons",
+      "intro": "Trois menus parmi les plus demandés par nos hôtes. Chacun est un point de départ : nous écrivons le menu final autour de vos invités, de la saison et de l'occasion.",
+      "note": "Les plats changent avec les saisons et les arrivages de nos producteurs et pêcheurs. Les allergies et demandes alimentaires sont discutées avec vous avant la confirmation de votre réservation.",
+      "open": "Voir le menu type",
+      "close": "Fermer le menu",
+      "panelKicker": "Menu type",
+      "cta": "Planifier ce menu",
+      "more": "{count, plural, one {+ # autre plat} other {+ # autres plats}}",
+      "cards": [
+        {
+          "icon": "chef-hat",
+          "label": "Le plus réservé",
+          "title": "Menu dégustation de saison",
+          "meta": "Six plats · 6 à 16 invités",
+          "tags": ["Accord mets-vins", "De saison"],
+          "courses": [
+            ["Croustillant de graines de sésame", "crevettes marinées, aneth, citron"],
+            ["Huître de Bulls Bay", "mignonette au concombre, citron caviar"],
+            ["Bisque de crabe femelle", "xérès, ciboulette, maïs doux"],
+            ["Mérou saisi", "riz Carolina Gold, beurre noisette, câpres"],
+            ["Magret de canard fumé", "glaçage au sorgho, légumes verts braisés, navet"],
+            ["Tarte aux noix de pécan au beurre noisette", "glace au babeurre"]
+          ],
+          "price": "À partir de 165 $ par invité",
+          "priceNote": "Accord mets-vins à partir de 75 $ par invité",
+          "alt": "Plats du menu dégustation de saison dressés sur la table"
+        },
+        {
+          "icon": "users",
+          "label": "Pour les groupes",
+          "title": "Table à partager",
+          "meta": "Convivial, à partager · 8 à 40 invités",
+          "tags": ["Adapté aux enfants", "Convivial, à partager"],
+          "courses": [
+            ["Pain au levain chaud", "beurre fermenté, fleur de sel"],
+            ["Salade de gombo grillé et tomate", "herbes, citron vert, piment"],
+            ["Crevettes et grits", "grits moulus à la meule, sauce tasso"],
+            ["Poulet grillé au bois", "salsa verde, pommes de terre rôties"],
+            ["Légumes de Johns Island", "beurre noisette, herbes"],
+            ["Cobbler à la pêche", "crème vanillée"]
+          ],
+          "price": "À partir de 110 $ par invité",
+          "priceNote": "Servi à table sur des plats",
+          "alt": "Repas de famille préparé à l'avance"
+        },
+        {
+          "icon": "lotus",
+          "label": "100 % végétal",
+          "title": "Dîner végétal",
+          "meta": "Cinq plats · 2 à 16 invités",
+          "tags": ["Vegan", "Option sans gluten"],
+          "courses": [
+            ["Tomate ancienne", "eau de tomate glacée, huile de basilic"],
+            ["Betteraves rôties", "crème de cajou, dukkah de pécan"],
+            ["Risotto de riz Carolina Gold", "champignons sauvages, thym"],
+            ["Chou grillé", "glaçage au miso blanc, échalotes croustillantes"],
+            ["Tarte au chocolat noir", "huile d'olive, fleur de sel, fruits rouges"]
+          ],
+          "price": "À partir de 135 $ par invité",
+          "priceNote": "Sans gluten sur demande",
+          "alt": "Plats végétaux de saison"
+        }
+      ]
+    },
+    "photos": {
+      "kicker": "De notre table",
+      "title": "Instants de nos dernières soirées",
+      "handle": "@savrio.dining",
+      "gallery": "Galerie photo",
+      "photos": [
+        {
+          "caption": "Huîtres pour un oyster roast d'hiver",
+          "icon": "fish"
+        },
+        {
+          "caption": "Mérou saisi, quatrième plat",
+          "icon": "chef-hat"
+        },
+        {
+          "caption": "Heure du cocktail signature",
+          "icon": "glass-champagne"
+        },
+        {
+          "caption": "Récolte du marché du samedi",
+          "icon": "basket"
+        },
+        {
+          "caption": "Tarte aux noix de pécan au beurre noisette",
+          "icon": "cake"
+        },
+        {
+          "caption": "Un toast pour vingt-cinq ans",
+          "icon": ""
+        },
+        {
+          "caption": "Betteraves végétales",
+          "icon": "plant-2"
+        },
+        {
+          "caption": "Crevettes et grits pour quarante",
+          "icon": "bowl"
+        },
+        {
+          "caption": "Fête d'anniversaire",
+          "icon": "confetti"
+        },
+        {
+          "caption": "Terrasse de villa au crépuscule",
+          "icon": "building-cottage"
+        }
+      ]
+    },
+    "included": {
+      "kicker": "Ce qui est inclus",
+      "title": "Tout ce qu'il faut pour la soirée",
+      "paragraphs": [
+        "Chaque réservation couvre le travail depuis le premier appel jusqu'au dernier plat. Voici ce qui est inclus, et ce qui peut être ajouté si votre soirée en a besoin."
+      ],
+      "listTitle": "Inclus dans chaque réservation",
+      "items": [
+        {
+          "icon": "message-circle",
+          "text": "Appel de planification du menu"
+        },
+        {
+          "icon": "notebook",
+          "text": "Menu écrit et notes de dégustation"
+        },
+        {
+          "icon": "shopping-cart",
+          "text": "Achat des ingrédients"
+        },
+        {
+          "icon": "flame",
+          "text": "Cuisine sur votre lieu de réception"
+        },
+        {
+          "icon": "soup",
+          "text": "Service à l'assiette ou convivial"
+        },
+        {
+          "icon": "sparkles",
+          "text": "Nettoyage complet de la cuisine"
+        },
+        {
+          "icon": "fridge",
+          "text": "Restes portionnés et rangés"
+        },
+        {
+          "icon": "shield-check",
+          "text": "Préparation adaptée aux allergies"
+        }
+      ],
+      "extrasTitle": "Options disponibles",
+      "extras": [
+        {
+          "icon": "user-plus",
+          "label": "Serveur supplémentaire",
+          "value": "45 $ de l'heure"
+        },
+        {
+          "icon": "bottle",
+          "label": "Service de barman et de boissons",
+          "value": "à partir de 350 $"
+        },
+        {
+          "icon": "glass-wine",
+          "label": "Location de vaisselle, verrerie et linge",
+          "value": "à partir de 12 $ par invité"
+        },
+        {
+          "icon": "stove",
+          "label": "Équipement de cuisine portable",
+          "value": "sur devis"
+        },
+        {
+          "icon": "glass-cocktail",
+          "label": "Accord mets-vins",
+          "value": "à partir de 75 $ par invité"
+        }
+      ],
+      "note": "Les options sont facultatives et détaillées séparément dans votre devis écrit. Le déplacement est offert dans un rayon de 30 miles autour de Charleston.",
+      "link": "Commencer à planifier",
+      "badgeValue": "Entièrement assuré",
+      "badgeText": "Équipe certifiée ServSafe",
+      "imageAlt": "Chef privé dressant un plat de saison dans une cuisine pendant qu'un serveur dresse la table",
+      "insetAlt": "Table dressée avec linge, serviettes vert sauge et verres en cristal"
+    },
+    "events": {
+      "kicker": "Vitrine d'événements",
+      "title": "Nos derniers",
+      "highlight": "Événements",
+      "description": "Quelques-uns des dîners, célébrations et bars que nous avons servis récemment, des soupers aux chandelles pour huit convives aux mariages en jardin pour deux cents invités.",
+      "prev": "Événement précédent",
+      "next": "Événement suivant",
+      "navigation": "Navigation du carrousel d'événements",
+      "proofLong": "Planifiez votre événement avec nous dès aujourd'hui. Appelez le",
+      "proofShort": "Appelez-nous au",
+      "phone": "(843) 555-0147",
+      "projects": [
+        {
+          "alt": "Table de dîner aux chandelles dressée pour douze convives",
+          "type": "Dîner privé",
+          "title": "Le Souper de l'Ashley",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Cocktail sur un toit-terrasse au crépuscule",
+          "type": "Entreprise",
+          "title": "Soirée de lancement du port",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Banquet de mariage au jardin sous les chênes",
+          "type": "Mariage",
+          "title": "Mariage au jardin des Magnolias",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Tables d'oyster roast dressées sur le marais",
+          "type": "Célébration",
+          "title": "Oyster Roast sur le marais",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Table du chef dressée pour dix convives",
+          "type": "Dîner privé",
+          "title": "Table du chef à Kiawah",
+          "href": "/realisations"
+        }
+      ]
+    },
+    "steps": {
+      "kicker": "Comment ça marche",
+      "title": "Comment la soirée se met en place",
+      "button": "Commencer à planifier",
+      "steps": [
+        {
+          "icon": "",
+          "title": "Parlez-nous de votre événement",
+          "text": "Indiquez la date, le nombre d'invités et le lieu. Nous répondons sous un jour ouvré."
+        },
+        {
+          "icon": "notebook",
+          "title": "Composez votre menu",
+          "text": "Nous vous envoyons un projet de menu que nous affinons avec vous, avec une dégustation pour les grands événements."
+        },
+        {
+          "icon": "clipboard-check",
+          "title": "Confirmez votre réservation",
+          "text": "Un acompte réserve votre date, et nous confirmons par écrit le personnel, les locations et les horaires."
+        },
+        {
+          "icon": "glass-cocktail",
+          "title": "Profitez de votre soirée",
+          "text": "Nous arrivons tôt, cuisinons, servons et laissons la cuisine impeccable. Vous restez avec vos invités."
+        }
+      ]
+    },
+    "occasions": {
+      "kicker": "Occasions pour lesquelles nous cuisinons",
+      "title": "Un menu pour chaque",
+      "highlight": "occasion",
+      "description": "Des dîners aux chandelles pour deux aux célébrations d'entreprise — des menus et un service pensés pour chaque moment.",
+      "button": "Voir les services",
+      "occasions": [
+        {
+          "name": "Dîner privé",
+          "description": "Dîners et soirées en amoureux"
+        },
+        {
+          "name": "Entreprise",
+          "description": "Lancements et dîners clients"
+        },
+        {
+          "name": "Mariages",
+          "description": "Répétitions et réceptions"
+        },
+        {
+          "name": "Célébrations",
+          "description": "Anniversaires et fêtes"
+        }
+      ]
+    },
+    "reviews": {
+      "kicker": "Hôtes vérifiés",
+      "title": "Apprécié par",
+      "highlight": "Nos invités",
+      "description": "Hôtes, couples et organisateurs d'événements à propos des dîners et bars que nous avons servis. De vrais mots, de vraies tables.",
+      "prev": "Avis précédent",
+      "next": "Avis suivant",
+      "navigation": "Avis clients",
+      "proofLong": "Planifiez votre événement avec nous dès aujourd'hui. Appelez le",
+      "proofShort": "Appelez-nous au",
+      "phone": "(843) 555-0147",
+      "reviews": [
+        {
+          "name": "Kathrine Katija",
+          "role": "Dîner d'anniversaire, Mount Pleasant",
+          "text": "« On aurait dit qu'un restaurant avait ouvert dans notre salle à manger pour une soirée. » Le chef Julien a composé sept plats autour de notre cave à vin et des allergies de nos invités. Le service était calme et discret, et la cuisine était plus propre à leur départ qu'à leur arrivée.",
+          "alt": "Portrait de Kathrine Katija"
+        },
+        {
+          "name": "Marcus Chen",
+          "role": "Responsable événementiel, Harbor & Vine",
+          "text": "« Le bar mobile a été le sujet de conversation de notre soirée d'entreprise. » L'équipe d'Amara a composé un menu de cocktails autour du lancement de notre produit et a servi 180 invités sans la moindre file d'attente. Trois personnes ont demandé sa carte avant la fin de la soirée.",
+          "alt": "Portrait de Marcus Chen"
+        },
+        {
+          "name": "Elena Rostova",
+          "role": "Mariée, Wild Dunes Resort",
+          "text": "« C'est une véritable hospitalité, pas un traiteur générique. » De la première dégustation à la dernière assiette débarrassée, chaque détail était pensé. Notre dîner de mariage et notre cocktail se sont déroulés à l'heure et avaient un goût que nos invités n'avaient jamais connu lors d'un mariage.",
+          "alt": "Portrait d'Elena Rostova"
+        }
+      ]
+    },
+    "team": {
+      "kicker": "Équipe cuisine et bar",
+      "title": "Vos chefs et",
+      "highlight": "barmans",
+      "description": "Chaque menu est cuisiné en pensant à vos invités. Nos chefs et barmans se sont formés dans des restaurants de Charleston à Lyon, et ils apportent ce savoir-faire à votre table.",
+      "vertical": "SAVRIO",
+      "profile": "Voir le profil de {name}"
+    },
+    "trusted": {
+      "title": "La confiance de plus de 100 lieux et organisateurs"
+    },
+    "proposal": {
+      "kicker": "Demander une proposition",
+      "title": "Dites-nous ce que vous célébrez.",
+      "text": "Partagez les détails de votre soirée et nous vous enverrons une proposition de menu sur mesure, un devis clair et les prochaines étapes pour réserver votre date.",
+      "points": [
+        {
+          "icon": "clock",
+          "text": "Réponse sous un jour ouvré"
+        },
+        {
+          "icon": "utensils",
+          "text": "Des menus écrits pour vos invités"
+        },
+        {
+          "icon": "leaf",
+          "text": "Chaque besoin alimentaire pris en compte"
+        },
+        {
+          "icon": "phone",
+          "text": "(843) 555-0147 · hello@savrio.com"
+        }
+      ],
+      "formTitle": "Les détails de votre événement",
+      "formIntro": "Cela prend environ deux minutes. Rien n'est réservé tant que vous n'avez pas validé le menu.",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Nom",
+          "type": "text",
+          "placeholder": "Votre nom",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "E-mail",
+          "type": "email",
+          "placeholder": "vous@exemple.fr",
+          "required": true
+        },
+        {
+          "name": "date",
+          "label": "Date souhaitée",
+          "type": "date"
+        },
+        {
+          "name": "location",
+          "label": "Lieu",
+          "type": "text",
+          "placeholder": "Domicile, ville ou code postal"
+        },
+        {
+          "name": "occasion",
+          "label": "Formule",
+          "type": "select",
+          "placeholder": "Choisir une formule",
+          "options": ["Dîner privé", "Célébration", "Mariage", "Événement d'entreprise", "Autre"]
+        },
+        {
+          "name": "guests",
+          "label": "Nombre de personnes",
+          "type": "select",
+          "placeholder": "Pour combien de personnes ?",
+          "options": [
+            "1 à 2 personnes",
+            "3 à 4 personnes",
+            "5 à 6 personnes",
+            "7 personnes ou plus"
+          ]
+        },
+        {
+          "name": "budget",
+          "label": "Budget",
+          "type": "select",
+          "placeholder": "Budget approximatif",
+          "options": [
+            "Moins de 100 €",
+            "100 à 200 €",
+            "200 à 400 €",
+            "Plus de 400 €",
+            "Je ne sais pas encore"
+          ]
+        },
+        {
+          "name": "experience",
+          "label": "Fréquence",
+          "type": "select",
+          "placeholder": "Choisir une fréquence",
+          "options": ["Une fois", "Chaque semaine", "Toutes les deux semaines", "Chaque mois"]
+        },
+        {
+          "name": "message",
+          "label": "Régimes alimentaires et précisions",
+          "type": "textarea",
+          "placeholder": "Allergies, préférences, matériel disponible, tout ce que nous devons savoir",
+          "full": true
+        }
+      ],
+      "note": "Nous répondons sous un jour ouvré avec une proposition de menus. Les dates sont confirmées après vérification de nos disponibilités.",
+      "submit": "Envoyer ma demande",
+      "messages": {
+        "success": "Merci, nous vous répondons sous un jour ouvré.",
+        "invalid": "Merci de vérifier les champs en erreur.",
+        "unavailable": "Le formulaire n'est pas encore disponible. Appelez-nous en attendant.",
+        "error": "Une erreur est survenue. Merci de réessayer."
+      }
+    },
+    "posts": {
+      "intro": {
+        "kicker": "Dernières notes",
+        "title": "Notes depuis",
+        "highlight": "notre cuisine",
+        "description": "Menus, conseils de réception et histoires vécues des dîners et bars que nous avons servis dans tout le Lowcountry."
+      },
+      "button": "Voir tous les articles",
+      "posts": [
+        {
+          "category": "DÎNER PRIVÉ",
+          "title": "À quoi s’attendre lors d’une dégustation avec un chef privé",
+          "href": "/blog/what-to-expect-from-a-private-chef-tasting",
+          "meta": ["27 avr. 2026", "0 commentaire"]
+        },
+        {
+          "category": "DÎNER PRIVÉ",
+          "title": "Chef privé : vos questions, nos réponses",
+          "href": "/blog/private-chef-questions-answered",
+          "meta": ["27 avr. 2026", "0 commentaire"]
+        },
+        {
+          "category": "COCKTAILS ET BAR",
+          "title": "Organiser un bar mobile pour votre fête",
+          "href": "/blog/planning-a-mobile-bar-for-your-party",
+          "meta": ["27 avr. 2026", "0 commentaire"]
+        }
+      ]
+    }
+  },
+  "pages": {
+    "navLabel": "Fil d'Ariane",
+    "home": "Accueil",
+    "about": {
+      "title": "À propos",
+      "crumb": "À propos"
+    },
+    "team": {
+      "title": "Notre équipe",
+      "crumb": "Notre équipe"
+    },
+    "services": {
+      "title": "Nos services",
+      "crumb": "Services"
+    },
+    "pricing": {
+      "title": "Tarifs",
+      "crumb": "Tarifs"
+    },
+    "faq": {
+      "title": "FAQ",
+      "crumb": "FAQ"
+    },
+    "contact": {
+      "title": "Contact",
+      "crumb": "Contact"
+    },
+    "blog": {
+      "title": "Blog",
+      "crumb": "Blog"
+    },
+    "blogLeft": {
+      "title": "Blog, colonne à gauche",
+      "crumb": "Blog, colonne à gauche"
+    },
+    "blogWide": {
+      "title": "Blog, pleine largeur",
+      "crumb": "Blog, pleine largeur"
+    },
+    "blogGrid": {
+      "title": "Blog, grille",
+      "crumb": "Blog, grille"
+    },
+    "portfolio": {
+      "title": "Réalisations",
+      "crumb": "Réalisations"
+    },
+    "notFound": {
+      "title": "404 - Page introuvable",
+      "crumb": "404 Introuvable"
+    },
+    "blogCategory": "Catégorie : {name}",
+    "blogArchive": "Archives : {month}",
+    "blogTag": "Mot-clé : {name}",
+    "search": {
+      "title": "Recherche",
+      "crumb": "Recherche"
+    },
+    "bar": {
+      "title": "Bar à cocktails mobile",
+      "crumb": "Bar à cocktails mobile"
+    }
+  },
+  "services": {
+    "cta": "Voir la formule",
+    "items": [
+      {
+        "title": "Dîners avec chef privé",
+        "text": "Des menus dégustation de saison cuisinés dans votre cuisine, servis à votre table et débarrassés avant notre départ.",
+        "icon": "utensils",
+        "href": "/services/private-chef-dinners"
+      },
+      {
+        "title": "Traiteur événementiel",
+        "text": "Bouchées passées, festins conviviaux et dîners servis à l'assiette pour mariages, fêtes et événements d'entreprise.",
+        "icon": "bell",
+        "href": "/services/event-catering"
+      },
+      {
+        "title": "Bar à cocktails mobile",
+        "text": "Un bar en cuivre, des cocktails signature et des barmen agréés, livrés à votre fête, mariage ou bureau.",
+        "icon": "glass-cocktail",
+        "href": "/services/mobile-cocktail-bar"
+      },
+      {
+        "title": "Cours de cuisine et de mixologie",
+        "text": "Des cours pratiques de cuisine et de mixologie à domicile ou au bureau, se terminant par un dîner ou une tournée de cocktails.",
+        "icon": "glass-wine",
+        "href": "/services/cooking-cocktail-classes"
+      },
+      {
+        "title": "Dîners de mariage et répétitions",
+        "text": "Dîners de répétition, soupers d'accueil et festins de mariage, cuisinés et servis par nos chefs sur votre lieu de réception.",
+        "icon": "heart",
+        "href": "/services/wedding-dinners-rehearsals"
+      },
+      {
+        "title": "Dîners d'entreprise et lancements",
+        "text": "Dîners clients, célébrations d'équipe et soirées de lancement avec un menu et un service à l'image de votre marque.",
+        "icon": "briefcase",
+        "href": "/services/corporate-dinners-launches"
+      }
+    ]
+  },
+  "pricing": {
+    "plans": [
+      {
+        "badge": "L'essentiel",
+        "title": "Formule Solo & Duo",
+        "features": [
+          "Une session de cuisine par semaine",
+          "Cinq plats portionnés et étiquetés",
+          "Menu adapté à vos goûts"
+        ],
+        "from": "À partir de",
+        "price": "00 € / semaine",
+        "cta": "Réserver un appel",
+        "href": "/contact",
+        "alt": "Plats portionnés pour une ou deux personnes"
+      },
+      {
+        "badge": "Le plus demandé",
+        "title": "Formule Famille",
+        "features": [
+          "Une session de cuisine par semaine",
+          "Huit plats généreux pour toute la tablée",
+          "Options enfants et grandes portions"
+        ],
+        "from": "À partir de",
+        "price": "00 € / semaine",
+        "cta": "Réserver un appel",
+        "href": "/contact",
+        "alt": "Repas préparés pour une famille"
+      },
+      {
+        "badge": "Sur mesure",
+        "title": "Formule Réception",
+        "features": [
+          "Devis selon le nombre d'invités",
+          "Buffet ou repas assis, livré prêt à dresser",
+          "Menu conçu avec vous en amont"
+        ],
+        "from": "À partir de",
+        "price": "Devis",
+        "cta": "Demander un devis",
+        "href": "/contact",
+        "alt": "Buffet préparé pour une réception à domicile"
+      }
+    ],
+    "projects": {
+      "expand": "Ouvrir",
+      "collapse": "Fermer",
+      "defaultOpen": 0,
+      "items": [
+        {
+          "title": "Semaine type pour un couple actif",
+          "text": "Cinq plats portionnés, pensés pour deux personnes qui rentrent tard, prêts à réchauffer en quelques minutes.",
+          "tags": ["Batch cooking", "Équilibré"],
+          "alt": "Plats de la semaine pour un couple"
+        },
+        {
+          "title": "Repas pour une famille de quatre",
+          "text": "Des plats généreux et simples à partager, cuisinés en une matinée et rangés avant l'heure du midi.",
+          "tags": ["Famille", "Grandes portions"],
+          "alt": "Repas de famille préparés à l'avance"
+        },
+        {
+          "title": "Menu sans gluten sur deux semaines",
+          "text": "Un accompagnement renforcé pour composer des repas adaptés, sans sacrifier la variété.",
+          "tags": ["Régime spécifique", "Sans gluten"],
+          "alt": "Menu sans gluten préparé à domicile"
+        },
+        {
+          "title": "Buffet pour une réception à domicile",
+          "text": "Des plats froids et chauds préparés à l'avance pour une vingtaine d'invités, livrés prêts à dresser.",
+          "tags": ["Réception", "Sur mesure"],
+          "alt": "Buffet préparé pour une réception"
+        }
+      ]
+    }
+  },
+  "faq": {
+    "items": [
+      {
+        "question": "Comment se déroule une session de batch cooking ?",
+        "answer": "Notre chef arrive chez vous avec les ingrédients nécessaires, cuisine l'ensemble des plats de la semaine en une session, puis range tout, portionné et étiqueté, dans votre réfrigérateur avant de repartir."
+      },
+      {
+        "question": "Combien de temps dure une session ?",
+        "answer": "Comptez en moyenne trois à quatre heures pour une semaine de repas complète, selon le nombre de plats et de personnes à nourrir."
+      },
+      {
+        "question": "Puis-je adapter le menu à mes allergies ou régimes ?",
+        "answer": "Oui. Chaque menu est construit avec vous en amont : régimes sans gluten, sans lactose, végétariens ou toute autre préférence sont pris en compte dès la préparation."
+      },
+      {
+        "question": "Dans quelles zones intervenez-vous ?",
+        "answer": "Nous nous déplaçons dans toute la métropole et ses environs proches. Contactez-nous avec votre adresse pour confirmer la disponibilité."
+      },
+      {
+        "question": "Dois-je fournir les ingrédients ?",
+        "answer": "Non, nous nous occupons des courses à partir du menu validé ensemble, en privilégiant des produits locaux et de saison."
+      },
+      {
+        "question": "Comment annuler ou reporter une réservation ?",
+        "answer": "Contactez-nous au moins 48 heures à l'avance pour reporter ou annuler une session sans frais."
+      }
+    ],
+    "photos": [
+      {
+        "alt": "Préparation des plats de la semaine en cuisine"
+      },
+      {
+        "alt": "Repas portionnés et rangés au réfrigérateur"
+      }
+    ],
+    "stats": [
+      {
+        "label": "Personnalisation du menu",
+        "value": 95
+      },
+      {
+        "label": "Ponctualité du service",
+        "value": 100
+      },
+      {
+        "label": "Produits locaux",
+        "value": 80
+      }
+    ],
+    "cta": {
+      "title": "Un menu sur mesure",
+      "text": "Parlons de votre date, de vos invités et de votre menu",
+      "button": "Réserver un appel"
+    }
+  },
+  "contact": {
+    "kicker": "Contact",
+    "title": "Parlons de",
+    "highlight": "votre menu",
+    "description": "Dites-nous ce dont vous avez besoin : nous revenons vers vous avec une proposition claire.",
+    "followTitle": "Suivez-nous",
+    "socialLabel": "Réseaux sociaux",
+    "fields": [
+      {
+        "name": "name",
+        "label": "Nom complet",
+        "type": "text",
+        "placeholder": "Votre nom",
+        "required": true
+      },
+      {
+        "name": "email",
+        "label": "E-mail",
+        "type": "email",
+        "placeholder": "vous@exemple.fr",
+        "required": true
+      },
+      {
+        "name": "date",
+        "label": "Date souhaitée",
+        "type": "date",
+        "third": true
+      },
+      {
+        "name": "guests",
+        "label": "Taille du foyer",
+        "type": "select",
+        "placeholder": "Combien de personnes ?",
+        "options": ["1 à 2 personnes", "3 à 4 personnes", "5 à 6 personnes", "Plus de 6 personnes"],
+        "third": true
+      },
+      {
+        "name": "location",
+        "label": "Lieu",
+        "type": "text",
+        "placeholder": "Ville ou code postal",
+        "third": true
+      },
+      {
+        "name": "phone",
+        "label": "Téléphone",
+        "type": "tel",
+        "placeholder": "Facultatif"
+      },
+      {
+        "name": "occasion",
+        "label": "Formule",
+        "type": "select",
+        "placeholder": "Choisir une formule",
+        "options": [
+          "Batch cooking hebdomadaire",
+          "Paniers de la semaine",
+          "Repas de famille",
+          "Événement",
+          "Autre"
+        ]
+      },
+      {
+        "name": "message",
+        "label": "Votre demande",
+        "type": "textarea",
+        "placeholder": "Vos habitudes, régimes alimentaires, ce que vous avez en tête, tout ce que nous devons savoir",
+        "full": true
+      }
+    ],
+    "note": "Votre date reste une demande tant que nous n'avons pas confirmé la disponibilité, généralement sous un jour ouvré.",
+    "submit": "Envoyer la demande",
+    "messages": {
+      "success": "Merci, nous vous répondons sous un jour ouvré.",
+      "invalid": "Merci de vérifier les champs en erreur.",
+      "unavailable": "Le formulaire n'est pas encore disponible. Appelez-nous en attendant.",
+      "error": "Une erreur est survenue. Merci de réessayer."
+    }
+  },
+  "service": {
+    "included": "Ce qui est inclus",
+    "benefits": "Les plus",
+    "faq": "Questions fréquentes",
+    "price": "Tarif",
+    "turnaround": "Délai",
+    "cta": "Demander un devis",
+    "categories": "Catégories",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "related": "Autres services",
+    "categoryItems": [
+      {
+        "name": "Dîners avec chef privé",
+        "href": "/services/private-chef-dinners"
+      },
+      {
+        "name": "Traiteur événementiel",
+        "href": "/services/event-catering"
+      },
+      {
+        "name": "Bar à cocktails mobile",
+        "href": "/services/mobile-cocktail-bar"
+      },
+      {
+        "name": "Cours de cuisine et de mixologie",
+        "href": "/services/cooking-cocktail-classes"
+      },
+      {
+        "name": "Dîners de mariage et répétitions",
+        "href": "/services/wedding-dinners-rehearsals"
+      },
+      {
+        "name": "Dîners d'entreprise et lancements",
+        "href": "/services/corporate-dinners-launches"
+      }
+    ]
+  },
+  "member": {
+    "crumb": "Équipe",
+    "about": "À propos",
+    "responsibility": "Rôle",
+    "experience": "Expérience",
+    "skills": "Compétences",
+    "prev": "Précédent",
+    "next": "Suivant",
+    "related": "Autres membres",
+    "metaDescription": "{name}, {role}. Parcours, compétences et façon de travailler au sein de l'équipe."
+  },
+  "blog": {
+    "readMore": "Lire la suite",
+    "tags": "Mots-clés :",
+    "search": "Rechercher",
+    "recent": "Articles récents",
+    "archives": "Archives",
+    "categories": "Catégories",
+    "tagsTitle": "Nuage de mots-clés",
+    "comments": {
+      "title": "Commentaires récents",
+      "on": "sur",
+      "items": []
+    }
+  },
+  "project": {
+    "details": "Détails du projet",
+    "client": "Client",
+    "date": "Date",
+    "location": "Lieu",
+    "url": "Adresse",
+    "category": "Catégorie",
+    "gallery": "Galerie du projet",
+    "related": "Projets similaires",
+    "prev": "Précédent",
+    "next": "Suivant"
+  },
+  "notFound": {
+    "code": "404",
+    "title": "Désolé, cette page n’existe pas !",
+    "text": "Le lien est peut-être erroné, ou la page a été supprimée.",
+    "back": "Retour à l’accueil"
+  },
+  "seo": {
+    "default": "Des repas faits maison, préparés à l'avance pour toute la semaine : batch cooking à domicile pour les familles, les couples et les actifs.",
+    "homeTitle": "Batch cooking à domicile pour toute la semaine",
+    "about": "Qui nous sommes, notre façon de cuisiner et ce qui rend nos repas préparés à l'avance simples à vivre au quotidien.",
+    "team": "Rencontrez les cuisiniers qui préparent vos repas de la semaine : parcours, spécialités et façon de travailler.",
+    "services": "Batch cooking hebdomadaire, formule famille, événements : découvrez nos services et ce qu'ils incluent.",
+    "pricing": "Nos formules et leurs tarifs, sans surprise : ce qui est inclus, pour combien de repas et à quel rythme.",
+    "faq": "Les réponses aux questions les plus fréquentes : commande, conservation, allergies, livraison et paiement.",
+    "contact": "Parlez-nous de votre semaine : dites-nous la date, le nombre de convives et vos envies, nous répondons sous un jour ouvré.",
+    "blog": "Conseils, idées de menus et coulisses : le journal de notre cuisine pour mieux organiser vos repas.",
+    "portfolio": "Nos réalisations récentes : repas de la semaine, dîners et événements préparés pour nos clients.",
+    "search": "Recherche dans les services, articles, réalisations et l'équipe.",
+    "bar": "Un bar mobile pour vos fêtes : cocktails de saison, équipe de barmans et tout le matériel, pour mariages, anniversaires et événements."
+  },
+  "search": {
+    "label": "Rechercher sur le site",
+    "button": "Rechercher",
+    "results": "{count} résultats pour « {query} »",
+    "empty": "Saisissez un mot pour chercher dans les services, les articles, les réalisations et l’équipe.",
+    "none": "Aucun résultat. Essayez un autre mot.",
+    "types": {
+      "service": "Service",
+      "post": "Article",
+      "project": "Réalisation",
+      "member": "Équipe"
+    },
+    "resultOne": "1 résultat pour « {query} »",
+    "resultNone": "Aucun résultat pour « {query} »"
+  },
+  "bar": {
+    "hero": {
+      "label": "Bar mobile de cocktails · Charleston et le Lowcountry",
+      "headline": "Votre fête.",
+      "accent": "Servie à la perfection.",
+      "description": "Nos barmans composent une carte de cocktails autour de votre fête, apportent un bar mobile complet sur votre lieu de réception et servent vos invités du premier au dernier verre. Vous recevez ; nous nous occupons du bar.",
+      "primary": "Réserver le bar",
+      "secondary": "Voir les cartes de cocktails",
+      "meta": "4,9 sur 260 hôtes · Cocktails artisanaux et sans alcool",
+      "imageAlt": "Barman préparant un cocktail signature derrière un bar mobile en cuivre pendant une réception",
+      "captionKicker": "Cette semaine",
+      "captionTitle": "Un bar pour quatre-vingts invités",
+      "captionText": "Exemple de carte pour une réception de mariage"
+    },
+    "inquiry": {
+      "kicker": "Demande rapide de bar",
+      "title": "Dites-nous l'essentiel",
+      "dateLabel": "Date souhaitée",
+      "guestsLabel": "Nombre d'invités",
+      "guestsPlaceholder": "Combien d'invités ?",
+      "guestsOptions": [
+        "2 à 6 invités",
+        "7 à 12 invités",
+        "13 à 24 invités",
+        "25 à 50 invités",
+        "51 à 100 invités",
+        "Plus de 100 invités"
+      ],
+      "locationLabel": "Lieu",
+      "locationPlaceholder": "Domicile, jardin ou lieu de réception",
+      "button": "Vérifier la disponibilité",
+      "note": "Les dates sont des demandes tant que notre équipe n'a pas confirmé la disponibilité, généralement sous un jour ouvré."
+    },
+    "experiences": {
+      "kicker": "Nos formules de bar",
+      "title": "Chaque fête, servie pour l'occasion",
+      "intro": "Choisissez le type de fête que vous organisez. Chaque carte de cocktails est écrite pour vos invités, votre lieu et la saison.",
+      "cards": [
+        {
+          "title": "Mariages et réceptions",
+          "text": "Un bar complet pour le cocktail, la réception et la soirée, du premier verre au dernier toast.",
+          "meta": "50 à 250 invités",
+          "icon": "glass-champagne",
+          "linkText": "Découvrir la formule",
+          "alt": "Bar mobile dressé pour une réception de mariage sous des guirlandes lumineuses"
+        },
+        {
+          "title": "Fêtes privées",
+          "text": "Anniversaires et fêtes entre proches, avec une carte de cocktails sur mesure et un service complet.",
+          "meta": "À partir de 26 $ par invité",
+          "icon": "confetti",
+          "linkText": "Découvrir la formule",
+          "alt": "Invités trinquant autour d'un bar mobile lors d'une fête privée dans un jardin"
+        },
+        {
+          "title": "Entreprise et lancements",
+          "text": "Un bar professionnel pour vos lancements, soirées d'entreprise et événements clients.",
+          "meta": "Lancements et événements clients",
+          "icon": "glass-full",
+          "linkText": "Découvrir la formule",
+          "alt": "Bar mobile sur un toit-terrasse lors d'une soirée de lancement d'entreprise"
+        }
+      ]
+    },
+    "chef": {
+      "kicker": "Rencontrez la directrice du bar",
+      "title": "Amara Okafor",
+      "subtitle": "Directrice du bar et cheffe mixologue",
+      "paragraphs": [
+        "Amara compose des cartes de cocktails autour des produits de saison du Lowcountry : pêches, hibiscus, pacanes fumées et agrumes locaux. Elle dirige le bar Savrio depuis 2016 et a formé la plupart des barmans qui servent aujourd'hui vos fêtes.",
+        "Elle goûte et ajuste chaque carte avant l'événement, et son équipe arrive toujours une heure avant vos invités pour préparer les garnitures."
+      ],
+      "stats": [
+        {
+          "icon": "chef-hat",
+          "value": "10+",
+          "label": "années à servir des fêtes"
+        },
+        {
+          "icon": "tools-kitchen-2",
+          "value": "000+",
+          "label": "fêtes servies"
+        },
+        {
+          "icon": "leaf",
+          "value": "00",
+          "label": "producteurs locaux"
+        }
+      ],
+      "quote": {
+        "text": "Un bon cocktail se sert comme un bon plat : de saison, généreux et préparé devant vous.",
+        "author": "Amara Okafor"
+      },
+      "listTitle": "Parcours",
+      "items": [
+        "10 ans comme cheffe mixologue à Charleston et Charleston",
+        "Dirige le bar Savrio depuis 2016",
+        "Formée à la mixologie classique et aux techniques sans alcool",
+        "Cartes conçues pour chaque régime alimentaire et chaque occasion"
+      ],
+      "link": "Rencontrer l'équipe du bar",
+      "caption": "Dirige le bar Savrio depuis 2016",
+      "badgeValue": "4,9 / 5",
+      "badgeText": "selon 260 hôtes",
+      "imageAlt": "Portrait d'Amara Okafor derrière un bar mobile en cuivre",
+      "insetAlt": "Amara préparant des garnitures fraîches avant le service"
+    },
+    "about": {
+      "label": "À PROPOS",
+      "title": "Un bar mobile pour les fêtes qui comptent",
+      "intro": "Nous apportons un bar complet avec barmans professionnels dans les domiciles, jardins et lieux de réception de nos clients. Vous choisissez la date et les invités ; nous apportons le bar, la carte, le service et la sérénité.",
+      "badgeValue": "10+",
+      "badgeText": "Années à servir des fêtes",
+      "qualityTitle": "Cocktails préparés devant vous",
+      "qualityText": "Chaque carte est écrite pour votre fête et préparée au bar avec des ingrédients frais achetés le jour même.",
+      "qualityNote": "Nous composons chaque carte autour de vos goûts, de vos couleurs et de vos invités.",
+      "features": [
+        "Cartes de cocktails de saison",
+        "Options sans alcool pour chaque carte",
+        "Bar monté et démonté sans que vous ayez à y penser"
+      ],
+      "button": "En savoir plus sur nous",
+      "images": [
+        "Mains du barman préparant un cocktail signature",
+        "Bar mobile dressé avec garnitures et verrerie",
+        "Table de bar dressée avant l'arrivée des invités"
+      ]
+    },
+    "menus": {
+      "kicker": "Cartes de cocktails types",
+      "title": "Un aperçu de ce que nous servons",
+      "intro": "Trois cartes parmi les plus demandées par nos hôtes. Chacune est un point de départ : nous écrivons la carte finale autour de votre fête, de la saison et de l'occasion.",
+      "note": "Les cocktails changent avec les saisons et les arrivages. Les régimes alimentaires et préférences sont discutés avec vous avant la confirmation de votre réservation.",
+      "open": "Voir la carte type",
+      "close": "Fermer la carte",
+      "panelKicker": "Carte type",
+      "cta": "Choisir cette carte",
+      "more": "{count, plural, one {+ # autre cocktail} other {+ # autres cocktails}}",
+      "cards": [
+        {
+          "icon": "chef-hat",
+          "label": "Le plus réservé",
+          "title": "Bar signature",
+          "meta": "Six cocktails · 25 à 250 invités",
+          "tags": ["Signature", "De saison"],
+          "courses": [
+            ["Smash à la pêche de Caroline", "gin, pêche fraîche, citron, basilic"],
+            ["Fizz au gin et romarin", "gin, romarin, citron, blanc d'œuf"],
+            ["Paloma à l'hibiscus", "tequila, pamplemousse, sirop d'hibiscus"],
+            ["Old fashioned fumé aux pacanes", "bourbon, sirop de pacane, fumée de bois"],
+            ["Toast au champagne", "champagne, liqueur de pêche, zeste de citron"],
+            ["Spritz du jardin", "sans alcool, herbes, agrumes, eau gazeuse"]
+          ],
+          "price": "À partir de 32 $ par invité",
+          "priceNote": "Quatre heures de service incluses",
+          "alt": "Cocktails signature dressés sur le bar mobile"
+        },
+        {
+          "icon": "users",
+          "label": "Pour les grandes fêtes",
+          "title": "Bar à punch",
+          "meta": "Six boissons · 50 à 250 invités",
+          "tags": ["Convivial", "Grandes quantités"],
+          "courses": [
+            ["Punch au rhum de Charleston", "rhum, jus de fruits, agrumes"],
+            ["Limonade vodka-thé sucré", "vodka, thé sucré, citron"],
+            ["Sangria blanche", "vin blanc, fruits frais, liqueur d'orange"],
+            ["Bière et cidre locaux", "sélection de brasseries locales"],
+            ["Arnold Palmer", "sans alcool, thé glacé, limonade"],
+            ["Bar à eau gazeuse", "sans alcool, agrumes, herbes fraîches"]
+          ],
+          "price": "À partir de 22 $ par invité",
+          "priceNote": "Servi en libre-service",
+          "alt": "Bar à punch dressé pour une grande réception"
+        },
+        {
+          "icon": "lotus",
+          "label": "100 % sans alcool",
+          "title": "Bar sans alcool",
+          "meta": "Cinq boissons · 25 à 250 invités",
+          "tags": ["Sans alcool", "Pour tous"],
+          "courses": [
+            ["Fraîcheur concombre-basilic", "concombre, basilic, citron vert, eau gazeuse"],
+            ["Fizz au shrub de mûre", "mûre, vinaigre de fruits, eau gazeuse"],
+            ["Mule à l'ananas épicé", "ananas, gingembre, bière de gingembre"],
+            ["Limonade à la lavande", "lavande, citron, miel"],
+            ["Tonic au café glacé", "café infusé à froid, tonic, zeste d'orange"]
+          ],
+          "price": "À partir de 18 $ par invité",
+          "priceNote": "Idéal pour tous les invités",
+          "alt": "Cocktails sans alcool colorés dressés sur le bar"
+        }
+      ]
+    },
+    "photos": {
+      "kicker": "Depuis nos bars",
+      "title": "Instants de nos dernières fêtes",
+      "handle": "@savrio.bar",
+      "gallery": "Galerie photo",
+      "photos": [
+        {
+          "caption": "L'heure du negroni",
+          "icon": "glass-full"
+        },
+        {
+          "caption": "Coupes pour le toast",
+          "icon": "glass-champagne"
+        },
+        {
+          "caption": "Service de spritz sur la pelouse",
+          "icon": "sun"
+        },
+        {
+          "caption": "Préparation des garnitures, 16 h",
+          "icon": "leaf"
+        },
+        {
+          "caption": "Signatures de mariage",
+          "icon": ""
+        },
+        {
+          "caption": "Lancement sur toit-terrasse pour 180 invités",
+          "icon": "confetti"
+        },
+        {
+          "caption": "Service de bulles roses",
+          "icon": "sparkles"
+        },
+        {
+          "caption": "Deux bars sous les chênes",
+          "icon": "heart-handshake"
+        },
+        {
+          "caption": "Shaké, jamais pressé",
+          "icon": "flame"
+        },
+        {
+          "caption": "Bar de jardin au crépuscule",
+          "icon": "home"
+        }
+      ]
+    },
+    "included": {
+      "kicker": "Ce qui est inclus",
+      "title": "Tout ce qu'il faut pour la fête",
+      "paragraphs": [
+        "Chaque réservation couvre le travail depuis le premier appel jusqu'au dernier verre servi. Voici ce qui est inclus, et ce qui peut être ajouté si votre fête en a besoin."
+      ],
+      "listTitle": "Inclus dans chaque réservation",
+      "items": [
+        {
+          "icon": "message-circle",
+          "text": "Appel de planification de la carte de cocktails"
+        },
+        {
+          "icon": "notebook",
+          "text": "Carte de cocktails imprimée"
+        },
+        {
+          "icon": "glass-full",
+          "text": "Bar mobile en cuivre et matériel de bar"
+        },
+        {
+          "icon": "bottle",
+          "text": "Mixeurs, sirops et garnitures"
+        },
+        {
+          "icon": "sparkles",
+          "text": "Glace et verrerie"
+        },
+        {
+          "icon": "users",
+          "text": "Barmans professionnels"
+        },
+        {
+          "icon": "clock",
+          "text": "Quatre heures de service"
+        },
+        {
+          "icon": "shield-check",
+          "text": "Assurance responsabilité civile liée à l'alcool"
+        }
+      ],
+      "extrasTitle": "Options disponibles",
+      "extras": [
+        {
+          "icon": "user-plus",
+          "label": "Barman supplémentaire",
+          "value": "45 $ de l'heure"
+        },
+        {
+          "icon": "glass-champagne",
+          "label": "Toast au champagne",
+          "value": "à partir de 6 $ par invité"
+        },
+        {
+          "icon": "flame",
+          "label": "Station de cocktails fumés",
+          "value": "à partir de 350 $"
+        },
+        {
+          "icon": "brand-instagram",
+          "label": "Carte personnalisée et tampons à glace",
+          "value": "à partir de 150 $"
+        },
+        {
+          "icon": "truck",
+          "label": "Second bar pour 150 invités et plus",
+          "value": "sur devis"
+        }
+      ],
+      "note": "Les options sont facultatives et détaillées séparément dans votre devis écrit. Le déplacement est offert dans un rayon de 30 miles autour de Charleston.",
+      "link": "Commencer à planifier",
+      "badgeValue": "Entièrement assuré",
+      "badgeText": "Équipe certifiée",
+      "imageAlt": "Barman préparant un cocktail derrière un bar mobile",
+      "insetAlt": "Bar mobile dressé avec verrerie et garnitures fraîches"
+    },
+    "events": {
+      "kicker": "Vitrine de fêtes",
+      "title": "Nos dernières",
+      "highlight": "Fêtes",
+      "description": "Quelques-uns des dîners, célébrations et bars que nous avons servis récemment, des soupers aux chandelles pour huit convives aux mariages en jardin pour deux cents invités.",
+      "prev": "Fête précédente",
+      "next": "Fête suivante",
+      "navigation": "Navigation du carrousel de fêtes",
+      "proofLong": "Planifiez votre fête avec nous dès aujourd'hui. Appelez le",
+      "proofShort": "Appelez-nous au",
+      "phone": "(843) 555-0147",
+      "projects": [
+        {
+          "alt": "Table de dîner aux chandelles dressée pour douze convives",
+          "type": "Dîner privé",
+          "title": "Le Souper de l'Ashley",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Cocktail sur un toit-terrasse au crépuscule",
+          "type": "Entreprise",
+          "title": "Soirée de lancement du port",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Banquet de mariage au jardin sous les chênes",
+          "type": "Mariage",
+          "title": "Mariage au jardin des Magnolias",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Tables d'oyster roast dressées sur le marais",
+          "type": "Célébration",
+          "title": "Oyster Roast sur le marais",
+          "href": "/realisations"
+        },
+        {
+          "alt": "Table du chef dressée pour dix convives",
+          "type": "Dîner privé",
+          "title": "Table du chef à Kiawah",
+          "href": "/realisations"
+        }
+      ]
+    },
+    "steps": {
+      "kicker": "Comment ça marche",
+      "title": "Comment la fête se met en place",
+      "button": "Vérifier la disponibilité",
+      "steps": [
+        {
+          "icon": "message-circle",
+          "title": "Parlez-nous de votre fête",
+          "text": "Indiquez la date, le nombre d'invités et le lieu. Nous répondons sous un jour ouvré."
+        },
+        {
+          "icon": "notebook",
+          "title": "Composez vos cocktails",
+          "text": "Nous vous envoyons un projet de carte que nous affinons avec vous, avec une dégustation pour les grands événements."
+        },
+        {
+          "icon": "clipboard-check",
+          "title": "Confirmez votre réservation",
+          "text": "Un acompte réserve votre date, et nous confirmons par écrit le personnel, les locations et les horaires."
+        },
+        {
+          "icon": "glass-cocktail",
+          "title": "Levez votre verre",
+          "text": "Nous arrivons tôt, préparons le bar, servons vos invités et laissons les lieux impeccables."
+        }
+      ]
+    },
+    "occasions": {
+      "kicker": "Occasions pour lesquelles nous servons",
+      "title": "Un bar pour chaque",
+      "highlight": "occasion",
+      "description": "Des fêtes d'anniversaire aux réceptions de mariage — des cartes de cocktails et un service pensés pour chaque moment.",
+      "button": "Voir les formules de bar",
+      "occasions": [
+        {
+          "name": "Fête privée",
+          "description": "Anniversaires et fêtes de jardin"
+        },
+        {
+          "name": "Entreprise",
+          "description": "Lancements et événements clients"
+        },
+        {
+          "name": "Mariages",
+          "description": "Cocktails et réceptions"
+        },
+        {
+          "name": "Célébrations",
+          "description": "Baby showers et fêtes"
+        }
+      ]
+    },
+    "reviews": {
+      "kicker": "Hôtes vérifiés",
+      "title": "Apprécié par",
+      "highlight": "Nos invités",
+      "description": "Hôtes, couples et organisateurs d'événements à propos des dîners et bars que nous avons servis. De vrais mots, de vraies tables.",
+      "prev": "Avis précédent",
+      "next": "Avis suivant",
+      "navigation": "Avis clients",
+      "proofLong": "Planifiez votre fête avec nous dès aujourd'hui. Appelez le",
+      "proofShort": "Appelez-nous au",
+      "phone": "(843) 555-0147",
+      "reviews": [
+        {
+          "name": "Kathrine Katija",
+          "role": "Fête d'anniversaire au jardin, Mount Pleasant",
+          "text": "« Nos invités parlent encore du smash à la pêche. » L'équipe d'Amara a composé une carte entière autour de ma fête d'anniversaire, avec une option sans alcool pour chaque cocktail. Le bar était magnifique et le service impeccable du début à la fin.",
+          "alt": "Portrait de Kathrine Katija"
+        },
+        {
+          "name": "Marcus Chen",
+          "role": "Responsable événementiel, Harbor & Vine",
+          "text": "« Le bar mobile a été le sujet de conversation de notre soirée d'entreprise. » L'équipe d'Amara a composé un menu de cocktails autour du lancement de notre produit et a servi 180 invités sans la moindre file d'attente. Trois personnes ont demandé sa carte avant la fin de la soirée.",
+          "alt": "Portrait de Marcus Chen"
+        },
+        {
+          "name": "Elena Rostova",
+          "role": "Mariée, Wild Dunes Resort",
+          "text": "« Le cocktail a été le meilleur moment de notre mariage. » Le bar en cuivre était magnifique sur les photos et la carte personnalisée a fait sensation. Nos invités ont trinqué jusqu'au bout de la soirée sans jamais attendre un verre.",
+          "alt": "Portrait d'Elena Rostova"
+        }
+      ]
+    },
+    "team": {
+      "kicker": "Équipe cuisine et bar",
+      "title": "Vos chefs et",
+      "highlight": "barmans",
+      "description": "Chaque carte de cocktails est composée en pensant à vos invités. Nos chefs et barmans se sont formés dans des établissements de Charleston à Lyon, et ils apportent ce savoir-faire à votre fête.",
+      "vertical": "SAVRIO",
+      "profile": "Voir le profil de {name}"
+    },
+    "trusted": {
+      "title": "La confiance de plus de 100 lieux et organisateurs"
+    },
+    "proposal": {
+      "kicker": "Demander un devis de bar",
+      "title": "Dites-nous ce que vous célébrez.",
+      "text": "Partagez les détails de votre fête et nous vous enverrons une proposition de carte de cocktails sur mesure, un devis clair et les prochaines étapes pour réserver votre date.",
+      "points": [
+        {
+          "icon": "clock",
+          "text": "Réponse sous un jour ouvré"
+        },
+        {
+          "icon": "utensils",
+          "text": "Des cartes écrites pour vos invités"
+        },
+        {
+          "icon": "leaf",
+          "text": "Chaque besoin alimentaire pris en compte"
+        },
+        {
+          "icon": "phone",
+          "text": "(843) 555-0147 · hello@savrio.com"
+        }
+      ],
+      "formTitle": "Les détails de votre fête",
+      "formIntro": "Cela prend environ deux minutes. Rien n'est réservé tant que vous n'avez pas validé la carte.",
+      "fields": [
+        {
+          "name": "name",
+          "label": "Nom",
+          "type": "text",
+          "placeholder": "Votre nom",
+          "required": true
+        },
+        {
+          "name": "email",
+          "label": "E-mail",
+          "type": "email",
+          "placeholder": "vous@exemple.fr",
+          "required": true
+        },
+        {
+          "name": "date",
+          "label": "Date souhaitée",
+          "type": "date"
+        },
+        {
+          "name": "location",
+          "label": "Lieu",
+          "type": "text",
+          "placeholder": "Domicile, ville ou code postal"
+        },
+        {
+          "name": "occasion",
+          "label": "Formule",
+          "type": "select",
+          "placeholder": "Choisir une formule",
+          "options": ["Fête privée", "Célébration", "Mariage", "Événement d'entreprise", "Autre"]
+        },
+        {
+          "name": "guests",
+          "label": "Nombre de personnes",
+          "type": "select",
+          "placeholder": "Pour combien de personnes ?",
+          "options": [
+            "1 à 2 personnes",
+            "3 à 4 personnes",
+            "5 à 6 personnes",
+            "7 personnes ou plus"
+          ]
+        },
+        {
+          "name": "budget",
+          "label": "Budget",
+          "type": "select",
+          "placeholder": "Budget approximatif",
+          "options": [
+            "Moins de 100 €",
+            "100 à 200 €",
+            "200 à 400 €",
+            "Plus de 400 €",
+            "Je ne sais pas encore"
+          ]
+        },
+        {
+          "name": "experience",
+          "label": "Fréquence",
+          "type": "select",
+          "placeholder": "Choisir une fréquence",
+          "options": ["Une fois", "Chaque semaine", "Toutes les deux semaines", "Chaque mois"]
+        },
+        {
+          "name": "message",
+          "label": "Régimes alimentaires et précisions",
+          "type": "textarea",
+          "placeholder": "Allergies, préférences, matériel disponible, tout ce que nous devons savoir",
+          "full": true
+        }
+      ],
+      "note": "Nous répondons sous un jour ouvré avec une proposition de carte. Les dates sont confirmées après vérification de nos disponibilités.",
+      "submit": "Envoyer ma demande",
+      "messages": {
+        "success": "Merci, nous vous répondons sous un jour ouvré.",
+        "invalid": "Merci de vérifier les champs en erreur.",
+        "unavailable": "Le formulaire n'est pas encore disponible. Appelez-nous en attendant.",
+        "error": "Une erreur est survenue. Merci de réessayer."
+      }
+    },
+    "posts": {
+      "intro": {
+        "kicker": "Dernières notes",
+        "title": "Dans les coulisses",
+        "highlight": "du bar",
+        "description": "Recettes de cocktails, conseils de réception et histoires vécues des fêtes que nous avons servies dans tout le Lowcountry."
+      },
+      "button": "Voir tous les articles",
+      "posts": []
+    }
+  }
+}

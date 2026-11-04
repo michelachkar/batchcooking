@@ -1,0 +1,112 @@
+/* Portfolio de réalisations (widget savrio-projects-portfolio) : panneau d'aperçu au survol d'une carte. */
+@keyframes cm-pp-zoom-in {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+.cm-pp-zoom {
+  position: fixed;
+  z-index: 99999;
+  width: 40%;
+  border-radius: 20px;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.93) translateY(12px);
+  transition:
+    opacity 0.38s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.38s cubic-bezier(0.2, 0.7, 0.2, 1);
+  box-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.42),
+    0 0 0 1px rgba(255, 255, 255, 0.07);
+  will-change: opacity, transform;
+}
+.cm-pp-zoom.is-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+.cm-pp-zoom__img {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transform-origin: center center;
+}
+.cm-pp-zoom.is-visible .cm-pp-zoom__img {
+  animation: cm-pp-zoom-in 8s ease-in-out forwards;
+}
+.cm-pp-zoom__panel {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 1.6rem 1.5rem 1.4rem;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 16, 18, 0) 0%,
+    rgba(10, 16, 18, 0.65) 28%,
+    rgba(10, 16, 18, 0.96) 100%
+  );
+}
+.cm-pp-zoom__type {
+  margin: 0 0 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 999px;
+  color: #a9c4a2;
+  background: rgba(27, 31, 29, 0.55);
+  border: 1px solid rgba(169, 196, 162, 0.35);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+.cm-pp-zoom__title {
+  margin: 0 0 0.5rem;
+  color: #f4f3ef;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cm-pp-zoom,
+  .cm-pp-zoom__img {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Accordéon de réalisations (widget projects-dropdown) : délais de révélation par ligne (0,10 / 0,25 / 0,40 / 0,55 s). */
+[data-reveal][data-pdd='1'].in-view {
+  animation-delay: 0.1s;
+}
+[data-reveal][data-pdd='2'].in-view {
+  animation-delay: 0.25s;
+}
+[data-reveal][data-pdd='3'].in-view {
+  animation-delay: 0.4s;
+}
+[data-reveal][data-pdd='4'].in-view {
+  animation-delay: 0.55s;
+}
+
+/* Pages CPT (script mt-cpt-page-animations) : éléments masqués avant leur révélation, sur bureau uniquement ;
+   repli de 3 s si le script ne s'exécute pas, comme l'original. Les visuels « réduire les animations » restent inchangés. */
+@keyframes cm-anim-fallback {
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+@media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
+  [data-cm-section]:not([data-cm-children]):not([data-cm-done]),
+  [data-cm-child]:not([data-cm-done]),
+  [data-cm-item]:not([data-cm-done]) {
+    visibility: hidden;
+    opacity: 0;
+    animation: cm-anim-fallback 0s 3s forwards;
+  }
+}

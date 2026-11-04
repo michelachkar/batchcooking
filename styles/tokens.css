@@ -1,0 +1,38 @@
+/* Tokens extraits de Savrio : voir TOKENS.md. Une seule source, consommée par Tailwind via @theme. */
+@theme {
+  /* Couleurs (skin par défaut) */
+  --color-ink: #1b1f1d;
+  --color-forest: #234a3a;
+  --color-forest-dark: #1a382c;
+  --color-forest-mid: #2f5e4a;
+  --color-sage: #a9c4a2;
+  --color-sage-soft: #c3d6bd;
+  --color-cream: #f4f3ef;
+  --color-ivory: #fbfaf7;
+  --color-sand: #e6e4dd;
+  --color-body: #5a605c;
+  --color-surface-dark: #262c29;
+  --color-footer: #111412;
+  --color-menu: #f2f0ea;
+  --color-menu-link: #484848;
+
+  /* Polices : une variable par famille, sous-ensemble latin (next/font) */
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+
+  /* Breakpoints Elementor : mobile ≤ 767, tablette 768 à 1024, desktop ≥ 1025 */
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1025px;
+
+  /* Conteneur boxed de la démo */
+  --container-site: 1320px;
+
+  /* Ombres */
+  --shadow-dropdown: 0 2px 4px -2px rgb(0 0 0 / 0.1), 0 4px 15px rgb(0 0 0 / 0.1);
+
+  /* Rayons */
+  --radius-pill: 100px;
+  --radius-dropdown: 20px;
+
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}

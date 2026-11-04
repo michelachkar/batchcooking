@@ -1,0 +1,51 @@
+{
+  "name": "batch-cooking",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "analyze": "ANALYZE=true next build",
+    "test:visual": "playwright test tests/visual",
+    "test:seo": "playwright test tests/seo",
+    "lighthouse": "next build && lhci autorun",
+    "lighthouse:mobile": "next build && lhci autorun --collect.settings.preset=perf"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
+    "lucide-react": "^1.61.0",
+    "next": "^16.4.3",
+    "next-intl": "^4.14.9",
+    "next-mdx-remote": "^6.0.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "tailwind-merge": "^3.7.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@lhci/cli": "^0.15.1",
+    "@next/bundle-analyzer": "^16.4.3",
+    "@playwright/test": "^1.64.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.4.3",
+    "pixelmatch": "^8.0.0",
+    "pngjs": "^7.0.0",
+    "postcss": "^8.5.31",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  }
+}

@@ -1,0 +1,45 @@
+# DEPENDENCIES.md : justification de chaque dépendance
+
+Règle du brief : aucune dépendance sans justification écrite. Les versions sont celles de `package.json`.
+
+## Exécution (livrées au navigateur ou au rendu serveur)
+| Paquet | Pourquoi | Impact JS client |
+|---|---|---|
+| `next`, `react`, `react-dom` | Imposés par le brief (App Router, rendu statique, React Compiler). | Socle : voir « Budget JS » dans README |
+| `next-intl` | Français seul aujourd'hui, anglais prévu : routage `/[locale]`, textes dans `messages/<langue>.json`, hreflang à l'ajout de la langue. Utilisé côté serveur uniquement (`getTranslations`). | Aucun (pas de `NextIntlClientProvider`) |
+| `class-variance-authority`, `clsx`, `tailwind-merge` | Imposés (pattern shadcn/ui) : variantes de composants et fusion des classes Tailwind. | Négligeable |
+| `zod` | Validation des Server Actions (formulaire de devis, plus tard contact) et du frontmatter MDX (étape 5) : un schéma unique sert de type TypeScript et de contrôle à l'exécution. Côté serveur uniquement. | Aucun |
+| `next-mdx-remote` | Rend le corps des fichiers MDX (articles, services, réalisations, pages de texte) sur le serveur (`next-mdx-remote/rsc`), sans JavaScript côté navigateur. `@next/mdx` ne convient pas : les contenus vivent dans `content/` hors de `app/` et sont validés avant le rendu. | Aucun (rendu serveur) |
+| `gray-matter` | Sépare le frontmatter YAML du corps des fichiers MDX avant la validation Zod. Une cinquantaine de lignes à réécrire pour un gain nul ; paquet stable. | Aucun (serveur) |
+| `lucide-react` | Icônes SVG rendues côté serveur et importées à l'unité. Remplace Font Awesome du thème (police d'icônes de ~75 Ko). Les glyphes diffèrent légèrement de ceux de la démo : écart visuel mineur et connu. | Seules `ChevronDown` et `X` partent côté client (menu mobile) |
+
+Pas de `@radix-ui/react-dialog` : le menu mobile utilise `<dialog>` natif (piège à focus, Échap, fond inerte). Essayé puis retiré : −12 Ko gzippés.
+
+## Développement
+| Paquet | Pourquoi |
+|---|---|
+| `typescript`, `@types/node`, `@types/react`, `@types/react-dom` | TypeScript imposé. |
+| `tailwindcss`, `@tailwindcss/postcss`, `postcss` | Tailwind v4 imposé (tokens dans `@theme`). |
+| `babel-plugin-react-compiler` | React Compiler imposé (`reactCompiler: true`). |
+| `eslint`, `eslint-config-next` | Qualité imposée. |
+| `prettier`, `prettier-plugin-tailwindcss` | Qualité imposée ; le plugin trie les classes Tailwind. |
+| `@next/bundle-analyzer` | Imposé : `npm run analyze`. |
+| `@playwright/test` | Imposé : tests visuels (étape 3) et SEO (étape 5). |
+| `pixelmatch`, `pngjs`, `@types/pngjs` | Comparaison pixel à pixel des captures de référence. Playwright sait comparer ses propres captures, mais pas contre des images externes avec masques ni mesurer un pourcentage d'écart. |
+
+## Outils de test ajoutés à l'étape 5
+| Paquet | Pourquoi |
+|---|---|
+| `@lhci/cli` | Imposé : Lighthouse CI (`npm run lighthouse`, seuils dans `lighthouserc.json`). Développement seulement. |
+
+## Polices
+`Outfit` et `Plus Jakarta Sans` (comme le thème) et `Space Grotesk` (barre d'appel de la FAQ, comme la démo) via `next/font/google` : téléchargées au build et servies depuis le site, aucune requête vers Google à l'exécution.
+
+## Script externe facultatif
+Plausible (mesure d'audience) : chargé en `lazyOnload` par `components/seo/analytics.tsx` uniquement si `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` est défini. Aucun autre script tiers.
+
+## Pas encore installé
+Storybook (comparaison des composants) : non installé ; les tests visuels Playwright (`tests/visual`) comparent déjà chaque bloc à la référence aux trois largeurs, avec les écarts en images. À ajouter seulement si on veut un catalogue interactif.
+
+## Hors dépôt (outillage de référence)
+`wp-reference/` : WordPress 7.1.3, Elementor 4.3.5, Contact Form 7 6.2.3, wordpress-importer, sqlite-database-integration et WP-CLI, téléchargés depuis wordpress.org et GitHub. Sert uniquement à produire `reference/` ; rien n'en est livré.
