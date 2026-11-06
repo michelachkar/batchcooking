@@ -56,4 +56,3 @@ Pour chaque photo, noter un alt descriptif dans `plats/alts.md` (ou équivalent)
 Un fichier légal par page (mentions légales, confidentialité, CGV) dans `pages/`.
 
 ## Dossiers de travail
-- `reference/` : captures de référence Savrio (étape 2)

@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { JsonLd } from '@/components/seo/json-ld'
 import { baseGraph, breadcrumb, webPage } from '@/lib/jsonld'
 

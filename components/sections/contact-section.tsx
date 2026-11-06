@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { Contact } from '@/components/blocks/contact'
 import type { ProposalField } from '@/components/blocks/proposal-form'
 import { site } from '@/lib/site'

@@ -34,8 +34,6 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    ".next-vr/types/**/*.ts",
-    ".next-vr/dev/types/**/*.ts",
     ".next-base/types/**/*.ts",
     ".next-base/dev/types/**/*.ts",
     ".next-preview/types/**/*.ts",
@@ -44,8 +42,6 @@
     ".next-check/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "wp-reference",
-    "reference"
+    "node_modules"
   ]
 }

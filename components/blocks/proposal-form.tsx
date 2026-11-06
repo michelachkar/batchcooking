@@ -1,7 +1,7 @@
 'use client'
 
 import { useActionState } from 'react'
-import { submitProposal } from '@/app/[locale]/actions'
+import { submitProposal } from '@/app/actions'
 import type { ProposalState } from '@/lib/proposal-schema'
 import { cn } from '@/lib/utils'
 

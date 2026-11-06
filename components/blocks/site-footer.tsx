@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import Link from 'next/link'
 import { ArrowRight, Clock, Mail, MapPin, Phone } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button'
@@ -139,7 +139,6 @@ export async function SiteFooter() {
       {/* Filigrane : le nom en contour, rogné par le bas */}
       <div
         aria-hidden
-        data-vr-mask
         className="h-[82.5px] overflow-hidden pt-7 text-center md:h-[159.7px] md:pt-12 lg:h-[257.4px]"
       >
         <span className="font-display text-[56px] leading-[67.275px] font-bold tracking-[-0.04em] whitespace-nowrap text-transparent [-webkit-text-stroke:2px_rgb(176_74_42/0.35)] md:text-[112px] md:leading-[137.78px] lg:text-[200px] lg:leading-[258.336px]">

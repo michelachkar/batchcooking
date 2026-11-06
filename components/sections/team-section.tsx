@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { Team, type TeamMember } from '@/components/blocks/team'
 import { getTeam } from '@/lib/content/team'
 import type { Landing } from '@/lib/media'

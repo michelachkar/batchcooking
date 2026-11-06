@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/blocks/page-head'
 import { BlogSection } from '@/components/sections/blog-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
@@ -9,12 +9,8 @@ import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 
 /** Métadonnées d'une page de classement du blog : indexation refusée (doublon de la liste), liens suivis. */
-export async function taxonomyMetadata(
-  locale: string,
-  title: string,
-  path: string,
-): Promise<Metadata> {
-  const s = await getTranslations({ locale, namespace: 'seo' })
+export async function taxonomyMetadata(title: string, path: string): Promise<Metadata> {
+  const s = await getTranslations('seo')
   return pageMetadata({ title, description: s('blog'), path, noindex: true })
 }
 

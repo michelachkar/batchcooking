@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { Reviews, type Review } from '@/components/blocks/reviews'
 import { ReviewsInset } from '@/components/blocks/reviews-inset'
 import { mediaOf, type Landing } from '@/lib/media'

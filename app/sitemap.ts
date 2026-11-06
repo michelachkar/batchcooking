@@ -4,24 +4,27 @@ import type { MetadataRoute } from 'next'
 import { getPosts } from '@/lib/content/blog'
 import { getPages } from '@/lib/content/pages'
 import { getProjects } from '@/lib/content/projects'
-import { getServices, servicePages } from '@/lib/content/services'
-import { vr } from '@/lib/flags'
+import { servicePages } from '@/lib/content/services'
 import { getTeam } from '@/lib/content/team'
 import { absoluteUrl } from '@/lib/seo'
 
+// Calculé au build : le sitemap lit des fichiers sources, absents du runtime Cloudflare.
+export const dynamic = 'force-static'
+
 // Date de dernière modification d'une page : celle de son fichier source, ou du contenu le plus récent qu'elle affiche.
 function pageDate(route: string, content: { modified: Date }[] = []) {
-  const file = statSync(join(process.cwd(), 'app/[locale]', route, 'page.tsx')).mtime
+  const file = statSync(join(process.cwd(), 'app', route, 'page.tsx')).mtime
   return new Date(Math.max(+file, ...content.map((c) => +c.modified)))
 }
 
 // Plan du site : pages et contenus avec leur vraie date de modification.
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getPosts().map((p) => ({ ...p, modified: p.data.updated ?? p.data.date }))
-  // Build normal : les pages de service dédiées (date = celle de leur fichier) ; build de test visuel : les contenus MDX de la démo.
-  const services = vr
-    ? getServices()
-    : servicePages.map((s) => ({ slug: s.slug, modified: pageDate(`services/${s.slug}`) }))
+  // Pages de service dédiées : date = celle de leur fichier.
+  const services = servicePages.map((s) => ({
+    slug: s.slug,
+    modified: pageDate(`services/${s.slug}`),
+  }))
   const team = getTeam()
   const projects = getProjects()
   const entry = (path: string, lastModified: Date) => ({ url: absoluteUrl(path), lastModified })

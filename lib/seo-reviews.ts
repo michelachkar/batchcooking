@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { reviewNodes } from '@/lib/jsonld'
 
 /** Avis réels (messages home.reviews) en données structurées ; liste vide tant qu'il n'y en a pas. */

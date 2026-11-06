@@ -37,7 +37,7 @@ type Props = {
   /** `lead` : le CTA ouvre le modal de demande de rappel (href sert de repli sans JavaScript). */
   primary: Cta & { lead?: boolean }
   secondary: Cta
-  meta: { text: string; stars?: boolean }
+  meta: { text: string }
   image: { src: string; width: number; height: number; alt: string }
   caption: { kicker: string; title: string; text?: string }
 }
@@ -168,20 +168,12 @@ export function Hero({
             </div>
           ) : (
             <p className="border-ink/12 mt-14 flex flex-wrap items-center gap-x-[14px] gap-y-[6px] border-t pt-[26px] text-[15px] leading-normal text-[rgba(85,80,68,0.88)] max-md:mt-9">
-              {meta.stars && (
-                <span aria-hidden className="text-[16px] tracking-[3px] text-[#B04A2A]">
-                  ★★★★★
-                </span>
-              )}
               {meta.text}
             </p>
           )}
         </div>
 
-        <div
-          data-vr-mask
-          className="group/media bg-surface-dark before:from-ink/0 relative min-h-full overflow-hidden before:absolute before:inset-x-0 before:top-0 before:z-[1] before:h-[30%] before:bg-gradient-to-b before:to-transparent before:content-[''] max-lg:min-h-[480px] max-md:min-h-[340px]"
-        >
+        <div className="group/media bg-surface-dark before:from-ink/0 relative min-h-full overflow-hidden before:absolute before:inset-x-0 before:top-0 before:z-[1] before:h-[30%] before:bg-gradient-to-b before:to-transparent before:content-[''] max-lg:min-h-[480px] max-md:min-h-[340px]">
           <Image
             src={image.src}
             alt={image.alt}

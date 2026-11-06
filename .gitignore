@@ -7,11 +7,9 @@ next-env.d.ts
 *.tsbuildinfo
 playwright-report
 test-results
-tests/visual/__output__
-wp-reference/site
-wp-reference/_dl
-wp-reference/server.log
-reference/
 .env*.local
-public/vr
 .lighthouseci
+
+.open-next
+.dev.vars
+.wrangler

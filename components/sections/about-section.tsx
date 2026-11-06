@@ -1,19 +1,13 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { AboutUs } from '@/components/blocks/about-us'
 import { Icon } from '@/components/ui/icon'
-import { VrSolarPanel } from '@/tests/visual/fixtures/vr-icons'
-import { vr } from '@/lib/flags'
 import { mediaOf, type Landing } from '@/lib/media'
 
 // « À propos » : même bloc sur l'accueil et sur la page À propos, textes dans messages (home.about).
 export async function AboutSection({ ns = 'home' }: { ns?: Landing }) {
   const m = mediaOf(ns)
   const a = await getTranslations(`${ns}.about`)
-  const aboutIcon = vr ? (
-    <VrSolarPanel className="w-[25px]" />
-  ) : (
-    <Icon name="chef-hat" className="size-[25px]" />
-  )
+  const aboutIcon = <Icon name="chef-hat" className="size-[25px]" />
   return (
     <AboutUs
       label={a('label')}

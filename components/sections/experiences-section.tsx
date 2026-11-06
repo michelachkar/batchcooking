@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { ExperienceCards, type ExperienceCard } from '@/components/blocks/experience-cards'
 import { mediaOf, type Landing } from '@/lib/media'
 

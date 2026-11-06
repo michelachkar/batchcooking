@@ -50,10 +50,7 @@ export function BlogGrid({ posts }: { posts: GridCard[] }) {
                       {p.title}
                     </Link>
                   </h3>
-                  <div
-                    data-vr-mask
-                    className="mt-4 flex items-center gap-4 text-xs leading-[18px] font-medium tracking-[-0.12px] text-[#625C50]"
-                  >
+                  <div className="mt-4 flex items-center gap-4 text-xs leading-[18px] font-medium tracking-[-0.12px] text-[#625C50]">
                     <span
                       aria-hidden
                       className="h-px w-8 bg-[#625C50] transition-[width] duration-500 ease-[ease] group-hover:w-12"

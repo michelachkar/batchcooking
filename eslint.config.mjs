@@ -4,13 +4,11 @@ const config = [
   ...next,
   {
     ignores: [
-      'wp-reference/**',
-      'reference/**',
       '.next/**',
-      '.next-vr/**',
+      '.open-next/**',
+      '.wrangler/**',
       'playwright-report/**',
       'test-results/**',
-      'tests/visual/__output__/**',
     ],
   },
 ]

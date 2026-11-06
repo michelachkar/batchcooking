@@ -1,7 +1,6 @@
 import type { TeamMember } from '@/components/blocks/team'
 import type { Entry } from '@/lib/content'
 import type { TeamMemberData } from '@/lib/content/schemas'
-import { vr } from '@/lib/flags'
 
 /** Carte d'équipe (accueil, page équipe, « autres membres ») à partir d'une fiche. */
 export function toTeamCard({ slug, data }: Entry<TeamMemberData>): TeamMember {
@@ -12,7 +11,7 @@ export function toTeamCard({ slug, data }: Entry<TeamMemberData>): TeamMember {
   return {
     name: data.name,
     role: data.role,
-    image: { ...data.image, unoptimized: vr },
+    image: data.image,
     alt: data.image.alt,
     href: `/equipe/${slug}`,
     social: social.length > 0 ? social : undefined,

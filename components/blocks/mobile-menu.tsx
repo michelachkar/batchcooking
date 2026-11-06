@@ -76,10 +76,7 @@ export function MobileMenu({ items, brand, labels }: Props) {
             <path d="M2.2 2.2 14.8 15.8M14.8 2.2 2.2 15.8" />
           </svg>
         </button>
-        <div
-          data-vr-mask
-          className="font-display mb-10 h-[56px] w-full border-b border-white/15 pb-5 text-[34px] leading-[35px] font-semibold tracking-tight"
-        >
+        <div className="font-display mb-10 h-[56px] w-full border-b border-white/15 pb-5 text-[34px] leading-[35px] font-semibold tracking-tight">
           {brand}
         </div>
         <nav>

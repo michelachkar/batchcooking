@@ -110,7 +110,6 @@ export function Contact(p: Props) {
               {p.followTitle}
             </h4>
             <ul
-              data-vr-mask
               aria-label={p.socialLabel}
               className="m-0 mt-[10px] flex list-none gap-[15px] p-0 text-[#69727d]"
             >

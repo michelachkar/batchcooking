@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { ChefIntro } from '@/components/blocks/chef-intro'
 import type { IconName } from '@/components/ui/icon'
 import { mediaOf, type Landing } from '@/lib/media'

@@ -167,10 +167,7 @@ function ReviewCard({ review: r, active }: { review: Review; active: boolean }) 
             : 'bg-cream border-transparent opacity-[0.88] shadow-[0_24px_48px_rgba(47,43,38,0.05),0_4px_12px_rgba(47,43,38,0.02)]',
         )}
       />
-      <div
-        data-vr-mask
-        className="absolute top-0 left-1/2 z-10 size-(--rv-av) -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F0EBE3] shadow-[0_8px_20px_rgba(47,43,38,0.07),0_2px_6px_rgba(47,43,38,0.04)] [@media(max-width:768px)]:border-[3px]"
-      >
+      <div className="absolute top-0 left-1/2 z-10 size-(--rv-av) -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F0EBE3] shadow-[0_8px_20px_rgba(47,43,38,0.07),0_2px_6px_rgba(47,43,38,0.04)] [@media(max-width:768px)]:border-[3px]">
         <Image
           src={r.image.src}
           alt={r.alt}

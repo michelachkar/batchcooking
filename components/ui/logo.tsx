@@ -33,7 +33,6 @@ export function Logo({ className, tagline }: { className?: string; tagline?: str
     <Link
       href="/"
       aria-label={tagline ? `${site.name} : ${tagline}` : site.name}
-      data-vr-mask
       className={cn('inline-flex items-center gap-[0.35em] whitespace-nowrap', className)}
     >
       <Mark className="size-[1.25em]" />

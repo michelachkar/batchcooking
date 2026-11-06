@@ -74,10 +74,7 @@ export function Article({
                     ))}
                   </div>
                 )}
-                <div
-                  data-vr-mask
-                  className="mr-[15px] inline-table px-[5px] align-middle text-[13px] leading-[19.5px] font-semibold tracking-[1px] text-[#777] uppercase max-md:mb-[18px]"
-                >
+                <div className="mr-[15px] inline-table px-[5px] align-middle text-[13px] leading-[19.5px] font-semibold tracking-[1px] text-[#777] uppercase max-md:mb-[18px]">
                   {date}
                 </div>
                 <h2 className="font-display mt-[10px] mb-2 text-[45px] leading-[58.5px] font-semibold tracking-[-0.9px] text-[#242424]">

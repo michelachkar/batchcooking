@@ -25,7 +25,7 @@ export function ClientCarousel({ logos, height = 54, grayscale = false, classNam
   // Savrio : 30 s pour parcourir un jeu de logos ; la piste en répète `reps`, d'où la durée proportionnelle.
   const half = Array.from({ length: reps }, () => logos).flat()
   return (
-    <div className={cn('group/cc relative overflow-hidden', className)} data-vr-mask>
+    <div className={cn('group/cc relative overflow-hidden', className)}>
       <div
         style={{ animationDuration: `${30 * reps}s` }}
         className="flex w-max items-center group-hover/cc:[animation-play-state:paused] motion-safe:animate-[cc-scroll_30s_linear_infinite]"

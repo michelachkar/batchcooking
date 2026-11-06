@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import Link from 'next/link'
 import { ArrowUpRight, Leaf, Mail, MapPin, Phone, Search } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button'
@@ -6,7 +6,6 @@ import { Logo } from '@/components/ui/logo'
 import { SubmenuLink } from '@/components/blocks/submenu-link'
 import { MobileMenu } from '@/components/blocks/mobile-menu'
 import { resolveNav } from '@/lib/nav'
-import { vr } from '@/lib/flags'
 import { site } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
@@ -20,13 +19,7 @@ export async function SiteHeader() {
 
   // Build de test visuel : hauteurs fractionnaires de la démo (le logo y est une image), pour garder la même phase de rendu sur toute la page.
   return (
-    <header
-      id="site-header"
-      className={cn(
-        'bg-cream sticky top-0 z-40 lg:-top-[38px]',
-        vr && 'h-[71.81px] md:h-[147.81px] lg:h-[121.2px]',
-      )}
-    >
+    <header id="site-header" className={cn('bg-cream sticky top-0 z-40 lg:-top-[38px]')}>
       <a
         href="#contenu"
         className="focus:bg-ink sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3 focus:text-white"
@@ -103,7 +96,7 @@ export async function SiteHeader() {
                           <li key={child.label}>
                             <SubmenuLink
                               href={child.href}
-                              className="text-menu-link hover:text-ink block px-5 whitespace-nowrap py-[6px] text-[16px] leading-[22.5px] font-medium transition-colors duration-[250ms] ease-[ease]"
+                              className="text-menu-link hover:text-ink block px-5 py-[6px] text-[16px] leading-[22.5px] font-medium whitespace-nowrap transition-colors duration-[250ms] ease-[ease]"
                             >
                               {child.label}
                             </SubmenuLink>

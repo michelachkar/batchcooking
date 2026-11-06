@@ -1,7 +1,6 @@
-import { getLocale, getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { BlogList, type BlogCardData, type SidebarData } from '@/components/blocks/blog-list'
 import { getArchives, getCategories, getPosts, getTags } from '@/lib/content/blog'
-import { vr } from '@/lib/flags'
 import type { Entry } from '@/lib/content'
 import type { Post } from '@/lib/content/schemas'
 
@@ -11,7 +10,7 @@ export function toCards(posts: Entry<Post>[]): BlogCardData[] {
     title: p.data.title,
     excerpt: p.data.excerpt,
     href: `/blog/${p.slug}`,
-    image: p.data.image && { ...p.data.image, unoptimized: vr },
+    image: p.data.image && p.data.image,
   }))
 }
 
@@ -20,7 +19,7 @@ export async function getBlogSidebar(): Promise<SidebarData | undefined> {
   const all = getPosts()
   if (all.length === 0) return undefined
   const t = await getTranslations('blog')
-  const locale = vr ? 'en-US' : await getLocale()
+  const locale = 'fr'
   const month = (ym: string) =>
     new Intl.DateTimeFormat(locale, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(
       new Date(`${ym}-01T00:00:00Z`),
@@ -39,7 +38,7 @@ export async function getBlogSidebar(): Promise<SidebarData | undefined> {
       return {
         title: p.data.title,
         href: `/blog/${p.slug}`,
-        image: img && { ...img, unoptimized: vr },
+        image: img && img,
       }
     }),
     comments: comments.items.length > 0 ? comments : undefined,

@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { PostsGrid, PostsIntro, type PostCard } from '@/components/blocks/posts-section'
 import { mediaOf, type Landing } from '@/lib/media'
 

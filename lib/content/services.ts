@@ -2,7 +2,7 @@ import { collection } from '@/lib/content'
 import { serviceSchema } from '@/lib/content/schemas'
 
 /**
- * Pages de service du site : trois pages dédiées (`app/[locale]/services/<adresse>/page.tsx`) dont les textes sont dans messages/fr.json (espace `ns`).
+ * Pages de service du site : trois pages dédiées (`app/services/<adresse>/page.tsx`) dont les textes sont dans messages/fr.json (espace `ns`).
  * Le dossier `content/services/` est vide : le gabarit `/services/[slug]` ne sert plus qu'au build de test visuel (contenus de la démo).
  */
 export const servicePages = [

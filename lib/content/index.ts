@@ -2,7 +2,6 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import matter from 'gray-matter'
 import { z } from 'zod'
-import { vr } from '@/lib/flags'
 
 export type Entry<T> = {
   slug: string
@@ -12,8 +11,8 @@ export type Entry<T> = {
   modified: Date
 }
 
-// Dossier des contenus : `content/` ; le build de test visuel lit les contenus de la démo dans tests/visual/fixtures/content.
-const root = join(process.cwd(), vr ? 'tests/visual/fixtures/content' : 'content')
+// Dossier des contenus : `content/`.
+const root = join(process.cwd(), 'content')
 const cache = new Map<string, Entry<unknown>[]>()
 
 /** Lit `content/<collection>/*.mdx`, valide le frontmatter avec le schéma et renvoie les entrées (liste vide si le dossier l'est). */

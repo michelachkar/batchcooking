@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { TrustedBy } from '@/components/blocks/trusted-by'
 import { mediaOf, type Landing } from '@/lib/media'
 

@@ -1,7 +1,6 @@
 import type { RealisationCardData } from '@/components/blocks/realisation-card'
 import type { Entry } from '@/lib/content'
 import type { Project } from '@/lib/content/schemas'
-import { vr } from '@/lib/flags'
 
 /** Carte de la galerie des réalisations : service, lieu et durée en plus de la photo. */
 export function toRealisationCard(
@@ -30,6 +29,6 @@ export function toRealisationCard(
             : 'large',
     diets: e.data.diets,
     tags: e.data.tags,
-    image: { ...img, unoptimized: vr },
+    image: img,
   }
 }

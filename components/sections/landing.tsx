@@ -8,7 +8,6 @@ import { AboutSection } from '@/components/sections/about-section'
 import { ChefSection } from '@/components/sections/chef-section'
 import { TeamSection } from '@/components/sections/team-section'
 import { TrustedSection } from '@/components/sections/trusted-section'
-import { vr } from '@/lib/flags'
 import type { IconName } from '@/components/ui/icon'
 import { Zones } from '@/components/blocks/home-v2'
 import { EventsSection } from '@/components/sections/events-section'
@@ -19,7 +18,7 @@ import { PostsSections } from '@/components/sections/posts-sections'
 import { Hero, type HeroBadge } from '@/components/blocks/hero'
 import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations } from '@/lib/i18n'
 import { mediaOf, type Landing as LandingNs } from '@/lib/media'
 
 // Page d'accueil (messages et photos de l'espace `ns`) : l'accueil et la page « Mobile Bar & Cocktails » ont les mêmes sections dans le même ordre.
@@ -58,7 +57,7 @@ export async function Landing({ ns }: { ns: LandingNs }) {
         badges={ns === 'home' ? (t.raw('badges') as HeroBadge[]) : undefined}
         primary={{ label: t('primary'), href: '/contact', lead: ns === 'home' }}
         secondary={{ label: t('secondary'), href: ns === 'home' ? '/recettes' : '/services' }}
-        meta={{ text: t('meta'), stars: vr }}
+        meta={{ text: t('meta') }}
         googleReviews={ns === 'home' ? t('googleReviews') : undefined}
         heroReviews={ns === 'home' ? { label: rv('navigation'), items: heroReviews } : undefined}
         image={{ ...media.hero, alt: t('imageAlt') }}
