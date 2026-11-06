@@ -15,14 +15,10 @@ type Props = {
   posts: BlogCardData[]
   readMore: string
   sidebar?: SidebarData
-  /** Côté de la colonne latérale ; sans colonne latérale, la liste prend toute la largeur. */
-  side?: 'left' | 'right'
-  /** Réserve la place de la pagination sous la liste (variante à colonne de droite de la démo). */
-  paginationSpace?: boolean
 }
 
 // Liste d'articles : cartes blanches à image arrondie, colonne latérale facultative (recherche, derniers articles, archives, catégories).
-export function BlogList({ posts, readMore, sidebar, side = 'right', paginationSpace }: Props) {
+export function BlogList({ posts, readMore, sidebar }: Props) {
   const list = (
     <div className={cn('w-full px-3', !sidebar ? 'lg:w-full' : 'lg:w-2/3')}>
       <div className="-mx-3 flex flex-wrap">
@@ -60,18 +56,16 @@ export function BlogList({ posts, readMore, sidebar, side = 'right', paginationS
           </article>
         ))}
         {/* Emplacement de la pagination (10 px + 5 px de marge, comme la démo). */}
-        {paginationSpace && <div aria-hidden className="mb-[5px] h-[10px] w-full" />}
+        {sidebar && <div aria-hidden className="mb-[5px] h-[10px] w-full" />}
       </div>
     </div>
   )
-  const aside = sidebar && <BlogSidebar sidebar={sidebar} side={side} />
   return (
     <div className="py-[110px] leading-normal max-md:py-[70px]">
       <div className="container-x pb-[50px] max-md:px-[15px]">
         <div className="-mx-3 flex flex-wrap">
-          {side === 'left' && aside}
           {list}
-          {side === 'right' && aside}
+          {sidebar && <BlogSidebar sidebar={sidebar} side="right" />}
         </div>
       </div>
     </div>

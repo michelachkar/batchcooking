@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowUpRight, Leaf, Mail, MapPin, Phone, Search } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
+import { SubmenuLink } from '@/components/blocks/submenu-link'
 import { MobileMenu } from '@/components/blocks/mobile-menu'
 import { resolveNav } from '@/lib/nav'
 import { vr } from '@/lib/flags'
@@ -69,8 +70,8 @@ export async function SiteHeader() {
         </div>
         <div className="border-sand bg-cream border-b px-5">
           <div className="max-w-site mx-auto flex h-[82px] items-center justify-between">
-            <div className="w-[224px] shrink-0">
-              <Logo />
+            <div className="shrink-0 lg:w-[260px]">
+              <Logo className="text-[26px]" tagline={t('footer.tagline')} />
             </div>
             <nav aria-label={t('header.mainNav')} className="flex flex-1 justify-center">
               <ul className="flex items-center gap-px">
@@ -97,15 +98,15 @@ export async function SiteHeader() {
                       )}
                     </Link>
                     {item.children && (
-                      <ul className="mtsh-sub rounded-b-dropdown bg-menu shadow-dropdown absolute top-full left-0 z-10 w-[192px] py-[10px]">
+                      <ul className="mtsh-sub rounded-b-dropdown bg-menu shadow-dropdown absolute top-full left-0 z-10 w-max min-w-[192px] py-[10px]">
                         {item.children.map((child) => (
                           <li key={child.label}>
-                            <Link
+                            <SubmenuLink
                               href={child.href}
-                              className="text-menu-link hover:text-ink block px-5 py-[6px] text-[16px] leading-[22.5px] font-medium transition-colors duration-[250ms] ease-[ease]"
+                              className="text-menu-link hover:text-ink block px-5 whitespace-nowrap py-[6px] text-[16px] leading-[22.5px] font-medium transition-colors duration-[250ms] ease-[ease]"
                             >
                               {child.label}
-                            </Link>
+                            </SubmenuLink>
                           </li>
                         ))}
                       </ul>
@@ -136,7 +137,7 @@ export async function SiteHeader() {
       {/* Tablette et mobile ≤ 1024 px. Le logo est affiché très grand en tablette dans la démo : dimensions reprises. */}
       <div className="border-sand bg-cream flex items-center justify-between border-b py-3 pr-5 md:py-[14px] md:pr-[10px] lg:hidden">
         <div className="pl-[15px] md:p-[10px]">
-          <Logo className="h-[47px] w-[172px] text-[40px] leading-[47px] md:h-[99px] md:w-[364px] md:text-[88px] md:leading-[99px]" />
+          <Logo tagline={t('footer.tagline')} className="text-[24px] md:text-[44px]" />
         </div>
         <MobileMenu
           items={items}

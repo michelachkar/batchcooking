@@ -1,6 +1,16 @@
 import { collection } from '@/lib/content'
 import { serviceSchema } from '@/lib/content/schemas'
 
+/**
+ * Pages de service du site : trois pages dédiées (`app/[locale]/services/<adresse>/page.tsx`) dont les textes sont dans messages/fr.json (espace `ns`).
+ * Le dossier `content/services/` est vide : le gabarit `/services/[slug]` ne sert plus qu'au build de test visuel (contenus de la démo).
+ */
+export const servicePages = [
+  { slug: 'batch-cooking', ns: 'batchPage' },
+  { slug: 'chef-prive', ns: 'chefPage' },
+  { slug: 'cours-de-cuisine', ns: 'coursPage' },
+] as const
+
 /** Services triés par rang. */
 export function getServices() {
   return collection('services', serviceSchema).sort((a, b) => a.data.order - b.data.order)

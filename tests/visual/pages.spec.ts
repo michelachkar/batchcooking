@@ -59,13 +59,6 @@ const PAGES: Record<
       { name: 'body', index: 'body' },
     ],
   },
-  'blog-left-sidebar': {
-    path: '/blog/sidebar-gauche',
-    blocks: [
-      { name: 'head', index: 'head' },
-      { name: 'body', index: 'body' },
-    ],
-  },
   'blog-post': {
     path: '/blog/planning-a-mobile-bar-for-your-party',
     blocks: [
@@ -97,13 +90,6 @@ const PAGES: Record<
   },
   'not-found': {
     path: '/page-qui-nexiste-pas',
-    blocks: [
-      { name: 'head', index: 'head' },
-      { name: 'body', index: 'body' },
-    ],
-  },
-  'blog-no-sidebar': {
-    path: '/blog/sans-sidebar',
     blocks: [
       { name: 'head', index: 'head' },
       { name: 'body', index: 'body' },

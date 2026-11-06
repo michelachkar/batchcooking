@@ -99,12 +99,6 @@ export const media = {
     notFound: vr ? { src: '/vr/about-3.jpg', unoptimized: true } : undefined,
     portfolio: vr ? { src: '/vr/about-3.jpg', unoptimized: true } : undefined,
   },
-  // Photos en forme de la FAQ (vraies photos uniquement).
-  faq: ['faq-1', 'faq-2'].map((n) =>
-    vr
-      ? { src: `/vr/${n}.jpg`, width: 1024, height: 1536, unoptimized: true }
-      : { src: '/assets/placeholders/card.svg', width: 768, height: 1024 },
-  ),
   // Photos des formules et des réalisations en accordéon (vraies photos uniquement).
   plans: [1, 2, 3].map((n) =>
     vr

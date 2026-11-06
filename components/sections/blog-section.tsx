@@ -58,12 +58,8 @@ export async function getBlogSidebar(): Promise<SidebarData | undefined> {
 
 // Liste du blog : uniquement de vrais articles (content/blog) ; rien tant qu'il n'y en a pas.
 export async function BlogSection({
-  side,
-  withSidebar = true,
   posts,
 }: {
-  side?: 'left' | 'right'
-  withSidebar?: boolean
   /** Articles à lister (tous par défaut). */
   posts?: Entry<Post>[]
 }) {
@@ -74,9 +70,7 @@ export async function BlogSection({
     <BlogList
       posts={toCards(posts ?? all)}
       readMore={t('readMore')}
-      sidebar={withSidebar ? await getBlogSidebar() : undefined}
-      side={side}
-      paginationSpace={withSidebar && side !== 'left'}
+      sidebar={await getBlogSidebar()}
     />
   )
 }

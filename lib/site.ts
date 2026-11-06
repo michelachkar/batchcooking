@@ -2,7 +2,7 @@ import { vrSite } from '@/tests/visual/fixtures/vr-site'
 
 // Valeurs provisoires : nom, coordonnées et zone seront remplacés quand la marque sera décidée.
 const realSite = {
-  name: 'chefmeemz',
+  name: 'Table&Tribu',
   phone: '01 23 45 67 89',
   phoneHref: 'tel:+33123456789',
   email: 'bonjour@exemple.fr',

@@ -2,19 +2,56 @@ import Link from 'next/link'
 import { site } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
-// Logo provisoire : le nom en texte, dans la police d'affichage. À remplacer par le SVG une fois la marque décidée.
-export function Logo({ className }: { className?: string }) {
+// Marque : une table ronde vue de dessus, entourée de six convives (la tribu).
+function Mark({ className }: { className?: string }) {
+  const people = Array.from({ length: 6 }, (_, i) => {
+    const a = ((-90 + i * 60) * Math.PI) / 180
+    return { x: 48 + 27 * Math.cos(a), y: 48 + 27 * Math.sin(a) }
+  })
+  return (
+    <svg viewBox="12 12 72 72" aria-hidden className={cn('shrink-0', className)}>
+      <circle cx="48" cy="48" r="15" className="fill-[#B04A2A]" />
+      <circle
+        cx="48"
+        cy="48"
+        r="9.5"
+        fill="none"
+        stroke="#FAF7F2"
+        strokeWidth="1.6"
+        opacity="0.9"
+      />
+      {people.map((p, i) => (
+        <circle key={i} cx={p.x} cy={p.y} r="5.2" className="fill-[#B04A2A]" />
+      ))}
+    </svg>
+  )
+}
+
+// Logo : marque, nom et, si demandé, la signature. Le fichier autonome est dans public/assets/logo/table-et-tribu.svg.
+export function Logo({ className, tagline }: { className?: string; tagline?: string }) {
   return (
     <Link
       href="/"
-      aria-label={site.name}
+      aria-label={tagline ? `${site.name} : ${tagline}` : site.name}
       data-vr-mask
-      className={cn(
-        'font-display inline-block h-[41px] w-[150px] text-[34px] leading-[41px] font-semibold tracking-tight',
-        className,
-      )}
+      className={cn('inline-flex items-center gap-[0.35em] whitespace-nowrap', className)}
     >
-      {site.name}
+      <Mark className="size-[1.25em]" />
+      <span className="flex flex-col items-center">
+        <span className="font-display text-[1em] leading-none font-semibold tracking-tight">
+          {site.name.split('&').map((part, i) => (
+            <span key={i}>
+              {i > 0 && <span className="font-medium text-[#B04A2A]">&amp;</span>}
+              {part}
+            </span>
+          ))}
+        </span>
+        {tagline && (
+          <span className="mt-[0.4em] text-[0.36em] leading-none font-medium tracking-[0.14em] uppercase opacity-70">
+            {tagline}
+          </span>
+        )}
+      </span>
     </Link>
   )
 }

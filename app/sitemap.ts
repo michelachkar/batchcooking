@@ -4,7 +4,8 @@ import type { MetadataRoute } from 'next'
 import { getPosts } from '@/lib/content/blog'
 import { getPages } from '@/lib/content/pages'
 import { getProjects } from '@/lib/content/projects'
-import { getServices } from '@/lib/content/services'
+import { getServices, servicePages } from '@/lib/content/services'
+import { vr } from '@/lib/flags'
 import { getTeam } from '@/lib/content/team'
 import { absoluteUrl } from '@/lib/seo'
 
@@ -14,10 +15,13 @@ function pageDate(route: string, content: { modified: Date }[] = []) {
   return new Date(Math.max(+file, ...content.map((c) => +c.modified)))
 }
 
-// Plan du site : pages et contenus avec leur vraie date de modification. Les variantes en doublon du blog (noindex) n'y figurent pas.
+// Plan du site : pages et contenus avec leur vraie date de modification.
 export default function sitemap(): MetadataRoute.Sitemap {
   const posts = getPosts().map((p) => ({ ...p, modified: p.data.updated ?? p.data.date }))
-  const services = getServices()
+  // Build normal : les pages de service dédiées (date = celle de leur fichier) ; build de test visuel : les contenus MDX de la démo.
+  const services = vr
+    ? getServices()
+    : servicePages.map((s) => ({ slug: s.slug, modified: pageDate(`services/${s.slug}`) }))
   const team = getTeam()
   const projects = getProjects()
   const entry = (path: string, lastModified: Date) => ({ url: absoluteUrl(path), lastModified })

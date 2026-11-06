@@ -5,7 +5,8 @@ import { PageHead } from '@/components/blocks/page-head'
 import { SiteSearch, type SearchEntry } from '@/components/blocks/site-search'
 import { getPosts } from '@/lib/content/blog'
 import { getProjects } from '@/lib/content/projects'
-import { getServices } from '@/lib/content/services'
+import { getServices, servicePages } from '@/lib/content/services'
+import { vr } from '@/lib/flags'
 import { getTeam } from '@/lib/content/team'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
@@ -32,13 +33,27 @@ export default async function SearchPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale)
   const p = await getTranslations('pages')
   const t = await getTranslations('search')
+  // Build normal : titre et description du `seo` de chaque page de service (messages/fr.json) ; build de test visuel : contenus MDX de la démo.
+  const services: SearchEntry[] = vr
+    ? getServices().map((s) => ({
+        type: 'service',
+        title: s.data.title,
+        text: s.data.excerpt,
+        href: `/services/${s.slug}`,
+      }))
+    : await Promise.all(
+        servicePages.map(async ({ slug, ns }) => {
+          const seo = await getTranslations(`${ns}.seo`)
+          return {
+            type: 'service',
+            title: seo('title'),
+            text: seo('description'),
+            href: `/services/${slug}`,
+          } as const
+        }),
+      )
   const entries: SearchEntry[] = [
-    ...getServices().map((s) => ({
-      type: 'service',
-      title: s.data.title,
-      text: s.data.excerpt,
-      href: `/services/${s.slug}`,
-    })),
+    ...services,
     ...getPosts().map((x) => ({
       type: 'post',
       title: x.data.title,

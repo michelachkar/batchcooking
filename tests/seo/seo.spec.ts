@@ -29,20 +29,9 @@ test('sitemap : adresses absolues, dates réelles, pages principales présentes'
     expect(Number.isNaN(Date.parse(e.lastmod)), `lastmod de ${e.loc}`).toBe(false)
   }
   const paths = entries.map((e) => pathOf(e.loc))
-  for (const p of [
-    '/',
-    '/services',
-    '/equipe',
-    '/tarifs',
-    '/faq',
-    '/contact',
-    '/blog',
-  ]) {
+  for (const p of ['/', '/services', '/equipe', '/tarifs', '/faq', '/contact', '/blog']) {
     expect(paths, p).toContain(p)
   }
-  // Variantes en doublon du blog : hors sitemap.
-  expect(paths).not.toContain('/blog/sidebar-gauche')
-  expect(paths).not.toContain('/blog/sans-sidebar')
 })
 
 test('robots.txt annonce le sitemap', async ({ request }) => {
@@ -136,11 +125,7 @@ test.describe('chaque page du sitemap', () => {
   })
 })
 
-test('variantes du blog : noindex ; 404 : vrai statut et noindex', async ({ page }) => {
-  for (const path of ['/blog/sidebar-gauche', '/blog/sans-sidebar']) {
-    await page.goto(path)
-    await expect(page.locator('meta[name="robots"]'), path).toHaveAttribute('content', /noindex/)
-  }
+test('404 : vrai statut et noindex', async ({ page }) => {
   const res = await page.goto('/page-qui-nexiste-pas')
   expect(res?.status()).toBe(404)
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/)

@@ -73,8 +73,8 @@ export async function SiteFooter() {
       <section className="border-ink/10 border-b px-4 md:px-7 lg:px-10">
         <div className="max-w-site mx-auto grid grid-cols-2 lg:grid-cols-[409px_225px_224px_462px]">
           <div className={cn(col, 'col-span-2 gap-5 lg:col-span-1 lg:border-r lg:pr-8 lg:pl-0')}>
-            <div className="h-[65px]">
-              <Logo className="text-ink" />
+            <div>
+              <Logo className="text-ink text-[36px]" tagline={t('tagline')} />
             </div>
             <p className="text-ink/80 mb-4 max-w-[376px] text-base leading-[25.5px] md:max-w-none lg:max-w-[376px]">
               {t('about')}
@@ -142,7 +142,7 @@ export async function SiteFooter() {
         data-vr-mask
         className="h-[82.5px] overflow-hidden pt-7 text-center md:h-[159.7px] md:pt-12 lg:h-[257.4px]"
       >
-        <span className="font-display text-[86.25px] leading-[67.275px] font-bold tracking-[-0.04em] text-transparent [-webkit-text-stroke:2px_rgb(176_74_42/0.35)] md:text-[176.64px] md:leading-[137.78px] lg:text-[331.2px] lg:leading-[258.336px]">
+        <span className="font-display text-[56px] leading-[67.275px] font-bold tracking-[-0.04em] whitespace-nowrap text-transparent [-webkit-text-stroke:2px_rgb(176_74_42/0.35)] md:text-[112px] md:leading-[137.78px] lg:text-[200px] lg:leading-[258.336px]">
           {site.name}
         </span>
       </div>

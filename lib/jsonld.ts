@@ -145,19 +145,6 @@ export function reviewNodes(reviews: { author: string; text: string }[]): Node[]
   }))
 }
 
-export function itemList(items: { name: string; path: string }[]): Node | null {
-  if (items.length === 0) return null
-  return {
-    '@type': 'ItemList',
-    itemListElement: items.map((it, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      url: absoluteUrl(it.path),
-      name: it.name,
-    })),
-  }
-}
-
 export function projectNode(o: {
   path: string
   name: string

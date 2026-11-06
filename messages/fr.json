@@ -30,17 +30,17 @@
     "journal": "Journal",
     "blog": "Blog, barre droite",
     "blogGrid": "Blog en grille",
-    "blogLeft": "Blog, barre gauche",
     "article": "Article",
     "contact": "Contact"
   },
   "footer": {
+    "tagline": "Votre chef à domicile",
     "eyebrow": "Planifiez votre semaine",
-    "title": "Votre table est prête.",
+    "title": "Votre table vous attend.",
     "text": "Dites-nous la date, le nombre de convives et vos envies. Nous répondons sous un jour ouvré.",
     "ctaPrimary": "Demander un devis",
     "ctaCall": "Appeler le {phone}",
-    "about": "Des repas faits maison, préparés à l'avance pour toute la semaine, pour les familles, les couples et les actifs.",
+    "about": "Une cuisine saine, de saison et locale, aux saveurs du monde entier, pour vous rendre du temps autour de la table.",
     "services": "Services",
     "company": "Entreprise",
     "visit": "Contact",
@@ -68,14 +68,14 @@
       "gift": "Offrir un repas",
       "contact": "Contact"
     },
-    "crafted": "Cuisiné avec soin en France",
+    "crafted": "Cuisiné avec soin, pour votre tribu",
     "social": "Réseaux sociaux"
   },
   "home": {
     "hero": {
       "label": "Votre batch cooking de Mèze à Lunel, en passant par Montpellier",
       "headline": "Tous vos dîners de la semaine sont préparés chez vous en un clin d'oeil.",
-      "accent": "Fini la charge mentale pour planifier et préparer vos repas.",
+      "accent": "Vous faites déjà beaucoup : laissez-nous préparer la table.",
       "description": "Éligible crédit d'impôt 50 %",
       "badges": [
         {
@@ -199,8 +199,8 @@
       "title": "Chef Meemz !",
       "subtitle": "Votre chef à domicile",
       "paragraphs": [
-        "Chaque semaine, la même question : « Qu'est-ce qu'on mange ? » Il est 19 h, le frigo est vide, vous êtes fatigué : vous commandez ou vous improvisez.",
-        "Je viens chez vous. En une session, dans votre cuisine, je prépare 3 à 5 dîners. Vous n'avez plus qu'à réchauffer et déguster.",
+        "Chaque semaine, la même question : « Qu'est-ce qu'on mange ? » Les journées sont pleines, vous faites déjà de votre mieux, et il est 19 h : le temps manque, pas la volonté.",
+        "Née au Liban, j'ai grandi dans une cuisine où le dimanche rassemblait toute la famille autour de la table. Aujourd'hui, je viens chez vous : en une session, dans votre cuisine, je prépare 3 à 5 dîners de saison, avec des produits locaux et des saveurs de partout. Vous n'avez plus qu'à réchauffer et vous retrouver.",
         "Pour vos dîners et vos occasions spéciales, je suis aussi votre chef privé. Et si vous avez envie d'apprendre, je donne des cours de cuisine à domicile."
       ],
       "stats": [
@@ -221,7 +221,7 @@
         }
       ],
       "quote": {
-        "text": "Je m'occupe des repas, pour que vous puissiez vous occuper du reste. Fini la charge mentale, profitez du moment !",
+        "text": "Je m'occupe de l'assiette, pour que vous puissiez vous occuper de ceux que vous aimez autour de la table.",
         "author": "Chef Meemz"
       },
       "caption": "Cuisine en privé depuis 2012",
@@ -1726,14 +1726,6 @@
     "blog": {
       "title": "Blog",
       "crumb": "Blog"
-    },
-    "blogLeft": {
-      "title": "Blog, colonne à gauche",
-      "crumb": "Blog, colonne à gauche"
-    },
-    "blogWide": {
-      "title": "Blog, pleine largeur",
-      "crumb": "Blog, pleine largeur"
     },
     "blogGrid": {
       "title": "Blog, grille",
