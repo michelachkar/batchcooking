@@ -11,10 +11,10 @@
   "routes": [{ "pattern": "tabletribu.com", "custom_domain": true }],
   "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "chefmeemz" }],
   "env": {
-    "dev": {
-      "name": "chefmeemz-dev",
-      "routes": [{ "pattern": "dev.tabletribu.com", "custom_domain": true }],
-      "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "chefmeemz-dev" }]
+    "test": {
+      "name": "chefmeemz-test",
+      "routes": [{ "pattern": "test.tabletribu.com", "custom_domain": true }],
+      "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "chefmeemz-test" }]
     }
   }
 }
