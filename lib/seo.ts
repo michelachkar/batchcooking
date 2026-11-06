@@ -9,6 +9,17 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:30
 
 export const absoluteUrl = (path = '/') => `${siteUrl}${path}`
 
+/**
+ * Adresse du site en production (NEXT_PUBLIC_PRODUCTION_URL, identique sur tous les environnements) :
+ * tout autre NEXT_PUBLIC_SITE_URL (dev, test, local) reste hors des moteurs de recherche.
+ * Sans valeur, aucun environnement n'est considéré comme production : le site reste donc non indexable.
+ */
+export const productionUrl = process.env.NEXT_PUBLIC_PRODUCTION_URL?.replace(/\/$/, '')
+export const isProduction = productionUrl !== undefined && siteUrl === productionUrl
+
+/** Directive à poser sur chaque page d'un environnement hors production. */
+export const nonProductionRobots = isProduction ? undefined : { index: false, follow: false }
+
 type PageMeta = {
   title: string
   description: string
@@ -40,7 +51,7 @@ export function pageMetadata({
     title,
     description,
     alternates: { canonical: path },
-    robots: noindex ? { index: false, follow: true } : undefined,
+    robots: nonProductionRobots ?? (noindex ? { index: false, follow: true } : undefined),
     openGraph: {
       type,
       url: path,

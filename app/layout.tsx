@@ -9,7 +9,7 @@ import type { LeadPack, LeadTexts } from '@/components/lead/lead-modal'
 import { QuoteProvider, type QuoteTexts } from '@/components/quote/quote-provider'
 import { Analytics } from '@/components/seo/analytics'
 import { site } from '@/lib/site'
-import { siteUrl } from '@/lib/seo'
+import { nonProductionRobots, siteUrl } from '@/lib/seo'
 import './globals.css'
 
 // Une famille variable par rôle (corps / titres), sous-ensemble latin.
@@ -29,6 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: { default: site.name, template: `%s | ${site.name}` },
     description: s('default'),
     alternates: { types: { 'application/rss+xml': '/feed.xml' } },
+    robots: nonProductionRobots,
   }
 }
 
