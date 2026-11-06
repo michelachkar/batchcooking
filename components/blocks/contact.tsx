@@ -1,7 +1,9 @@
+import clsx from 'clsx'
 import { CheckCircle2, Clock, Hourglass, Mail, MapPin, Phone } from 'lucide-react'
 import { DualHeader } from '@/components/blocks/dual-header'
 import { ProposalForm, type ProposalField } from '@/components/blocks/proposal-form'
 import type { ProposalState } from '@/lib/proposal-schema'
+import styles from './contact.module.css'
 
 type Props = {
   kicker: string
@@ -30,18 +32,12 @@ type Props = {
   messages: Record<Exclude<ProposalState['status'], 'idle'>, string>
 }
 
-const icon = 'mr-[5px] size-5 shrink-0 fill-current text-[#50453F]'
-
 // Page contact : coordonnées et réseaux à gauche, carte blanche avec le formulaire de demande à droite.
 // Sous 1025 px les deux blocs s'empilent (la démo écrase la carte à 74 px de large en tablette : défaut non reproduit).
 export function Contact(p: Props) {
   return (
-    <section
-      id="contact"
-      data-section="contact"
-      className="mx-auto flex w-[min(1320px,100%-120px)] items-start gap-x-14 gap-y-8 py-[90px] leading-normal max-lg:w-full max-lg:flex-col max-md:pt-12 max-md:pb-5"
-    >
-      <div className="flex flex-col justify-center max-lg:mt-20 max-lg:px-[15px] max-md:mt-0 max-md:px-5 lg:shrink-0 lg:basis-[528px]">
+    <section id="contact" data-section="contact" className={styles.root}>
+      <div className={styles.info}>
         <DualHeader
           size="compact"
           align="left"
@@ -49,78 +45,64 @@ export function Contact(p: Props) {
           title={p.title}
           highlight={p.highlight}
           description={p.description}
-          className="mb-5"
+          className={styles.header}
         />
-        <ul className="m-0 mb-8 flex list-none flex-wrap gap-2 p-0">
+        <ul className={styles.reassure}>
           {p.reassure.map((r) => (
-            <li
-              key={r}
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#B04A2A]/10 px-3.5 py-1.5 text-[14px] font-semibold text-[#8A3A20]"
-            >
-              <CheckCircle2 aria-hidden className="size-4" />
+            <li key={r} className={styles.reassureItem}>
+              <CheckCircle2 aria-hidden className={styles.reassureIcon} />
               {r}
             </li>
           ))}
         </ul>
-        <h2 className="font-display mb-4 text-[24px] leading-6 font-semibold tracking-[-0.02em] text-[#242424] max-lg:text-[20px]">
-          {p.labels.info}
-        </h2>
-        <ul className="m-0 mb-10 list-none p-0 font-medium text-[#5a5a5a]">
+        <h2 className={styles.heading}>{p.labels.info}</h2>
+        <ul className={styles.details}>
           {p.address && (
-            <li className="flex items-center pb-[10.5px]">
-              <MapPin className={icon} aria-hidden />
-              <span className="pl-[5px]">{p.address}</span>
+            <li className={clsx(styles.item, styles.itemAddress)}>
+              <MapPin className={styles.icon} aria-hidden />
+              <span className={styles.text}>{p.address}</span>
             </li>
           )}
           {p.phone && (
-            <li className="flex items-center not-first:mt-[10.5px] not-last:pb-[10.5px]">
-              <a href={p.phone.href} className="flex items-center text-[#B04A2A]">
-                <Phone className={icon} aria-hidden />
-                <span className="pl-[5px] text-[#5a5a5a]">{p.phone.label}</span>
+            <li className={clsx(styles.item, styles.itemPhone)}>
+              <a href={p.phone.href} className={styles.link}>
+                <Phone className={styles.icon} aria-hidden />
+                <span className={styles.linkText}>{p.phone.label}</span>
               </a>
             </li>
           )}
           {p.email && (
-            <li className="flex items-center not-first:mt-[10.5px]">
-              <a href={`mailto:${p.email}`} className="flex items-center text-[#B04A2A]">
-                <Mail className={icon} aria-hidden />
-                <span className="pl-[5px] text-[#5a5a5a]">{p.email}</span>
+            <li className={styles.item}>
+              <a href={`mailto:${p.email}`} className={styles.link}>
+                <Mail className={styles.icon} aria-hidden />
+                <span className={styles.linkText}>{p.email}</span>
               </a>
             </li>
           )}
           {p.hours && (
-            <li className="flex items-center not-first:mt-[10.5px]">
-              <Clock className={icon} aria-hidden />
-              <span className="pl-[5px]">
-                <span className="sr-only">{p.labels.hours} : </span>
+            <li className={styles.item}>
+              <Clock className={styles.icon} aria-hidden />
+              <span className={styles.text}>
+                <span className={styles.srOnly}>{p.labels.hours} : </span>
                 {p.hours}
               </span>
             </li>
           )}
-          <li className="flex items-center not-first:mt-[10.5px]">
-            <Hourglass className={icon} aria-hidden />
-            <span className="pl-[5px]">
+          <li className={styles.item}>
+            <Hourglass className={styles.icon} aria-hidden />
+            <span className={styles.text}>
               {p.labels.response} : {p.labels.responseValue}
             </span>
           </li>
         </ul>
         {p.social.length > 0 && (
           <>
-            <h4 className="font-display mt-[25px] mb-5 text-[24px] leading-6 font-semibold tracking-[-0.02em] text-[#242424] max-lg:text-[20px]">
-              {p.followTitle}
-            </h4>
-            <ul
-              aria-label={p.socialLabel}
-              className="m-0 mt-[10px] flex list-none gap-[15px] p-0 text-[#69727d]"
-            >
+            <h4 className={styles.followHeading}>{p.followTitle}</h4>
+            <ul aria-label={p.socialLabel} className={styles.social}>
               {p.social.map((s) => (
                 <li key={s.name}>
-                  <a
-                    href={s.href}
-                    aria-label={s.name}
-                    className="flex size-6 items-center justify-center rounded-full transition-colors hover:text-[#B04A2A]"
-                  >
-                    <svg viewBox="0 0 24 24" className="size-6 fill-current" aria-hidden>
+                  <a href={s.href} aria-label={s.name} className={styles.socialLink}>
+                    <svg viewBox="0 0 24 24" className={styles.socialIcon} aria-hidden>
                       <path d={s.path} />
                     </svg>
                   </a>
@@ -130,18 +112,11 @@ export function Contact(p: Props) {
           </>
         )}
       </div>
-      <div
-        id="devis"
-        className="flex scroll-mt-28 flex-col gap-5 rounded-[18px] border border-[#E3D9CC] bg-white p-9 max-lg:mx-[15px] max-md:mx-0 max-md:p-[22px_18px] lg:flex-1"
-      >
-        <span id="inquiry" aria-hidden className="scroll-mt-28" />
+      <div id="devis" className={styles.card}>
+        <span id="inquiry" aria-hidden className={styles.anchor} />
         <div>
-          <h2 className="font-display m-0 text-[28px] leading-[1.2] font-semibold text-[#242424]">
-            {p.labels.form}
-          </h2>
-          <p className="mt-2 mb-0 text-[15px] leading-normal text-[#625C50]">
-            {p.labels.formIntro}
-          </p>
+          <h2 className={styles.cardTitle}>{p.labels.form}</h2>
+          <p className={styles.cardIntro}>{p.labels.formIntro}</p>
         </div>
         <ProposalForm
           tone="forest"

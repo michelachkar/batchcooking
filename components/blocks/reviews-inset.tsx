@@ -1,3 +1,4 @@
+import styles from './reviews-inset.module.css'
 import { DualHeader } from '@/components/blocks/dual-header'
 import { ReviewsSlider, type Review } from '@/components/blocks/reviews-slider'
 import { TrustedStrip } from '@/components/blocks/trusted-by'
@@ -25,18 +26,18 @@ export function ReviewsInset({
   trusted,
 }: Props) {
   return (
-    <section data-section="reviews" className="flex flex-col gap-5 px-[15px] leading-normal">
-      <div className="flex flex-col gap-5 rounded-[30px] bg-[#E3D9CC]">
-        <div className="h-[90px]" aria-hidden />
+    <section data-section="reviews" className={styles.root}>
+      <div className={styles.frame}>
+        <div className={styles.spacerTop} aria-hidden />
         <DualHeader
           size="compact"
           kicker={kicker}
           title={title}
           highlight={highlight}
           description={description}
-          className="max-md:px-[10px]"
+          className={styles.header}
         />
-        <ReviewsSlider reviews={reviews} labels={labels} className="pt-px pb-5" initial={0} />
+        <ReviewsSlider reviews={reviews} labels={labels} className={styles.slider} initial={0} />
         {trusted && (
           <TrustedStrip
             title={trusted.title}
@@ -44,7 +45,7 @@ export function ReviewsInset({
             borderColor="rgba(199,199,199,0.88)"
           />
         )}
-        <div className="h-[70px]" aria-hidden />
+        <div className={styles.spacerBottom} aria-hidden />
       </div>
     </section>
   )

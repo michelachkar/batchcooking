@@ -12,6 +12,7 @@ import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage, serviceNode } from '@/lib/jsonld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
+import styles from './page.module.css'
 
 const PATH = '/services/chef-prive'
 type IconCard = { icon: string; title: string; text: string; tag?: string }
@@ -87,7 +88,7 @@ export default async function ChefPrivePage() {
         items={c.raw('packages.items') as Package[]}
         cta={{ label: c('packages.button'), href: quote }}
       />
-      <div id="deroule" className="scroll-mt-24" />
+      <div id="deroule" className={styles.anchor} />
       <Included
         flush
         kicker={inc('kicker')}

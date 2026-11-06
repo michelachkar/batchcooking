@@ -2,7 +2,8 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './reviews-slider.module.css'
 
 type Img = { src: string; width: number; height: number; unoptimized?: boolean }
 export type Review = { name: string; text: string; role: string; image: Img; alt: string }
@@ -66,21 +67,14 @@ export function ReviewsSlider({ reviews, labels, className, initial }: Props) {
       role="region"
       aria-roledescription="carrousel"
       aria-label={labels.navigation}
-      className={cn(
-        'overflow-x-hidden',
-        className,
-        // Variables du widget d'origine (marges de carte, avatar, texte) selon les paliers 992 et 768 px.
-        '[--rv-gap:16px] min-[768px]:[--rv-gap:20px] min-[1024px]:[--rv-gap:24px]',
-        '[--rv-av:90px] [@media(max-width:768px)]:[--rv-av:75px] [@media(min-width:769px)_and_(max-width:992px)]:[--rv-av:80px]',
-        '[--rv-cpb:2.5rem] [--rv-cpt:3.5rem] [--rv-cpx:2.5rem] [@media(max-width:768px)]:[--rv-cpb:1.5rem] [@media(max-width:768px)]:[--rv-cpt:3rem] [@media(max-width:768px)]:[--rv-cpx:1.25rem] [@media(min-width:769px)_and_(max-width:992px)]:[--rv-cpb:2rem] [@media(min-width:769px)_and_(max-width:992px)]:[--rv-cpt:3rem] [@media(min-width:769px)_and_(max-width:992px)]:[--rv-cpx:1.5rem]',
-      )}
+      className={clsx(styles.root, className)}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
       <div
-        className="cursor-grab touch-pan-y pt-[max(4rem,calc(2rem+var(--rv-av)*0.5))] pr-[clamp(0.85rem,2vw,1.6rem)] pb-4 pl-[clamp(0.85rem,2vw,1.6rem)] [@media(max-width:768px)]:mb-[2.6rem] [@media(max-width:768px)]:px-3 [@media(max-width:768px)]:pt-[max(3.2rem,calc(1.75rem+var(--rv-av)*0.5))]"
+        className={styles.viewport}
         onPointerDown={(e) => {
           startX.current = e.clientX
           startT.current = performance.now()
@@ -103,14 +97,10 @@ export function ReviewsSlider({ reviews, labels, className, initial }: Props) {
           startX.current = null
         }}
       >
-        <div className="[container-type:inline-size] [--rv-w:100cqw] min-[1024px]:[--rv-w:calc((100cqw-2*var(--rv-gap))/3)]">
+        <div className={styles.measure}>
           <ul
             ref={listRef}
-            className={cn(
-              'relative m-0 flex list-none p-0',
-              animate &&
-                'transition-transform duration-[600ms] ease-[ease] motion-reduce:transition-none',
-            )}
+            className={clsx(styles.track, animate && styles.animate)}
             style={{
               left: '50%',
               transform: `translateX(calc(-1 * (${pos} * (var(--rv-w) + var(--rv-gap)) + var(--rv-w) / 2) + ${drag}px))`,
@@ -128,7 +118,7 @@ export function ReviewsSlider({ reviews, labels, className, initial }: Props) {
                     key={`${copy}-${r.name}`}
                     inert={copy !== 1}
                     aria-hidden={copy !== 1 || undefined}
-                    className="flex w-(--rv-w) flex-none justify-center"
+                    className={styles.slide}
                     style={{ marginRight: 'var(--rv-gap)' }}
                   >
                     <ReviewCard review={r} active={isActive} />
@@ -139,10 +129,10 @@ export function ReviewsSlider({ reviews, labels, className, initial }: Props) {
           </ul>
         </div>
       </div>
-      <button type="button" className="sr-only" onClick={() => go(-1)}>
+      <button type="button" className={styles.srOnly} onClick={() => go(-1)}>
         {labels.prev}
       </button>
-      <button type="button" className="sr-only" onClick={() => go(1)}>
+      <button type="button" className={styles.srOnly} onClick={() => go(1)}>
         {labels.next}
       </button>
     </div>
@@ -151,23 +141,9 @@ export function ReviewsSlider({ reviews, labels, className, initial }: Props) {
 
 function ReviewCard({ review: r, active }: { review: Review; active: boolean }) {
   return (
-    <article
-      className={cn(
-        'relative isolate flex w-full flex-col pt-(--rv-cpt) pr-(--rv-cpx) pb-(--rv-cpb) pl-(--rv-cpx) transition-transform duration-500 ease-[cubic-bezier(0.25,1,0.3,1)] motion-reduce:transition-none',
-        !active && 'scale-[0.88]',
-      )}
-    >
-      <div
-        aria-hidden
-        className={cn(
-          'absolute inset-0 z-0 overflow-hidden rounded-[24px] border transition-[box-shadow,border-color,opacity] duration-500 ease-[cubic-bezier(0.25,1,0.3,1)]',
-          'review-mark',
-          active
-            ? 'border-[rgba(47,43,38,0.08)] bg-[#B04A2A]'
-            : 'bg-cream border-transparent opacity-[0.88] shadow-[0_24px_48px_rgba(47,43,38,0.05),0_4px_12px_rgba(47,43,38,0.02)]',
-        )}
-      />
-      <div className="absolute top-0 left-1/2 z-10 size-(--rv-av) -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F0EBE3] shadow-[0_8px_20px_rgba(47,43,38,0.07),0_2px_6px_rgba(47,43,38,0.04)] [@media(max-width:768px)]:border-[3px]">
+    <article className={clsx(styles.card, active && styles.active)}>
+      <div aria-hidden className={styles.cardBg} />
+      <div className={styles.avatar}>
         <Image
           src={r.image.src}
           alt={r.alt}
@@ -175,49 +151,21 @@ function ReviewCard({ review: r, active }: { review: Review; active: boolean }) 
           height={r.image.height}
           unoptimized={r.image.unoptimized}
           sizes="90px"
-          className="block size-full object-cover"
+          className={styles.avatarImg}
         />
       </div>
-      <div className="relative z-[1] flex grow flex-col text-center">
-        <h3
-          className={cn(
-            'm-0 mb-4 text-[clamp(1.1rem,1.4vw,1.35rem)] leading-[1.2] font-semibold tracking-[-0.02em] max-lg:text-[28px] max-lg:leading-[35px] [@media(max-width:768px)]:mb-3',
-            active ? 'text-white' : 'text-ink',
-          )}
-        >
-          {r.name}
-        </h3>
-        <p
-          className={cn(
-            'm-0 mb-[15.4px] grow text-[clamp(0.9rem,1.5vw,1rem)] leading-[1.62] [@media(max-width:768px)]:mb-[3.4px]',
-            active ? 'text-[#fbfbfb]' : 'text-body',
-          )}
-        >
-          {r.text}
-        </p>
-        <div className="flex flex-col items-center gap-2 border-t border-dashed border-[rgba(58,53,46,0.2)] pt-[31px] [@media(max-width:768px)]:pt-[28.6px]">
-          <div className="text-base leading-6">
-            <span
-              className={cn('text-[13.6px] leading-[20.4px]', active ? 'text-white' : 'text-body')}
-            >
-              {r.role}
-            </span>
+      <div className={styles.body}>
+        <h3 className={styles.name}>{r.name}</h3>
+        <p className={styles.text}>{r.text}</p>
+        <div className={styles.footer}>
+          <div className={styles.roleWrap}>
+            <span className={styles.role}>{r.role}</span>
           </div>
-          <span
-            className="relative inline-block text-[20px] leading-none tracking-[3px]"
-            role="img"
-            aria-label="5/5"
-          >
-            <span className="text-[rgba(78,67,61,0.22)]" aria-hidden>
+          <span className={styles.rating} role="img" aria-label="5/5">
+            <span className={styles.starsBase} aria-hidden>
               ★★★★★
             </span>
-            <span
-              className={cn(
-                'absolute top-0 left-0 w-full overflow-hidden whitespace-nowrap',
-                active ? 'text-sage' : 'text-[#4E433D]',
-              )}
-              aria-hidden
-            >
+            <span className={styles.starsFill} aria-hidden>
               ★★★★★
             </span>
           </span>

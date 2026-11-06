@@ -1,0 +1,632 @@
+/* « Menus types » : cartes avec photo, aperçu des plats, prix, et fenêtre « menu complet ». */
+
+/* Fonds de section (le ton « beige » reprend la valeur littérale de la bande crème, insensible à la palette « bar »). */
+.toneBeige {
+  background-color: #f0ebe3;
+}
+
+.toneWhite {
+  background-color: #fff;
+}
+
+.toneTerracotta {
+  background-color: var(--color-forest);
+}
+
+/* Bande de fond de page au-dessus du bloc (absente quand le bloc est collé à la section précédente). */
+.band {
+  padding-top: 22px;
+  background-color: var(--color-cream);
+
+  @media (width < 1025px) {
+    padding-top: 18px;
+  }
+
+  @media (width < 768px) {
+    padding-top: 0.75rem;
+  }
+}
+
+.panel {
+  padding-inline: 2.5rem;
+
+  @media (width < 1025px) {
+    padding-inline: 26px;
+  }
+
+  @media (width < 768px) {
+    padding-inline: 1rem;
+  }
+}
+
+.panelRounded {
+  border-radius: 20px;
+}
+
+.container {
+  margin-inline: auto;
+  max-width: var(--container-site);
+  padding-bottom: 68px;
+  line-height: 1.5;
+
+  @media (width < 1025px) {
+    padding-bottom: 3.5rem;
+  }
+
+  @media (width < 768px) {
+    padding-bottom: 2.5rem;
+  }
+}
+
+.containerWithHeader {
+  padding-top: 68px;
+
+  @media (width < 1025px) {
+    padding-top: 3.5rem;
+  }
+
+  @media (width < 768px) {
+    padding-top: 2.5rem;
+  }
+}
+
+.containerHeaderless {
+  padding-top: 3rem;
+
+  @media (width < 768px) {
+    padding-top: 2rem;
+  }
+}
+
+/* ---------- En-tête ---------- */
+
+.header {
+  margin-inline: auto;
+  margin-bottom: 3rem;
+  max-width: 46rem;
+  text-align: center;
+}
+
+.kicker {
+  margin-bottom: 1rem;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-forest-mid);
+}
+
+.kickerDark {
+  color: rgb(255 255 255 / 0.85);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 3.7vw, 58px);
+  font-weight: 600;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+
+  @media (width < 1025px) {
+    font-size: 45px;
+    line-height: 56px;
+  }
+}
+
+.titleDark {
+  color: #fff;
+}
+
+.intro {
+  margin-inline: auto;
+  margin-top: 18px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+.introDark {
+  color: rgb(255 255 255 / 0.9);
+}
+
+/* ---------- Grille de cartes ---------- */
+
+/* Les variantes précèdent .cards : la règle « tablette » de .cards (une colonne) doit les surcharger. */
+.cardsTwo {
+  max-width: 900px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.cardsThree {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cards {
+  display: grid;
+  margin-inline: auto;
+  gap: 22px;
+
+  @media (width < 1025px) {
+    max-width: 640px;
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ---------- Carte ---------- */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 2rem 30px;
+  border: 1px solid #e3d9cc;
+  border-radius: 18px;
+  background-color: #fff;
+  transition:
+    translate 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.45s ease,
+    border-color 0.45s ease;
+
+  @media (width < 768px) {
+    padding-inline: 22px;
+    padding-bottom: 1.5rem;
+  }
+
+  &:focus-within {
+    translate: 0 -0.5rem;
+    border-color: #ddc5b9;
+    box-shadow: 0 30px 60px rgba(47, 43, 38, 0.12);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.5rem;
+      border-color: #ddc5b9;
+      box-shadow: 0 30px 60px rgba(47, 43, 38, 0.12);
+    }
+  }
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  margin-inline: -2rem;
+  margin-bottom: 26px;
+  background-color: #e3d9cc;
+
+  @media (width < 768px) {
+    margin-inline: -22px;
+  }
+
+  /* Voile dégradé en bas de la photo. */
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 55%;
+    bottom: 0;
+    background-image: linear-gradient(
+      to bottom in oklab,
+      rgba(47, 43, 38, 0),
+      rgba(47, 43, 38, 0.35)
+    );
+    pointer-events: none;
+  }
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: scale 1s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  .card:hover & {
+    @media (hover: hover) {
+      scale: 1.06;
+    }
+  }
+}
+
+.iconBadge {
+  position: absolute;
+  right: 22px;
+  bottom: -26px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 4px solid #fff;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-forest);
+  color: #f0c8b8;
+  transition:
+    scale 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+    rotate 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  .card:hover & {
+    @media (hover: hover) {
+      scale: 1.06;
+      rotate: -12deg;
+    }
+  }
+}
+
+.iconBadgeSvg {
+  width: 25px;
+  height: 25px;
+}
+
+.spacer {
+  padding-top: 30px;
+}
+
+.label {
+  align-self: flex-start;
+  margin: 0.25rem 76px 18px 0;
+  padding: 6px 0.75rem;
+  border-radius: var(--radius-pill);
+  background-color: #eee2dc;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-forest-mid);
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+
+  .card:hover & {
+    @media (hover: hover) {
+      background-color: var(--color-forest-mid);
+      color: #faf7f2;
+    }
+  }
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+
+  @media (width < 1025px) {
+    font-size: 28px;
+    line-height: 35px;
+  }
+
+  @media (width < 768px) {
+    font-size: 27px;
+    line-height: 1.15;
+  }
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 0.5rem;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.metaIcon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-forest-mid);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid #e3d9cc;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-forest-mid);
+}
+
+.tagIcon {
+  width: 13px;
+  height: 13px;
+}
+
+/* ---------- Plats ---------- */
+
+.courses {
+  display: grid;
+  gap: 14px;
+  margin: 1.5rem 0 0;
+  padding: 22px 0 0;
+  border: 0 solid #e3d9cc;
+  border-top-width: 1px;
+  list-style: none;
+}
+
+.course {
+  transition: translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 5px 0;
+    }
+  }
+}
+
+.courseName {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.mark {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: calc(infinity * 1px);
+  color: #fff;
+}
+
+.markYes {
+  background-color: #7d472c;
+}
+
+.markNo {
+  background-color: var(--color-forest);
+}
+
+.markIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.courseDesc {
+  display: block;
+  margin-top: 2px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.more {
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-forest-mid);
+}
+
+/* ---------- Pied de carte : prix et appel à l'action ---------- */
+
+.footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 26px;
+}
+
+.footerStacked {
+  flex-direction: column;
+}
+
+.footerInline {
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.price {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.priceHighlight {
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--color-forest);
+}
+
+.priceNote {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 26px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-forest);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cardCta {
+  justify-content: center;
+  color: #fff;
+  transition: background-color 0.25s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-forest-dark);
+    }
+  }
+}
+
+/* Variante bouton : ouvre le parcours de demande. */
+.cardCtaButton {
+  border-width: 0;
+  cursor: pointer;
+}
+
+.ctaArrow {
+  width: 17px;
+  height: 17px;
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    :is(.cardCta, .dialogCta):hover & {
+      translate: 5px 0;
+    }
+  }
+}
+
+/* ---------- Contenu de la fenêtre « menu complet » ---------- */
+
+.dialogKicker {
+  margin-bottom: 1rem;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-forest-mid);
+}
+
+.dialogTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+
+  @media (width < 768px) {
+    padding-right: 2.5rem;
+    font-size: 30px;
+    line-height: 1.12;
+  }
+}
+
+.dialogMeta {
+  margin-top: 10px;
+  font-size: 16px;
+  color: var(--color-body);
+}
+
+.dialogCourses {
+  margin: 1.75rem 0 0;
+  padding: 0;
+  border: 0 solid #e3d9cc;
+  border-top-width: 1px;
+  list-style: none;
+}
+
+.dialogCourse {
+  display: flex;
+  gap: 18px;
+  padding-block: 1rem;
+  border: 0 solid #e3d9cc;
+  border-bottom-width: 1px;
+  transition:
+    background-color 0.3s ease,
+    padding 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      padding-left: 10px;
+      background-color: color-mix(in oklab, var(--color-sage) 15%, transparent);
+    }
+  }
+}
+
+.dialogNumber {
+  flex: 0 0 28px;
+  padding-top: 3px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-forest-mid);
+}
+
+.dialogCourseName {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.dialogNote {
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+.dialogActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 26px;
+  row-gap: 1rem;
+  margin-top: 1.75rem;
+}
+
+.dialogCta {
+  color: #faf7f2;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-forest-dark);
+    }
+  }
+}
+
+/* ---------- Note de bas de section ---------- */
+
+.note {
+  margin-inline: auto;
+  margin-top: 34px;
+  max-width: 44rem;
+  font-size: 15px;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--color-body);
+}
+
+.noteDark {
+  color: rgb(255 255 255 / 0.9);
+}

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { X } from 'lucide-react'
 import { QuoteInquiry, type QuoteInquiryTexts } from '@/components/blocks/quote-inquiry'
 import { useLead } from '@/components/lead/lead-provider'
+import styles from './quote-provider.module.css'
 
 type Service = 'batch' | 'chef' | 'cours'
 
@@ -119,35 +120,25 @@ function Picker({
       aria-label={texts.title}
       onClose={onClose}
       onClick={(e) => e.target === el && el?.close()}
-      className="m-auto max-h-[calc(100vh-32px)] w-[min(560px,calc(100vw-24px))] overflow-auto rounded-[20px] border-0 bg-white p-0 text-[rgba(85,80,68,1)] shadow-[0_30px_80px_rgba(47,43,38,0.35)] backdrop:bg-[rgba(47,43,38,0.62)] open:animate-[dialog-in_0.35s_cubic-bezier(0.2,0.7,0.2,1)]"
+      className={styles.root}
     >
-      <div className="relative px-9 pt-9 pb-8 max-md:px-5 max-md:pt-8 max-md:pb-6">
+      <div className={styles.panel}>
         <button
           type="button"
           onClick={() => el?.close()}
           aria-label={texts.close}
-          className="absolute top-4 right-4 inline-flex size-10 cursor-pointer items-center justify-center rounded-full border border-[#e3d9cc] bg-white hover:border-[#B04A2A] hover:text-[#B04A2A]"
+          className={styles.close}
         >
-          <X aria-hidden className="size-[18px]" />
+          <X aria-hidden className={styles.closeIcon} />
         </button>
-        <h2 className="font-display m-0 pr-10 text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] max-md:text-[24px]">
-          {texts.title}
-        </h2>
-        <p className="mt-3 mb-6 text-[15px] leading-[1.6] text-[rgba(85,80,68,0.88)]">
-          {texts.intro}
-        </p>
-        <ul className="m-0 flex list-none flex-col gap-3 p-0">
+        <h2 className={styles.title}>{texts.title}</h2>
+        <p className={styles.intro}>{texts.intro}</p>
+        <ul className={styles.list}>
           {texts.services.map((s) => (
             <li key={s.id}>
-              <button
-                type="button"
-                onClick={() => onPick(s.id)}
-                className="group w-full cursor-pointer rounded-[14px] border border-[#e3d9cc] bg-[rgba(240,235,227,0.5)] p-5 text-left [transition:border-color_0.25s_ease,background-color_0.25s_ease,translate_0.3s_cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-0.5 hover:border-[#B04A2A] hover:bg-white"
-              >
-                <span className="font-display block text-[20px] font-semibold">{s.title}</span>
-                <span className="mt-1 block text-[14px] leading-[1.5] text-[rgba(85,80,68,0.88)]">
-                  {s.text}
-                </span>
+              <button type="button" onClick={() => onPick(s.id)} className={styles.service}>
+                <span className={styles.serviceTitle}>{s.title}</span>
+                <span className={styles.serviceText}>{s.text}</span>
               </button>
             </li>
           ))}

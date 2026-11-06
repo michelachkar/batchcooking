@@ -1,3 +1,4 @@
+import styles from './trusted-by.module.css'
 import { ClientCarousel, type Logo } from '@/components/blocks/client-carousel'
 
 type Props = {
@@ -23,15 +24,10 @@ export function TrustedStrip({
   borderColor = '#e2e2e2',
 }: Omit<Props, 'bottomGap'> & { borderColor?: string }) {
   return (
-    <div
-      style={{ marginTop: topGap, borderColor }}
-      className="flex flex-col gap-5 border-t p-[10px]"
-    >
-      <div className="h-6" aria-hidden />
-      <h4 className="font-display text-ink m-0 text-center text-[16px] leading-[15px] font-semibold tracking-[-0.02em] max-lg:text-xl max-lg:leading-6">
-        {title}
-      </h4>
-      <div className="mx-auto mt-[5px] w-4/5 pb-0">
+    <div style={{ marginTop: topGap, borderColor }} className={styles.strip}>
+      <div className={styles.spacer} aria-hidden />
+      <h4 className={styles.title}>{title}</h4>
+      <div className={styles.logos}>
         <ClientCarousel logos={logos} height={logoHeight} grayscale />
       </div>
       {tail > 0 && <div style={{ height: tail }} aria-hidden />}
@@ -41,8 +37,8 @@ export function TrustedStrip({
 
 export function TrustedBy({ bottomGap = 0, ...strip }: Props) {
   return (
-    <section data-section="trusted" style={{ marginBottom: bottomGap }} className="leading-normal">
-      <div className="mx-auto flex max-w-[1350px] flex-col gap-5 py-[10px]">
+    <section data-section="trusted" style={{ marginBottom: bottomGap }} className={styles.root}>
+      <div className={styles.inner}>
         <TrustedStrip {...strip} />
       </div>
     </section>

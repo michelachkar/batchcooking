@@ -5,7 +5,7 @@
   },
   "header": {
     "announce": "Réservations ouvertes pour les prochaines semaines",
-    "cta": "Demander un devis",
+    "cta": "Réservez votre chef",
     "search": "Rechercher",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
@@ -38,7 +38,7 @@
     "eyebrow": "Planifiez votre semaine",
     "title": "Votre table vous attend.",
     "text": "Dites-nous la date, le nombre de convives et vos envies. Nous répondons sous un jour ouvré.",
-    "ctaPrimary": "Demander un devis",
+    "ctaPrimary": "Réservez votre chef",
     "ctaCall": "Appeler le {phone}",
     "about": "Une cuisine saine, de saison et locale, aux saveurs du monde entier, pour vous rendre du temps autour de la table.",
     "services": "Services",
@@ -95,7 +95,7 @@
           "title": "Une cuisine propre et sans effort"
         }
       ],
-      "primary": "Demander un devis",
+      "primary": "Planifier mes repas",
       "secondary": "Découvrir mes recettes",
       "meta": "Sans engagement · Reportez facilement",
       "googleReviews": "Avis Google",
@@ -261,7 +261,7 @@
       ],
       "button": "Découvrir le batch cooking",
       "buttonHref": "/services/batch-cooking",
-      "secondaryButton": "Demander un devis",
+      "secondaryButton": "Planifier mes repas",
       "secondaryButtonHref": "/contact#inquiry",
       "images": [
         "Mains du chef dressant une assiette avant le service",

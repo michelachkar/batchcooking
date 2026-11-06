@@ -2,20 +2,17 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Check, X } from 'lucide-react'
-import { SOFT } from '@/components/blocks/home-v2'
+import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
 import { submitLead } from '@/lib/lead/submit'
+import styles from './quote-inquiry.module.css'
 
 export type QuoteOption = { value: string; label: string; text?: string; price?: string }
-
-export const label = 'text-[11px] font-bold tracking-[0.14em] text-[#B04A2A] uppercase'
-export const control =
-  'h-[54px] w-full rounded-xl border border-transparent bg-[rgba(240,235,227,1)] px-4 text-[15px] text-[rgba(85,80,68,1)] placeholder:text-[rgba(85,80,68,0.5)] [transition:border-color_0.2s_ease,background-color_0.2s_ease] hover:border-[#e3c4b6] focus:border-[#B04A2A] focus:bg-white focus:outline-none'
 
 export function Field({
   id,
   text,
-  className = '',
+  className,
   children,
 }: {
   id: string
@@ -24,8 +21,8 @@ export function Field({
   children: React.ReactNode
 }) {
   return (
-    <div className={`flex min-w-0 flex-col gap-2 ${className}`}>
-      <label htmlFor={id} className={label}>
+    <div className={clsx(styles.field, className)}>
+      <label htmlFor={id} className={styles.label}>
         {text}
       </label>
       {children}
@@ -115,56 +112,49 @@ export function QuoteInquiry(
       aria-label={p.title}
       onClose={p.onClose}
       onClick={(e) => e.target === ref.current && ref.current?.close()}
-      className="m-auto max-h-[calc(100vh-32px)] w-[min(560px,calc(100vw-24px))] overflow-auto rounded-[20px] border-0 bg-white p-0 text-[rgba(85,80,68,1)] shadow-[0_30px_80px_rgba(47,43,38,0.35)] backdrop:bg-[rgba(47,43,38,0.62)] open:animate-[dialog-in_0.35s_cubic-bezier(0.2,0.7,0.2,1)]"
+      className={styles.root}
     >
-      <div className="relative px-9 pt-9 pb-8 max-md:px-5 max-md:pt-8 max-md:pb-6">
+      <div className={styles.panel}>
         <button
           type="button"
           onClick={() => ref.current?.close()}
           aria-label={p.close}
-          className="absolute top-4 right-4 inline-flex size-10 cursor-pointer items-center justify-center rounded-full border border-[#e3d9cc] bg-white hover:border-[#B04A2A] hover:text-[#B04A2A]"
+          className={styles.close}
         >
-          <X aria-hidden className="size-[18px]" />
+          <X aria-hidden className={styles.closeIcon} />
         </button>
 
         {!done && !direct && (
-          <div className="mb-6 pr-10">
-            <p className={label}>{p.step.replace('{n}', String(step))}</p>
-            <div className="mt-2 flex gap-1.5" aria-hidden>
+          <div className={styles.progress}>
+            <p className={styles.label}>{p.step.replace('{n}', String(step))}</p>
+            <div className={styles.bars} aria-hidden>
               {[1, 2].map((n) => (
-                <span
-                  key={n}
-                  className={`h-1 flex-1 rounded-full ${n <= step ? 'bg-[#B04A2A]' : 'bg-[#eadfd3]'}`}
-                />
+                <span key={n} className={clsx(styles.bar, n <= step && styles.barActive)} />
               ))}
             </div>
           </div>
         )}
 
         {done ? (
-          <div className="flex flex-col items-start gap-4 py-4">
-            <span className="flex size-12 items-center justify-center rounded-full bg-[#7D472C] text-white">
-              <Check aria-hidden className="size-6" strokeWidth={3} />
+          <div className={styles.done}>
+            <span className={styles.doneBadge}>
+              <Check aria-hidden className={styles.doneIcon} strokeWidth={3} />
             </span>
-            <h2 className="font-display m-0 text-[28px] leading-[1.15] font-semibold">
-              {p.kicker}
-            </h2>
-            <p className={`text-[15px] leading-[1.6] ${SOFT}`}>{p.success}</p>
+            <h2 className={styles.doneTitle}>{p.kicker}</h2>
+            <p className={clsx(styles.doneText, styles.soft)}>{p.success}</p>
             <button
               type="button"
               onClick={() => ref.current?.close()}
-              className="rounded-pill h-[48px] cursor-pointer bg-[#B04A2A] px-7 text-[15px] font-semibold text-white hover:bg-[#8F3B20]"
+              className={styles.doneButton}
             >
               {p.close}
             </button>
           </div>
         ) : step === 1 ? (
           <div>
-            <h2 className="font-display m-0 pr-10 text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] max-md:text-[24px]">
-              {p.pickTitle}
-            </h2>
-            <p className={`mt-2 mb-6 text-[15px] leading-[1.5] ${SOFT}`}>{p.pickIntro}</p>
-            <div role="radiogroup" aria-label={p.pickTitle} className="grid gap-3">
+            <h2 className={styles.title}>{p.pickTitle}</h2>
+            <p className={clsx(styles.pickIntro, styles.soft)}>{p.pickIntro}</p>
+            <div role="radiogroup" aria-label={p.pickTitle} className={styles.options}>
               {p.options.map((o) => (
                 <button
                   key={o.value}
@@ -175,46 +165,33 @@ export function QuoteInquiry(
                     setPick(o.value)
                     setStep(2)
                   }}
-                  className="flex w-full cursor-pointer items-start justify-between gap-4 rounded-[16px] border-2 border-[#e3d9cc] bg-white p-5 text-left transition-colors hover:border-[#B04A2A]"
+                  className={styles.option}
                 >
-                  <span className="flex flex-col gap-1">
-                    <span className="font-display text-[20px] leading-[1.15] font-semibold">
-                      {o.label}
-                    </span>
-                    {o.text && <span className={`text-[14px] ${SOFT}`}>{o.text}</span>}
+                  <span className={styles.optionText}>
+                    <span className={styles.optionTitle}>{o.label}</span>
+                    {o.text && (
+                      <span className={clsx(styles.optionDesc, styles.soft)}>{o.text}</span>
+                    )}
                   </span>
-                  {o.price && (
-                    <strong className="flex-none text-[16px] font-bold whitespace-nowrap text-[#B04A2A]">
-                      {o.price}
-                    </strong>
-                  )}
+                  {o.price && <strong className={styles.optionPrice}>{o.price}</strong>}
                 </button>
               ))}
             </div>
           </div>
         ) : (
           <div>
-            <h2 className="font-display m-0 pr-10 text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] max-md:text-[24px]">
-              {p.infoTitle}
-            </h2>
+            <h2 className={styles.title}>{p.infoTitle}</h2>
             {picked && (
-              <p className="mt-3 inline-flex items-center gap-3 rounded-full bg-[#B04A2A]/10 py-1.5 pr-2 pl-4 text-[14px] font-semibold text-[#B04A2A]">
+              <p className={styles.picked}>
                 {picked.label}
-                {picked.price && <span className="font-normal">· {picked.price}</span>}
-                <button
-                  type="button"
-                  onClick={() => setStep(1)}
-                  className="cursor-pointer rounded-full bg-white px-3 py-1 text-[12px] font-semibold hover:bg-[#B04A2A] hover:text-white"
-                >
+                {picked.price && <span className={styles.pickedPrice}>· {picked.price}</span>}
+                <button type="button" onClick={() => setStep(1)} className={styles.change}>
                   {p.back}
                 </button>
               </p>
             )}
-            <p className={`mt-3 mb-6 text-[15px] leading-[1.6] ${SOFT}`}>{p.intro}</p>
-            <form
-              onSubmit={onSubmit}
-              className="relative grid grid-cols-2 gap-4 max-md:grid-cols-1"
-            >
+            <p className={clsx(styles.intro, styles.soft)}>{p.intro}</p>
+            <form onSubmit={onSubmit} className={styles.form}>
               <Field id="cc-guests" text={f.guests}>
                 <input
                   id="cc-guests"
@@ -224,7 +201,7 @@ export function QuoteInquiry(
                   max={50}
                   inputMode="numeric"
                   required
-                  className={control}
+                  className={styles.control}
                 />
               </Field>
               <Field id="cc-location" text={f.location}>
@@ -235,7 +212,7 @@ export function QuoteInquiry(
                   required
                   autoComplete="address-level2"
                   placeholder={f.locationPlaceholder}
-                  className={control}
+                  className={styles.control}
                 />
               </Field>
               <Field id="cc-name" text={f.name}>
@@ -246,7 +223,7 @@ export function QuoteInquiry(
                   required
                   autoComplete="given-name"
                   placeholder={f.namePlaceholder}
-                  className={control}
+                  className={styles.control}
                 />
               </Field>
               <Field id="cc-phone" text={f.phone}>
@@ -257,10 +234,10 @@ export function QuoteInquiry(
                   required
                   autoComplete="tel"
                   placeholder={f.phonePlaceholder}
-                  className={control}
+                  className={styles.control}
                 />
               </Field>
-              <Field id="cc-email" text={f.email} className="col-span-2 max-md:col-span-1">
+              <Field id="cc-email" text={f.email} className={styles.fieldFull}>
                 <input
                   id="cc-email"
                   name="email"
@@ -268,7 +245,7 @@ export function QuoteInquiry(
                   required
                   autoComplete="email"
                   placeholder={f.emailPlaceholder}
-                  className={control}
+                  className={styles.control}
                 />
               </Field>
               {/* Champ piège anti-spam : invisible, doit rester vide. */}
@@ -278,20 +255,19 @@ export function QuoteInquiry(
                 tabIndex={-1}
                 autoComplete="off"
                 aria-hidden
-                className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                className={styles.trap}
               />
-              <div className="col-span-2 flex flex-col gap-3 max-md:col-span-1">
-                <button
-                  type="submit"
-                  disabled={status === 'sending'}
-                  className="group rounded-pill inline-flex h-[54px] items-center justify-center gap-[10px] bg-[#B04A2A] px-8 text-base font-semibold whitespace-nowrap text-white [transition:background-color_0.25s_ease,translate_0.3s_cubic-bezier(0.2,0.7,0.2,1)] hover:-translate-y-0.5 hover:bg-[#8F3B20] disabled:opacity-70"
-                >
+              <div className={styles.actions}>
+                <button type="submit" disabled={status === 'sending'} className={styles.submit}>
                   {status === 'sending' ? p.sending : p.button}
-                  <ArrowIcon className="[transition:translate_0.35s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:translate-x-[5px]" />
+                  <ArrowIcon className={styles.submitArrow} />
                 </button>
                 <p
                   role="status"
-                  className={`text-[13px] leading-[1.5] ${status === 'error' ? 'font-semibold text-[#B04A2A]' : SOFT}`}
+                  className={clsx(
+                    styles.status,
+                    status === 'error' ? styles.statusError : styles.soft,
+                  )}
                 >
                   {status === 'error' ? p.error : p.note}
                 </p>

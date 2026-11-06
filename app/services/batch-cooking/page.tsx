@@ -8,6 +8,7 @@ import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
+import styles from './page.module.css'
 
 type IconCard = { icon: string; title: string; text: string }
 
@@ -99,7 +100,7 @@ export default async function BatchCookingPage() {
         title={b('audience.title')}
         items={b.raw('audience.items') as { title: string; text: string }[]}
       />
-      <div id="deroule" className="scroll-mt-24" />
+      <div id="deroule" className={styles.anchor} />
       <Timeline
         tone="beige"
         kicker={b('timeline.kicker')}

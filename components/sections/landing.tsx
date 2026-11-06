@@ -18,6 +18,7 @@ import { PostsSections } from '@/components/sections/posts-sections'
 import { Hero, type HeroBadge } from '@/components/blocks/hero'
 import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
+import styles from './landing.module.css'
 import { getTranslations } from '@/lib/i18n'
 import { mediaOf, type Landing as LandingNs } from '@/lib/media'
 
@@ -174,9 +175,13 @@ export async function Landing({ ns }: { ns: LandingNs }) {
         />
       )}
       {ns !== 'home' && media.partners.length > 0 && (
-        <section data-section="partners" className="max-md:mb-10">
-          <div className="mx-auto flow-root max-w-[1350px] pt-5 pb-5 max-md:pt-[30px] max-md:pb-0">
-            <ClientCarousel logos={media.partners.slice(0, 3)} height={54} className="mb-[21px]" />
+        <section data-section="partners" className={styles.partners}>
+          <div className={styles.partnersInner}>
+            <ClientCarousel
+              logos={media.partners.slice(0, 3)}
+              height={54}
+              className={styles.partnersCarousel}
+            />
           </div>
         </section>
       )}
@@ -188,7 +193,7 @@ export async function Landing({ ns }: { ns: LandingNs }) {
         />
       )}
       {ns !== 'home' && <TrustedSection ns={ns} />}
-      <div className="h-[105px]" aria-hidden />
+      <div className={styles.spacer} aria-hidden />
       {ns !== 'home' && <ProposalSection ns={ns} />}
     </>
   )

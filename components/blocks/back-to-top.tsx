@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './back-to-top.module.css'
 
 type Props = { label: string }
 
@@ -35,14 +36,9 @@ export function BackToTop({ label }: Props) {
       type="button"
       aria-label={label}
       onClick={toTop}
-      className={cn(
-        'fixed right-5 bottom-5 z-[999] flex size-11 items-center justify-center rounded-full bg-[#B04A2A] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)]',
-        visible
-          ? 'pointer-events-auto opacity-100 transition-opacity duration-300 ease-[ease] motion-reduce:transition-none'
-          : 'pointer-events-none opacity-0',
-      )}
+      className={clsx(styles.button, visible && styles.visible)}
     >
-      <svg viewBox="0 0 24 24" aria-hidden className="size-5 fill-current">
+      <svg viewBox="0 0 24 24" aria-hidden className={styles.icon}>
         <path d="M12 5l-8 8h5v6h6v-6h5z" />
       </svg>
     </button>

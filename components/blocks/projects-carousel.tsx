@@ -3,7 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './projects-carousel.module.css'
 
 export type Project = {
   image: { src: string; width: number; height: number; unoptimized?: boolean }
@@ -54,10 +55,10 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
   }
 
   return (
-    <div className="overflow-x-clip [--pp-gap:16px] [--pp-w:min(72vw,288px)] min-[480px]:[--pp-w:min(68vw,320px)] min-[640px]:[--pp-gap:18px] min-[640px]:[--pp-w:clamp(280px,42vw,320px)] min-[1024px]:[--pp-gap:20px] min-[1024px]:[--pp-w:clamp(300px,30vw,440px)] min-[1400px]:[--pp-gap:22px] min-[1400px]:[--pp-w:clamp(320px,26vw,480px)]">
-      <div className="px-[clamp(1.2rem,2.4vw,2.2rem)] pb-[clamp(1.2rem,2.4vw,2.2rem)] max-lg:px-4 max-lg:pb-4">
+    <div className={styles.root}>
+      <div className={styles.inner}>
         <div
-          className="relative cursor-grab touch-pan-y pt-5"
+          className={styles.viewport}
           onPointerDown={(e) => {
             startX.current = e.clientX
             startT.current = performance.now()
@@ -82,14 +83,10 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
             startX.current = null
           }}
         >
-          <div className="relative z-[1]">
+          <div className={styles.stage}>
             <ul
               ref={listRef}
-              className={cn(
-                'relative m-0 flex list-none p-0',
-                animate &&
-                  'transition-transform duration-[640ms] ease-[ease] motion-reduce:transition-none',
-              )}
+              className={clsx(styles.track, animate && styles.trackAnimated)}
               style={{
                 left: '50%',
                 transform: `translateX(calc(-1 * (${pos} * (var(--pp-w) + var(--pp-gap)) + var(--pp-w) / 2) + ${drag}px))`,
@@ -107,19 +104,13 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
                       key={`${copy}-${p.href}`}
                       inert={copy !== 1}
                       aria-hidden={copy !== 1 || undefined}
-                      className={cn(
-                        'relative w-(--pp-w) flex-none overflow-hidden',
-                        isActive && 'z-[2]',
-                      )}
+                      className={clsx(styles.slide, isActive && styles.slideActive)}
                       style={{ marginRight: 'var(--pp-gap)' }}
                     >
                       <article
-                        className={cn(
-                          // Savrio : 520 ms cubic-bezier(.25,1,.5,1) sur échelle, opacité, ombre et filtre ; slides inactifs réduits et estompés.
-                          'group relative min-h-[450px] overflow-hidden rounded-[clamp(1rem,1.3vw,1.2rem)] bg-[rgba(20,17,16,0.98)] [transition:scale_520ms_cubic-bezier(0.25,1,0.5,1),opacity_520ms_cubic-bezier(0.25,1,0.5,1),box-shadow_520ms_cubic-bezier(0.25,1,0.5,1),filter_520ms_cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none max-lg:min-h-[clamp(330px,78vw,460px)]',
-                          isActive
-                            ? 'shadow-[0_22px_44px_rgba(0,0,0,0.32),0_0_0_1px_rgba(232,169,142,0.42)]'
-                            : 'motion-safe:scale-90 motion-safe:opacity-[0.68] motion-safe:[filter:saturate(0.88)_brightness(0.94)]',
+                        className={clsx(
+                          styles.card,
+                          isActive ? styles.cardActive : styles.cardInactive,
                         )}
                       >
                         <Image
@@ -129,26 +120,20 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
                           height={p.image.height}
                           unoptimized={p.image.unoptimized}
                           sizes="(min-width: 1400px) 26vw, (min-width: 1024px) 30vw, 320px"
-                          className="absolute inset-0 size-full max-w-none object-cover transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                          className={styles.image}
                         />
-                        <div className="absolute inset-x-0 bottom-0 z-[2] bg-[linear-gradient(180deg,rgba(47,43,38,0)_0%,rgba(47,43,38,0.68)_26%,rgba(47,43,38,0.92)_100%)] px-[30px] pt-3 pb-[30px]">
-                          <p className="text-sage mb-0 inline-flex rounded-full border border-[rgba(232,169,142,0.35)] bg-[rgba(47,43,38,0.55)] px-[6.72px] py-[2.88px] text-[13px] leading-[17px] font-bold tracking-[0.17em] uppercase transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
-                            {p.type}
-                          </p>
+                        <div className={styles.caption}>
+                          <p className={styles.type}>{p.type}</p>
                           <h3
-                            className={cn(
-                              'text-cream mt-[4.8px] text-2xl leading-[1.4] font-medium tracking-[-0.02em] transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] max-lg:text-[28px] max-lg:leading-[35px]',
-                              smallTitleMobile && 'max-md:text-2xl max-md:leading-[1.4]',
+                            className={clsx(
+                              styles.title,
+                              smallTitleMobile && styles.titleSmallMobile,
                             )}
                           >
                             {p.title}
                           </h3>
                         </div>
-                        <Link
-                          href={p.href}
-                          aria-label={p.title}
-                          className="focus-visible:outline-sage absolute inset-0 z-[3] rounded-[inherit] focus-visible:outline-2"
-                        />
+                        <Link href={p.href} aria-label={p.title} className={styles.link} />
                       </article>
                     </li>
                   )
@@ -157,19 +142,11 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
             </ul>
           </div>
         </div>
-        <div
-          className="mt-10 flex items-center justify-center gap-[8.8px] max-lg:mt-4 max-md:mt-[11.2px]"
-          role="group"
-          aria-label={labels.navigation}
-        >
+        <div className={styles.nav} role="group" aria-label={labels.navigation}>
           <NavButton label={labels.prev} onClick={() => go(-1)} d="M15 18l-6-6 6-6" />
-          <p
-            className="text-body m-0 flex min-w-[3.25rem] items-baseline justify-center gap-[0.2rem] text-[0.9rem] leading-[1.5] font-semibold tracking-[0.04em] tabular-nums select-none"
-            aria-live="polite"
-            aria-atomic="true"
-          >
-            <span className="text-ink font-bold">{active + 1}</span>
-            <span className="mx-[0.05rem] font-medium opacity-[0.42]" aria-hidden>
+          <p className={styles.counter} aria-live="polite" aria-atomic="true">
+            <span className={styles.current}>{active + 1}</span>
+            <span className={styles.separator} aria-hidden>
               /
             </span>
             <span>{n}</span>
@@ -183,12 +160,7 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
 
 function NavButton({ label, onClick, d }: { label: string; onClick: () => void; d: string }) {
   return (
-    <button
-      type="button"
-      aria-label={label}
-      onClick={onClick}
-      className="text-ink hover:text-cream focus-visible:text-cream inline-flex size-[2.8rem] cursor-pointer items-center justify-center rounded-full border border-[rgba(47,43,38,0.2)] bg-[rgba(47,43,38,0.04)] p-[1px_6px] transition-[translate,border-color,background-color,color] duration-[220ms] ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-px hover:border-[rgba(47,43,38,0.45)] hover:bg-[linear-gradient(145deg,#2F2B26_0%,#3A352E_52%,#1B1816_100%)] focus-visible:-translate-y-px focus-visible:bg-[linear-gradient(145deg,#2F2B26_0%,#3A352E_52%,#1B1816_100%)] focus-visible:outline-none"
-    >
+    <button type="button" aria-label={label} onClick={onClick} className={styles.navButton}>
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -197,7 +169,7 @@ function NavButton({ label, onClick, d }: { label: string; onClick: () => void; 
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden
-        className="size-4 -translate-y-[1.5px]"
+        className={styles.navIcon}
       >
         <path d={d} />
       </svg>

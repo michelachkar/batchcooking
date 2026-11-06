@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useMemo } from 'react'
+import styles from './site-search.module.css'
 
 export type SearchEntry = { title: string; text: string; href: string; type: string }
 
@@ -37,21 +38,18 @@ export function SiteSearch({ entries, labels, typeLabels, action }: Props) {
   }, [entries, query])
 
   return (
-    <div className="py-[110px] leading-normal max-md:py-[70px]">
+    <div className={styles.root}>
       <div className="container-x">
-        <form role="search" action={action} className="mb-10 flex max-w-[640px] gap-3">
+        <form role="search" action={action} className={styles.form}>
           <input
             type="search"
             name="s"
             defaultValue={query}
             required
             aria-label={labels.label}
-            className="h-[47px] w-full rounded-[30px] border border-[#c4c4c4] bg-transparent px-5 text-base text-[#222] transition-colors duration-[250ms] ease-[ease] outline-none focus:border-[#B04A2A]"
+            className={styles.input}
           />
-          <button
-            type="submit"
-            className="rounded-full bg-[#B04A2A] px-8 leading-4 font-medium tracking-[0.5px] text-[#FAF7F2] transition-colors duration-[250ms] ease-[ease] hover:bg-[#302925]"
-          >
+          <button type="submit" className={styles.submit}>
             {labels.button}
           </button>
         </form>
@@ -59,7 +57,7 @@ export function SiteSearch({ entries, labels, typeLabels, action }: Props) {
           <p>{labels.empty}</p>
         ) : (
           <>
-            <p role="status" className="mb-6 font-semibold">
+            <p role="status" className={styles.status}>
               {(found.length === 0
                 ? labels.resultNone
                 : found.length === 1
@@ -72,16 +70,14 @@ export function SiteSearch({ entries, labels, typeLabels, action }: Props) {
             {found.length === 0 ? (
               <p>{labels.none}</p>
             ) : (
-              <ul className="m-0 grid list-none gap-5 p-0">
+              <ul className={styles.results}>
                 {found.map((e) => (
-                  <li key={e.href} className="rounded-[20px] bg-white p-6">
-                    <p className="mb-1 text-xs font-semibold tracking-[1px] text-[#625C50] uppercase">
-                      {typeLabels[e.type] ?? e.type}
-                    </p>
-                    <Link href={e.href} className="font-display text-ink text-2xl font-semibold">
+                  <li key={e.href} className={styles.result}>
+                    <p className={styles.type}>{typeLabels[e.type] ?? e.type}</p>
+                    <Link href={e.href} className={styles.resultTitle}>
                       {e.title}
                     </Link>
-                    <p className="mt-2 mb-0 text-[#625C50]">{e.text}</p>
+                    <p className={styles.excerpt}>{e.text}</p>
                   </li>
                 ))}
               </ul>

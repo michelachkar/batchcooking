@@ -1,0 +1,76 @@
+.root {
+  flex: 1;
+  flex-basis: 260px;
+  min-width: 0;
+  padding-inline: 1.25rem;
+  padding-block: 0.875rem;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
+  border-radius: 18px;
+  background-color: color-mix(in oklab, var(--color-ink) 6%, transparent);
+}
+
+/* Tous les avis occupent la même cellule : la hauteur est celle du plus long. */
+.stack {
+  display: grid;
+}
+
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  grid-column-start: 1;
+  grid-row-start: 1;
+  margin: 0;
+  opacity: 0%;
+  pointer-events: none;
+  transition-property: opacity;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.active {
+    opacity: 100%;
+    pointer-events: auto;
+  }
+}
+
+.quote {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.45;
+  font-style: italic;
+  color: rgba(85, 80, 68, 1);
+}
+
+.author {
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+.dots {
+  display: flex;
+  gap: 0.375rem;
+  margin-top: 0.625rem;
+}
+
+.dot {
+  width: 0.375rem;
+  height: 0.375rem;
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in oklab, var(--color-ink) 30%, transparent);
+  transition-property: all;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: color-mix(in oklab, var(--color-ink) 50%, transparent);
+    }
+  }
+
+  &.dotActive {
+    width: 1.25rem;
+    background-color: var(--color-forest);
+  }
+}

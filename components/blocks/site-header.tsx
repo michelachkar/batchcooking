@@ -7,7 +7,7 @@ import { SubmenuLink } from '@/components/blocks/submenu-link'
 import { MobileMenu } from '@/components/blocks/mobile-menu'
 import { resolveNav } from '@/lib/nav'
 import { site } from '@/lib/site'
-import { cn } from '@/lib/utils'
+import styles from './site-header.module.css'
 
 export async function SiteHeader() {
   const t = await getTranslations()
@@ -19,61 +19,49 @@ export async function SiteHeader() {
 
   // Build de test visuel : hauteurs fractionnaires de la démo (le logo y est une image), pour garder la même phase de rendu sur toute la page.
   return (
-    <header id="site-header" className={cn('bg-cream sticky top-0 z-40 lg:-top-[38px]')}>
-      <a
-        href="#contenu"
-        className="focus:bg-ink sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3 focus:text-white"
-      >
+    <header id="site-header" className={styles.root}>
+      <a href="#contenu" className={styles.skip}>
         {t('site.skip')}
       </a>
 
       {/* Desktop ≥ 1025 px : barre d'annonce + barre principale */}
-      <div className="hidden lg:block">
-        <div className="bg-ink px-5 text-[14px] leading-[18px] font-medium">
-          <div className="max-w-site mx-auto flex h-[38px] items-center justify-between">
-            <p className="text-cream flex items-center gap-2">
-              <Leaf size={12} fill="currentColor" className="text-sage" aria-hidden />
+      <div className={styles.desktop}>
+        <div className={styles.topbar}>
+          <div className={styles.topbarInner}>
+            <p className={styles.announce}>
+              <Leaf size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
               {t('header.announce')}
             </p>
-            <ul className="text-cream/80 flex items-center gap-7">
-              <li className="flex items-center gap-2">
-                <MapPin size={12} fill="currentColor" className="text-sage" aria-hidden />
+            <ul className={styles.topList}>
+              <li className={styles.topItem}>
+                <MapPin size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
                 {site.area}
               </li>
               <li>
-                <a
-                  href={site.phoneHref}
-                  className="flex items-center gap-[15px] transition-colors duration-300 ease-[ease] hover:text-white"
-                >
-                  <Phone size={12} fill="currentColor" className="text-sage" aria-hidden />
+                <a href={site.phoneHref} className={styles.topLink}>
+                  <Phone size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
                   {site.phone}
                 </a>
               </li>
               <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="flex items-center gap-[15px] transition-colors duration-300 ease-[ease] hover:text-white"
-                >
-                  <Mail size={12} fill="currentColor" className="text-sage" aria-hidden />
+                <a href={`mailto:${site.email}`} className={styles.topLink}>
+                  <Mail size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
                   {site.email}
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        <div className="border-sand bg-cream border-b px-5">
-          <div className="max-w-site mx-auto flex h-[82px] items-center justify-between">
-            <div className="shrink-0 lg:w-[260px]">
-              <Logo className="text-[26px]" tagline={t('footer.tagline')} />
+        <div className={styles.mainbar}>
+          <div className={styles.mainbarInner}>
+            <div className={styles.brand}>
+              <Logo className={styles.brandLogo} tagline={t('footer.tagline')} />
             </div>
-            <nav aria-label={t('header.mainNav')} className="flex flex-1 justify-center">
-              <ul className="flex items-center gap-px">
+            <nav aria-label={t('header.mainNav')} className={styles.nav}>
+              <ul className={styles.menu}>
                 {items.map((item) => (
-                  <li key={item.label} className="mtsh-item group relative">
-                    <Link
-                      href={item.href}
-                      className="text-ink group-hover:text-forest group-focus-within:text-forest flex items-center px-[13px] py-[10px] text-base leading-6 font-medium transition-colors duration-300 ease-[ease]"
-                    >
+                  <li key={item.label} className={styles.menuItem}>
+                    <Link href={item.href} className={styles.menuLink}>
                       {item.label}
                       {item.children && (
                         <svg
@@ -83,7 +71,7 @@ export async function SiteHeader() {
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="1.5"
-                          className="ml-[4.66px]"
+                          className={styles.caret}
                           aria-hidden
                         >
                           <path d="M1 .75 5 4.75 9 .75" />
@@ -91,13 +79,10 @@ export async function SiteHeader() {
                       )}
                     </Link>
                     {item.children && (
-                      <ul className="mtsh-sub rounded-b-dropdown bg-menu shadow-dropdown absolute top-full left-0 z-10 w-max min-w-[192px] py-[10px]">
+                      <ul className={styles.submenu}>
                         {item.children.map((child) => (
                           <li key={child.label}>
-                            <SubmenuLink
-                              href={child.href}
-                              className="text-menu-link hover:text-ink block px-5 py-[6px] text-[16px] leading-[22.5px] font-medium whitespace-nowrap transition-colors duration-[250ms] ease-[ease]"
-                            >
+                            <SubmenuLink href={child.href} className={styles.submenuLink}>
                               {child.label}
                             </SubmenuLink>
                           </li>
@@ -108,17 +93,13 @@ export async function SiteHeader() {
                 ))}
               </ul>
             </nav>
-            <div className="flex w-[291px] shrink-0 items-center justify-end gap-[18px]">
-              <Link
-                href="/recherche"
-                aria-label={t('header.search')}
-                className="text-ink hover:text-forest inline-flex transition-[color,scale] duration-300 ease-[ease] hover:scale-110 motion-reduce:hover:scale-100"
-              >
+            <div className={styles.actions}>
+              <Link href="/recherche" aria-label={t('header.search')} className={styles.searchLink}>
                 <Search size={17} strokeWidth={4} aria-hidden />
               </Link>
               <ButtonLink href="/contact#devis">
                 {t('header.cta')}
-                <span className="grid size-[22px] place-items-center">
+                <span className={styles.ctaArrow}>
                   <ArrowUpRight size={17} strokeWidth={3} aria-hidden />
                 </span>
               </ButtonLink>
@@ -128,9 +109,9 @@ export async function SiteHeader() {
       </div>
 
       {/* Tablette et mobile ≤ 1024 px. Le logo est affiché très grand en tablette dans la démo : dimensions reprises. */}
-      <div className="border-sand bg-cream flex items-center justify-between border-b py-3 pr-5 md:py-[14px] md:pr-[10px] lg:hidden">
-        <div className="pl-[15px] md:p-[10px]">
-          <Logo tagline={t('footer.tagline')} className="text-[24px] md:text-[44px]" />
+      <div className={styles.compact}>
+        <div className={styles.compactBrand}>
+          <Logo tagline={t('footer.tagline')} className={styles.compactLogo} />
         </div>
         <MobileMenu
           items={items}

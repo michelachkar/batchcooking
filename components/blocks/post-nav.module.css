@@ -1,0 +1,137 @@
+.row {
+  display: flex;
+  gap: 1.5rem;
+  border-color: #e5e7eb;
+  border-top-width: 1px;
+  padding-block: 2.5rem;
+
+  @media (width < 768px) {
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-block: 1.5rem;
+  }
+}
+
+.link {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  gap: 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 1rem;
+  background-color: var(--color-cream);
+  padding-inline: 1.75rem;
+  padding-block: 1.5rem;
+  color: var(--color-forest);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width < 768px) {
+    padding-inline: 1.25rem;
+    padding-block: 18px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      border-color: #e5e7eb;
+      background-color: #fff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  &:focus-visible {
+    border-color: #e5e7eb;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.next {
+  text-align: right;
+}
+
+.arrow {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid #e5e7eb;
+  border-radius: calc(infinity * 1px);
+  background-color: #fff;
+  color: var(--color-surface-dark);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width < 768px) {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .link:hover & {
+    @media (hover: hover) {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      border-color: var(--color-surface-dark);
+      background-color: var(--color-surface-dark);
+      color: #fff;
+    }
+  }
+
+  .link:focus-visible & {
+    border-color: var(--color-surface-dark);
+    background-color: var(--color-surface-dark);
+    color: #fff;
+  }
+}
+
+/* La flèche glisse de 4 px vers le bord au survol. */
+.arrowPrev {
+  .link:hover & {
+    @media (hover: hover) {
+      translate: -0.25rem 0;
+    }
+  }
+}
+
+.arrowNext {
+  .link:hover & {
+    @media (hover: hover) {
+      translate: 0.25rem 0;
+    }
+  }
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.text {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.label {
+  font-size: 0.75rem;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 22.4px;
+  font-weight: 600;
+  color: var(--color-ink);
+
+  @media (width < 768px) {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}

@@ -1,0 +1,635 @@
+/* Section « À propos » : photos superposées, pastille, carte qualité, liste, boutons. */
+
+.root {
+  @media (width < 768px) {
+    margin-top: 50px;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.container {
+  margin-inline: auto;
+  max-width: 1350px;
+  padding-top: 60px;
+  padding-bottom: 5rem;
+
+  @media (width < 768px) {
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+}
+
+.inner {
+  padding: 10px;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 60px;
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    padding-inline: 1.25rem;
+  }
+}
+
+/* Pastille ronde couleur sage, partagée par la pastille d'ancienneté, les étapes et la carte qualité. */
+.disc {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-sage);
+  color: #3a352e;
+}
+
+/* ---------- Colonne photos ---------- */
+
+.visual {
+  position: relative;
+  min-height: 600px;
+
+  @media (width < 1025px) {
+    min-height: 300px;
+  }
+}
+
+.photo {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 28px;
+  background-color: #ccc;
+}
+
+.photoMain {
+  top: 0;
+  left: 0;
+  width: 68%;
+  height: 86%;
+
+  @media (width < 768px) {
+    width: 72%;
+    height: 82%;
+  }
+}
+
+.photoSecondary {
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 55%;
+  height: 57%;
+  border: 6px solid var(--color-cream);
+
+  @media (width < 768px) {
+    width: 58%;
+    height: 52%;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 15%;
+  left: 36%;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 18px 1.75rem 18px 18px;
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  white-space: nowrap;
+  cursor: default;
+  transition-property: translate, scale, box-shadow;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+
+  @media (width < 768px) {
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.25rem;
+      scale: 1.04;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+
+      @media (width < 768px) {
+        translate: -50% -0.25rem;
+      }
+    }
+  }
+}
+
+.badgeAccent {
+  max-width: 340px;
+  background-color: var(--color-forest);
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(176, 74, 42, 0.35);
+  white-space: normal;
+}
+
+.badgeIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 22px;
+  transition: rotate 500ms ease;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: pulseRing 2.4s ease-out infinite;
+  }
+
+  .badge:hover & {
+    @media (hover: hover) {
+      rotate: 360deg;
+    }
+  }
+}
+
+.badgeBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.badgeValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #3a352e;
+}
+
+.badgeValueAccent {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 44px;
+  letter-spacing: -0.03em;
+  color: inherit;
+}
+
+.badgeText {
+  margin-top: 2px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.badgeTextAccent {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ---------- Colonne texte ---------- */
+
+.content {
+  padding-top: 30px;
+
+  @media (width < 1025px) {
+    padding-top: 0;
+  }
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 26px;
+  padding: 9px 18px 9px 14px;
+  border-radius: var(--radius-pill);
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #3a352e;
+  cursor: default;
+  transition: translate 300ms ease;
+
+  &::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-sage);
+
+    @media (prefers-reduced-motion: no-preference) {
+      animation: pulseRing 2s ease-out infinite;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0.25rem 0;
+    }
+  }
+}
+
+.title {
+  margin-bottom: 22px;
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.6vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #3a352e;
+
+  @media (width < 1025px) {
+    font-size: 45px;
+    line-height: 56px;
+  }
+}
+
+.question {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3a352e;
+}
+
+.intro {
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+/* ---------- Étapes ---------- */
+
+.steps {
+  margin-bottom: 34px;
+}
+
+.stepsTitle {
+  margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -0.02em;
+  color: #3a352e;
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.stepNumber {
+  width: 2.25rem;
+  height: 2.25rem;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.stepTitle {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #3a352e;
+}
+
+.stepText {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+/* ---------- Carte qualité ---------- */
+
+.quality {
+  margin-bottom: 34px;
+  padding: 30px 34px;
+  border-radius: 22px;
+  background-color: #fff;
+  transition-property: translate, box-shadow;
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.25rem;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+.qualityHead {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+.qualityIcon {
+  width: 3.5rem;
+  height: 3.5rem;
+  font-size: 22px;
+  transition-property: rotate, scale;
+  transition-duration: 600ms;
+  transition-timing-function: var(--ease-spring);
+
+  .quality:hover & {
+    @media (hover: hover) {
+      scale: 110%;
+      rotate: 360deg;
+    }
+  }
+}
+
+.qualityTitle {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 26px;
+  letter-spacing: -0.02em;
+  color: #3a352e;
+
+  @media (width < 1025px) {
+    font-size: 28px;
+    line-height: 35px;
+  }
+}
+
+.qualityText {
+  margin-bottom: 22px;
+  margin-left: 78px;
+  font-size: 16px;
+  color: var(--color-body);
+
+  @media (width < 768px) {
+    margin-left: 0;
+  }
+}
+
+.qualityRule {
+  border: 0 solid #ececec;
+  border-top-width: 1px;
+  opacity: 0.25;
+}
+
+.qualityNote {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-body);
+
+  &::before {
+    content: '';
+    flex: none;
+    width: 7px;
+    height: 7px;
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-sage);
+  }
+}
+
+/* ---------- Points forts, boutons, photo d'ambiance ---------- */
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: center;
+  gap: 30px;
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+/* Avec un second bouton, la photo d'ambiance disparaît : une seule colonne. */
+.actionsSingle {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #3a352e;
+  cursor: default;
+  transition: translate 300ms ease;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0.375rem 0;
+    }
+  }
+}
+
+.featureTick {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-sage);
+  transition:
+    rotate 0.5s var(--ease-spring),
+    scale 0.5s var(--ease-spring),
+    background-color 0.3s ease;
+
+  .feature:hover & {
+    @media (hover: hover) {
+      scale: 1.2;
+      rotate: 360deg;
+      background-color: #ffd166;
+    }
+  }
+}
+
+.featureTickIcon {
+  width: 13px;
+  height: 13px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  padding: 18px 2rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  transition-property: translate, box-shadow, background-color;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+
+.buttonPrimary {
+  overflow: hidden;
+  background-color: var(--color-sage);
+  color: #3a352e;
+
+  /* Reflet qui traverse le bouton au survol. */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    translate: -100% 0;
+    background-image: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    transition-property: transform, translate, scale, rotate;
+    transition-duration: 700ms;
+    transition-timing-function: ease;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -3px;
+      box-shadow: 0 14px 30px rgba(232, 169, 142, 0.45);
+
+      &::before {
+        translate: 100% 0;
+      }
+    }
+  }
+
+  &:active {
+    translate: 0 0;
+  }
+}
+
+.buttonArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  transition-property: translate, rotate;
+  transition-duration: 400ms;
+  transition-timing-function: var(--ease-spring);
+
+  .buttonPrimary:hover & {
+    @media (hover: hover) {
+      translate: 0.25rem -0.25rem;
+      rotate: 45deg;
+    }
+  }
+}
+
+.buttonArrowIcon {
+  width: 22px;
+  height: 22px;
+}
+
+.buttonSecondary {
+  background-color: var(--color-forest);
+  color: #fff;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      background-color: var(--color-forest-dark);
+      box-shadow: 0 14px 28px rgba(176, 74, 42, 0.3);
+    }
+  }
+}
+
+.buttonSecondaryIcon {
+  width: 18px;
+  height: 18px;
+  transition-property: transform, translate, scale, rotate;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  .buttonSecondary:hover & {
+    @media (hover: hover) {
+      translate: 0.25rem 0;
+    }
+  }
+}
+
+.ambiance {
+  position: relative;
+  overflow: hidden;
+  height: 210px;
+  border-radius: 22px;
+  background-color: #d0d0d0;
+  transition:
+    scale 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    rotate 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.5s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      scale: 105%;
+      rotate: -1deg;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+    }
+  }
+}
+
+.cover {
+  object-fit: cover;
+}
+
+/* Halo pulsé (copie locale du @keyframes global au-pulse-ring). */
+@keyframes pulseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(232, 169, 142, 0.55);
+  }
+
+  70% {
+    box-shadow: 0 0 0 18px rgba(232, 169, 142, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(232, 169, 142, 0);
+  }
+}

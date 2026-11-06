@@ -1,6 +1,6 @@
 # Site de batch cooking
 
-Next.js (App Router, rendu 100 % statique) + React Compiler + TypeScript + Tailwind v4. Brief : voir `BRIEF.md` si présent ; avancement par étapes, validation entre chaque.
+Next.js (App Router, rendu 100 % statique) + React Compiler + TypeScript + CSS Modules. Brief : voir `BRIEF.md` si présent ; avancement par étapes, validation entre chaque.
 
 Étapes faites : 0 (assets), 1 (analyse : `TOKENS.md`, `SECTIONS.md`), 3 (fondations), 4 (accueil et pages intérieures : à propos, services et détail, équipe et fiche, tarifs, FAQ, contact, blog (liste, 3 variantes, grille, article, catégories, archives, mots-clés), réalisations et détail, recherche, 404, pages de texte), 5 (contenu et SEO). Reste : page « Mobile Bar & Cocktails » (`/formule-evenement`), contenus réels, marque, hébergement.
 
@@ -22,7 +22,7 @@ npm run lighthouse     # build réel + Lighthouse CI (seuils dans lighthouserc.j
 | `app/` | Routes (site en français uniquement, sans préfixe d'URL) |
 | `components/ui/` | Primitives (bouton, logo) |
 | `components/blocks/` | Sections (header, menu mobile, footer) ; les autres arrivent à l'étape 4 |
-| `styles/tokens.css` | Tokens Tailwind `@theme` (couleurs, polices, breakpoints, ombres, rayons) |
+| `styles/` | CSS global en couches (`reset`, `tokens`, `base`, `layout`) et mouvements pilotés par `data-*` ; les styles des composants sont dans leur `*.module.css` |
 | `messages/fr.json`, `lib/i18n.ts` | Textes et leur lecture (`getTranslations`, sans bibliothèque d'internationalisation) |
 | `lib/site.ts`, `lib/nav.ts` | Coordonnées provisoires et structure du menu |
 | `public/assets/`, `content/` | Assets et textes de l'étape 0 |

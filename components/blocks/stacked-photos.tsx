@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import styles from './stacked-photos.module.css'
 
 type Props = { photos: { src: string; width: number; height: number; unoptimized?: boolean }[] }
 
 // Pile de petits portraits qui se chevauchent (widget « stacked-photos »), décoratifs : le texte voisin porte l'information.
 export function StackedPhotos({ photos }: Props) {
   return (
-    <div className="inline-flex">
+    <div className={styles.root}>
       {photos.map((p) => (
         <Image
           key={p.src}
@@ -15,7 +16,7 @@ export function StackedPhotos({ photos }: Props) {
           height={p.height}
           unoptimized={p.unoptimized}
           sizes="30px"
-          className="block size-[30px] flex-none rounded-[31%] border-2 border-white object-cover not-first:-ml-[16.33px]"
+          className={styles.photo}
         />
       ))}
     </div>

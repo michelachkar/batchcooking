@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import clsx from 'clsx'
+import styles from './hero-reviews.module.css'
 
 export type HeroReview = { quote: string; name: string }
 
@@ -26,32 +28,26 @@ export function HeroReviews({ reviews, label }: { reviews: HeroReview[]; label: 
       aria-label={label}
       data-reveal="up"
       data-d="6"
-      className="border-ink/15 bg-ink/[0.06] min-w-0 flex-1 basis-[260px] rounded-[18px] border px-5 py-3.5"
+      className={styles.root}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
       onBlur={() => setPaused(false)}
     >
-      <div className="grid" aria-live={paused ? 'polite' : 'off'}>
+      <div className={styles.stack} aria-live={paused ? 'polite' : 'off'}>
         {reviews.map((r, i) => (
           <figure
             key={r.name}
             aria-hidden={i !== index}
-            className={`col-start-1 row-start-1 m-0 flex flex-col gap-1.5 transition-opacity duration-500 ${
-              i === index ? 'opacity-100' : 'pointer-events-none opacity-0'
-            }`}
+            className={clsx(styles.review, i === index && styles.active)}
           >
-            <blockquote className="m-0 text-[14px] leading-[1.45] text-[rgba(85,80,68,1)] italic">
-              « {r.quote} »
-            </blockquote>
-            <figcaption className="text-[13px] leading-none font-semibold text-[#B04A2A]">
-              {r.name}
-            </figcaption>
+            <blockquote className={styles.quote}>« {r.quote} »</blockquote>
+            <figcaption className={styles.author}>{r.name}</figcaption>
           </figure>
         ))}
       </div>
       {reviews.length > 1 && (
-        <div className="mt-2.5 flex gap-1.5">
+        <div className={styles.dots}>
           {reviews.map((r, i) => (
             <button
               key={r.name}
@@ -59,9 +55,7 @@ export function HeroReviews({ reviews, label }: { reviews: HeroReview[]; label: 
               aria-label={`${r.name} (${i + 1}/${reviews.length})`}
               aria-current={i === index}
               onClick={() => setIndex(i)}
-              className={`h-1.5 rounded-full transition-all ${
-                i === index ? 'w-5 bg-[#B04A2A]' : 'bg-ink/30 hover:bg-ink/50 w-1.5'
-              }`}
+              className={clsx(styles.dot, i === index && styles.dotActive)}
             />
           ))}
         </div>

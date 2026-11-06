@@ -1,0 +1,26 @@
+.partners {
+  @media (width < 768px) {
+    margin-bottom: 2.5rem;
+  }
+}
+
+.partnersInner {
+  display: flow-root;
+  max-width: 1350px;
+  margin-inline: auto;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+
+  @media (width < 768px) {
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+}
+
+.partnersCarousel {
+  margin-bottom: 21px;
+}
+
+.spacer {
+  height: 105px;
+}

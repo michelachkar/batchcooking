@@ -1,0 +1,118 @@
+.root {
+  padding-inline: 2.5rem;
+  scroll-margin-top: 6rem;
+
+  @media (width < 1025px) {
+    padding-inline: 26px;
+  }
+
+  @media (width < 768px) {
+    padding-inline: 1rem;
+  }
+}
+
+.white {
+  background-color: #fff;
+}
+
+.beige {
+  background-color: rgb(240 235 227 / 1);
+}
+
+.sand {
+  background-color: var(--color-cream);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 2.5rem;
+  row-gap: 1.25rem;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-top: 72px;
+
+  @media (width < 768px) {
+    padding-top: 3rem;
+  }
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.badge {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in srgb, var(--color-forest) 10%, transparent);
+  color: var(--color-forest);
+
+  @media (width < 768px) {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+.glyph {
+  width: 2rem;
+  height: 2rem;
+}
+
+.label {
+  margin-bottom: 0.25rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.text {
+  margin-top: 0.5rem;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-forest);
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration-line: underline;
+    }
+  }
+}
+
+.arrow {
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    .link:hover & {
+      translate: 5px 0;
+    }
+  }
+}

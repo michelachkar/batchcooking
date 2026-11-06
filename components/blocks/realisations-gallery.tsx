@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import clsx from 'clsx'
+import styles from './realisations-gallery.module.css'
 import { RealisationCard, type RealisationCardData } from '@/components/blocks/realisation-card'
 
 type Labels = {
@@ -51,34 +53,31 @@ export function RealisationsGallery({ items, services, labels }: Props) {
     setTags([])
   }
 
-  const pill = (on: boolean) =>
-    `rounded-full border px-4 py-1.5 text-[14px] font-semibold [transition:color_0.2s_ease,background-color_0.2s_ease,border-color_0.2s_ease] ${on ? 'border-[#B04A2A] bg-[#B04A2A] text-white' : 'border-[#e3d9cc] bg-white text-[rgba(85,80,68,0.92)] hover:border-[#B04A2A] hover:text-[#B04A2A]'}`
-
   return (
     <div>
-      <div className="mb-6 flex flex-col gap-3">
-        <div role="group" aria-label={labels.filter} className="flex flex-wrap gap-2">
+      <div className={styles.filters}>
+        <div role="group" aria-label={labels.filter} className={styles.group}>
           {[{ id: null, label: labels.all }, ...tabs].map((t) => (
             <button
               key={t.id ?? 'all'}
               type="button"
               aria-pressed={service === t.id}
               onClick={() => setService(t.id)}
-              className={pill(service === t.id)}
+              className={styles.pill}
             >
               {t.label}
             </button>
           ))}
         </div>
         {allTags.length > 0 && (
-          <div role="group" aria-label={labels.tags} className="flex flex-wrap gap-2">
+          <div role="group" aria-label={labels.tags} className={styles.group}>
             {allTags.map((t) => (
               <button
                 key={t}
                 type="button"
                 aria-pressed={tags.includes(t)}
                 onClick={() => setTags(toggle(tags, t))}
-                className={`${pill(tags.includes(t))} !py-1 !text-[13px] !font-medium`}
+                className={clsx(styles.pill, styles.tagPill)}
               >
                 # {t}
               </button>
@@ -87,25 +86,19 @@ export function RealisationsGallery({ items, services, labels }: Props) {
         )}
       </div>
 
-      <p aria-live="polite" className="mb-6 text-[15px] text-[rgba(85,80,68,0.88)]">
+      <p aria-live="polite" className={styles.count}>
         {labels.count.replace('{n}', String(shown.length))}
         {active && (
-          <button
-            type="button"
-            onClick={reset}
-            className="ml-3 font-semibold text-[#B04A2A] underline"
-          >
+          <button type="button" onClick={reset} className={styles.reset}>
             {labels.reset}
           </button>
         )}
       </p>
 
       {shown.length === 0 ? (
-        <p className="rounded-[18px] border border-[#e3d9cc] p-8 text-center text-[17px] text-[rgba(85,80,68,0.88)]">
-          {labels.empty}
-        </p>
+        <p className={styles.empty}>{labels.empty}</p>
       ) : (
-        <ul className="columns-3 gap-6 max-lg:columns-2 max-md:columns-1">
+        <ul className={styles.list}>
           {shown.map((r) => (
             <RealisationCard
               key={r.href}

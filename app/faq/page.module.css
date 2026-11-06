@@ -1,0 +1,8 @@
+/* Ancre d'un thème : laisse la place de l'en-tête fixe au défilement. */
+.section {
+  scroll-margin-top: 5rem;
+}
+
+.accordion {
+  max-width: 56rem;
+}

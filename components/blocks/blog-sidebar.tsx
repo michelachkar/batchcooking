@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import styles from './blog-sidebar.module.css'
+import clsx from 'clsx'
 
 type Img = { src: string; width: number; height: number; unoptimized?: boolean }
 
@@ -22,10 +23,6 @@ export type SidebarData = {
   tags: { label: string; href: string; count: number }[]
 }
 
-const heading =
-  'font-display m-0 mb-[15px] pb-[10px] text-[22px] leading-[26px] font-semibold tracking-[-0.02em] text-ink max-lg:leading-[56px] max-md:text-[45px]'
-const listLink = 'text-[#B04A2A] hover:underline'
-
 // Colonne latérale du blog : recherche, derniers articles, archives, catégories.
 export function BlogSidebar({
   sidebar,
@@ -35,28 +32,21 @@ export function BlogSidebar({
   side?: 'left' | 'right'
 }) {
   return (
-    <aside
-      className={cn(
-        'w-full max-lg:order-2 max-lg:mt-[70px] max-lg:pr-3 max-md:mx-3 max-md:flex max-md:w-auto max-md:flex-col max-md:items-start max-md:px-[15px] max-md:py-[50px] lg:text-base',
-        side === 'right'
-          ? 'lg:mr-0 lg:ml-[10px] lg:w-[calc(33.333%-86px)] lg:pr-3 lg:pl-[50px]'
-          : 'lg:mr-[10px] lg:w-[calc(33.333%-45px)] lg:pr-20 lg:pl-3',
-      )}
-    >
-      <form role="search" action={sidebar.searchAction} className="mb-[60px]">
+    <aside className={clsx(styles.root, side === 'right' ? styles.right : styles.left)}>
+      <form role="search" action={sidebar.searchAction} className={styles.search}>
         <input
           type="search"
           name="s"
           required
           aria-label={sidebar.searchLabel}
-          className="h-[47px] w-full rounded-[30px] border border-[#c4c4c4] bg-transparent px-5 text-base text-[#222] outline-none focus:border-[#B04A2A]"
+          className={styles.searchInput}
         />
       </form>
-      <section className="mb-[60px]">
-        <h2 className={heading}>{sidebar.recentTitle}</h2>
-        <ul className="m-0 list-none p-0">
+      <section className={styles.section}>
+        <h2 className={styles.heading}>{sidebar.recentTitle}</h2>
+        <ul className={styles.list}>
           {sidebar.recent.map((r) => (
-            <li key={r.href} className="flex items-center gap-3 py-[5px] leading-[22.4px]">
+            <li key={r.href} className={styles.recentItem}>
               {r.image && (
                 <Image
                   src={r.image.src}
@@ -64,10 +54,10 @@ export function BlogSidebar({
                   height={r.image.height}
                   unoptimized={r.image.unoptimized}
                   alt=""
-                  className="h-[60px] w-[60px] shrink-0 rounded-[10px] object-cover"
+                  className={styles.thumb}
                 />
               )}
-              <Link href={r.href} className={listLink}>
+              <Link href={r.href} className={styles.link}>
                 {r.title}
               </Link>
             </li>
@@ -75,13 +65,13 @@ export function BlogSidebar({
         </ul>
       </section>
       {sidebar.comments && sidebar.comments.items.length > 0 && (
-        <section className="mb-[60px]">
-          <h2 className={heading}>{sidebar.comments.title}</h2>
-          <ol className="m-0 list-none p-0">
+        <section className={styles.section}>
+          <h2 className={styles.heading}>{sidebar.comments.title}</h2>
+          <ol className={styles.list}>
             {sidebar.comments.items.map((c) => (
-              <li key={c.href} className="py-[5px] leading-[22.4px]">
-                <span className="text-[#B04A2A]">{c.author}</span> {sidebar.comments?.on}{' '}
-                <Link href={c.href} className={listLink}>
+              <li key={c.href} className={styles.item}>
+                <span className={styles.author}>{c.author}</span> {sidebar.comments?.on}{' '}
+                <Link href={c.href} className={styles.link}>
                   {c.postTitle}
                 </Link>
               </li>
@@ -90,12 +80,12 @@ export function BlogSidebar({
         </section>
       )}
       {sidebar.archives.length > 0 && (
-        <section className="mb-[60px]">
-          <h2 className={heading}>{sidebar.archivesTitle}</h2>
-          <ul className="m-0 list-none p-0">
+        <section className={styles.section}>
+          <h2 className={styles.heading}>{sidebar.archivesTitle}</h2>
+          <ul className={styles.list}>
             {sidebar.archives.map((a) => (
-              <li key={a.href} className="py-[5px] leading-[22.4px]">
-                <Link href={a.href} className={listLink}>
+              <li key={a.href} className={styles.item}>
+                <Link href={a.href} className={styles.link}>
                   {a.label}
                 </Link>
               </li>
@@ -104,12 +94,12 @@ export function BlogSidebar({
         </section>
       )}
       {sidebar.categories.length > 0 && (
-        <section className="mb-[60px]">
-          <h2 className={heading}>{sidebar.categoriesTitle}</h2>
-          <ul className="m-0 list-none p-0">
+        <section className={styles.section}>
+          <h2 className={styles.heading}>{sidebar.categoriesTitle}</h2>
+          <ul className={styles.list}>
             {sidebar.categories.map((c) => (
-              <li key={c.href} className="py-[5px] leading-[22.4px]">
-                <Link href={c.href} className={listLink}>
+              <li key={c.href} className={styles.item}>
+                <Link href={c.href} className={styles.link}>
                   {c.label}
                 </Link>
               </li>
@@ -118,14 +108,14 @@ export function BlogSidebar({
         </section>
       )}
       {sidebar.tags.length > 0 && (
-        <section className="mb-[5px] max-lg:mb-0">
-          <h2 className={heading}>{sidebar.tagsTitle}</h2>
-          <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
+        <section className={styles.sectionLast}>
+          <h2 className={styles.heading}>{sidebar.tagsTitle}</h2>
+          <ul className={styles.tags}>
             {sidebar.tags.map((t) => (
               <li key={t.href}>
                 <Link
                   href={t.href}
-                  className="rounded-full border border-[#c4c4c4] px-3 py-1 text-sm text-[#222] transition-colors hover:border-[#B04A2A] hover:text-[#B04A2A]"
+                  className={styles.tag}
                   style={{ fontSize: `${Math.min(16, 12 + t.count)}px` }}
                 >
                   {t.label}

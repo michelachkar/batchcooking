@@ -1,0 +1,4 @@
+/* Ancre de défilement : laisse la place à l'en-tête fixe */
+.anchor {
+  scroll-margin-top: 6rem;
+}

@@ -19,6 +19,7 @@ import { media } from '@/lib/media'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { pageMetadata } from '@/lib/seo'
 import * as ld from '@/lib/jsonld'
+import styles from './page.module.css'
 
 export const dynamicParams = false
 
@@ -130,7 +131,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {related.length > 0 && (
         <Shell name="real-related" tone="beige">
           <Heading kicker={r('related.kicker')} title={r('related.title')} />
-          <ul className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
+          <ul className={styles.related}>
             {related.map((e) => (
               <RealisationCard key={e.slug} r={toRealisationCard(e, services)} />
             ))}

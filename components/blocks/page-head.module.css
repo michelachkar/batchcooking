@@ -1,0 +1,201 @@
+.root {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+  overflow: hidden;
+  padding-inline: 4rem;
+  background-color: var(--color-cream);
+  line-height: 1.5;
+
+  @media (width < 1025px) {
+    min-height: 180px;
+    padding-inline: 2.25rem;
+  }
+  @media (width < 768px) {
+    min-height: 160px;
+    padding-inline: 22px;
+  }
+
+  /* marge de 10 px de chaque côté en mobile (gabarits service, blog, réalisations) */
+  &.inset {
+    @media (width < 768px) {
+      margin-inline: 10px;
+    }
+  }
+}
+
+.background {
+  z-index: -10;
+  object-fit: cover;
+  object-position: 100% 50%;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+  max-width: 1320px;
+  margin-inline: auto;
+  padding-block: 2.5rem;
+
+  @media (width < 1025px) {
+    padding-block: 2rem;
+  }
+  @media (width < 768px) {
+    padding-block: 1.5rem;
+  }
+}
+
+.content {
+  padding-inline: 30px;
+  padding-block: 24px;
+
+  @media (width < 768px) {
+    padding-inline: 0;
+  }
+}
+
+/* pastille du fil d'Ariane */
+.crumbs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding-block: 9px;
+  padding-right: 18px;
+  padding-left: 14px;
+  border: 1px solid var(--color-sand);
+  border-radius: calc(infinity * 1px);
+  background-color: #fff;
+  backdrop-filter: blur(10px);
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: 600;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-forest);
+    box-shadow: 0 0 0 4px rgba(176, 74, 42, 0.15);
+  }
+
+  @media (width < 768px) {
+    gap: 0.5rem;
+    padding-block: 7px;
+    padding-right: 14px;
+    padding-left: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 21px;
+  }
+}
+
+.list,
+.item {
+  display: contents;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  line-height: 1;
+  color: color-mix(in oklab, var(--color-forest) 70%, transparent);
+}
+
+.current {
+  color: var(--color-forest);
+}
+
+.link {
+  color: var(--color-ink);
+  transition-property:
+    color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 300ms;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-forest);
+    }
+  }
+}
+
+.title {
+  max-width: 16ch;
+  margin-top: 22px;
+  margin-bottom: 0;
+  font-family: var(--font-display);
+  font-size: 68px;
+  line-height: 71.4px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: var(--color-ink);
+
+  @media (width < 1025px) {
+    font-size: 54px;
+    line-height: 64px;
+  }
+}
+
+.cta {
+  margin-top: 2rem;
+}
+
+/* Bandeau : voile terracotta en haut à droite. */
+.root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 100% 0%, rgba(176, 74, 42, 0.12), transparent 45%);
+}
+
+/* Fines diagonales et filet terracotta en bas, qui s'estompent vers la photo. */
+.root::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+        90deg,
+        rgba(176, 74, 42, 0.45) 0%,
+        rgba(176, 74, 42, 0.12) 60%,
+        transparent 100%
+      )
+      bottom left / 100% 1px no-repeat,
+    repeating-linear-gradient(135deg, rgba(85, 80, 68, 0.04) 0 1px, transparent 1px 16px);
+  mask-image: linear-gradient(90deg, transparent 10%, #000 70%);
+}
+
+/* Entrée du fil d'Ariane et du titre. */
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .content {
+    animation: enter 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}

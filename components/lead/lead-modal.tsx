@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Check, Mail, Phone, User, X } from 'lucide-react'
+import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
 import type { LeadOpenOptions } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import { Switch } from '@/components/lead/switch'
+import styles from './lead-modal.module.css'
 import {
   DINNERS,
   euro,
@@ -50,12 +52,6 @@ export type LeadTexts = {
   doneText: string
   doneButton: string
 }
-
-const field =
-  'h-[54px] w-full rounded-xl border border-transparent bg-[rgba(240,235,227,1)] pr-4 pl-11 text-[15px] text-[rgba(85,80,68,1)] placeholder:text-[rgba(85,80,68,0.5)] [transition:border-color_0.2s_ease,background-color_0.2s_ease] hover:border-[#e3c4b6] focus:border-[#B04A2A] focus:bg-white focus:outline-none'
-const labelCls = 'text-[11px] leading-[1.3] font-bold tracking-[0.14em] text-[#B04A2A] uppercase'
-const h3Cls =
-  'font-display m-0 text-[28px] leading-[1.15] font-semibold tracking-[-0.02em] max-md:text-[24px]'
 
 // Modal de demande de rappel (rendu une seule fois par <LeadProvider>).
 // Ouvert avec une formule : coordonnées directement. Sans formule : comparaison des formules, puis coordonnées.
@@ -117,27 +113,24 @@ export function LeadModal({
       aria-label={texts.title}
       onClose={onClose}
       onClick={(e) => e.target === ref.current && ref.current?.close()}
-      className="m-auto max-h-[calc(100vh-32px)] w-[min(560px,calc(100vw-24px))] overflow-auto rounded-[20px] border-0 bg-white p-0 text-[rgba(85,80,68,1)] shadow-[0_30px_80px_rgba(47,43,38,0.35)] backdrop:bg-[rgba(47,43,38,0.62)] open:animate-[dialog-in_0.35s_cubic-bezier(0.2,0.7,0.2,1)]"
+      className={styles.root}
     >
-      <div className="relative px-9 pt-9 pb-8 max-md:px-5 max-md:pt-8 max-md:pb-6">
+      <div className={styles.panel}>
         <button
           type="button"
           onClick={() => ref.current?.close()}
           aria-label={texts.close}
-          className="absolute top-4 right-4 inline-flex size-10 cursor-pointer items-center justify-center rounded-full border border-[#e3d9cc] bg-white text-[rgba(85,80,68,1)] hover:border-[#B04A2A] hover:text-[#B04A2A]"
+          className={styles.close}
         >
-          <X aria-hidden className="size-[18px]" />
+          <X aria-hidden className={styles.closeIcon} />
         </button>
 
         {step < 3 && !direct && (
-          <div className="mb-6">
-            <p className={labelCls}>{texts.step.replace('{n}', String(step))}</p>
-            <div className="mt-2 flex gap-1.5" aria-hidden>
+          <div className={styles.progress}>
+            <p className={styles.label}>{texts.step.replace('{n}', String(step))}</p>
+            <div className={styles.bars} aria-hidden>
               {[1, 2].map((n) => (
-                <span
-                  key={n}
-                  className={`h-1 flex-1 rounded-full ${n <= step ? 'bg-[#B04A2A]' : 'bg-[#eadfd3]'}`}
-                />
+                <span key={n} className={clsx(styles.bar, n <= step && styles.barActive)} />
               ))}
             </div>
           </div>
@@ -145,11 +138,9 @@ export function LeadModal({
 
         {step === 1 && (
           <div>
-            <h3 className={h3Cls}>{texts.compareTitle}</h3>
-            <p className="mt-2 text-[15px] leading-[1.5] text-[rgba(85,80,68,0.88)]">
-              {texts.compareIntro}
-            </p>
-            <div role="radiogroup" aria-label={texts.compareTitle} className="mt-6 grid gap-3">
+            <h3 className={styles.title}>{texts.compareTitle}</h3>
+            <p className={styles.intro}>{texts.compareIntro}</p>
+            <div role="radiogroup" aria-label={texts.compareTitle} className={styles.packs}>
               {packs.map((p) => (
                 <button
                   key={p.id}
@@ -160,37 +151,27 @@ export function LeadModal({
                     setPickId(p.id)
                     setStep(2)
                   }}
-                  className="group flex w-full cursor-pointer flex-col gap-3 rounded-[16px] border-2 border-[#e3d9cc] bg-white p-5 text-left transition-colors hover:border-[#B04A2A]"
+                  className={styles.pack}
                 >
-                  <span className="flex items-start justify-between gap-4">
-                    <span className="flex flex-col gap-1">
-                      <span className="font-display text-[22px] leading-[1.15] font-semibold">
-                        {p.title}
-                      </span>
-                      <span className="text-[14px] text-[rgba(85,80,68,0.88)]">{p.label}</span>
+                  <span className={styles.packHead}>
+                    <span className={styles.packName}>
+                      <span className={styles.packTitle}>{p.title}</span>
+                      <span className={styles.packLabel}>{p.label}</span>
                     </span>
-                    <span className="flex flex-none flex-col items-end text-right">
-                      <strong className="text-[17px] font-bold whitespace-nowrap text-[#B04A2A]">
-                        {priceText(p.id)}
-                      </strong>
-                      <span className="text-[12px] text-[rgba(85,80,68,0.7)]">
-                        {texts.afterCredit}
-                      </span>
+                    <span className={styles.packPrice}>
+                      <strong className={styles.packPriceValue}>{priceText(p.id)}</strong>
+                      <span className={styles.packNote}>{texts.afterCredit}</span>
                     </span>
                   </span>
-                  <ul className="m-0 grid list-none gap-1.5 p-0">
+                  <ul className={styles.features}>
                     {p.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-[14px] leading-[1.4]">
-                        <Check
-                          aria-hidden
-                          className="mt-0.5 size-4 flex-none text-[#7D472C]"
-                          strokeWidth={3}
-                        />
+                      <li key={f} className={styles.feature}>
+                        <Check aria-hidden className={styles.featureCheck} strokeWidth={3} />
                         {f}
                       </li>
                     ))}
                   </ul>
-                  <ArrowIcon className="size-[18px] self-end text-[#B04A2A] [transition:translate_0.3s_ease] group-hover:translate-x-1" />
+                  <ArrowIcon className={styles.packArrow} />
                 </button>
               ))}
             </div>
@@ -199,11 +180,11 @@ export function LeadModal({
 
         {step === 2 && (
           <form onSubmit={submit}>
-            <h3 className={h3Cls}>{texts.configTitle}</h3>
-            <p className="mt-2 inline-block rounded-full bg-[#B04A2A]/10 px-3 py-1 text-[13px] font-semibold text-[#B04A2A]">
+            <h3 className={styles.title}>{texts.configTitle}</h3>
+            <p className={styles.pick}>
               {pick.title} · {priceText(pick.id)}
             </p>
-            <div className="mt-4 flex flex-wrap items-start gap-x-6 gap-y-3">
+            <div className={styles.switches}>
               <Switch
                 label={texts.periodLabel}
                 value={period}
@@ -223,23 +204,16 @@ export function LeadModal({
                 }))}
               />
             </div>
-            <p className="mt-3 text-[14px] leading-[1.5] font-semibold">
-              {texts.engagement[period]}
-            </p>
-            <h4 className="font-display mt-6 mb-0 border-t border-[#eadfd3] pt-6 text-[22px] leading-[1.2] font-semibold">
-              {texts.contactTitle}
-            </h4>
-            <p className="mt-2 text-[15px] leading-[1.5]">{texts.contactIntro}</p>
-            <div className="mt-5 grid gap-4">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="lead-firstname" className={labelCls}>
+            <p className={styles.engagement}>{texts.engagement[period]}</p>
+            <h4 className={styles.contactTitle}>{texts.contactTitle}</h4>
+            <p className={styles.contactIntro}>{texts.contactIntro}</p>
+            <div className={styles.fields}>
+              <div className={styles.field}>
+                <label htmlFor="lead-firstname" className={styles.label}>
                   {texts.firstNameLabel}
                 </label>
-                <span className="relative block">
-                  <User
-                    aria-hidden
-                    className="pointer-events-none absolute top-1/2 left-[15px] size-[19px] -translate-y-1/2 text-[#B04A2A]"
-                  />
+                <span className={styles.control}>
+                  <User aria-hidden className={styles.fieldIcon} />
                   <input
                     id="lead-firstname"
                     name="firstName"
@@ -247,19 +221,16 @@ export function LeadModal({
                     autoComplete="given-name"
                     maxLength={60}
                     placeholder={texts.firstNamePlaceholder}
-                    className={field}
+                    className={styles.input}
                   />
                 </span>
               </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="lead-email" className={labelCls}>
+              <div className={styles.field}>
+                <label htmlFor="lead-email" className={styles.label}>
                   {texts.emailLabel}
                 </label>
-                <span className="relative block">
-                  <Mail
-                    aria-hidden
-                    className="pointer-events-none absolute top-1/2 left-[15px] size-[19px] -translate-y-1/2 text-[#B04A2A]"
-                  />
+                <span className={styles.control}>
+                  <Mail aria-hidden className={styles.fieldIcon} />
                   <input
                     id="lead-email"
                     name="email"
@@ -267,19 +238,16 @@ export function LeadModal({
                     required
                     autoComplete="email"
                     placeholder={texts.emailPlaceholder}
-                    className={field}
+                    className={styles.input}
                   />
                 </span>
               </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="lead-phone" className={labelCls}>
+              <div className={styles.field}>
+                <label htmlFor="lead-phone" className={styles.label}>
                   {texts.phoneLabel}
                 </label>
-                <span className="relative block">
-                  <Phone
-                    aria-hidden
-                    className="pointer-events-none absolute top-1/2 left-[15px] size-[19px] -translate-y-1/2 text-[#B04A2A]"
-                  />
+                <span className={styles.control}>
+                  <Phone aria-hidden className={styles.fieldIcon} />
                   <input
                     id="lead-phone"
                     name="phone"
@@ -288,7 +256,7 @@ export function LeadModal({
                     minLength={8}
                     autoComplete="tel"
                     placeholder={texts.phonePlaceholder}
-                    className={field}
+                    className={styles.input}
                   />
                 </span>
               </div>
@@ -298,46 +266,36 @@ export function LeadModal({
                 tabIndex={-1}
                 autoComplete="off"
                 aria-hidden
-                className="absolute -left-[9999px] size-px opacity-0"
+                className={styles.trap}
               />
             </div>
             {status === 'error' && (
-              <p role="alert" className="mt-4 text-[14px] font-semibold text-[#B04A2A]">
+              <p role="alert" className={styles.error}>
                 {texts.error}
               </p>
             )}
-            <button
-              type="submit"
-              disabled={status === 'sending'}
-              className="group rounded-pill mt-6 inline-flex h-[54px] w-full cursor-pointer items-center justify-center gap-[10px] border-0 bg-[#B04A2A] px-7 text-base font-semibold text-white [transition:background-color_0.25s_ease] hover:bg-[#8F3B20] disabled:opacity-70"
-            >
+            <button type="submit" disabled={status === 'sending'} className={styles.submit}>
               {status === 'sending' ? texts.sending : texts.submit}
-              <ArrowIcon className="[transition:translate_0.35s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:translate-x-[5px]" />
+              <ArrowIcon className={styles.submitArrow} />
             </button>
-            <p className="mt-3 text-[12px] leading-[1.5] text-[rgba(85,80,68,0.7)]">
-              {texts.consent}
-            </p>
-            <button
-              type="button"
-              onClick={() => setStep(1)}
-              className="mt-3 cursor-pointer border-0 border-b border-current bg-transparent p-0 py-1 text-[14px] font-semibold text-[rgba(85,80,68,1)] hover:text-[#B04A2A]"
-            >
+            <p className={styles.consent}>{texts.consent}</p>
+            <button type="button" onClick={() => setStep(1)} className={styles.back}>
               {texts.back}
             </button>
           </form>
         )}
 
         {step === 3 && (
-          <div className="py-4 text-center">
-            <span className="mx-auto inline-flex size-16 items-center justify-center rounded-full bg-[#7D472C] text-white">
-              <Check aria-hidden className="size-8" strokeWidth={3} />
+          <div className={styles.done}>
+            <span className={styles.doneBadge}>
+              <Check aria-hidden className={styles.doneIcon} strokeWidth={3} />
             </span>
-            <h3 className={`${h3Cls} mt-5`}>{texts.doneTitle}</h3>
-            <p className="mx-auto mt-3 max-w-[26rem] text-[16px] leading-[1.6]">{texts.doneText}</p>
+            <h3 className={clsx(styles.title, styles.doneTitle)}>{texts.doneTitle}</h3>
+            <p className={styles.doneText}>{texts.doneText}</p>
             <button
               type="button"
               onClick={() => ref.current?.close()}
-              className="rounded-pill mt-6 inline-flex h-[50px] cursor-pointer items-center justify-center border-0 bg-[#B04A2A] px-8 text-base font-semibold text-white hover:bg-[#8F3B20]"
+              className={styles.doneButton}
             >
               {texts.doneButton}
             </button>

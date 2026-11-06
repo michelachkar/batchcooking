@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import clsx from 'clsx'
 import { Switch } from '@/components/lead/switch'
 import { useLead } from '@/components/lead/lead-provider'
 import {
@@ -12,6 +13,7 @@ import {
   type PackId,
 } from '@/lib/lead/pricing'
 import { SampleMenus, type SampleMenu } from '@/components/blocks/sample-menus'
+import styles from './batch-packages.module.css'
 
 type Period = 'week' | 'month'
 type PerPeriod = Pick<SampleMenu, 'meta' | 'courses'>
@@ -86,9 +88,9 @@ export function BatchPackages({
             (n === 1 ? moreTemplate.one : moreTemplate.other).replace('{count}', String(n)),
         }}
         beforeCards={
-          <div className="mx-auto -mt-4 mb-10 flex flex-col items-center gap-5">
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-              <div className="flex flex-col items-center gap-2">
+          <div className={styles.controls}>
+            <div className={styles.groups}>
+              <div className={styles.group}>
                 <Switch
                   label={toggle.label}
                   value={period}
@@ -99,23 +101,19 @@ export function BatchPackages({
                   ]}
                 />
                 {toggle.hint && (
-                  <span
-                    className={`text-[14px] font-semibold ${rest.tone === 'terracotta' ? 'text-white' : 'text-[#B04A2A]'}`}
-                  >
+                  <span className={clsx(styles.hint, rest.tone === 'terracotta' && styles.onDark)}>
                     {toggle.hint}
                   </span>
                 )}
               </div>
-              <div className="flex flex-col items-center gap-2">
+              <div className={styles.group}>
                 <Switch
                   label={dinners.label}
                   value={count}
                   onChange={setCount}
                   options={DINNERS.map((n) => ({ value: n, text: `${n} ${dinners.unit}` }))}
                 />
-                <span
-                  className={`text-[14px] font-semibold ${rest.tone === 'terracotta' ? 'text-white' : 'text-[rgba(85,80,68,0.88)]'}`}
-                >
+                <span className={clsx(styles.caption, rest.tone === 'terracotta' && styles.onDark)}>
                   {dinners.label}
                 </span>
               </div>

@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './client-carousel.module.css'
 
 export type Logo = {
   src: string
@@ -25,20 +26,14 @@ export function ClientCarousel({ logos, height = 54, grayscale = false, classNam
   // Savrio : 30 s pour parcourir un jeu de logos ; la piste en répète `reps`, d'où la durée proportionnelle.
   const half = Array.from({ length: reps }, () => logos).flat()
   return (
-    <div className={cn('group/cc relative overflow-hidden', className)}>
-      <div
-        style={{ animationDuration: `${30 * reps}s` }}
-        className="flex w-max items-center group-hover/cc:[animation-play-state:paused] motion-safe:animate-[cc-scroll_30s_linear_infinite]"
-      >
+    <div className={clsx(styles.root, className)}>
+      <div style={{ animationDuration: `${30 * reps}s` }} className={styles.track}>
         {[0, 1].flatMap((copy) =>
           half.map((l, i) => (
             <div
               key={`${copy}-${i}`}
               aria-hidden={copy === 1 || i >= logos.length || undefined}
-              className={cn(
-                'group/item flex items-center justify-center px-12',
-                copy === 1 && 'motion-reduce:hidden',
-              )}
+              className={clsx(styles.item, copy === 1 && styles.copy)}
             >
               <Image
                 src={l.src}
@@ -47,10 +42,7 @@ export function ClientCarousel({ logos, height = 54, grayscale = false, classNam
                 height={l.height}
                 unoptimized={l.unoptimized}
                 style={{ height }}
-                className={cn(
-                  'block w-auto max-w-[160px] object-contain opacity-60 transition-[opacity,filter] duration-300 ease-[ease] group-hover/item:opacity-100',
-                  grayscale && 'grayscale group-hover/item:filter-none',
-                )}
+                className={clsx(styles.logo, grayscale && styles.grayscale)}
               />
             </div>
           )),

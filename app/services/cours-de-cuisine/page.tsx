@@ -8,6 +8,7 @@ import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { serviceNode } from '@/lib/jsonld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
+import styles from './page.module.css'
 
 const PATH = '/services/cours-de-cuisine'
 type IconCard = { icon: string; title: string; text: string }
@@ -64,7 +65,7 @@ export default async function CoursDeCuisinePage() {
         image={{ src: '/assets/hero/chef.jpg', alt: c('intro.imageAlt') }}
         lead={false}
       />
-      <div id="cours" className="scroll-mt-24" />
+      <div id="cours" className={styles.anchor} />
       <PackageCards
         name="course-ideas"
         tone="terracotta"

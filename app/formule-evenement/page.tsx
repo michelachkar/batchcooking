@@ -4,6 +4,7 @@ import { Landing } from '@/components/sections/landing'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { getReviewNodes } from '@/lib/seo-reviews'
 import { pageMetadata } from '@/lib/seo'
+import styles from './page.module.css'
 
 export async function generateMetadata(): Promise<Metadata> {
   const p = await getTranslations('pages')
@@ -19,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function BarPage() {
   const p = await getTranslations('pages')
   return (
-    <main id="contenu" data-skin="bar" className="bg-cream">
+    <main id="contenu" data-skin="bar" className={styles.root}>
       <PageJsonLd
         path="/formule-evenement"
         title={p('bar.title')}

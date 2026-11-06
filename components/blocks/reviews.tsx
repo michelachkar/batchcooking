@@ -1,4 +1,5 @@
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './reviews.module.css'
 import { DualHeader } from '@/components/blocks/dual-header'
 import { ReviewsSlider, type Review } from '@/components/blocks/reviews-slider'
 import { StackedPhotos } from '@/components/blocks/stacked-photos'
@@ -40,23 +41,10 @@ export function Reviews({
   return (
     <section
       data-section="reviews"
-      className={
-        inset
-          ? cn('flex flex-col gap-5 px-[15px] leading-normal', tight && 'max-md:px-[10px]')
-          : 'flex flex-col gap-5 bg-[#E3D9CC] p-[10px] leading-normal max-md:mx-[10px]'
-      }
+      className={inset ? clsx(styles.inset, tight && styles.tight) : styles.band}
     >
-      <div
-        className={
-          inset
-            ? cn(
-                'flex flex-col gap-5 rounded-[30px] bg-[#E3D9CC] p-[10px]',
-                tight ? 'max-md:p-[10px]' : 'max-md:p-0',
-              )
-            : 'contents'
-        }
-      >
-        <div className="h-[90px]" aria-hidden />
+      <div className={inset ? clsx(styles.insetFrame, tight && styles.tight) : styles.bandFrame}>
+        <div className={styles.spacer} aria-hidden />
         <DualHeader
           size="compact"
           kicker={kicker}
@@ -65,16 +53,12 @@ export function Reviews({
           description={description}
         />
         <ReviewsSlider reviews={reviews} labels={labels} initial={initial} />
-        <div className="flex flex-wrap items-center justify-center gap-x-[10px] pt-[10px]">
+        <div className={styles.proof}>
           <StackedPhotos photos={faces} />
-          <p className="font-display m-0 text-[16px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] max-lg:hidden">
-            {proof.long}
-          </p>
-          <p className="font-display m-0 text-[16px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] lg:hidden">
-            {proof.short}
-          </p>
+          <p className={clsx(styles.proofText, styles.proofLong)}>{proof.long}</p>
+          <p className={clsx(styles.proofText, styles.proofShort)}>{proof.short}</p>
         </div>
-        <div className="h-[90px]" aria-hidden />
+        <div className={styles.spacer} aria-hidden />
       </div>
     </section>
   )

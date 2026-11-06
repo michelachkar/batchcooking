@@ -1,0 +1,83 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Pastille de filtre ; `aria-pressed` porte l'état actif. */
+.pill {
+  padding: 0.375rem 1rem;
+  border: 1px solid;
+  border-color: #e3d9cc;
+  border-radius: calc(infinity * 1px);
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(85 80 68 / 0.92);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: #b04a2a;
+      color: #b04a2a;
+    }
+  }
+
+  &[aria-pressed='true'] {
+    border-color: #b04a2a;
+    background-color: #b04a2a;
+    color: #fff;
+  }
+}
+
+/* Pastilles secondaires (tags) : plus compactes. */
+.tagPill {
+  padding-block: 0.25rem;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.count {
+  margin-bottom: 1.5rem;
+  font-size: 15px;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.reset {
+  margin-left: 0.75rem;
+  font-weight: 600;
+  text-decoration-line: underline;
+  color: #b04a2a;
+}
+
+.empty {
+  padding: 2rem;
+  border: 1px solid #e3d9cc;
+  border-radius: 18px;
+  font-size: 17px;
+  text-align: center;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.list {
+  columns: 3;
+  gap: 1.5rem;
+
+  @media (width < 1025px) {
+    columns: 2;
+  }
+
+  @media (width < 768px) {
+    columns: 1;
+  }
+}

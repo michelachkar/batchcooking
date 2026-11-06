@@ -1,0 +1,243 @@
+.list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* Un titre de catégorie précède déjà le bloc : on remonte les cartes */
+.noHeader {
+  margin-top: -2.5rem;
+
+  @media (width < 768px) {
+    margin-top: -1.5rem;
+  }
+}
+
+.cols2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.cols3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.cols4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  @media (width < 80rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border-radius: 18px;
+  background-color: #fff;
+
+  @media (width < 768px) {
+    padding: 1.5rem;
+  }
+}
+
+/* Contenu empilé (3 ou 4 colonnes) */
+.cardCompact {
+  padding: 1.5rem;
+}
+
+.cardLight {
+  border: 1px solid #e3d9cc;
+  box-shadow: 0 10px 30px rgba(85, 80, 68, 0.08);
+}
+
+.cardDark {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.emoji {
+  font-size: 40px;
+  line-height: 1;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  margin-top: 0.25rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+.text {
+  margin-top: 1rem;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+  padding-block: 1rem;
+  border-color: #e3d9cc;
+  border-block: 1px solid #e3d9cc;
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.factsStacked {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.fact {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.factIcon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 0.125rem;
+  color: var(--color-forest);
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+}
+
+.factValue {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.detailsStacked {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.blockTitle {
+  margin-bottom: 0.5rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+}
+
+.bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.menuItem {
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
+.includedItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--color-ink);
+}
+
+.check {
+  flex: none;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-top: 0.25rem;
+  color: var(--color-forest);
+}
+
+.ideal {
+  margin-top: 1.25rem;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.idealLabel {
+  color: var(--color-ink);
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+}
+
+.priceBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.from {
+  font-size: 14px;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.price {
+  font-size: 28px;
+  line-height: 1.1;
+  color: var(--color-forest);
+}
+
+.priceNote {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgb(85 80 68 / 0.88);
+}

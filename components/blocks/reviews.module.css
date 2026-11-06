@@ -1,0 +1,86 @@
+/* Variante bandeau pleine largeur (accueil). */
+.band {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 10px;
+  background-color: #e3d9cc;
+  line-height: 1.5;
+
+  @media (width < 768px) {
+    margin-inline: 10px;
+  }
+}
+
+/* Variante encart arrondi (tarifs, FAQ). */
+.inset {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-inline: 15px;
+  line-height: 1.5;
+
+  &.tight {
+    @media (width < 768px) {
+      padding-inline: 10px;
+    }
+  }
+}
+
+.insetFrame {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 10px;
+  border-radius: 30px;
+  background-color: #e3d9cc;
+
+  @media (width < 768px) {
+    padding: 0;
+  }
+
+  &.tight {
+    @media (width < 768px) {
+      padding: 10px;
+    }
+  }
+}
+
+.bandFrame {
+  display: contents;
+}
+
+.spacer {
+  height: 90px;
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  padding-top: 10px;
+}
+
+.proofText {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #3f3f3f;
+}
+
+.proofLong {
+  @media (width < 1025px) {
+    display: none;
+  }
+}
+
+.proofShort {
+  @media (width >= 1025px) {
+    display: none;
+  }
+}

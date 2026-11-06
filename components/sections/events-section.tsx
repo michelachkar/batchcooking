@@ -1,5 +1,6 @@
 import { getTranslations } from '@/lib/i18n'
 import { EventsShowcase } from '@/components/blocks/events-showcase'
+import styles from './events-section.module.css'
 import { mediaOf, type Landing } from '@/lib/media'
 
 // « Réalisations récentes » : mêmes textes partout (home.events), seuls les espaces autour changent selon la page.
@@ -21,10 +22,7 @@ export async function EventsSection({
   ).map((p, i) => ({ ...p, image: m.events[i] }))
   if (projects.length === 0) return null
   const phone = ev.has('phone') ? (
-    <a
-      href={`tel:${ev('phone').replace(/\D/g, '')}`}
-      className="bg-sage text-ink rounded-lg px-2 py-[2px]"
-    >
+    <a href={`tel:${ev('phone').replace(/\D/g, '')}`} className={styles.phone}>
       <strong>{ev('phone')}</strong>
     </a>
   ) : null

@@ -1,0 +1,105 @@
+.root {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.625rem;
+  border: 1px solid var(--color-sand);
+  border-radius: calc(infinity * 1px);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-ink);
+  transition: border-color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: rgb(85 80 68 / 0.4);
+    }
+  }
+
+  /* au moins une option cochée */
+  &.active {
+    border-color: var(--color-forest);
+    color: var(--color-forest);
+  }
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-forest);
+  font-size: 13px;
+  color: #fff;
+}
+
+.chevron {
+  width: 1rem;
+  height: 1rem;
+  transition: rotate 0.2s ease;
+
+  &.open {
+    rotate: 180deg;
+  }
+}
+
+.panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 20;
+  min-width: 230px;
+  padding: 0.5rem;
+  border: 1px solid var(--color-sand);
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 0 18px 40px rgba(85, 80, 68, 0.16);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding-inline: 0.75rem;
+  padding-block: 0.625rem;
+  border-radius: 10px;
+  text-align: left;
+  font-size: 15px;
+  color: var(--color-ink);
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-cream);
+    }
+  }
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #cfc3b3;
+  border-radius: 5px;
+
+  &.checked {
+    border-color: var(--color-forest);
+    background-color: var(--color-forest);
+    color: #fff;
+  }
+}
+
+.check {
+  width: 0.75rem;
+  height: 0.75rem;
+}

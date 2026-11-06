@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations } from '@/lib/i18n'
+import styles from './page.module.css'
 import { PageHead } from '@/components/blocks/page-head'
 import { Mdx } from '@/components/mdx'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
@@ -52,9 +53,9 @@ export default async function TextPage({ params }: { params: Promise<{ slug: str
         background={media.heads.page}
         inset
       />
-      <div data-section="body" className="py-[110px] leading-normal max-md:py-[70px]">
+      <div data-section="body" className={styles.body}>
         <div className="container-x">
-          <div className="[&_h2]:font-display max-w-[800px] text-base leading-7 text-[#3A352E] [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-[32px] [&_h2]:leading-10 [&_h2]:font-semibold [&_li]:leading-7 [&_p]:mt-0 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-8">
+          <div className={styles.content}>
             <Mdx source={page.body} />
           </div>
         </div>

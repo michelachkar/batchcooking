@@ -1,5 +1,7 @@
+import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
+import styles from './article.module.css'
 import { BlogSidebar, type SidebarData } from '@/components/blocks/blog-sidebar'
 
 type Props = {
@@ -16,9 +18,6 @@ type Props = {
   sidebar?: SidebarData
 }
 
-const meta =
-  'mr-[15px] inline-table py-0 pr-[15px] pl-0 align-middle max-md:hidden [&>a]:inline-table [&>a]:px-[5px] [&>a]:text-[13px] [&>a]:leading-[26px] [&>a]:font-semibold [&>a]:tracking-[1px] [&>a]:text-[#777] [&>a]:uppercase'
-
 // Page d'un article : image, ligne de métadonnées, titre, corps, mots-clés ; colonne latérale du blog à droite.
 export function Article({
   children,
@@ -32,13 +31,13 @@ export function Article({
   sidebar,
 }: Props) {
   return (
-    <article className="bg-cream py-[110px] leading-normal max-md:py-[70px]">
-      <div className="container-x max-md:pr-3 max-md:pl-[15px]">
-        <div className="-mx-3 flex flex-wrap">
-          <div className="w-full px-3 lg:w-2/3">
+    <article className={styles.root}>
+      <div className={clsx('container-x', styles.container)}>
+        <div className={styles.row}>
+          <div className={styles.main}>
             <header>
               {image && (
-                <div className="block overflow-hidden rounded-[30px]">
+                <div className={styles.media}>
                   <Image
                     src={image.src}
                     alt={image.alt}
@@ -47,54 +46,39 @@ export function Article({
                     unoptimized={image.unoptimized}
                     priority
                     sizes="(min-width: 1025px) 883px, 100vw"
-                    className="block h-auto w-full max-w-none"
+                    className={styles.image}
                   />
                 </div>
               )}
-              <div className="mt-[30px] mb-[25px] pb-[25px]">
+              <div className={styles.head}>
                 {author && (
-                  <div className={`${meta} border-r border-[#625C50]`}>
-                    <span className="text-[13px] font-semibold tracking-[1px] text-[#777] uppercase">
-                      {author}
-                    </span>
+                  <div className={styles.meta}>
+                    <span className={styles.author}>{author}</span>
                   </div>
                 )}
                 {categories.length > 0 && (
-                  <div className={`${meta} border-r border-[#625C50]`}>
+                  <div className={styles.meta}>
                     {categories.map((c, i) => (
                       <span key={c.href}>
                         {i > 0 && ', '}
-                        <Link
-                          href={c.href}
-                          className="px-[5px] text-[13px] leading-[26px] font-semibold tracking-[1px] text-[#777] uppercase"
-                        >
+                        <Link href={c.href} className={styles.category}>
                           {c.name}
                         </Link>
                       </span>
                     ))}
                   </div>
                 )}
-                <div className="mr-[15px] inline-table px-[5px] align-middle text-[13px] leading-[19.5px] font-semibold tracking-[1px] text-[#777] uppercase max-md:mb-[18px]">
-                  {date}
-                </div>
-                <h2 className="font-display mt-[10px] mb-2 text-[45px] leading-[58.5px] font-semibold tracking-[-0.9px] text-[#242424]">
-                  {title}
-                </h2>
+                <div className={styles.date}>{date}</div>
+                <h2 className={styles.title}>{title}</h2>
               </div>
             </header>
-            <div className="mb-5 text-base leading-6 text-[#625C50] [&_blockquote]:relative [&_blockquote]:mt-[10px] [&_blockquote]:mb-5 [&_blockquote]:rounded-[0] [&_blockquote]:bg-[rgba(232,169,142,0.2)] [&_blockquote]:py-[30px] [&_blockquote]:pr-[30px] [&_blockquote]:pl-[35px] [&_blockquote_p]:m-0 [&_blockquote_p]:text-base [&_blockquote_p]:text-[#0a0a0a] [&_img]:h-auto [&_img]:max-w-full [&_li]:leading-6 [&_p]:mt-0 [&_p]:mb-4 [&_ul]:mt-0 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-8">
-              {children}
-            </div>
+            <div className={styles.body}>{children}</div>
             {tags.length > 0 && (
-              <footer className="py-[35px]">
-                <div className="flex flex-wrap items-baseline">
-                  <span className="mr-[10px] font-semibold text-[#222]">{tagsLabel}</span>
+              <footer className={styles.footer}>
+                <div className={styles.tags}>
+                  <span className={styles.tagsLabel}>{tagsLabel}</span>
                   {tags.map((t) => (
-                    <Link
-                      key={t.href}
-                      href={t.href}
-                      className="mr-[5px] mb-[10px] rounded-lg bg-[rgba(232,169,142,0.2)] px-[15px] py-[5px] text-[13px] leading-[19.5px] font-medium tracking-[1px] text-[#222] uppercase"
-                    >
+                    <Link key={t.href} href={t.href} className={styles.tag}>
                       {t.name}
                     </Link>
                   ))}

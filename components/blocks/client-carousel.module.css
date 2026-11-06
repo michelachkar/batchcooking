@@ -1,0 +1,67 @@
+.root {
+  position: relative;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+
+  @media (prefers-reduced-motion: no-preference) {
+    animation: scroll 30s linear infinite;
+  }
+
+  @media (hover: hover) {
+    .root:hover & {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline: 3rem;
+}
+
+/* Seconde moitié de la piste (boucle) : masquée en mouvement réduit. */
+.copy {
+  @media (prefers-reduced-motion: reduce) {
+    display: none;
+  }
+}
+
+.logo {
+  display: block;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  opacity: 60%;
+  transition-property: opacity, filter;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+
+  @media (hover: hover) {
+    .item:hover & {
+      opacity: 100%;
+    }
+  }
+
+  &.grayscale {
+    filter: grayscale(100%);
+
+    @media (hover: hover) {
+      .item:hover & {
+        filter: none;
+      }
+    }
+  }
+}

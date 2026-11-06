@@ -1,0 +1,115 @@
+/* Bouton « voir le menu complet » + fenêtre native <dialog>. */
+
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-block: 0.25rem;
+  border: 0 solid var(--color-forest-mid);
+  border-bottom-width: 1px;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-ink);
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-forest-mid);
+    }
+  }
+
+  &:focus-visible {
+    color: var(--color-forest-mid);
+  }
+}
+
+.openArrow {
+  width: 17px;
+  height: 17px;
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    .open:hover & {
+      translate: 5px 0;
+    }
+  }
+
+  /* Dans une carte (article) : la flèche bouge dès que la carte est survolée. */
+  article:hover & {
+    translate: 5px 0;
+  }
+}
+
+.dialog {
+  overflow: auto;
+  max-height: calc(100vh - 48px);
+  width: min(640px, calc(100vw - 32px));
+  margin: auto;
+  padding: 0;
+  border-width: 0;
+  border-radius: 20px;
+  background-color: #faf7f2;
+  box-shadow: 0 30px 80px rgba(47, 43, 38, 0.35);
+  color: var(--color-ink);
+
+  &::backdrop {
+    background-color: rgba(47, 43, 38, 0.62);
+  }
+
+  &[open] {
+    animation: dialogIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+.panel {
+  position: relative;
+  padding: 2.75rem 2.75rem 2.25rem;
+
+  @media (width < 768px) {
+    padding: 2.25rem 22px 1.75rem;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid #e3d9cc;
+  border-radius: calc(infinity * 1px);
+  background-color: #fff;
+  color: var(--color-ink);
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-forest-mid);
+      color: var(--color-forest-mid);
+    }
+  }
+
+  &:focus-visible {
+    border-color: var(--color-forest-mid);
+    color: var(--color-forest-mid);
+  }
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Copie locale du @keyframes global dialog-in. */
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+}

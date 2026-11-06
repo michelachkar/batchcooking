@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './blog-list.module.css'
 import { BlogSidebar, type SidebarData } from '@/components/blocks/blog-sidebar'
 
 export type { SidebarData }
@@ -20,13 +21,13 @@ type Props = {
 // Liste d'articles : cartes blanches à image arrondie, colonne latérale facultative (recherche, derniers articles, archives, catégories).
 export function BlogList({ posts, readMore, sidebar }: Props) {
   const list = (
-    <div className={cn('w-full px-3', !sidebar ? 'lg:w-full' : 'lg:w-2/3')}>
-      <div className="-mx-3 flex flex-wrap">
+    <div className={clsx(styles.column, sidebar ? styles.columnWithSidebar : styles.columnFull)}>
+      <div className={styles.row}>
         {posts.map((p) => (
-          <article key={p.href} className="w-full px-3">
-            <div className="mb-10">
+          <article key={p.href} className={styles.post}>
+            <div className={styles.card}>
               {p.image && (
-                <Link href={p.href} className="block overflow-hidden rounded-t-[30px]">
+                <Link href={p.href} className={styles.media}>
                   <Image
                     src={p.image.src}
                     alt={p.image.alt}
@@ -34,21 +35,23 @@ export function BlogList({ posts, readMore, sidebar }: Props) {
                     height={p.image.height}
                     unoptimized={p.image.unoptimized}
                     sizes="(min-width: 1025px) 883px, 100vw"
-                    className="block h-auto w-full max-w-none"
+                    className={styles.image}
                   />
                 </Link>
               )}
-              <div className={cn('bg-white p-10', p.image ? 'rounded-b-[30px]' : 'rounded-[30px]')}>
-                <h3 className="font-display m-0 mb-2 text-[35px] leading-[42px] font-semibold tracking-[-0.02em] max-lg:text-[28px] max-lg:leading-[35px] max-lg:tracking-[-0.56px]">
-                  <Link href={p.href} className="text-ink max-lg:text-[35px]">
+              <div
+                className={clsx(
+                  styles.content,
+                  p.image ? styles.contentWithImage : styles.contentStandalone,
+                )}
+              >
+                <h3 className={styles.title}>
+                  <Link href={p.href} className={styles.titleLink}>
                     {p.title}
                   </Link>
                 </h3>
-                <p className="mt-5 mb-0 text-base leading-6 text-[#625C50]">{p.excerpt}</p>
-                <Link
-                  href={p.href}
-                  className="mt-[25px] inline-block rounded-full bg-[#B04A2A] px-8 py-[18px] leading-4 font-medium tracking-[0.5px] text-[#FAF7F2] capitalize transition-colors hover:bg-[#302925]"
-                >
+                <p className={styles.excerpt}>{p.excerpt}</p>
+                <Link href={p.href} className={styles.readMore}>
                   {readMore}
                 </Link>
               </div>
@@ -56,14 +59,14 @@ export function BlogList({ posts, readMore, sidebar }: Props) {
           </article>
         ))}
         {/* Emplacement de la pagination (10 px + 5 px de marge, comme la démo). */}
-        {sidebar && <div aria-hidden className="mb-[5px] h-[10px] w-full" />}
+        {sidebar && <div aria-hidden className={styles.pagination} />}
       </div>
     </div>
   )
   return (
-    <div className="py-[110px] leading-normal max-md:py-[70px]">
-      <div className="container-x pb-[50px] max-md:px-[15px]">
-        <div className="-mx-3 flex flex-wrap">
+    <div className={styles.root}>
+      <div className={clsx('container-x', styles.container)}>
+        <div className={styles.row}>
           {list}
           {sidebar && <BlogSidebar sidebar={sidebar} side="right" />}
         </div>

@@ -1,0 +1,77 @@
+/* Réalisations récentes : titre, carrousel, bouton et ligne de preuve. */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-block: 10px;
+  background-color: #fff;
+  line-height: 1.5;
+}
+
+.header {
+  @media (width < 768px) {
+    padding-inline: 10px;
+  }
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 16px 30px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-forest);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  transition:
+    background-color 0.25s ease,
+    translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.3s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      background-color: var(--color-forest-dark);
+      box-shadow: 0 14px 28px rgba(176, 74, 42, 0.3);
+    }
+  }
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.proofText {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: -0.02em;
+  color: #3f3f3f;
+}
+
+/* Deux phrases selon la largeur : longue en tablette et mobile, courte en desktop. */
+.proofLong {
+  @media (width < 1025px) {
+    display: none;
+  }
+}
+
+.proofShort {
+  @media (width >= 1025px) {
+    display: none;
+  }
+}

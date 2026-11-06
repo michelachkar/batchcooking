@@ -1,5 +1,6 @@
 import { DhObserve } from '@/components/blocks/dh-observe'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './dual-header.module.css'
 
 type Props = {
   /** Étiquette au-dessus du titre. */
@@ -32,30 +33,21 @@ export function DualHeader({
   return (
     <div
       data-dh={animation}
-      className={cn(align === 'left' ? 'text-left' : 'text-center', className)}
+      className={clsx(styles.root, align === 'left' && styles.alignLeft, className)}
     >
       <DhObserve />
-      <p
-        data-dh-t="kicker"
-        className={cn(
-          compact ? 'text-sm' : 'text-xs',
-          "before:bg-forest-dark mb-2 inline-flex items-center gap-2 rounded-[50px] bg-white px-5 py-[10px] leading-none font-semibold tracking-[2px] text-[#393939] uppercase shadow-[0_2px_12px_rgba(58,53,46,0.07)] before:mr-[5px] before:size-[7px] before:rounded-full before:content-['']",
-        )}
-      >
+      <p data-dh-t="kicker" className={clsx(styles.kicker, compact && styles.compact)}>
         {kicker}
       </p>
-      <h2
-        data-dh-t="title"
-        className="font-display text-ink m-0 text-[52px] leading-[1.2] font-medium tracking-[-0.02em] max-lg:text-[45px] max-lg:leading-[56px]"
-      >
-        {title} <span className="inline-block font-extrabold">{highlight}</span>
+      <h2 data-dh-t="title" className={styles.title}>
+        {title} <span className={styles.highlight}>{highlight}</span>
       </h2>
       {description && (
         <p
-          className={cn(
-            compact ? 'text-base' : 'text-[17px]',
-            'text-body mt-[14px] max-w-[min(700px,100%)] leading-[1.6]',
-            align === 'center' && 'mx-auto',
+          className={clsx(
+            styles.description,
+            compact && styles.compact,
+            align === 'center' && styles.centered,
           )}
         >
           {description}

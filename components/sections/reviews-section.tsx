@@ -1,6 +1,7 @@
 import { getTranslations } from '@/lib/i18n'
 import { Reviews, type Review } from '@/components/blocks/reviews'
 import { ReviewsInset } from '@/components/blocks/reviews-inset'
+import styles from './reviews-section.module.css'
 import { mediaOf, type Landing } from '@/lib/media'
 
 // Avis : uniquement de vrais avis (messages home.reviews) ; rien tant qu'il n'y en a pas.
@@ -40,10 +41,7 @@ export async function ReviewsSection({
     )
   }
   const phone = (
-    <a
-      href={`tel:${rv('phone').replace(/\D/g, '')}`}
-      className="bg-sage text-ink rounded-lg px-2 py-[2px]"
-    >
+    <a href={`tel:${rv('phone').replace(/\D/g, '')}`} className={styles.phone}>
       <strong>{rv('phone')}</strong>
     </a>
   )

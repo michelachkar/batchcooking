@@ -1,5 +1,6 @@
 import { CptAnim } from '@/components/blocks/cpt-anim'
 import { TeamGrid, type TeamMember } from '@/components/blocks/team'
+import styles from './related-team.module.css'
 
 // « Autres membres » : titre puis grille de cartes, qui remonte sur le titre comme sur la page équipe.
 export function RelatedTeam({
@@ -15,21 +16,18 @@ export function RelatedTeam({
 }) {
   if (members.length === 0) return null
   return (
-    <section className="bg-[#F0EBE3] pb-[60px] leading-normal">
+    <section className={styles.root}>
       <div className="container-x">
         <CptAnim />
-        <h2
-          data-cm-section="fade-up"
-          className="font-display m-0 text-center text-[52px] leading-[70px] font-bold tracking-[-0.02em] text-[#3A352E] max-lg:text-[45px] max-lg:leading-[56px]"
-        >
+        <h2 data-cm-section="fade-up" className={styles.title}>
           {title}
         </h2>
-        <div className="py-[64.8px]">
+        <div className={styles.body}>
           <TeamGrid
             members={members}
             vertical={vertical}
             profileLabel={profileLabel}
-            className="-mt-[140px]"
+            className={styles.grid}
             animate
             tall
           />

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import styles from './rich-text.module.css'
 
 // Texte des messages avec un peu de mise en forme : **gras** et [texte](/lien).
 const TOKEN = /(\*\*.+?\*\*|\[[^\]]+\]\([^)]+\))/g
@@ -9,11 +10,7 @@ export function rich(s: string): React.ReactNode[] {
     const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part)
     if (link)
       return (
-        <Link
-          key={i}
-          href={link[2]}
-          className="font-semibold text-[#B04A2A] underline decoration-[#B04A2A]/40 underline-offset-2 hover:decoration-[#B04A2A]"
-        >
+        <Link key={i} href={link[2]} className={styles.link}>
           {link[1]}
         </Link>
       )

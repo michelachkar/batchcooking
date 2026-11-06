@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import styles from './realisation-card.module.css'
 
 export type RealisationCardData = {
   title: string
@@ -28,7 +29,7 @@ export function RealisationCard({
   tags?: string[]
 }) {
   return (
-    <li className="relative mb-6 block break-inside-avoid overflow-hidden rounded-[18px] bg-[#2F2B26]">
+    <li className={styles.card}>
       <Image
         src={r.image.src}
         alt={r.image.alt}
@@ -36,26 +37,18 @@ export function RealisationCard({
         height={r.image.height}
         unoptimized={r.image.unoptimized}
         sizes="(min-width: 1025px) 33vw, (min-width: 768px) 50vw, 100vw"
-        className="h-auto w-full"
+        className={styles.image}
       />
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
-      />
-      <div className="absolute inset-x-0 bottom-0 flex flex-col items-start gap-3 p-5">
-        <ul className="flex flex-wrap gap-1.5">
+      <div aria-hidden className={styles.shade} />
+      <div className={styles.caption}>
+        <ul className={styles.tags}>
           {[r.serviceLabel, ...tags].slice(0, 3).map((t) => (
-            <li
-              key={t}
-              className="rounded-full border border-white/40 bg-black/25 px-2.5 py-0.5 text-[11px] font-medium tracking-[0.05em] text-white uppercase backdrop-blur-sm"
-            >
+            <li key={t} className={styles.tag}>
               {t}
             </li>
           ))}
         </ul>
-        <h3 className="font-display text-[21px] leading-[1.2] font-semibold text-white">
-          {r.title}
-        </h3>
+        <h3 className={styles.title}>{r.title}</h3>
       </div>
     </li>
   )

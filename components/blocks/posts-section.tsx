@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import styles from './posts-section.module.css'
 import { DualHeader } from '@/components/blocks/dual-header'
 import { AnimatedButton } from '@/components/ui/animated-button'
 
@@ -18,14 +19,10 @@ type IntroProps = { kicker: string; title: string; highlight: string; descriptio
 // Titre de la section « derniers articles ».
 export function PostsIntro(p: IntroProps) {
   return (
-    <section data-section="posts-intro" className="leading-normal">
-      <div className="mx-auto flex max-w-[1140px] flex-col gap-5 py-[10px] max-lg:max-w-[1024px] max-md:max-w-none">
-        <div className="h-[90px]" aria-hidden />
-        <DualHeader
-          {...p}
-          animation="up"
-          className="max-md:px-[10px] [&>p:first-child]:mb-0 [&>p:last-child]:mt-[15px] [&>p:last-child]:text-[16px]"
-        />
+    <section data-section="posts-intro" className={styles.intro}>
+      <div className={styles.introInner}>
+        <div className={styles.introSpacer} aria-hidden />
+        <DualHeader {...p} animation="up" className={styles.introHeader} />
       </div>
     </section>
   )
@@ -36,21 +33,16 @@ type GridProps = { posts: PostCard[]; button: { label: string; href: string } }
 // Grille des derniers articles : image 3/2 avec pastille de catégorie, titre et ligne de méta, puis bouton « tous les articles ».
 export function PostsGrid({ posts, button }: GridProps) {
   return (
-    <section data-section="posts" className="leading-normal">
-      <div className="mx-auto flex max-w-[1350px] flex-col gap-5 py-[10px]">
-        <div className="h-[10px]" aria-hidden />
-        <div className="max-lg:px-5 max-md:px-[10px]">
-          <ul className="m-0 grid list-none grid-cols-3 gap-x-8 gap-y-12 p-0 max-lg:grid-cols-2 max-md:grid-cols-1">
+    <section data-section="posts" className={styles.posts}>
+      <div className={styles.postsInner}>
+        <div className={styles.spacer} aria-hidden />
+        <div className={styles.gridWrap}>
+          <ul className={styles.list}>
             {posts.map((post) => (
               <li key={post.href}>
-                <article className="group relative">
-                  <Link
-                    href={post.href}
-                    tabIndex={-1}
-                    aria-hidden
-                    className="group/media relative mb-[15px] block aspect-[3/2] overflow-hidden rounded-[20px]"
-                  >
-                    <span className="absolute inset-0 overflow-hidden rounded-[20px]">
+                <article className={styles.card}>
+                  <Link href={post.href} tabIndex={-1} aria-hidden className={styles.media}>
+                    <span className={styles.frame}>
                       <Image
                         src={post.image.src}
                         alt=""
@@ -58,27 +50,22 @@ export function PostsGrid({ posts, button }: GridProps) {
                         height={post.image.height}
                         unoptimized={post.image.unoptimized}
                         sizes="(min-width: 1025px) 429px, (min-width: 768px) 348px, 355px"
-                        className="block h-auto w-full max-w-full transition-[transform,scale] duration-700 ease-[ease] group-hover/media:scale-[1.08]"
+                        className={styles.image}
                       />
                     </span>
-                    <span className="absolute top-4 left-4 rounded-lg bg-white/80 p-[10px] text-[10px] leading-[10px] font-extrabold tracking-[1.8px] text-[#18181b] uppercase shadow-[0_1px_4px_rgba(0,0,0,0.1)]">
-                      {post.category}
-                    </span>
+                    <span className={styles.badge}>{post.category}</span>
                   </Link>
-                  <div className="px-1">
-                    <Link
-                      href={post.href}
-                      className="text-ink block text-[22px] leading-[26.4px] font-bold transition-colors duration-300 group-hover:text-[#52525b]"
-                    >
+                  <div className={styles.body}>
+                    <Link href={post.href} className={styles.title}>
                       {post.title}
                     </Link>
-                    <div className="mt-4 flex items-center gap-4">
-                      <div className="h-px w-8 bg-[#625C50] transition-[width] duration-500 ease-[ease] group-hover:w-12" />
-                      <div className="flex items-center text-[13px] leading-[18px] font-medium tracking-[-0.01em] text-[#625C50]">
+                    <div className={styles.metaRow}>
+                      <div className={styles.rule} />
+                      <div className={styles.meta}>
                         {post.meta.map((m, i) => (
-                          <span key={m} className="flex items-center">
+                          <span key={m} className={styles.metaItem}>
                             {i > 0 && (
-                              <span aria-hidden className="mx-2 opacity-30">
+                              <span aria-hidden className={styles.separator}>
                                 /
                               </span>
                             )}
@@ -93,11 +80,11 @@ export function PostsGrid({ posts, button }: GridProps) {
             ))}
           </ul>
         </div>
-        <div className="h-[10px]" aria-hidden />
-        <div className="flex justify-center">
+        <div className={styles.spacer} aria-hidden />
+        <div className={styles.more}>
           <AnimatedButton href={button.href}>{button.label}</AnimatedButton>
         </div>
-        <div className="h-[70px]" aria-hidden />
+        <div className={styles.spacerBottom} aria-hidden />
       </div>
     </section>
   )

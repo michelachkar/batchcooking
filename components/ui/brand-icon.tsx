@@ -1,4 +1,5 @@
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './brand-icon.module.css'
 
 // Logos de réseaux (lucide ne les fournit plus) : tracés pleins sur une grille de 24.
 const paths = {
@@ -13,7 +14,12 @@ export type BrandName = keyof typeof paths
 
 export function BrandIcon({ name, className }: { name: BrandName; className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={cn('size-6', className)}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden
+      className={clsx(styles.icon, className)}
+    >
       <path d={paths[name]} fillRule="evenodd" />
     </svg>
   )

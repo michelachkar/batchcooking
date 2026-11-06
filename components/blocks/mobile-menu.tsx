@@ -2,7 +2,8 @@
 
 import { useRef, useState } from 'react'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './mobile-menu.module.css'
 
 export type MobileNavItem = {
   label: string
@@ -34,28 +35,13 @@ export function MobileMenu({ items, brand, labels }: Props) {
           dialog.current?.showModal()
           setOpen(true)
         }}
-        className="relative mt-[4.8px] block h-[22.5px] w-[30px] before:absolute before:-inset-3 before:content-[''] md:mt-0"
+        className={styles.burger}
       >
         {/* Ouvert, les trois traits deviennent une croix (visible sous le fond, comme dans la démo). */}
-        <span aria-hidden className="grid gap-[8.25px]">
-          <span
-            className={cn(
-              'bg-ink h-[2px] transition-transform duration-300 ease-[ease]',
-              open && 'translate-y-[10.25px] rotate-45',
-            )}
-          />
-          <span
-            className={cn(
-              'bg-ink h-[2px] transition-opacity duration-300 ease-[ease]',
-              open && 'opacity-0',
-            )}
-          />
-          <span
-            className={cn(
-              'bg-ink h-[2px] transition-transform duration-300 ease-[ease]',
-              open && '-translate-y-[10.25px] -rotate-45',
-            )}
-          />
+        <span aria-hidden className={styles.bars}>
+          <span className={clsx(styles.bar, styles.barTop, open && styles.open)} />
+          <span className={clsx(styles.bar, styles.barMiddle, open && styles.open)} />
+          <span className={clsx(styles.bar, styles.barBottom, open && styles.open)} />
         </span>
       </button>
       <dialog
@@ -64,31 +50,20 @@ export function MobileMenu({ items, brand, labels }: Props) {
         onClose={() => setOpen(false)}
         // un clic sur le fond (le <dialog> lui-même) ferme le panneau
         onClick={(e) => e.target === e.currentTarget && close()}
-        className="mtsh-drawer m-0 h-full max-h-none w-[300px] max-w-none overflow-y-auto bg-[#111] px-[30px] pt-[70px] pb-[30px] text-white shadow-[5px_0_15px_rgba(0,0,0,0.5)]"
+        className={styles.drawer}
       >
-        <button
-          type="button"
-          aria-label={labels.close}
-          onClick={close}
-          className="absolute top-5 left-[263px] block h-[18px] w-[17px] transition-transform duration-300 ease-[ease] before:absolute before:-inset-3 before:content-[''] hover:rotate-90"
-        >
+        <button type="button" aria-label={labels.close} onClick={close} className={styles.close}>
           <svg viewBox="0 0 17 18" fill="none" stroke="currentColor" strokeWidth="4" aria-hidden>
             <path d="M2.2 2.2 14.8 15.8M14.8 2.2 2.2 15.8" />
           </svg>
         </button>
-        <div className="font-display mb-10 h-[56px] w-full border-b border-white/15 pb-5 text-[34px] leading-[35px] font-semibold tracking-tight">
-          {brand}
-        </div>
+        <div className={styles.brand}>{brand}</div>
         <nav>
           <ul>
             {items.map((item) => (
-              <li key={item.label} className="border-b border-white/10">
-                <div className="flex items-center justify-between">
-                  <Link
-                    href={item.href}
-                    className="block flex-1 py-[10px] text-base leading-6 text-white"
-                    onClick={close}
-                  >
+              <li key={item.label} className={styles.item}>
+                <div className={styles.row}>
+                  <Link href={item.href} className={styles.link} onClick={close}>
                     {item.label}
                   </Link>
                   {item.children && (
@@ -97,7 +72,7 @@ export function MobileMenu({ items, brand, labels }: Props) {
                       aria-label={`${labels.toggle} ${item.label}`}
                       aria-expanded={expanded === item.label}
                       onClick={() => setExpanded(expanded === item.label ? null : item.label)}
-                      className="grid h-[44px] w-9 place-items-center pt-[5px]"
+                      className={styles.toggle}
                     >
                       <svg
                         width="9"
@@ -107,10 +82,7 @@ export function MobileMenu({ items, brand, labels }: Props) {
                         stroke="currentColor"
                         strokeWidth="1.5"
                         aria-hidden
-                        className={cn(
-                          'transition-transform duration-300 ease-[ease]',
-                          expanded === item.label && 'rotate-180',
-                        )}
+                        className={clsx(styles.chevron, expanded === item.label && styles.open)}
                       >
                         <path d="M.75 2.25 4.5 6 8.25 2.25" />
                       </svg>
@@ -119,21 +91,14 @@ export function MobileMenu({ items, brand, labels }: Props) {
                 </div>
                 {item.children && (
                   // slideDown/slideUp jQuery de 200 ms (easing swing), rendu par grid-rows
-                  <div
-                    className={cn(
-                      'grid transition-[grid-template-rows,visibility] duration-200 ease-[cubic-bezier(0.445,0.05,0.55,0.95)]',
-                      expanded === item.label
-                        ? 'visible grid-rows-[1fr]'
-                        : 'invisible grid-rows-[0fr]',
-                    )}
-                  >
-                    <ul className="overflow-hidden pl-5">
+                  <div className={clsx(styles.sub, expanded === item.label && styles.open)}>
+                    <ul className={styles.subList}>
                       {item.children.map((child) => (
                         <li key={child.label}>
                           <Link
                             href={child.href}
                             tabIndex={expanded === item.label ? undefined : -1}
-                            className="block py-[6px] text-[15px] leading-[22.5px] font-medium text-white"
+                            className={styles.subLink}
                             onClick={close}
                           >
                             {child.label}

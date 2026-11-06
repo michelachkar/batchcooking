@@ -1,4 +1,5 @@
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './section-shell.module.css'
 
 type Props = {
   name: string
@@ -10,9 +11,9 @@ type Props = {
 // Enveloppe commune des sections « bloc coloré » : fine bande de fond de page au-dessus, puis le bloc (padding vertical 100/72/56 px, contenu 1320 px).
 export function SectionShell({ name, className, children }: Props) {
   return (
-    <section data-section={name} className="bg-cream pt-[22px] max-lg:pt-[18px] max-md:pt-3">
-      <div className={cn('px-10 max-lg:px-[26px] max-md:px-4', className)}>
-        <div className="max-w-site mx-auto py-[68px] max-lg:py-14 max-md:py-10">{children}</div>
+    <section data-section={name} className={styles.root}>
+      <div className={clsx(styles.block, className)}>
+        <div className={styles.inner}>{children}</div>
       </div>
     </section>
   )

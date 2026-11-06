@@ -1,4 +1,6 @@
+import clsx from 'clsx'
 import { MediaSplit, type MediaSplitProps } from '@/components/blocks/media-split'
+import styles from './included.module.css'
 
 // Section « ce qui est inclus » : fond blanc, photo à droite avec photo incrustée, liste à icônes et options.
 export function Included({
@@ -9,12 +11,9 @@ export function Included({
   flush?: boolean
 }) {
   return (
-    <section
-      data-section="included"
-      className={flush ? 'bg-white' : 'bg-cream pt-[22px] max-lg:pt-[18px] max-md:pt-3'}
-    >
-      <div className="bg-white px-10 max-lg:px-[26px] max-md:px-4">
-        <div className="max-w-site mx-auto py-[68px] max-lg:py-14 max-md:py-10">
+    <section data-section="included" className={clsx(styles.root, flush && styles.flush)}>
+      <div className={styles.band}>
+        <div className={styles.inner}>
           <MediaSplit {...props} name="included" tone="light" imageSide="right" imageWidth={44} />
         </div>
       </div>

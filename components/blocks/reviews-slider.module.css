@@ -1,0 +1,296 @@
+/* Variables du widget d'origine (marges de carte, avatar, remplissage du texte), paliers 768 et 992 px. */
+.root {
+  --rv-gap: 16px;
+  --rv-av: 90px;
+  --rv-cpb: 2.5rem;
+  --rv-cpt: 3.5rem;
+  --rv-cpx: 2.5rem;
+  overflow-x: hidden;
+
+  @media (width >= 768px) {
+    --rv-gap: 20px;
+  }
+
+  @media (width >= 1024px) {
+    --rv-gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    --rv-av: 75px;
+    --rv-cpb: 1.5rem;
+    --rv-cpt: 3rem;
+    --rv-cpx: 1.25rem;
+  }
+
+  @media (min-width: 769px) and (max-width: 992px) {
+    --rv-av: 80px;
+    --rv-cpb: 2rem;
+    --rv-cpt: 3rem;
+    --rv-cpx: 1.5rem;
+  }
+}
+
+.viewport {
+  padding-top: max(4rem, calc(2rem + var(--rv-av) * 0.5));
+  padding-right: clamp(0.85rem, 2vw, 1.6rem);
+  padding-bottom: 1rem;
+  padding-left: clamp(0.85rem, 2vw, 1.6rem);
+  cursor: grab;
+  touch-action: pan-y;
+
+  @media (max-width: 768px) {
+    margin-bottom: 2.6rem;
+    padding-inline: 0.75rem;
+    padding-top: max(3.2rem, calc(1.75rem + var(--rv-av) * 0.5));
+  }
+}
+
+/* Largeur d'une slide : toute la piste en mobile, un tiers dès 1024 px. */
+.measure {
+  container-type: inline-size;
+  --rv-w: 100cqw;
+
+  @media (width >= 1024px) {
+    --rv-w: calc((100cqw - 2 * var(--rv-gap)) / 3);
+  }
+}
+
+.track {
+  position: relative;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  &.animate {
+    transition-property: transform, translate, scale, rotate;
+    transition-duration: 600ms;
+    transition-timing-function: ease;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition-property: none;
+    }
+  }
+}
+
+.slide {
+  display: flex;
+  flex: none;
+  justify-content: center;
+  width: var(--rv-w);
+}
+
+/* Boutons précédent/suivant réservés au clavier et aux lecteurs d'écran. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: var(--rv-cpt);
+  padding-right: var(--rv-cpx);
+  padding-bottom: var(--rv-cpb);
+  padding-left: var(--rv-cpx);
+  transition-property: transform, translate, scale, rotate;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.3, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-property: none;
+  }
+
+  /* cartes voisines réduites ; la carte active est à l'échelle 1 */
+  scale: 0.88;
+
+  &.active {
+    scale: none;
+  }
+}
+
+.cardBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background-color: var(--color-cream);
+  box-shadow:
+    0 24px 48px rgba(47, 43, 38, 0.05),
+    0 4px 12px rgba(47, 43, 38, 0.02);
+  opacity: 0.88;
+  transition-property: box-shadow, border-color, opacity;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.25, 1, 0.3, 1);
+
+  .active & {
+    border-color: rgba(47, 43, 38, 0.08);
+    background-color: var(--color-forest);
+    box-shadow: none;
+    opacity: 1;
+  }
+}
+
+.avatar {
+  position: absolute;
+  top: 0;
+  left: calc(1 / 2 * 100%);
+  z-index: 10;
+  width: var(--rv-av);
+  height: var(--rv-av);
+  translate: calc(calc(1 / 2 * 100%) * -1) calc(calc(1 / 2 * 100%) * -1);
+  overflow: hidden;
+  border: 4px solid #f0ebe3;
+  border-radius: calc(infinity * 1px);
+  box-shadow:
+    0 8px 20px rgba(47, 43, 38, 0.07),
+    0 2px 6px rgba(47, 43, 38, 0.04);
+
+  @media (max-width: 768px) {
+    border-width: 3px;
+  }
+}
+
+.avatarImg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.name {
+  margin: 0;
+  margin-bottom: 1rem;
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+
+  @media (width < 1025px) {
+    font-size: 28px;
+    line-height: 35px;
+  }
+
+  @media (max-width: 768px) {
+    margin-bottom: 0.75rem;
+  }
+
+  .active & {
+    color: #fff;
+  }
+}
+
+.text {
+  flex-grow: 1;
+  margin: 0;
+  margin-bottom: 15.4px;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
+  line-height: 1.62;
+  color: var(--color-body);
+
+  @media (max-width: 768px) {
+    margin-bottom: 3.4px;
+  }
+
+  .active & {
+    color: #fbfbfb;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 31px;
+  border-style: dashed;
+  border-color: rgba(58, 53, 46, 0.2);
+  border-width: 1px 0 0;
+
+  @media (max-width: 768px) {
+    padding-top: 28.6px;
+  }
+}
+
+.roleWrap {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.role {
+  font-size: 13.6px;
+  line-height: 20.4px;
+  color: var(--color-body);
+
+  .active & {
+    color: #fff;
+  }
+}
+
+.rating {
+  position: relative;
+  display: inline-block;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: 3px;
+}
+
+.starsBase {
+  color: rgba(78, 67, 61, 0.22);
+}
+
+.starsFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #4e433d;
+
+  .active & {
+    color: var(--color-sage);
+  }
+}
+
+/* Guillemets en filigrane des cartes d'avis (95 px, coin haut droit). */
+.cardBg::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  width: 95px;
+  height: 95px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F4C13D'%3E%3Cpath d='M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 0 1-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.18;
+  pointer-events: none;
+
+  @media (width <= 768px) {
+    top: 5px;
+    right: 10px;
+  }
+}

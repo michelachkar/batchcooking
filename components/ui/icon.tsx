@@ -1,4 +1,5 @@
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './icon.module.css'
 
 // Icônes de contour (jeu Tabler, trait 1,6 px, grille 24) utilisées par les widgets de la démo ; une icône = un chemin.
 const paths = {
@@ -168,7 +169,7 @@ export function Icon({ name, className }: { name: IconName; className?: string }
       strokeLinejoin="round"
       aria-hidden
       focusable="false"
-      className={cn('size-6', className)}
+      className={clsx(styles.icon, className)}
     >
       {paths[name]}
     </svg>
@@ -187,7 +188,7 @@ export function ArrowIcon({ className }: { className?: string }) {
       strokeLinejoin="round"
       aria-hidden
       focusable="false"
-      className={cn('size-[18px] flex-none', className)}
+      className={clsx(styles.arrow, className)}
     >
       <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>

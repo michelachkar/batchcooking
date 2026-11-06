@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import clsx from 'clsx'
 import { DualHeader } from '@/components/blocks/dual-header'
 import { ProjectsCarousel, type Project } from '@/components/blocks/projects-carousel'
 import { ArrowIcon } from '@/components/ui/icon'
 import { StackedPhotos } from '@/components/blocks/stacked-photos'
+import styles from './events-showcase.module.css'
 
 type Props = {
   kicker: string
@@ -39,17 +41,14 @@ export function EventsShowcase({
   smallTitleMobile,
 }: Props) {
   return (
-    <section
-      data-section="events"
-      className="flex flex-col gap-5 bg-white py-[10px] leading-normal"
-    >
+    <section data-section="events" className={styles.root}>
       <div style={{ height: topSpacer }} aria-hidden />
       <DualHeader
         kicker={kicker}
         title={title}
         highlight={highlight}
         description={description}
-        className="max-md:px-[10px]"
+        className={styles.header}
       />
       <ProjectsCarousel
         projects={projects}
@@ -57,27 +56,17 @@ export function EventsShowcase({
         smallTitleMobile={smallTitleMobile}
       />
       {cta && (
-        <div className="flex justify-center">
-          <Link
-            href={cta.href}
-            className="rounded-pill inline-flex items-center gap-3 bg-[#B04A2A] px-[30px] py-[16px] text-base leading-none font-semibold text-white [transition:background-color_0.25s_ease,translate_0.3s_cubic-bezier(0.2,0.7,0.2,1),box-shadow_0.3s_ease] hover:-translate-y-0.5 hover:bg-[#8F3B20] hover:shadow-[0_14px_28px_rgba(176,74,42,0.3)]"
-          >
+        <div className={styles.cta}>
+          <Link href={cta.href} className={styles.button}>
             {cta.label}
             <ArrowIcon />
           </Link>
         </div>
       )}
-      <div
-        style={{ marginBottom: bottomGap }}
-        className="flex flex-wrap items-center justify-center gap-x-[10px]"
-      >
+      <div style={{ marginBottom: bottomGap }} className={styles.proof}>
         <StackedPhotos photos={faces} />
-        <p className="font-display m-0 text-[16px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] max-lg:hidden">
-          {proof.long}
-        </p>
-        <p className="font-display m-0 text-[16px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] lg:hidden">
-          {proof.short}
-        </p>
+        <p className={clsx(styles.proofText, styles.proofLong)}>{proof.long}</p>
+        <p className={clsx(styles.proofText, styles.proofShort)}>{proof.short}</p>
       </div>
     </section>
   )

@@ -1,0 +1,42 @@
+.root {
+  margin-bottom: -1.5rem;
+
+  @media (width < 768px) {
+    margin-bottom: -1rem;
+  }
+}
+
+.intro {
+  margin-bottom: 1.5rem;
+  max-width: 44rem;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgb(85 80 68 / 0.88);
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.link {
+  display: inline-block;
+  border: 1px solid var(--color-sand);
+  border-radius: calc(infinity * 1px);
+  padding-inline: 1.25rem;
+  padding-block: 0.625rem;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-ink);
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-forest);
+      color: var(--color-forest);
+    }
+  }
+}

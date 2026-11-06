@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { site } from '@/lib/site'
-import { cn } from '@/lib/utils'
+import clsx from 'clsx'
+import styles from './logo.module.css'
 
 // Marque : une table ronde vue de dessus, entourée de six convives (la tribu).
-function Mark({ className }: { className?: string }) {
+function Mark() {
   const people = Array.from({ length: 6 }, (_, i) => {
     const a = ((-90 + i * 60) * Math.PI) / 180
     return { x: 48 + 27 * Math.cos(a), y: 48 + 27 * Math.sin(a) }
   })
   return (
-    <svg viewBox="12 12 72 72" aria-hidden className={cn('shrink-0', className)}>
-      <circle cx="48" cy="48" r="15" className="fill-[#B04A2A]" />
+    <svg viewBox="12 12 72 72" aria-hidden className={styles.mark}>
+      <circle cx="48" cy="48" r="15" className={styles.markFill} />
       <circle
         cx="48"
         cy="48"
@@ -21,7 +22,7 @@ function Mark({ className }: { className?: string }) {
         opacity="0.9"
       />
       {people.map((p, i) => (
-        <circle key={i} cx={p.x} cy={p.y} r="5.2" className="fill-[#B04A2A]" />
+        <circle key={i} cx={p.x} cy={p.y} r="5.2" className={styles.markFill} />
       ))}
     </svg>
   )
@@ -33,23 +34,19 @@ export function Logo({ className, tagline }: { className?: string; tagline?: str
     <Link
       href="/"
       aria-label={tagline ? `${site.name} : ${tagline}` : site.name}
-      className={cn('inline-flex items-center gap-[0.35em] whitespace-nowrap', className)}
+      className={clsx(styles.root, className)}
     >
-      <Mark className="size-[1.25em]" />
-      <span className="flex flex-col items-center">
-        <span className="font-display text-[1em] leading-none font-semibold tracking-tight">
+      <Mark />
+      <span className={styles.text}>
+        <span className={styles.name}>
           {site.name.split('&').map((part, i) => (
             <span key={i}>
-              {i > 0 && <span className="font-medium text-[#B04A2A]">&amp;</span>}
+              {i > 0 && <span className={styles.amp}>&amp;</span>}
               {part}
             </span>
           ))}
         </span>
-        {tagline && (
-          <span className="mt-[0.4em] text-[0.36em] leading-none font-medium tracking-[0.14em] uppercase opacity-70">
-            {tagline}
-          </span>
-        )}
+        {tagline && <span className={styles.tagline}>{tagline}</span>}
       </span>
     </Link>
   )

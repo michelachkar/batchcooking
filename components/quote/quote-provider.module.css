@@ -1,0 +1,135 @@
+/* Sélecteur de service du point d'entrée « devis » (<dialog> natif). */
+.root {
+  margin: auto;
+  width: min(560px, calc(100vw - 24px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 0;
+  border-width: 0;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 30px 80px rgb(47 43 38 / 0.35);
+  color: var(--color-ink);
+
+  &::backdrop {
+    background-color: rgb(47 43 38 / 0.62);
+  }
+
+  &[open] {
+    animation: dialogIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+.panel {
+  position: relative;
+  padding-top: 2.25rem;
+  padding-inline: 2.25rem;
+  padding-bottom: 2rem;
+
+  @media (width < 768px) {
+    padding-inline: 1.25rem;
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid #e3d9cc;
+  border-radius: calc(infinity * 1px);
+  background-color: #fff;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-forest);
+      color: var(--color-forest);
+    }
+  }
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.title {
+  margin: 0;
+  padding-right: 2.5rem;
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
+  @media (width < 768px) {
+    font-size: 24px;
+  }
+}
+
+.intro {
+  margin-block: 0.75rem 1.5rem;
+  color: rgb(85 80 68 / 0.88);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.service {
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid #e3d9cc;
+  border-radius: 14px;
+  background-color: rgb(240 235 227 / 0.5);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      border-color: var(--color-forest);
+      background-color: #fff;
+    }
+  }
+}
+
+.serviceTitle {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.serviceText {
+  display: block;
+  margin-top: 0.25rem;
+  color: rgb(85 80 68 / 0.88);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+}

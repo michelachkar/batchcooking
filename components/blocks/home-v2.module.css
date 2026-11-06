@@ -1,0 +1,334 @@
+/* Section */
+.shell {
+  padding-inline: 2.5rem;
+
+  @media (width < 1025px) {
+    padding-inline: 26px;
+  }
+
+  @media (width < 768px) {
+    padding-inline: 1rem;
+  }
+}
+
+.white {
+  background-color: #fff;
+}
+
+.beige {
+  background-color: rgba(240, 235, 227, 1);
+}
+
+.terracotta {
+  background-color: var(--color-forest);
+}
+
+.shellInner {
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-block: 64px;
+
+  @media (width < 1025px) {
+    padding-block: 52px;
+  }
+
+  @media (width < 768px) {
+    padding-block: 2.5rem;
+  }
+}
+
+/* En-tête de section */
+.heading {
+  max-width: 46rem;
+  margin-bottom: 2.75rem;
+
+  @media (width < 768px) {
+    margin-bottom: 2rem;
+  }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+
+  &::before {
+    content: '';
+    width: 34px;
+    height: 1px;
+    background-color: currentcolor;
+  }
+
+  &.light {
+    color: color-mix(in oklab, #fff 80%, transparent);
+  }
+}
+
+.headingTitle {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: rgba(85, 80, 68, 1);
+
+  &.light {
+    color: #fff;
+  }
+}
+
+.intro {
+  margin-top: 1rem;
+  font-size: 17px;
+  line-height: 1.65;
+  color: rgba(85, 80, 68, 0.88);
+
+  &.light {
+    color: color-mix(in oklab, #fff 85%, transparent);
+  }
+}
+
+/* Bouton principal */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline: 30px;
+  padding-block: 18px;
+  border-radius: var(--radius-pill);
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 600;
+  transition:
+    background-color 0.25s ease,
+    translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.3s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover .ctaArrow {
+      translate: 5px 0;
+    }
+  }
+}
+
+.ctaPrimary {
+  background-color: var(--color-forest);
+  color: #fff;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-forest-dark);
+    }
+  }
+}
+
+.ctaLight {
+  background-color: #fff;
+  color: var(--color-forest);
+}
+
+.ctaArrow {
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Pour qui */
+.audienceList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.audienceCard {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 10px 30px rgba(85, 80, 68, 0.07);
+}
+
+.audienceTitle {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: rgba(85, 80, 68, 1);
+}
+
+.audienceText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(85, 80, 68, 0.88);
+}
+
+/* Semaine type */
+.week {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: flex-start;
+  gap: 3.5rem;
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.weekNote {
+  margin-bottom: 1.75rem;
+  font-size: 15px;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(85, 80, 68, 0.88);
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.day {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-inline: 1.25rem;
+  padding-block: 1rem;
+  border: 1px solid #e3d9cc;
+  border-radius: 14px;
+  background-color: rgba(240, 235, 227, 0.5);
+}
+
+.dayName {
+  flex: none;
+  width: 6rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+}
+
+.dayDish {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: rgba(85, 80, 68, 1);
+}
+
+/* Zones couvertes */
+.zones {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}
+
+.zone {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 10px 30px rgba(85, 80, 68, 0.08);
+  transition:
+    translate 0.4s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.4s ease,
+    border-color 0.3s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.375rem;
+      border-color: color-mix(in lab, var(--color-forest) 30%, transparent);
+      box-shadow: 0 22px 44px rgba(176, 74, 42, 0.18);
+    }
+
+    &:hover .zoneBadge {
+      scale: 110%;
+      background-color: var(--color-forest);
+      color: #fff;
+    }
+
+    &:hover .zoneIcon {
+      translate: 0 -0.125rem;
+    }
+  }
+}
+
+.zoneBadge {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in lab, var(--color-forest) 10%, transparent);
+  color: var(--color-forest);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    scale 0.4s var(--ease-spring);
+}
+
+.zoneIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: translate 0.4s var(--ease-spring);
+}
+
+.zoneName {
+  margin-bottom: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: rgba(85, 80, 68, 1);
+}
+
+.zoneText {
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(85, 80, 68, 0.88);
+}
+
+.zonesNote {
+  margin-top: 1.5rem;
+  font-size: 15px;
+  color: rgba(85, 80, 68, 0.88);
+}
+
+.zonesLink {
+  margin-top: 2rem;
+}
+
+/* Questions fréquentes */
+.faq {
+  max-width: 56rem;
+}

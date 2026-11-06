@@ -1,0 +1,5 @@
+/* Taille par défaut à spécificité nulle : la classe de l'appelant l'emporte toujours, quel que soit l'ordre de chargement. */
+:where(.icon) {
+  width: 1.5rem;
+  height: 1.5rem;
+}
