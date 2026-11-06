@@ -46,11 +46,11 @@ export function SiteSearch({ entries, labels, typeLabels, action }: Props) {
             defaultValue={query}
             required
             aria-label={labels.label}
-            className="h-[47px] w-full rounded-[30px] border border-[#c4c4c4] bg-transparent px-5 text-base text-[#222] transition-colors duration-[250ms] ease-[ease] outline-none focus:border-[#234a3a]"
+            className="h-[47px] w-full rounded-[30px] border border-[#c4c4c4] bg-transparent px-5 text-base text-[#222] transition-colors duration-[250ms] ease-[ease] outline-none focus:border-[#B04A2A]"
           />
           <button
             type="submit"
-            className="rounded-full bg-[#234a3a] px-8 leading-4 font-medium tracking-[0.5px] text-[#fbfaf7] transition-colors duration-[250ms] ease-[ease] hover:bg-[#1b3a2d]"
+            className="rounded-full bg-[#B04A2A] px-8 leading-4 font-medium tracking-[0.5px] text-[#FAF7F2] transition-colors duration-[250ms] ease-[ease] hover:bg-[#302925]"
           >
             {labels.button}
           </button>
@@ -75,13 +75,13 @@ export function SiteSearch({ entries, labels, typeLabels, action }: Props) {
               <ul className="m-0 grid list-none gap-5 p-0">
                 {found.map((e) => (
                   <li key={e.href} className="rounded-[20px] bg-white p-6">
-                    <p className="mb-1 text-xs font-semibold tracking-[1px] text-[#5a605c] uppercase">
+                    <p className="mb-1 text-xs font-semibold tracking-[1px] text-[#625C50] uppercase">
                       {typeLabels[e.type] ?? e.type}
                     </p>
-                    <Link href={e.href} className="font-display text-2xl font-semibold text-black">
+                    <Link href={e.href} className="font-display text-ink text-2xl font-semibold">
                       {e.title}
                     </Link>
-                    <p className="mt-2 mb-0 text-[#5a605c]">{e.text}</p>
+                    <p className="mt-2 mb-0 text-[#625C50]">{e.text}</p>
                   </li>
                 ))}
               </ul>

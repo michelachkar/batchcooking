@@ -163,13 +163,13 @@ function ReviewCard({ review: r, active }: { review: Review; active: boolean }) 
           'absolute inset-0 z-0 overflow-hidden rounded-[24px] border transition-[box-shadow,border-color,opacity] duration-500 ease-[cubic-bezier(0.25,1,0.3,1)]',
           'review-mark',
           active
-            ? 'border-[rgba(27,31,29,0.08)] bg-[#262C29]'
-            : 'bg-cream border-transparent opacity-[0.88] shadow-[0_24px_48px_rgba(27,31,29,0.05),0_4px_12px_rgba(27,31,29,0.02)]',
+            ? 'border-[rgba(47,43,38,0.08)] bg-[#B04A2A]'
+            : 'bg-cream border-transparent opacity-[0.88] shadow-[0_24px_48px_rgba(47,43,38,0.05),0_4px_12px_rgba(47,43,38,0.02)]',
         )}
       />
       <div
         data-vr-mask
-        className="absolute top-0 left-1/2 z-10 size-(--rv-av) -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#f4f3ef] shadow-[0_8px_20px_rgba(27,31,29,0.07),0_2px_6px_rgba(27,31,29,0.04)] [@media(max-width:768px)]:border-[3px]"
+        className="absolute top-0 left-1/2 z-10 size-(--rv-av) -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border-4 border-[#F0EBE3] shadow-[0_8px_20px_rgba(47,43,38,0.07),0_2px_6px_rgba(47,43,38,0.04)] [@media(max-width:768px)]:border-[3px]"
       >
         <Image
           src={r.image.src}
@@ -198,7 +198,7 @@ function ReviewCard({ review: r, active }: { review: Review; active: boolean }) 
         >
           {r.text}
         </p>
-        <div className="flex flex-col items-center gap-2 border-t border-dashed border-[rgba(38,44,41,0.2)] pt-[31px] [@media(max-width:768px)]:pt-[28.6px]">
+        <div className="flex flex-col items-center gap-2 border-t border-dashed border-[rgba(58,53,46,0.2)] pt-[31px] [@media(max-width:768px)]:pt-[28.6px]">
           <div className="text-base leading-6">
             <span
               className={cn('text-[13.6px] leading-[20.4px]', active ? 'text-white' : 'text-body')}
@@ -211,13 +211,13 @@ function ReviewCard({ review: r, active }: { review: Review; active: boolean }) 
             role="img"
             aria-label="5/5"
           >
-            <span className="text-[rgba(46,93,73,0.22)]" aria-hidden>
+            <span className="text-[rgba(78,67,61,0.22)]" aria-hidden>
               ★★★★★
             </span>
             <span
               className={cn(
                 'absolute top-0 left-0 w-full overflow-hidden whitespace-nowrap',
-                active ? 'text-sage' : 'text-[#2e5d49]',
+                active ? 'text-sage' : 'text-[#4E433D]',
               )}
               aria-hidden
             >

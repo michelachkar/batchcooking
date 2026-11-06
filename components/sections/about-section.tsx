@@ -18,22 +18,39 @@ export async function AboutSection({ ns = 'home' }: { ns?: Landing }) {
     <AboutUs
       label={a('label')}
       title={a('title')}
-      intro={a('intro')}
+      intro={a.has('intro') ? a('intro') : undefined}
       images={
         (a.raw('images') as string[]).map((alt, i) => ({
           ...m.about[i],
           alt,
         })) as React.ComponentProps<typeof AboutUs>['images']
       }
-      badge={{ icon: aboutIcon, value: a('badgeValue'), text: a('badgeText') }}
-      quality={{
+      badge={{
         icon: aboutIcon,
-        title: a('qualityTitle'),
-        text: a('qualityText'),
-        note: a('qualityNote'),
+        value: a('badgeValue'),
+        text: a('badgeText'),
+        accent: a.has('badgeAccent'),
       }}
+      quality={
+        a.has('qualityTitle')
+          ? {
+              icon: aboutIcon,
+              title: a('qualityTitle'),
+              text: a('qualityText'),
+              note: a('qualityNote'),
+            }
+          : undefined
+      }
+      question={a.has('question') ? a('question') : undefined}
+      steps={a.has('steps') ? (a.raw('steps') as { title: string; text: string }[]) : undefined}
+      stepsTitle={a.has('stepsTitle') ? a('stepsTitle') : undefined}
       features={a.raw('features') as string[]}
-      button={{ label: a('button'), href: '/a-propos' }}
+      secondaryButton={
+        a.has('secondaryButton')
+          ? { label: a('secondaryButton'), href: a('secondaryButtonHref') }
+          : undefined
+      }
+      button={{ label: a('button'), href: a.has('buttonHref') ? a('buttonHref') : '/contact' }}
     />
   )
 }

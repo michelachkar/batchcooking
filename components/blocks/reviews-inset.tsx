@@ -26,7 +26,7 @@ export function ReviewsInset({
 }: Props) {
   return (
     <section data-section="reviews" className="flex flex-col gap-5 px-[15px] leading-normal">
-      <div className="flex flex-col gap-5 rounded-[30px] bg-[#E6E4DD]">
+      <div className="flex flex-col gap-5 rounded-[30px] bg-[#E3D9CC]">
         <div className="h-[90px]" aria-hidden />
         <DualHeader
           size="compact"

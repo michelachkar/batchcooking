@@ -53,14 +53,14 @@ export function Article({
               )}
               <div className="mt-[30px] mb-[25px] pb-[25px]">
                 {author && (
-                  <div className={`${meta} border-r border-[#5a605c]`}>
+                  <div className={`${meta} border-r border-[#625C50]`}>
                     <span className="text-[13px] font-semibold tracking-[1px] text-[#777] uppercase">
                       {author}
                     </span>
                   </div>
                 )}
                 {categories.length > 0 && (
-                  <div className={`${meta} border-r border-[#5a605c]`}>
+                  <div className={`${meta} border-r border-[#625C50]`}>
                     {categories.map((c, i) => (
                       <span key={c.href}>
                         {i > 0 && ', '}
@@ -85,7 +85,7 @@ export function Article({
                 </h2>
               </div>
             </header>
-            <div className="mb-5 text-base leading-6 text-[#5a605c] [&_blockquote]:relative [&_blockquote]:mt-[10px] [&_blockquote]:mb-5 [&_blockquote]:rounded-[0] [&_blockquote]:bg-[rgba(169,196,162,0.2)] [&_blockquote]:py-[30px] [&_blockquote]:pr-[30px] [&_blockquote]:pl-[35px] [&_blockquote_p]:m-0 [&_blockquote_p]:text-base [&_blockquote_p]:text-[#0a0a0a] [&_img]:h-auto [&_img]:max-w-full [&_li]:leading-6 [&_p]:mt-0 [&_p]:mb-4 [&_ul]:mt-0 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-8">
+            <div className="mb-5 text-base leading-6 text-[#625C50] [&_blockquote]:relative [&_blockquote]:mt-[10px] [&_blockquote]:mb-5 [&_blockquote]:rounded-[0] [&_blockquote]:bg-[rgba(232,169,142,0.2)] [&_blockquote]:py-[30px] [&_blockquote]:pr-[30px] [&_blockquote]:pl-[35px] [&_blockquote_p]:m-0 [&_blockquote_p]:text-base [&_blockquote_p]:text-[#0a0a0a] [&_img]:h-auto [&_img]:max-w-full [&_li]:leading-6 [&_p]:mt-0 [&_p]:mb-4 [&_ul]:mt-0 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-8">
               {children}
             </div>
             {tags.length > 0 && (
@@ -96,7 +96,7 @@ export function Article({
                     <Link
                       key={t.href}
                       href={t.href}
-                      className="mr-[5px] mb-[10px] rounded-lg bg-[rgba(169,196,162,0.2)] px-[15px] py-[5px] text-[13px] leading-[19.5px] font-medium tracking-[1px] text-[#222] uppercase"
+                      className="mr-[5px] mb-[10px] rounded-lg bg-[rgba(232,169,142,0.2)] px-[15px] py-[5px] text-[13px] leading-[19.5px] font-medium tracking-[1px] text-[#222] uppercase"
                     >
                       {t.name}
                     </Link>

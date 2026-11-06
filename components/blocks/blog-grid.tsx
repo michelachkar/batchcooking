@@ -45,18 +45,18 @@ export function BlogGrid({ posts }: { posts: GridCard[] }) {
                   <h3 className="m-0 text-[22px] leading-[26.4px] font-bold">
                     <Link
                       href={p.href}
-                      className="text-black transition-colors duration-300 group-hover:text-[#52525b]"
+                      className="text-ink transition-colors duration-300 group-hover:text-[#52525b]"
                     >
                       {p.title}
                     </Link>
                   </h3>
                   <div
                     data-vr-mask
-                    className="mt-4 flex items-center gap-4 text-xs leading-[18px] font-medium tracking-[-0.12px] text-[#5a605c]"
+                    className="mt-4 flex items-center gap-4 text-xs leading-[18px] font-medium tracking-[-0.12px] text-[#625C50]"
                   >
                     <span
                       aria-hidden
-                      className="h-px w-8 bg-[#5a605c] transition-[width] duration-500 ease-[ease] group-hover:w-12"
+                      className="h-px w-8 bg-[#625C50] transition-[width] duration-500 ease-[ease] group-hover:w-12"
                     />
                     <time>{p.date}</time>
                   </div>

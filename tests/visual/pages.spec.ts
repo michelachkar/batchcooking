@@ -18,16 +18,6 @@ const PAGES: Record<
   string,
   { path: string; blocks: Block[]; skip?: Partial<Record<number, string>> }
 > = {
-  about: {
-    path: '/a-propos',
-    blocks: [
-      { name: 'head', index: 'head' },
-      { name: 'about', index: 0 },
-      { name: 'chef', index: 1 },
-      { name: 'team', index: 2 },
-      { name: 'trusted', index: 3 },
-    ],
-  },
   services: {
     path: '/services',
     blocks: [

@@ -2,9 +2,11 @@ import Image from 'next/image'
 import { AnimatedProgress } from '@/components/blocks/animated-progress'
 import { CtaBar } from '@/components/blocks/cta-bar'
 import { cn } from '@/lib/utils'
+import { FaqAccordion, type FaqItem } from '@/components/blocks/faq-accordion'
+
+export type { FaqItem }
 
 type Img = { src: string; width: number; height: number; unoptimized?: boolean }
-export type FaqItem = { question: string; answer: string }
 
 type Props = {
   items: FaqItem[]
@@ -26,29 +28,7 @@ export function Faq({ items, photos = [], stats = [], cta }: Props) {
         <div className="mt-5 flex gap-10 max-lg:mt-0 max-lg:flex-col max-md:gap-0">
           <div className="flex flex-col gap-5 lg:flex-[661_1_0%]">
             <div className="rounded-[14px] max-lg:px-5 max-md:px-[10px]">
-              {items.map((item, i) => (
-                <details
-                  key={item.question}
-                  name="faq"
-                  open={i === 0}
-                  className="mtm-faq group border border-[#E8E8E8] bg-white not-first:border-t-0"
-                >
-                  <summary className="font-display flex cursor-pointer list-none items-center justify-between p-[25px] text-[15px] leading-[19.5px] font-bold text-[#383939] uppercase group-open:text-[#5C5C5C] [&::-webkit-details-marker]:hidden">
-                    <span>{item.question}</span>
-                    <svg
-                      viewBox="0 0 24 16"
-                      aria-hidden
-                      className="h-4 w-6 shrink-0 fill-current group-open:text-[#7FA37A]"
-                    >
-                      <rect x="8" y="6.5" width="16" height="3" />
-                      <rect x="14.5" y="0" width="3" height="16" className="group-open:hidden" />
-                    </svg>
-                  </summary>
-                  <div className="border-t border-[#E8E8E8] p-[25px] leading-[27px] text-[#737373]">
-                    <p className="m-0 mb-4">{item.answer}</p>
-                  </div>
-                </details>
-              ))}
+              <FaqAccordion items={items} name="faq" />
             </div>
           </div>
           <div className="relative max-md:my-[2px] lg:mb-[185px] lg:flex-[649_1_0%]">

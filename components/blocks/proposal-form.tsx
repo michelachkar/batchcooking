@@ -39,11 +39,11 @@ const tones = {
   },
   forest: {
     control:
-      'border-transparent bg-[#f4f3ef] text-[#1b1f1d] hover:border-[#a9c4a2] focus:border-[#234a3a] focus:shadow-[0_0_0_3px_rgba(35,74,58,0.14)]',
-    label: 'text-[#2f5e4a]',
-    note: 'text-[#5a605c]',
+      'border-transparent bg-[#F0EBE3] text-[#2F2B26] hover:border-[#E8A98E] focus:border-[#B04A2A] focus:shadow-[0_0_0_3px_rgba(176,74,42,0.14)]',
+    label: 'text-[#B04A2A]',
+    note: 'text-[#625C50]',
     submit:
-      'border-[#234a3a] bg-[#234a3a] text-[#fbfaf7] hover:border-[#1b3a2d] hover:bg-[#1b3a2d] hover:shadow-[0_14px_28px_rgba(35,74,58,0.3)] focus-visible:border-[#1b3a2d] focus-visible:bg-[#1b3a2d]',
+      'border-[#B04A2A] bg-[#B04A2A] text-[#FAF7F2] hover:border-[#302925] hover:bg-[#302925] hover:shadow-[0_14px_28px_rgba(176,74,42,0.3)] focus-visible:border-[#302925] focus-visible:bg-[#302925]',
   },
 }
 
@@ -149,7 +149,7 @@ export function ProposalForm({ fields, note, submit, messages, tone = 'wine' }: 
         role="status"
         className={cn(
           'col-span-full m-0 text-sm leading-normal',
-          state.status === 'success' ? 'text-[#2f5e4a]' : 'text-[#b4233c]',
+          state.status === 'success' ? 'text-[#B04A2A]' : 'text-[#b4233c]',
           state.status === 'idle' && 'hidden',
         )}
       >

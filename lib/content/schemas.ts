@@ -70,6 +70,26 @@ export const projectSchema = z.object({
   /** Photo des cartes (format portrait recadré par la carte ; à défaut, `image`). */
   thumbnail: image.optional(),
   gallery: z.array(image).default([]),
+  /** Service concerné : sert au filtre de la galerie et au lien de devis. */
+  service: z.enum(['batch', 'chef', 'cours']).default('chef'),
+  /** Occasion (filtre) : Au quotidien, Anniversaire, Fête de famille, Entre amis, En couple, Enfants, Entreprise… */
+  occasion: z.string().optional(),
+  /** Tags libres (filtre) : style de prestation, plats, ambiance… */
+  tags: z.array(z.string()).default([]),
+  /** Commune (filtre). */
+  city: z.string().optional(),
+  /** Nombre de personnes (filtre par taille de groupe). */
+  guestCount: z.number().int().positive().optional(),
+  /** Régimes pris en compte (filtre) : Sans gluten, Végétarien, Sans lactose… */
+  diets: z.array(z.string()).default([]),
+  /** Durée de la prestation (ex. « 4 h sur place »). */
+  duration: z.string().optional(),
+  /** Convives ou participants (ex. « 8 convives »). */
+  guests: z.string().optional(),
+  /** Menu servi, plats préparés ou programme du cours, un élément par ligne. */
+  menu: z.array(z.string()).default([]),
+  /** Avis du client. */
+  review: z.object({ quote: z.string().min(1), author: z.string().min(1) }).optional(),
   client: z.string().optional(),
   location: z.string().optional(),
   /** Adresse du projet (site du client, par exemple). */

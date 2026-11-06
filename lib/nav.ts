@@ -1,6 +1,5 @@
 import { getPosts } from '@/lib/content/blog'
 import { getProjects } from '@/lib/content/projects'
-import { getServices } from '@/lib/content/services'
 import { getTeam } from '@/lib/content/team'
 
 // Structure du menu de la démo (menus.json). Les libellés vivent dans messages/fr.json (clé "nav.*").
@@ -11,51 +10,26 @@ export type NavItem = {
 }
 
 export const nav: readonly NavItem[] = [
-  {
-    key: 'home',
-    href: '/',
-    children: [
-      { key: 'homeMain', href: '/' },
-      { key: 'homeAlt', href: '/formule-evenement' },
-    ],
-  },
-  { key: 'about', href: '/a-propos' },
+  { key: 'home', href: '/' },
   {
     key: 'services',
     href: '/services',
     children: [
-      { key: 'allServices', href: '/services' },
-      { key: 'singleService', href: '/services/exemple' },
+      { key: 'serviceBatch', href: '/services/batch-cooking' },
+      { key: 'serviceChef', href: '/services/chef-prive' },
+      { key: 'serviceCours', href: '/services/cours-de-cuisine' },
     ],
   },
-  {
-    key: 'pages',
-    href: '#',
-    children: [
-      { key: 'team', href: '/equipe' },
-      { key: 'singleMember', href: '/equipe/exemple' },
-      { key: 'portfolio', href: '/realisations' },
-      { key: 'singlePortfolio', href: '/realisations/exemple' },
-      { key: 'pricing', href: '/tarifs' },
-      { key: 'faq', href: '/faq' },
-    ],
-  },
-  {
-    key: 'journal',
-    href: '/blog',
-    children: [
-      { key: 'blogGrid', href: '/blog/grille' },
-      { key: 'blog', href: '/blog' },
-      { key: 'blogLeft', href: '/blog/sidebar-gauche' },
-      { key: 'article', href: '/blog/exemple' },
-    ],
-  },
+  { key: 'pricing', href: '/tarifs' },
+  { key: 'recipes', href: '/recettes' },
+  { key: 'faq', href: '/faq' },
+  { key: 'portfolio', href: '/realisations' },
+  { key: 'journal', href: '/blog' },
   { key: 'contact', href: '/contact' },
 ]
 
 // Les entrées « exemple » du menu de la démo (un service, un membre, une réalisation, un article) pointent vers le premier contenu réel ; sans contenu, elles pointent vers la liste, pour que le menu garde toujours les mêmes entrées que la démo.
 const examples: Record<string, () => string> = {
-  singleService: () => first(getServices(), '/services'),
   singleMember: () => first(getTeam(), '/equipe'),
   singlePortfolio: () => first(getProjects(), '/realisations'),
   article: () => first(getPosts(), '/blog'),

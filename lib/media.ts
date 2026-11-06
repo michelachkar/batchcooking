@@ -5,7 +5,7 @@ import { vr } from '@/lib/flags'
 export const media = {
   hero: vr
     ? { src: '/vr/hero.jpg', width: 2000, height: 2000 }
-    : { src: '/assets/placeholders/hero.svg', width: 1200, height: 1400 },
+    : { src: '/assets/hero/chef.jpg', width: 1280, height: 853 },
   // Photos des cartes d'expériences ; en test visuel, les fichiers de la démo servis tels quels (sans AVIF) pour comparer les mêmes pixels.
   cards: [1, 2, 3].map((n) =>
     vr
@@ -14,7 +14,7 @@ export const media = {
   ),
   chef: vr
     ? { src: '/vr/chef.jpg', width: 768, height: 1024, unoptimized: true }
-    : { src: '/assets/placeholders/card.svg', width: 768, height: 1024 },
+    : { src: '/assets/hero/chef.jpg', width: 1280, height: 853, position: '68% center' },
   chefInset: vr
     ? { src: '/vr/chef-inset.jpg', width: 768, height: 768, unoptimized: true }
     : { src: '/assets/placeholders/card.svg', width: 768, height: 768 },

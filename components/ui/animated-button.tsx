@@ -15,7 +15,7 @@ export function AnimatedButton({
     <Link
       href={href}
       className={cn(
-        'group rounded-pill relative inline-flex items-center gap-[14px] overflow-hidden border border-transparent bg-[#234A3A] px-9 py-[18px] text-base leading-none font-semibold whitespace-nowrap text-[#FBFAF7] transition-[translate,box-shadow] duration-300 ease-[ease] before:absolute before:inset-0 before:-translate-x-full before:bg-[linear-gradient(110deg,transparent_30%,rgba(255,255,255,0.55)_50%,transparent_70%)] before:transition-[translate] before:duration-700 before:ease-[ease] before:content-[""] hover:-translate-y-[3px] hover:shadow-[0_14px_30px_rgba(169,196,162,0.45)] hover:before:translate-x-full active:translate-y-0',
+        'group rounded-pill relative inline-flex items-center gap-[14px] overflow-hidden border border-transparent bg-[#B04A2A] px-9 py-[18px] text-base leading-none font-semibold whitespace-nowrap text-[#FAF7F2] transition-[translate,box-shadow] duration-300 ease-[ease] before:absolute before:inset-0 before:-translate-x-full before:bg-[linear-gradient(110deg,transparent_30%,rgba(255,255,255,0.55)_50%,transparent_70%)] before:transition-[translate] before:duration-700 before:ease-[ease] before:content-[""] hover:-translate-y-[3px] hover:shadow-[0_14px_30px_rgba(232,169,142,0.45)] hover:before:translate-x-full active:translate-y-0',
         className,
       )}
     >

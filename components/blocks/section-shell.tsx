@@ -12,9 +12,7 @@ export function SectionShell({ name, className, children }: Props) {
   return (
     <section data-section={name} className="bg-cream pt-[22px] max-lg:pt-[18px] max-md:pt-3">
       <div className={cn('px-10 max-lg:px-[26px] max-md:px-4', className)}>
-        <div className="max-w-site mx-auto py-[100px] max-lg:py-[72px] max-md:py-14">
-          {children}
-        </div>
+        <div className="max-w-site mx-auto py-[68px] max-lg:py-14 max-md:py-10">{children}</div>
       </div>
     </section>
   )

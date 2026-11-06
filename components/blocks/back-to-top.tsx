@@ -36,7 +36,7 @@ export function BackToTop({ label }: Props) {
       aria-label={label}
       onClick={toTop}
       className={cn(
-        'fixed right-5 bottom-5 z-[999] flex size-11 items-center justify-center rounded-full bg-[#234A3A] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)]',
+        'fixed right-5 bottom-5 z-[999] flex size-11 items-center justify-center rounded-full bg-[#B04A2A] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)]',
         visible
           ? 'pointer-events-auto opacity-100 transition-opacity duration-300 ease-[ease] motion-reduce:transition-none'
           : 'pointer-events-none opacity-0',

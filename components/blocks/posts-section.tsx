@@ -68,13 +68,13 @@ export function PostsGrid({ posts, button }: GridProps) {
                   <div className="px-1">
                     <Link
                       href={post.href}
-                      className="block text-[22px] leading-[26.4px] font-bold text-black transition-colors duration-300 group-hover:text-[#52525b]"
+                      className="text-ink block text-[22px] leading-[26.4px] font-bold transition-colors duration-300 group-hover:text-[#52525b]"
                     >
                       {post.title}
                     </Link>
                     <div className="mt-4 flex items-center gap-4">
-                      <div className="h-px w-8 bg-[#5a605c] transition-[width] duration-500 ease-[ease] group-hover:w-12" />
-                      <div className="flex items-center text-xs leading-[18px] font-medium tracking-[-0.01em] text-[#5a605c]">
+                      <div className="h-px w-8 bg-[#625C50] transition-[width] duration-500 ease-[ease] group-hover:w-12" />
+                      <div className="flex items-center text-[13px] leading-[18px] font-medium tracking-[-0.01em] text-[#625C50]">
                         {post.meta.map((m, i) => (
                           <span key={m} className="flex items-center">
                             {i > 0 && (

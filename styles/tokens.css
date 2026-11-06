@@ -1,20 +1,20 @@
 /* Tokens extraits de Savrio : voir TOKENS.md. Une seule source, consommée par Tailwind via @theme. */
 @theme {
   /* Couleurs (skin par défaut) */
-  --color-ink: #1b1f1d;
-  --color-forest: #234a3a;
-  --color-forest-dark: #1a382c;
-  --color-forest-mid: #2f5e4a;
-  --color-sage: #a9c4a2;
-  --color-sage-soft: #c3d6bd;
-  --color-cream: #f4f3ef;
-  --color-ivory: #fbfaf7;
-  --color-sand: #e6e4dd;
-  --color-body: #5a605c;
-  --color-surface-dark: #262c29;
-  --color-footer: #111412;
-  --color-menu: #f2f0ea;
-  --color-menu-link: #484848;
+  --color-ink: #555044;
+  --color-forest: #B04A2A;
+  --color-forest-dark: #8F3B20;
+  --color-forest-mid: #B04A2A;
+  --color-sage: #E8A98E;
+  --color-sage-soft: #F0C8B8;
+  --color-cream: #F0EBE3;
+  --color-ivory: #FAF7F2;
+  --color-sand: #E3D9CC;
+  --color-body: #625C50;
+  --color-surface-dark: #3A352E;
+  --color-footer: #2F2B26;
+  --color-menu: #F5F0E8;
+  --color-menu-link: #555044;
 
   /* Polices : une variable par famille, sous-ensemble latin (next/font) */
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;

@@ -39,14 +39,14 @@ export function DualHeader({
         data-dh-t="kicker"
         className={cn(
           compact ? 'text-sm' : 'text-xs',
-          "before:bg-forest-dark mb-2 inline-flex items-center gap-2 rounded-[50px] bg-white px-5 py-[10px] leading-none font-semibold tracking-[2px] text-[#393939] uppercase shadow-[0_2px_12px_rgba(38,44,41,0.07)] before:mr-[5px] before:size-[7px] before:rounded-full before:content-['']",
+          "before:bg-forest-dark mb-2 inline-flex items-center gap-2 rounded-[50px] bg-white px-5 py-[10px] leading-none font-semibold tracking-[2px] text-[#393939] uppercase shadow-[0_2px_12px_rgba(58,53,46,0.07)] before:mr-[5px] before:size-[7px] before:rounded-full before:content-['']",
         )}
       >
         {kicker}
       </p>
       <h2
         data-dh-t="title"
-        className="font-display m-0 text-[52px] leading-[1.2] font-medium tracking-[-0.02em] text-black max-lg:text-[45px] max-lg:leading-[56px]"
+        className="font-display text-ink m-0 text-[52px] leading-[1.2] font-medium tracking-[-0.02em] max-lg:text-[45px] max-lg:leading-[56px]"
       >
         {title} <span className="inline-block font-extrabold">{highlight}</span>
       </h2>

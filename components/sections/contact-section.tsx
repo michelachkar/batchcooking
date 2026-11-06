@@ -15,6 +15,16 @@ export async function ContactSection() {
       address={site.address}
       phone={{ label: site.phone, href: site.phoneHref }}
       email={site.email}
+      hours={site.hours}
+      reassure={t.raw('reassure') as string[]}
+      labels={{
+        hours: t('hoursLabel'),
+        response: t('responseLabel'),
+        responseValue: t('responseValue'),
+        info: t('infoTitle'),
+        form: t('formTitle'),
+        formIntro: t('formIntro'),
+      }}
       followTitle={t('followTitle')}
       social={site.social}
       socialLabel={t('socialLabel')}

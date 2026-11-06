@@ -23,15 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const entry = (path: string, lastModified: Date) => ({ url: absoluteUrl(path), lastModified })
   return [
     entry('/', pageDate('')),
-    entry('/a-propos', pageDate('a-propos')),
     entry('/equipe', pageDate('equipe', team)),
     entry('/services', pageDate('services', services)),
+    entry('/zones', pageDate('zones')),
     entry('/tarifs', pageDate('tarifs')),
     entry('/faq', pageDate('faq')),
     entry('/contact', pageDate('contact')),
     entry('/formule-evenement', pageDate('formule-evenement')),
     entry('/blog', pageDate('blog', posts)),
-    entry('/blog/grille', pageDate('blog/grille', posts)),
     entry('/realisations', pageDate('realisations', projects)),
     ...services.map((s) => entry(`/services/${s.slug}`, s.modified)),
     ...team.map((m) => entry(`/equipe/${m.slug}`, m.modified)),

@@ -20,14 +20,14 @@ export async function EventsSection({
     ev.raw('projects') as { alt: string; type: string; title: string; href: string }[]
   ).map((p, i) => ({ ...p, image: m.events[i] }))
   if (projects.length === 0) return null
-  const phone = (
+  const phone = ev.has('phone') ? (
     <a
       href={`tel:${ev('phone').replace(/\D/g, '')}`}
       className="bg-sage text-ink rounded-lg px-2 py-[2px]"
     >
       <strong>{ev('phone')}</strong>
     </a>
-  )
+  ) : null
   return (
     <EventsShowcase
       kicker={ev('kicker')}
@@ -35,6 +35,7 @@ export async function EventsSection({
       highlight={ev('highlight')}
       description={ev('description')}
       projects={projects}
+      cta={ev.has('cta') ? { label: ev('cta'), href: ev('ctaHref') } : undefined}
       carouselLabels={{ prev: ev('prev'), next: ev('next'), navigation: ev('navigation') }}
       faces={m.faces}
       proof={{

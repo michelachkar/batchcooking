@@ -59,7 +59,7 @@ export default async function TextPage({
       />
       <div data-section="body" className="py-[110px] leading-normal max-md:py-[70px]">
         <div className="container-x">
-          <div className="[&_h2]:font-display max-w-[800px] text-base leading-7 text-[#262c29] [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-[32px] [&_h2]:leading-10 [&_h2]:font-semibold [&_li]:leading-7 [&_p]:mt-0 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-8">
+          <div className="[&_h2]:font-display max-w-[800px] text-base leading-7 text-[#3A352E] [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:text-[32px] [&_h2]:leading-10 [&_h2]:font-semibold [&_li]:leading-7 [&_p]:mt-0 [&_p]:mb-4 [&_ul]:mb-4 [&_ul]:list-disc [&_ul]:pl-8">
             <Mdx source={page.body} />
           </div>
         </div>

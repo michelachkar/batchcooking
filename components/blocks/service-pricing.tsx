@@ -33,19 +33,19 @@ export function ServicePricing({ plans }: { plans: PricingPlan[] }) {
                     unoptimized={p.image.unoptimized}
                     className="object-cover transition-[scale] duration-[400ms] ease-[ease] group-hover/media:scale-105"
                   />
-                  <span className="absolute top-3 left-3 rounded-lg bg-white px-3 py-[6px] text-sm leading-[16.8px] font-semibold text-black transition-[opacity,scale] duration-[250ms] ease-[ease] hover:scale-[1.02] hover:opacity-90">
+                  <span className="text-ink absolute top-3 left-3 rounded-lg bg-white px-3 py-[6px] text-sm leading-[16.8px] font-semibold transition-[opacity,scale] duration-[250ms] ease-[ease] hover:scale-[1.02] hover:opacity-90">
                     {p.badge}
                   </span>
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display m-0 mb-[14px] text-[22px] leading-[28.6px] font-semibold tracking-[-0.02em] text-black max-lg:text-[28px] max-lg:leading-[35px]">
+                  <h3 className="font-display text-ink m-0 mb-[14px] text-[22px] leading-[28.6px] font-semibold tracking-[-0.02em] max-lg:text-[28px] max-lg:leading-[35px]">
                     {p.title}
                   </h3>
                   <ul className="m-0 mb-4 list-none p-0">
                     {p.features.map((f) => (
                       <li
                         key={f}
-                        className="mb-2 pl-[10px] text-[15px] leading-[22.5px] text-[#234a3a] last:mb-0"
+                        className="mb-2 pl-[10px] text-[15px] leading-[22.5px] text-[#B04A2A] last:mb-0"
                       >
                         {f}
                       </li>
@@ -55,13 +55,13 @@ export function ServicePricing({ plans }: { plans: PricingPlan[] }) {
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex flex-wrap items-baseline gap-[6px]">
                       <span className="text-sm leading-[21px] text-[#6b7a75]">{p.from}</span>
-                      <span className="text-[27px] leading-[40.5px] font-bold text-black">
+                      <span className="text-ink text-[27px] leading-[40.5px] font-bold">
                         {p.price}
                       </span>
                     </div>
                     <Link
                       href={p.href}
-                      className="rounded-[10px] bg-[#234a3a] px-5 py-[10px] text-[15px] leading-[22.5px] font-medium text-white transition-[opacity,background-color,color,translate] duration-[250ms] ease-[ease] hover:-translate-y-[2px] hover:bg-[#1a382c] hover:opacity-[0.92]"
+                      className="rounded-[10px] bg-[#B04A2A] px-5 py-[10px] text-[15px] leading-[22.5px] font-medium text-white transition-[opacity,background-color,color,translate] duration-[250ms] ease-[ease] hover:-translate-y-[2px] hover:bg-[#8F3B20] hover:opacity-[0.92]"
                     >
                       {p.cta}
                     </Link>

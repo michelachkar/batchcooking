@@ -53,7 +53,7 @@ export function MemberDetail(p: Props) {
                 />
               </div>
               <div data-cm-section="fade-up" data-cm-delay="0.1" className="px-6 pt-6 text-center">
-                <p className="m-0 mb-0 text-[19px] leading-[28.5px] font-medium text-black">
+                <p className="text-ink m-0 mb-0 text-[19px] leading-[28.5px] font-medium">
                   {p.role}
                 </p>
                 {p.social.length > 0 && (
@@ -64,7 +64,7 @@ export function MemberDetail(p: Props) {
                           <a
                             href={s.href}
                             aria-label={p.socialLabels[s.type]}
-                            className="flex size-[38px] items-center justify-center rounded-full bg-[#f4f3ef] text-[#5a605c] transition-colors hover:text-[#234a3a]"
+                            className="flex size-[38px] items-center justify-center rounded-full bg-[#F0EBE3] text-[#625C50] transition-colors hover:text-[#B04A2A]"
                           >
                             <BrandIcon name={s.type} className="size-[14px]" />
                           </a>
@@ -96,10 +96,10 @@ export function MemberDetail(p: Props) {
           </div>
           <div className="w-full px-3 md:w-2/3">
             <div data-cm-section="fade-up" className="pl-4 max-lg:mt-[30px] max-lg:pl-0">
-              <h2 className="font-display m-0 mb-5 border-b-2 border-[#e5e7eb] pb-4 text-[32px] leading-[70px] font-bold tracking-[-0.02em] text-[#262c29] max-lg:text-[45px] max-lg:leading-[56px]">
+              <h2 className="font-display m-0 mb-5 border-b-2 border-[#e5e7eb] pb-4 text-[32px] leading-[70px] font-bold tracking-[-0.02em] text-[#3A352E] max-lg:text-[45px] max-lg:leading-[56px]">
                 {p.labels.about}
               </h2>
-              <div className="text-base leading-7 text-[#262c29] [&_p]:mt-0 [&_p]:mb-4 [&_strong]:font-bold">
+              <div className="text-base leading-7 text-[#3A352E] [&_p]:mt-0 [&_p]:mb-4 [&_strong]:font-bold">
                 {p.children}
               </div>
             </div>
@@ -114,29 +114,29 @@ export function MemberDetail(p: Props) {
                   <div
                     key={q.label}
                     data-cm-child
-                    className="grow basis-[calc(50%-12px)] rounded-xl border border-[#e5e7eb] bg-[#f4f3ef] px-5 py-[18px] max-md:basis-full"
+                    className="grow basis-[calc(50%-12px)] rounded-xl border border-[#e5e7eb] bg-[#F0EBE3] px-5 py-[18px] max-md:basis-full"
                   >
-                    <span className="mb-1 block text-[11px] leading-[16.5px] font-semibold tracking-[0.8px] text-[#5a605c] uppercase">
+                    <span className="mb-1 block text-[11px] leading-[16.5px] font-semibold tracking-[0.8px] text-[#625C50] uppercase">
                       {q.label}
                     </span>
-                    <span className="block font-bold text-[#262c29]">{q.value}</span>
+                    <span className="block font-bold text-[#3A352E]">{q.value}</span>
                   </div>
                 ))}
               </div>
             )}
             {p.skills.length > 0 && (
               <div data-cm-section="fade-up" className="mb-[52px] pl-4 max-md:pl-0">
-                <h2 className="font-display m-0 mb-6 text-xl leading-[70px] font-extrabold tracking-[0.025em] text-[#262c29] uppercase max-lg:text-[45px] max-lg:leading-[56px]">
+                <h2 className="font-display m-0 mb-6 text-xl leading-[70px] font-extrabold tracking-[0.025em] text-[#3A352E] uppercase max-lg:text-[45px] max-lg:leading-[56px]">
                   {p.labels.skills}
                 </h2>
                 <ul className="m-0 list-none p-0">
                   {p.skills.map((s) => (
                     <li key={s.name} className="mb-[22px] last:mb-0">
                       <div className="mb-2 flex items-baseline justify-between">
-                        <span className="text-[13px] leading-[19.5px] font-semibold tracking-[0.4px] text-[#262c29] uppercase">
+                        <span className="text-[13px] leading-[19.5px] font-semibold tracking-[0.4px] text-[#3A352E] uppercase">
                           {s.name}
                         </span>
-                        <span className="text-sm leading-[21px] font-bold text-[#5a605c]">
+                        <span className="text-sm leading-[21px] font-bold text-[#625C50]">
                           {s.value}%
                         </span>
                       </div>
@@ -149,7 +149,7 @@ export function MemberDetail(p: Props) {
                         className="h-[6px] overflow-hidden rounded-[3px] bg-[#e2e2e2]"
                       >
                         <div
-                          className="h-full rounded-[3px] bg-[#262c29]"
+                          className="h-full rounded-[3px] bg-[#3A352E]"
                           style={{ width: `${s.value}%` }}
                         />
                       </div>
@@ -167,8 +167,8 @@ export function MemberDetail(p: Props) {
 
 function ContactRow({ icon, children }: { icon: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="flex items-center gap-3 py-2 text-[17px] leading-[25.5px] text-[#262c29]">
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#f4f3ef] text-[#262c29]">
+    <div className="flex items-center gap-3 py-2 text-[17px] leading-[25.5px] text-[#3A352E]">
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[#F0EBE3] text-[#3A352E]">
         {icon}
       </span>
       {children}

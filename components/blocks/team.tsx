@@ -129,7 +129,7 @@ export function TeamGrid({
             />
             <div
               aria-hidden
-              className="absolute bottom-0 left-0 z-[1] h-4/5 w-full overflow-hidden rounded-[4rem_0.75rem_0.75rem_0.75rem] bg-[#1b1f1d] transition-[background-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:bg-[#262c29] group-focus-within:shadow-[0_25px_50px_-12px_rgba(27,31,29,0.4)] group-hover:bg-[#262c29] group-hover:shadow-[0_25px_50px_-12px_rgba(27,31,29,0.4)]"
+              className="absolute bottom-0 left-0 z-[1] h-4/5 w-full overflow-hidden rounded-[4rem_0.75rem_0.75rem_0.75rem] bg-[#2F2B26] transition-[background-color,box-shadow] duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:bg-[#3A352E] group-focus-within:shadow-[0_25px_50px_-12px_rgba(47,43,38,0.4)] group-hover:bg-[#3A352E] group-hover:shadow-[0_25px_50px_-12px_rgba(47,43,38,0.4)]"
             >
               <span className="text-cream pointer-events-none absolute top-8 left-2 origin-top-left [transform:rotate(-90deg)_translateX(-100%)] text-[5rem] leading-[1.5] font-black tracking-[0.15em] whitespace-nowrap uppercase opacity-20 transition-opacity duration-500 ease-[ease] group-focus-within:opacity-40 group-hover:opacity-40">
                 {vertical}
@@ -144,7 +144,7 @@ export function TeamGrid({
               sizes="(min-width: 1024px) 285px, 320px"
               className="absolute bottom-0 left-1/2 z-10 h-[95%] w-[90%] max-w-none -translate-x-1/2 [mask-image:linear-gradient(to_top,transparent_0%,black_50%)] object-contain object-bottom drop-shadow-[0_15px_15px_rgba(0,0,0,0.4)] transition-transform duration-[600ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-within:-translate-y-[10px] group-focus-within:scale-[1.04] group-hover:-translate-y-[10px] group-hover:scale-[1.04]"
             />
-            <div className="relative z-20 rounded-b-xl bg-[linear-gradient(to_top,#1b1f1d_10%,rgba(27,31,29,0.8)_50%,transparent_100%)] p-6 pt-20">
+            <div className="relative z-20 rounded-b-xl bg-[linear-gradient(to_top,#2F2B26_10%,rgba(47,43,38,0.8)_50%,transparent_100%)] p-6 pt-20">
               <h3 className="text-cream m-0 mb-1 text-[clamp(1.1rem,1.4vw,1.35rem)] leading-[1.2] font-semibold tracking-[0.02em] max-lg:text-[28px] max-lg:leading-[35px]">
                 {m.name}
               </h3>
@@ -153,7 +153,7 @@ export function TeamGrid({
               </p>
             </div>
             {m.social && m.social.length > 0 && (
-              <div className="pointer-events-none absolute bottom-0 left-0 z-30 flex h-4/5 w-full items-end justify-center gap-4 rounded-[4rem_0.75rem_0.75rem_0.75rem] bg-[rgba(27,31,29,0.55)] pb-9 opacity-0 backdrop-blur-[6px] transition-opacity duration-[400ms] ease-[ease] group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100">
+              <div className="pointer-events-none absolute bottom-0 left-0 z-30 flex h-4/5 w-full items-end justify-center gap-4 rounded-[4rem_0.75rem_0.75rem_0.75rem] bg-[rgba(47,43,38,0.55)] pb-9 opacity-0 backdrop-blur-[6px] transition-opacity duration-[400ms] ease-[ease] group-focus-within:pointer-events-auto group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100">
                 {m.social.map((s, i) => (
                   <a
                     key={s.type}
@@ -161,7 +161,7 @@ export function TeamGrid({
                     aria-label={s.label}
                     className={cn(
                       // Savrio : entrée 400 ms (rebond) décalée de 100/150 ms au survol de la carte ; couleurs 250 ms ease ; survol de la pastille x1,1.
-                      'hover:border-sage group/s relative z-50 flex size-14 translate-y-10 items-center justify-center rounded-full border border-[rgba(244,243,239,0.2)] bg-[rgba(244,243,239,0.1)] text-white opacity-0 [transition:translate_400ms_cubic-bezier(0.175,0.885,0.32,1.275),scale_400ms_cubic-bezier(0.175,0.885,0.32,1.275),opacity_400ms_cubic-bezier(0.175,0.885,0.32,1.275),background-color_250ms_ease,border-color_250ms_ease,box-shadow_250ms_ease,color_250ms_ease] group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 hover:scale-110 hover:bg-[#234a3a] hover:text-[#1b1f1d]',
+                      'hover:border-sage group/s relative z-50 flex size-14 translate-y-10 items-center justify-center rounded-full border border-[rgba(244,243,239,0.2)] bg-[rgba(244,243,239,0.1)] text-white opacity-0 [transition:translate_400ms_cubic-bezier(0.175,0.885,0.32,1.275),scale_400ms_cubic-bezier(0.175,0.885,0.32,1.275),opacity_400ms_cubic-bezier(0.175,0.885,0.32,1.275),background-color_250ms_ease,border-color_250ms_ease,box-shadow_250ms_ease,color_250ms_ease] group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 hover:scale-110 hover:bg-[#B04A2A] hover:text-[#2F2B26]',
                       i === 0
                         ? 'group-focus-within:delay-100 group-hover:delay-100'
                         : 'group-focus-within:delay-150 group-hover:delay-150',

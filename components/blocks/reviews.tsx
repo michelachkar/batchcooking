@@ -43,14 +43,14 @@ export function Reviews({
       className={
         inset
           ? cn('flex flex-col gap-5 px-[15px] leading-normal', tight && 'max-md:px-[10px]')
-          : 'flex flex-col gap-5 bg-[#E6E4DD] p-[10px] leading-normal max-md:mx-[10px]'
+          : 'flex flex-col gap-5 bg-[#E3D9CC] p-[10px] leading-normal max-md:mx-[10px]'
       }
     >
       <div
         className={
           inset
             ? cn(
-                'flex flex-col gap-5 rounded-[30px] bg-[#E6E4DD] p-[10px]',
+                'flex flex-col gap-5 rounded-[30px] bg-[#E3D9CC] p-[10px]',
                 tight ? 'max-md:p-[10px]' : 'max-md:p-0',
               )
             : 'contents'
@@ -67,10 +67,10 @@ export function Reviews({
         <ReviewsSlider reviews={reviews} labels={labels} initial={initial} />
         <div className="flex flex-wrap items-center justify-center gap-x-[10px] pt-[10px]">
           <StackedPhotos photos={faces} />
-          <p className="font-display m-0 text-[15px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] max-lg:hidden">
+          <p className="font-display m-0 text-[16px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] max-lg:hidden">
             {proof.long}
           </p>
-          <p className="font-display m-0 text-[15px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] lg:hidden">
+          <p className="font-display m-0 text-[16px] leading-[22px] font-medium tracking-[-0.02em] text-[#3f3f3f] lg:hidden">
             {proof.short}
           </p>
         </div>

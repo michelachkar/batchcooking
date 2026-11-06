@@ -30,7 +30,7 @@ export default async function NotFound() {
               <p className="mt-0 mb-4">{t('text')}</p>
               <Link
                 href="/"
-                className="mt-5 inline-block rounded-full bg-[#234a3a] px-8 py-[18px] leading-4 font-medium tracking-[0.5px] text-[#fbfaf7] capitalize transition-colors duration-[250ms] ease-[ease] hover:bg-[#1b3a2d]"
+                className="mt-5 inline-block rounded-full bg-[#B04A2A] px-8 py-[18px] leading-4 font-medium tracking-[0.5px] text-[#FAF7F2] capitalize transition-colors duration-[250ms] ease-[ease] hover:bg-[#302925]"
               >
                 {t('back')}
               </Link>

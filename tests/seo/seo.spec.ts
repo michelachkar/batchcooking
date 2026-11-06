@@ -31,7 +31,6 @@ test('sitemap : adresses absolues, dates réelles, pages principales présentes'
   const paths = entries.map((e) => pathOf(e.loc))
   for (const p of [
     '/',
-    '/a-propos',
     '/services',
     '/equipe',
     '/tarifs',

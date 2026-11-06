@@ -98,7 +98,7 @@
 }
 .mtm-rs:hover .mtm-rs-card,
 .mtm-rs:focus-within .mtm-rs-card {
-  box-shadow: 0 24px 38px -34px rgba(27, 31, 29, 0.45);
+  box-shadow: 0 24px 38px -34px rgba(47,43,38, 0.45);
   background-image: linear-gradient(
     160deg,
     rgba(255, 255, 255, 0.92) 0%,
@@ -125,10 +125,10 @@
 }
 .mtm-rs:hover .mtm-rs-circle,
 .mtm-rs:focus-within .mtm-rs-circle {
-  background-image: linear-gradient(160deg, #a9c4a2 0%, #93b38b 100%);
-  color: #1b1f1d;
-  border-color: rgba(169, 196, 162, 0.7);
-  box-shadow: 0 8px 20px rgba(169, 196, 162, 0.24);
+  background-image: linear-gradient(160deg, #E8A98E 0%, #D9916F 100%);
+  color: #2F2B26;
+  border-color: rgba(232,169,142, 0.7);
+  box-shadow: 0 8px 20px rgba(232,169,142, 0.24);
 }
 .mtm-rs:hover .mtm-rs-circle::before,
 .mtm-rs:focus-within .mtm-rs-circle::before {

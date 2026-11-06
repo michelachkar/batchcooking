@@ -12,7 +12,7 @@ type Props = {
 // Section « comment ça marche » : fond vert, quatre étapes reliées par un filet (colonne unique et filet vertical en mobile).
 export function EveningSteps({ kicker, title, button, steps }: Props) {
   return (
-    <SectionShell name="steps" className="bg-[var(--skin-deep,#234A3A)]">
+    <SectionShell name="steps" className="bg-[var(--skin-deep,#B04A2A)]">
       <div className="[--es-accent:var(--color-sage)]">
         <header className="mb-14 flex flex-wrap items-end justify-between gap-x-10 gap-y-6 max-md:mb-9">
           <div>
@@ -39,10 +39,10 @@ export function EveningSteps({ kicker, title, button, steps }: Props) {
             >
               <span
                 aria-hidden
-                className="border-sage text-sage group-hover:bg-sage relative z-[1] inline-flex size-[76px] items-center justify-center rounded-full border bg-[var(--skin-dot,#234A3A)] text-[15px] leading-normal font-bold tracking-[0.06em] [transition:background-color_0.35s_ease,color_0.35s_ease,scale_0.45s_cubic-bezier(0.2,0.7,0.2,1),box-shadow_0.35s_ease] group-hover:scale-110 group-hover:text-[color:var(--skin-deep,#234A3A)] group-hover:shadow-[0_0_0_8px_rgba(169,196,162,0.16)] max-md:row-span-2"
+                className="border-sage text-sage group-hover:bg-sage relative z-[1] inline-flex size-[76px] items-center justify-center rounded-full border bg-[var(--skin-dot,#B04A2A)] text-[15px] leading-normal font-bold tracking-[0.06em] [transition:background-color_0.35s_ease,color_0.35s_ease,scale_0.45s_cubic-bezier(0.2,0.7,0.2,1),box-shadow_0.35s_ease] group-hover:scale-110 group-hover:text-[color:var(--skin-deep,#B04A2A)] group-hover:shadow-[0_0_0_8px_rgba(232,169,142,0.16)] max-md:row-span-2"
               >
                 <Icon name={s.icon} className="size-8" />
-                <em className="rounded-pill bg-sage group-hover:bg-cream group-hover:text-sage absolute -top-[6px] -right-2 inline-flex h-[30px] min-w-[30px] items-center justify-center px-[6px] text-[11px] leading-normal font-extrabold text-[color:var(--skin-deep,#234A3A)] not-italic">
+                <em className="rounded-pill bg-sage group-hover:bg-cream group-hover:text-sage absolute -top-[6px] -right-2 inline-flex h-[30px] min-w-[30px] items-center justify-center px-[6px] text-[11px] leading-normal font-extrabold text-[color:var(--skin-deep,#B04A2A)] not-italic">
                   {String(i + 1).padStart(2, '0')}
                 </em>
               </span>

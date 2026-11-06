@@ -44,14 +44,14 @@ export function BlogList({ posts, readMore, sidebar, side = 'right', paginationS
               )}
               <div className={cn('bg-white p-10', p.image ? 'rounded-b-[30px]' : 'rounded-[30px]')}>
                 <h3 className="font-display m-0 mb-2 text-[35px] leading-[42px] font-semibold tracking-[-0.02em] max-lg:text-[28px] max-lg:leading-[35px] max-lg:tracking-[-0.56px]">
-                  <Link href={p.href} className="text-black max-lg:text-[35px]">
+                  <Link href={p.href} className="text-ink max-lg:text-[35px]">
                     {p.title}
                   </Link>
                 </h3>
-                <p className="mt-5 mb-0 text-base leading-6 text-[#5a605c]">{p.excerpt}</p>
+                <p className="mt-5 mb-0 text-base leading-6 text-[#625C50]">{p.excerpt}</p>
                 <Link
                   href={p.href}
-                  className="mt-[25px] inline-block rounded-full bg-[#234a3a] px-8 py-[18px] leading-4 font-medium tracking-[0.5px] text-[#fbfaf7] capitalize transition-colors hover:bg-[#1b3a2d]"
+                  className="mt-[25px] inline-block rounded-full bg-[#B04A2A] px-8 py-[18px] leading-4 font-medium tracking-[0.5px] text-[#FAF7F2] capitalize transition-colors hover:bg-[#302925]"
                 >
                   {readMore}
                 </Link>

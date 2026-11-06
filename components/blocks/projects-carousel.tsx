@@ -3,7 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
 import { cn } from '@/lib/utils'
 
 export type Project = {
@@ -31,7 +30,6 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
   const startX = useRef<number | null>(null)
   const startT = useRef(0)
   const listRef = useRef<HTMLUListElement>(null)
-  const zoomApi = useZoom()
 
   const go = (d: number) => {
     setAnimate(true)
@@ -56,7 +54,7 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
   }
 
   return (
-    <div className="[--pp-gap:16px] [--pp-w:min(72vw,288px)] min-[480px]:[--pp-w:min(68vw,320px)] min-[640px]:[--pp-gap:18px] min-[640px]:[--pp-w:clamp(280px,42vw,320px)] min-[1024px]:[--pp-gap:20px] min-[1024px]:[--pp-w:clamp(300px,30vw,440px)] min-[1400px]:[--pp-gap:22px] min-[1400px]:[--pp-w:clamp(320px,26vw,480px)]">
+    <div className="overflow-x-clip [--pp-gap:16px] [--pp-w:min(72vw,288px)] min-[480px]:[--pp-w:min(68vw,320px)] min-[640px]:[--pp-gap:18px] min-[640px]:[--pp-w:clamp(280px,42vw,320px)] min-[1024px]:[--pp-gap:20px] min-[1024px]:[--pp-w:clamp(300px,30vw,440px)] min-[1400px]:[--pp-gap:22px] min-[1400px]:[--pp-w:clamp(320px,26vw,480px)]">
       <div className="px-[clamp(1.2rem,2.4vw,2.2rem)] pb-[clamp(1.2rem,2.4vw,2.2rem)] max-lg:px-4 max-lg:pb-4">
         <div
           className="relative cursor-grab touch-pan-y pt-5"
@@ -118,15 +116,11 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
                       <article
                         className={cn(
                           // Savrio : 520 ms cubic-bezier(.25,1,.5,1) sur échelle, opacité, ombre et filtre ; slides inactifs réduits et estompés.
-                          'group relative min-h-[450px] overflow-hidden rounded-[clamp(1rem,1.3vw,1.2rem)] bg-[rgba(14,20,22,0.98)] [transition:scale_520ms_cubic-bezier(0.25,1,0.5,1),opacity_520ms_cubic-bezier(0.25,1,0.5,1),box-shadow_520ms_cubic-bezier(0.25,1,0.5,1),filter_520ms_cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none max-lg:min-h-[clamp(330px,78vw,460px)]',
+                          'group relative min-h-[450px] overflow-hidden rounded-[clamp(1rem,1.3vw,1.2rem)] bg-[rgba(20,17,16,0.98)] [transition:scale_520ms_cubic-bezier(0.25,1,0.5,1),opacity_520ms_cubic-bezier(0.25,1,0.5,1),box-shadow_520ms_cubic-bezier(0.25,1,0.5,1),filter_520ms_cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none max-lg:min-h-[clamp(330px,78vw,460px)]',
                           isActive
-                            ? 'shadow-[0_22px_44px_rgba(0,0,0,0.32),0_0_0_1px_rgba(169,196,162,0.42)]'
+                            ? 'shadow-[0_22px_44px_rgba(0,0,0,0.32),0_0_0_1px_rgba(232,169,142,0.42)]'
                             : 'motion-safe:scale-90 motion-safe:opacity-[0.68] motion-safe:[filter:saturate(0.88)_brightness(0.94)]',
                         )}
-                        onPointerEnter={(e) =>
-                          e.pointerType === 'mouse' && zoomApi.show(e.currentTarget, p)
-                        }
-                        onPointerLeave={(e) => e.pointerType === 'mouse' && zoomApi.hide()}
                       >
                         <Image
                           src={p.image.src}
@@ -135,15 +129,15 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
                           height={p.image.height}
                           unoptimized={p.image.unoptimized}
                           sizes="(min-width: 1400px) 26vw, (min-width: 1024px) 30vw, 320px"
-                          className="absolute inset-0 size-full max-w-none object-cover transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-focus-within:blur-[4px] group-hover:blur-[4px]"
+                          className="absolute inset-0 size-full max-w-none object-cover transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                         />
-                        <div className="absolute inset-x-0 bottom-0 z-[2] bg-[linear-gradient(180deg,rgba(27,31,29,0)_0%,rgba(27,31,29,0.68)_26%,rgba(27,31,29,0.92)_100%)] px-[30px] pt-3 pb-[30px]">
-                          <p className="text-sage mb-0 inline-flex rounded-full border border-[rgba(169,196,162,0.35)] bg-[rgba(27,31,29,0.55)] px-[6.72px] py-[2.88px] text-[11px] leading-[17px] font-bold tracking-[0.17em] uppercase transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-focus-within:blur-[3px] group-hover:blur-[3px]">
+                        <div className="absolute inset-x-0 bottom-0 z-[2] bg-[linear-gradient(180deg,rgba(47,43,38,0)_0%,rgba(47,43,38,0.68)_26%,rgba(47,43,38,0.92)_100%)] px-[30px] pt-3 pb-[30px]">
+                          <p className="text-sage mb-0 inline-flex rounded-full border border-[rgba(232,169,142,0.35)] bg-[rgba(47,43,38,0.55)] px-[6.72px] py-[2.88px] text-[13px] leading-[17px] font-bold tracking-[0.17em] uppercase transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]">
                             {p.type}
                           </p>
                           <h3
                             className={cn(
-                              'text-cream mt-[4.8px] text-2xl leading-[1.4] font-medium tracking-[-0.02em] transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-focus-within:blur-[3px] group-hover:blur-[3px] max-lg:text-[28px] max-lg:leading-[35px]',
+                              'text-cream mt-[4.8px] text-2xl leading-[1.4] font-medium tracking-[-0.02em] transition-[filter] duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] max-lg:text-[28px] max-lg:leading-[35px]',
                               smallTitleMobile && 'max-md:text-2xl max-md:leading-[1.4]',
                             )}
                           >
@@ -183,82 +177,8 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
           <NavButton label={labels.next} onClick={() => go(1)} d="M9 18l6-6-6-6" />
         </div>
       </div>
-      {zoomApi.panel}
     </div>
   )
-}
-
-// Panneau d'aperçu du widget (« mtfe-pp-zoom ») : au survol d'une carte, une grande vignette fixe apparaît à côté avec
-// zoom lent de l'image. Changer de carte = fondu sortant (300 ms), échange du contenu, fondu entrant ; sortie différée de 120 ms.
-function useZoom() {
-  const [state, setState] = useState<{
-    project: Project
-    left: number
-    top: number
-    visible: boolean
-    dim: boolean
-    key: number
-  } | null>(null)
-  const timers = useRef<{ hide?: number; swap?: number }>({})
-
-  const place = (card: HTMLElement) => {
-    const rect = card.getBoundingClientRect()
-    const panelW = 520
-    const panelH = 560
-    const margin = 16
-    const overlap = 160
-    let left = rect.right - overlap
-    if (left + panelW > window.innerWidth - margin) left = rect.left + overlap - panelW
-    left = Math.max(margin, left)
-    const top = Math.max(
-      margin,
-      Math.min(rect.top + rect.height / 2 - panelH / 2, window.innerHeight - panelH - margin),
-    )
-    return { left, top }
-  }
-
-  const show = (card: HTMLElement, project: Project) => {
-    clearTimeout(timers.current.hide)
-    clearTimeout(timers.current.swap)
-    const pos = place(card)
-    setState((cur) => {
-      if (!cur?.visible)
-        return { project, ...pos, visible: true, dim: false, key: (cur?.key ?? 0) + 1 }
-      timers.current.swap = window.setTimeout(
-        () =>
-          setState((c) => ({ project, ...pos, visible: true, dim: false, key: (c?.key ?? 0) + 1 })),
-        300,
-      )
-      return { ...cur, dim: true }
-    })
-  }
-  const hide = () => {
-    clearTimeout(timers.current.hide)
-    clearTimeout(timers.current.swap)
-    timers.current.hide = window.setTimeout(
-      () => setState((c) => (c ? { ...c, visible: false, dim: false } : c)),
-      120,
-    )
-  }
-
-  const panel =
-    state &&
-    createPortal(
-      <div
-        aria-hidden
-        className={cn('cm-pp-zoom', state.visible && 'is-visible')}
-        style={{ left: state.left, top: state.top, opacity: state.dim ? 0 : undefined }}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element -- vignette plein format, animée par CSS */}
-        <img key={state.key} className="cm-pp-zoom__img" src={state.project.image.src} alt="" />
-        <div className="cm-pp-zoom__panel">
-          <p className="cm-pp-zoom__type">{state.project.type}</p>
-          <h3 className="cm-pp-zoom__title">{state.project.title}</h3>
-        </div>
-      </div>,
-      document.body,
-    )
-  return { show, hide, panel }
 }
 
 function NavButton({ label, onClick, d }: { label: string; onClick: () => void; d: string }) {
@@ -267,7 +187,7 @@ function NavButton({ label, onClick, d }: { label: string; onClick: () => void; 
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="text-ink hover:text-cream focus-visible:text-cream inline-flex size-[2.8rem] cursor-pointer items-center justify-center rounded-full border border-[rgba(27,31,29,0.2)] bg-[rgba(27,31,29,0.04)] p-[1px_6px] transition-[translate,border-color,background-color,color] duration-[220ms] ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-px hover:border-[rgba(27,31,29,0.45)] hover:bg-[linear-gradient(145deg,#1b1f1d_0%,#262c29_52%,#0c2520_100%)] focus-visible:-translate-y-px focus-visible:bg-[linear-gradient(145deg,#1b1f1d_0%,#262c29_52%,#0c2520_100%)] focus-visible:outline-none"
+      className="text-ink hover:text-cream focus-visible:text-cream inline-flex size-[2.8rem] cursor-pointer items-center justify-center rounded-full border border-[rgba(47,43,38,0.2)] bg-[rgba(47,43,38,0.04)] p-[1px_6px] transition-[translate,border-color,background-color,color] duration-[220ms] ease-[cubic-bezier(0.25,1,0.5,1)] hover:-translate-y-px hover:border-[rgba(47,43,38,0.45)] hover:bg-[linear-gradient(145deg,#2F2B26_0%,#3A352E_52%,#1B1816_100%)] focus-visible:-translate-y-px focus-visible:bg-[linear-gradient(145deg,#2F2B26_0%,#3A352E_52%,#1B1816_100%)] focus-visible:outline-none"
     >
       <svg
         viewBox="0 0 24 24"

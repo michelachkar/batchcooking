@@ -23,8 +23,8 @@ export type SidebarData = {
 }
 
 const heading =
-  'font-display m-0 mb-[15px] pb-[10px] text-[22px] leading-[26px] font-semibold tracking-[-0.02em] text-black max-lg:leading-[56px] max-md:text-[45px]'
-const listLink = 'text-[#234a3a] hover:underline'
+  'font-display m-0 mb-[15px] pb-[10px] text-[22px] leading-[26px] font-semibold tracking-[-0.02em] text-ink max-lg:leading-[56px] max-md:text-[45px]'
+const listLink = 'text-[#B04A2A] hover:underline'
 
 // Colonne latérale du blog : recherche, derniers articles, archives, catégories.
 export function BlogSidebar({
@@ -49,7 +49,7 @@ export function BlogSidebar({
           name="s"
           required
           aria-label={sidebar.searchLabel}
-          className="h-[47px] w-full rounded-[30px] border border-[#c4c4c4] bg-transparent px-5 text-base text-[#222] outline-none focus:border-[#234a3a]"
+          className="h-[47px] w-full rounded-[30px] border border-[#c4c4c4] bg-transparent px-5 text-base text-[#222] outline-none focus:border-[#B04A2A]"
         />
       </form>
       <section className="mb-[60px]">
@@ -80,7 +80,7 @@ export function BlogSidebar({
           <ol className="m-0 list-none p-0">
             {sidebar.comments.items.map((c) => (
               <li key={c.href} className="py-[5px] leading-[22.4px]">
-                <span className="text-[#234a3a]">{c.author}</span> {sidebar.comments?.on}{' '}
+                <span className="text-[#B04A2A]">{c.author}</span> {sidebar.comments?.on}{' '}
                 <Link href={c.href} className={listLink}>
                   {c.postTitle}
                 </Link>
@@ -125,7 +125,7 @@ export function BlogSidebar({
               <li key={t.href}>
                 <Link
                   href={t.href}
-                  className="rounded-full border border-[#c4c4c4] px-3 py-1 text-sm text-[#222] transition-colors hover:border-[#234a3a] hover:text-[#234a3a]"
+                  className="rounded-full border border-[#c4c4c4] px-3 py-1 text-sm text-[#222] transition-colors hover:border-[#B04A2A] hover:text-[#B04A2A]"
                   style={{ fontSize: `${Math.min(16, 12 + t.count)}px` }}
                 >
                   {t.label}

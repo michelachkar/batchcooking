@@ -7,6 +7,7 @@ export const proposalSchema = z.object({
   date: z.string().trim().max(20).optional(),
   location: z.string().trim().max(200).optional(),
   phone: z.string().trim().max(40).optional(),
+  subject: z.string().trim().max(80).optional(),
   occasion: z.string().trim().max(80).optional(),
   guests: z.string().trim().max(80).optional(),
   budget: z.string().trim().max(80).optional(),

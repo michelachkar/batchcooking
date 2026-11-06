@@ -46,7 +46,7 @@ export function AnimatedProgress({ stats, className }: Props) {
             className="relative h-[5px] overflow-hidden rounded-full bg-black"
           >
             <div
-              className="absolute inset-y-0 left-0 rounded-full bg-[#234A3A] shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-[width] duration-[1200ms] ease-out motion-reduce:transition-none motion-reduce:duration-0"
+              className="absolute inset-y-0 left-0 rounded-full bg-[#B04A2A] shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-[width] duration-[1200ms] ease-out motion-reduce:transition-none motion-reduce:duration-0"
               style={{ width: visible ? `${s.value}%` : '0%', transitionDelay: `${i * 150}ms` }}
             />
           </div>

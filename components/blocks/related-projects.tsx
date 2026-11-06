@@ -10,7 +10,7 @@ export function RelatedProjects({ title, items }: { title: string; items: Projec
         <CptAnim />
         <h2
           data-cm-section="fade-up"
-          className="font-display mb-8 text-center text-[52px] leading-[70px] font-bold tracking-[-0.02em] text-[#262c29] max-lg:text-[45px] max-lg:leading-[56px]"
+          className="font-display mb-8 text-center text-[52px] leading-[70px] font-bold tracking-[-0.02em] text-[#3A352E] max-lg:text-[45px] max-lg:leading-[56px]"
         >
           {title}
         </h2>

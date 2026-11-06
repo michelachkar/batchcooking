@@ -28,7 +28,7 @@ export function TrustedStrip({
       className="flex flex-col gap-5 border-t p-[10px]"
     >
       <div className="h-6" aria-hidden />
-      <h4 className="font-display m-0 text-center text-[15px] leading-[15px] font-semibold tracking-[-0.02em] text-black max-lg:text-xl max-lg:leading-6">
+      <h4 className="font-display text-ink m-0 text-center text-[16px] leading-[15px] font-semibold tracking-[-0.02em] max-lg:text-xl max-lg:leading-6">
         {title}
       </h4>
       <div className="mx-auto mt-[5px] w-4/5 pb-0">

@@ -3,7 +3,13 @@ import Link from 'next/link'
 import { ArrowIcon, Icon, type IconName } from '@/components/ui/icon'
 import { cn } from '@/lib/utils'
 
-type Img = { src: string; width: number; height: number; unoptimized?: boolean }
+type Img = {
+  src: string
+  width: number
+  height: number
+  unoptimized?: boolean
+  position?: string
+}
 
 export type MediaSplitProps = {
   name: string
@@ -34,9 +40,9 @@ export type MediaSplitProps = {
 // Widget « media-split » : photo (avec photo incrustée, pastille, légende) + récit (chiffres, citation, liste).
 // Les variables --ms-* reprennent celles du widget ; le ton sombre est celui de la section « présentation du chef ».
 const tones = {
-  dark: '[--ms-title:#F4F3EF] [--ms-accent:#A9C4A2] [--ms-text:rgba(244,243,239,0.76)] [--ms-line:rgba(244,243,239,0.16)] [--ms-stat-bg:rgba(255,255,255,0.05)] [--ms-inset-border:#2A4A3B]',
+  dark: '[--ms-title:#F0EBE3] [--ms-accent:#E8A98E] [--ms-text:rgba(244,243,239,0.76)] [--ms-line:rgba(244,243,239,0.16)] [--ms-stat-bg:rgba(255,255,255,0.05)] [--ms-inset-border:#413833]',
   light:
-    '[--ms-title:#1B1F1D] [--ms-accent:#2F5E4A] [--ms-text:#5A605C] [--ms-line:#E0DDD4] [--ms-stat-bg:rgba(255,255,255,0.04)] [--ms-inset-border:#FFFFFF]',
+    '[--ms-title:#555044] [--ms-accent:#B04A2A] [--ms-text:#625C50] [--ms-line:#E3D9CC] [--ms-stat-bg:rgba(255,255,255,0.04)] [--ms-inset-border:#FFFFFF]',
 }
 
 function Photo({
@@ -57,6 +63,7 @@ function Photo({
       unoptimized={img.unoptimized}
       sizes={sizes}
       className={className}
+      style={img.position ? { objectPosition: img.position } : undefined}
     />
   )
 }
@@ -78,19 +85,19 @@ export function MediaSplit(p: MediaSplitProps) {
     >
       <figure
         className={cn(
-          'group/media relative mx-0 mt-0 mb-[30px] aspect-[4/5] overflow-hidden rounded-[18px] bg-[#E6E4DD] max-lg:max-w-[560px]',
+          'group/media relative mx-0 mt-0 mb-[30px] aspect-[4/5] overflow-hidden rounded-[18px] bg-[#E3D9CC] max-lg:max-w-[560px]',
           right && 'order-2 max-lg:order-none',
         )}
       >
         <Photo
           img={p.image}
           sizes="(min-width: 1025px) 44vw, 100vw"
-          className="absolute top-0 left-0 h-auto w-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover/media:scale-105"
+          className="absolute inset-0 size-full object-cover transition-transform duration-[1200ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover/media:scale-105"
         />
         {p.caption && (
           <figcaption
             className={cn(
-              'rounded-pill text-ink absolute bottom-5 left-5 bg-[rgba(244,243,239,0.94)] px-[14px] py-[9px] text-[13px] leading-[1.3] font-semibold transition-transform duration-[450ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover/media:-translate-y-[5px]',
+              'rounded-pill text-ink absolute bottom-5 left-5 bg-[rgba(244,243,239,0.94)] px-[14px] py-[9px] text-[14px] leading-[1.3] font-semibold transition-transform duration-[450ms] ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover/media:-translate-y-[5px]',
               inset && 'max-lg:hidden',
             )}
           >
@@ -98,9 +105,9 @@ export function MediaSplit(p: MediaSplitProps) {
           </figcaption>
         )}
         {p.badge && (
-          <span className="text-ink absolute top-5 right-5 z-[2] inline-flex items-center gap-3 rounded-2xl bg-[rgba(251,250,247,0.96)] py-3 pr-[18px] pl-3 shadow-[0_16px_34px_rgba(17,20,18,0.2)] motion-safe:animate-[float_5s_ease-in-out_infinite] max-md:top-3 max-md:right-3">
+          <span className="text-ink absolute top-5 right-5 z-[2] inline-flex items-center gap-3 rounded-2xl bg-[rgba(251,250,247,0.96)] py-3 pr-[18px] pl-3 shadow-[0_16px_34px_rgba(47,43,38,0.2)] motion-safe:animate-[float_5s_ease-in-out_infinite] max-md:top-3 max-md:right-3">
             {p.badge.icon && (
-              <span className="inline-flex size-[42px] items-center justify-center rounded-xl bg-[#234A3A] text-[#C3D6BD]">
+              <span className="inline-flex size-[42px] items-center justify-center rounded-xl bg-[#B04A2A] text-[#F0C8B8]">
                 <Icon name={p.badge.icon} className="size-[22px]" />
               </span>
             )}
@@ -108,7 +115,7 @@ export function MediaSplit(p: MediaSplitProps) {
               <strong className="block text-[19px] leading-[1.1] font-extrabold">
                 {p.badge.value}
               </strong>
-              <small className="text-body block text-xs leading-[1.3]">{p.badge.text}</small>
+              <small className="text-body block text-[13px] leading-[1.3]">{p.badge.text}</small>
             </span>
           </span>
         )}
@@ -116,7 +123,7 @@ export function MediaSplit(p: MediaSplitProps) {
       {p.inset && (
         <span
           className={cn(
-            'absolute bottom-0 z-[2] aspect-square w-[230px] overflow-hidden rounded-[18px] border-[6px] border-[color:var(--ms-inset-border)] shadow-[0_24px_50px_rgba(17,20,18,0.25)] transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:scale-[1.04] hover:-rotate-3',
+            'absolute bottom-0 z-[2] aspect-square w-[230px] overflow-hidden rounded-[18px] border-[6px] border-[color:var(--ms-inset-border)] shadow-[0_24px_50px_rgba(47,43,38,0.25)] transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:scale-[1.04] hover:-rotate-3',
             'max-lg:relative max-lg:mt-[-120px] max-lg:mr-3 max-lg:mb-0 max-lg:ml-auto max-lg:w-[46%] max-lg:max-w-[260px] lg:[right:var(--ms-inset-r)] lg:[left:var(--ms-inset-l)]',
           )}
           style={{
@@ -129,7 +136,7 @@ export function MediaSplit(p: MediaSplitProps) {
       )}
       <div className="min-w-0">
         {p.kicker && (
-          <p className="mb-[19px] inline-flex items-center gap-3 text-xs font-bold tracking-[0.16em] text-[color:var(--ms-accent)] uppercase before:h-px before:w-[34px] before:bg-current before:content-['']">
+          <p className="mb-[19px] inline-flex items-center gap-3 text-[13px] font-bold tracking-[0.16em] text-[color:var(--ms-accent)] uppercase before:h-px before:w-[34px] before:bg-current before:content-['']">
             {p.kicker}
           </p>
         )}
@@ -167,7 +174,7 @@ export function MediaSplit(p: MediaSplitProps) {
                 <strong className="font-display text-[30px] leading-none font-semibold tracking-[-0.02em] text-[color:var(--ms-title)] max-md:text-2xl">
                   {s.value}
                 </strong>
-                <span className="text-[13px] leading-[1.35] text-[color:var(--ms-text)]">
+                <span className="text-[14px] leading-[1.35] text-[color:var(--ms-text)]">
                   {s.label}
                 </span>
               </div>
@@ -184,7 +191,7 @@ export function MediaSplit(p: MediaSplitProps) {
               {p.quote.text}
             </p>
             {p.quote.author && (
-              <cite className="mt-2 block text-[13px] font-semibold text-[color:var(--ms-text)] not-italic">
+              <cite className="mt-2 block text-[14px] font-semibold text-[color:var(--ms-text)] not-italic">
                 {p.quote.author}
               </cite>
             )}
@@ -216,14 +223,14 @@ export function MediaSplit(p: MediaSplitProps) {
                     {icon ? (
                       <Icon
                         name={icon}
-                        className="size-[34px] flex-none rounded-[10px] bg-[#E3EBDF] p-[7px] text-[color:var(--ms-accent)] [transition:background-color_0.3s_ease,color_0.3s_ease,rotate_0.4s_cubic-bezier(0.2,0.7,0.2,1),scale_0.4s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:-rotate-[8deg] group-hover:bg-[color:var(--ms-accent)] group-hover:text-white"
+                        className="size-[34px] flex-none rounded-[10px] bg-[#EEE2DC] p-[7px] text-[color:var(--ms-accent)] [transition:background-color_0.3s_ease,color_0.3s_ease,rotate_0.4s_cubic-bezier(0.2,0.7,0.2,1),scale_0.4s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:-rotate-[8deg] group-hover:bg-[color:var(--ms-accent)] group-hover:text-white"
                       />
                     ) : (
                       p.listStyle !== 'line' && (
                         <svg
                           viewBox="0 0 24 24"
                           aria-hidden
-                          className="size-6 flex-none rounded-full bg-[#E3EBDF] p-1 text-[color:var(--ms-accent)] [transition:background-color_0.3s_ease,color_0.3s_ease,rotate_0.4s_cubic-bezier(0.2,0.7,0.2,1),scale_0.4s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.08] group-hover:-rotate-[8deg] group-hover:bg-[color:var(--ms-accent)] group-hover:text-white"
+                          className="size-6 flex-none rounded-full bg-[#EEE2DC] p-1 text-[color:var(--ms-accent)] [transition:background-color_0.3s_ease,color_0.3s_ease,rotate_0.4s_cubic-bezier(0.2,0.7,0.2,1),scale_0.4s_cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.08] group-hover:-rotate-[8deg] group-hover:bg-[color:var(--ms-accent)] group-hover:text-white"
                         >
                           <path
                             d="M5 12.5l4.2 4.2L19 7"
@@ -250,7 +257,7 @@ export function MediaSplit(p: MediaSplitProps) {
               {p.extras.items.map((x) => (
                 <div
                   key={x.label}
-                  className="hover:bg-sage/15 flex justify-between gap-5 border-b border-[color:var(--ms-line)] py-3 text-[15px] transition-[background-color,padding] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:px-[10px]"
+                  className="hover:bg-sage/15 flex justify-between gap-5 border-b border-[color:var(--ms-line)] py-3 text-[16px] transition-[background-color,padding] duration-300 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:px-[10px]"
                 >
                   <dt className="inline-flex items-center gap-[10px] font-medium text-[color:var(--ms-title)]">
                     <Icon name={x.icon} className="size-5 text-[color:var(--ms-accent)]" />
@@ -265,7 +272,7 @@ export function MediaSplit(p: MediaSplitProps) {
           </div>
         )}
         {p.note && (
-          <p className="mt-4 text-[13px] leading-[1.55] text-[color:var(--ms-text)]">{p.note}</p>
+          <p className="mt-4 text-[14px] leading-[1.55] text-[color:var(--ms-text)]">{p.note}</p>
         )}
         {p.link && (
           <Link
@@ -273,7 +280,7 @@ export function MediaSplit(p: MediaSplitProps) {
             className={cn(
               'group mt-[34px] inline-flex items-center gap-[10px] text-base font-semibold',
               p.linkStyle === 'button'
-                ? 'rounded-pill bg-[#234A3A] px-7 py-[17px] text-[#FBFAF7] [transition:background-color_0.25s_ease,translate_0.3s_cubic-bezier(0.2,0.7,0.2,1),box-shadow_0.3s_ease] hover:-translate-y-0.5 hover:bg-[#1A382C] hover:shadow-[0_12px_24px_rgba(35,74,58,0.3)]'
+                ? 'rounded-pill bg-[#B04A2A] px-7 py-[17px] text-[#FAF7F2] [transition:background-color_0.25s_ease,translate_0.3s_cubic-bezier(0.2,0.7,0.2,1),box-shadow_0.3s_ease] hover:-translate-y-0.5 hover:bg-[#8F3B20] hover:shadow-[0_12px_24px_rgba(176,74,42,0.3)]'
                 : 'border-b border-[color:var(--ms-accent)] pb-1 text-[color:var(--ms-title)] transition-colors hover:text-[color:var(--ms-accent)]',
             )}
           >
@@ -288,7 +295,7 @@ export function MediaSplit(p: MediaSplitProps) {
 
 function ListTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="mt-[34px] mb-[14px] text-xs leading-[1.2] font-bold tracking-[0.14em] text-[color:var(--ms-title)] uppercase max-lg:text-[28px] max-lg:leading-[35px] max-md:text-xs max-md:leading-[1.3]">
+    <h3 className="mt-[34px] mb-[14px] text-[13px] leading-[1.2] font-bold tracking-[0.14em] text-[color:var(--ms-title)] uppercase max-lg:text-[28px] max-lg:leading-[35px] max-md:text-[13px] max-md:leading-[1.3]">
       {children}
     </h3>
   )

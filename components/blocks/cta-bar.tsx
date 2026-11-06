@@ -16,13 +16,13 @@ type Props = {
 export function CtaBar({ title, text, button, className }: Props) {
   return (
     <div className={cn('rounded-[15px] max-lg:px-[10px]', className)}>
-      <div className="flex flex-wrap items-center rounded-[15px] bg-[#262C29] max-md:px-[30px] max-md:pb-[50px]">
+      <div className="flex flex-wrap items-center rounded-[15px] bg-[#3A352E] max-md:px-[30px] max-md:pb-[50px]">
         <div className="flex flex-col gap-5 pl-10 max-lg:basis-[48.4%] max-md:basis-full max-md:pr-[17px] max-md:pl-0 lg:basis-[calc(50%-12px)]">
           <div className="h-[25px]" aria-hidden />
           <h3
             className={cn(
               grotesk.className,
-              'm-0 text-[35px] leading-[35px] font-bold tracking-[-0.02em] text-[#A9C4A2] max-lg:text-[28px]',
+              'm-0 text-[35px] leading-[35px] font-bold tracking-[-0.02em] text-[#E8A98E] max-lg:text-[28px]',
             )}
           >
             {title}

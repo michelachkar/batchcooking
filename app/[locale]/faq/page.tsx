@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { PageHead } from '@/components/blocks/page-head'
-import { EventsSection } from '@/components/sections/events-section'
-import { FaqSection } from '@/components/sections/faq-section'
-import { ReviewsSection } from '@/components/sections/reviews-section'
-import { media } from '@/lib/media'
+import { FaqAccordion, type FaqItem } from '@/components/blocks/faq-accordion'
+import { FaqThemes } from '@/components/blocks/faq-themes'
+import { Heading, Shell } from '@/components/blocks/home-v2'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
-import { getReviewNodes } from '@/lib/seo-reviews'
+import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 
 export async function generateMetadata({
@@ -18,30 +17,30 @@ export async function generateMetadata({
   const { locale } = await params
   const p = await getTranslations({ locale, namespace: 'pages' })
   const s = await getTranslations({ locale, namespace: 'seo' })
-  return pageMetadata({
-    title: p('faq.title'),
-    description: s('faq'),
-    path: '/faq',
-  })
+  return pageMetadata({ title: p('faq.title'), description: s('faq'), path: '/faq' })
 }
 
+type Section = { id: string; kicker: string; title: string; items: FaqItem[] }
+
+// FAQ classée par thème : une section par thème (titre comme sur les autres pages), accordéon de la FAQ.
 export default async function FaqPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
   const p = await getTranslations('pages')
+  const f = await getTranslations('faqPage')
+  const sections = f.raw('sections') as Section[]
+  const tones = ['white', 'beige'] as const
   return (
     <main id="contenu">
+      <noscript>
+        <style>{'[data-reveal]{opacity:1!important}'}</style>
+      </noscript>
       <PageJsonLd
         path="/faq"
         title={p('faq.title')}
         description={(await getTranslations('seo'))('faq')}
         crumbs={[{ label: p('faq.crumb') }]}
-        extra={[
-          faqPage(
-            (await getTranslations('faq')).raw('items') as { question: string; answer: string }[],
-          ),
-          ...(await getReviewNodes()),
-        ]}
+        extra={[faqPage(sections.flatMap((s) => s.items))]}
       />
       <PageHead
         title={p('faq.title')}
@@ -49,9 +48,21 @@ export default async function FaqPage({ params }: { params: Promise<{ locale: st
         navLabel={p('navLabel')}
         background={media.heads.faq}
       />
-      <FaqSection />
-      <ReviewsSection variant="inset-proof" initial={0} tight />
-      <EventsSection topSpacer={50} bottomGap={80} smallTitleMobile />
+      <FaqThemes
+        label={f('themesLabel')}
+        intro={f('intro')}
+        themes={sections.map((s) => ({ id: s.id, label: s.kicker }))}
+      />
+      {sections.map((s, i) => (
+        <div key={s.id} id={s.id} className="scroll-mt-20">
+          <Shell name={`faq-${s.id}`} tone={tones[i % 2]}>
+            <Heading kicker={s.kicker} title={s.title} />
+            <div className="max-w-[56rem]" data-reveal="up">
+              <FaqAccordion items={s.items} name={`faq-${s.id}`} openFirst={i === 0} />
+            </div>
+          </Shell>
+        </div>
+      ))}
     </main>
   )
 }

@@ -21,7 +21,10 @@ export async function SiteHeader() {
   return (
     <header
       id="site-header"
-      className={cn('bg-cream relative z-40', vr && 'h-[71.81px] md:h-[147.81px] lg:h-[121.2px]')}
+      className={cn(
+        'bg-cream sticky top-0 z-40 lg:-top-[38px]',
+        vr && 'h-[71.81px] md:h-[147.81px] lg:h-[121.2px]',
+      )}
     >
       <a
         href="#contenu"
@@ -32,7 +35,7 @@ export async function SiteHeader() {
 
       {/* Desktop ≥ 1025 px : barre d'annonce + barre principale */}
       <div className="hidden lg:block">
-        <div className="bg-ink px-5 text-[13px] leading-[18px] font-medium">
+        <div className="bg-ink px-5 text-[14px] leading-[18px] font-medium">
           <div className="max-w-site mx-auto flex h-[38px] items-center justify-between">
             <p className="text-cream flex items-center gap-2">
               <Leaf size={12} fill="currentColor" className="text-sage" aria-hidden />
@@ -99,7 +102,7 @@ export async function SiteHeader() {
                           <li key={child.label}>
                             <Link
                               href={child.href}
-                              className="text-menu-link block px-5 py-[6px] text-[15px] leading-[22.5px] font-medium transition-colors duration-[250ms] ease-[ease] hover:text-black"
+                              className="text-menu-link hover:text-ink block px-5 py-[6px] text-[16px] leading-[22.5px] font-medium transition-colors duration-[250ms] ease-[ease]"
                             >
                               {child.label}
                             </Link>
@@ -119,7 +122,7 @@ export async function SiteHeader() {
               >
                 <Search size={17} strokeWidth={4} aria-hidden />
               </Link>
-              <ButtonLink href="/contact">
+              <ButtonLink href="/contact#devis">
                 {t('header.cta')}
                 <span className="grid size-[22px] place-items-center">
                   <ArrowUpRight size={17} strokeWidth={3} aria-hidden />

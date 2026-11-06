@@ -1,6 +1,7 @@
 node_modules
 .next
 .next-vr
+.next-preview
 out
 next-env.d.ts
 *.tsbuildinfo

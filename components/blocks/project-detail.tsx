@@ -102,7 +102,7 @@ export function ProjectDetail({
                 data-cm-section="fade-left"
                 data-cm-children
                 data-cm-stagger="0.08"
-                className="rounded-xl border border-[rgba(27,31,29,0.12)] bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)]"
+                className="rounded-xl border border-[rgba(47,43,38,0.12)] bg-white p-7 shadow-[0_1px_3px_rgba(0,0,0,0.1),0_1px_2px_rgba(0,0,0,0.06)]"
               >
                 <h3 className="font-display m-0 mb-5 pb-[18px] text-[23px] leading-[27.6px] font-bold tracking-[-0.02em] max-lg:text-[28px] max-lg:leading-[35px]">
                   {detailsTitle}
@@ -119,14 +119,14 @@ export function ProjectDetail({
                         <Icon className="size-[14px]" aria-hidden />
                       </span>
                       <div className="min-w-0 grow">
-                        <span className="mb-[2px] block text-[15px] leading-[22.5px] font-semibold tracking-[0.5px] text-[rgba(27,31,29,0.62)] uppercase">
+                        <span className="mb-[2px] block text-[15px] leading-[22.5px] font-semibold tracking-[0.5px] text-[rgba(47,43,38,0.62)] uppercase">
                           {label}
                         </span>
                         {href ? (
                           <a
                             href={href}
                             data-vr-mask
-                            className="block text-sm leading-[21px] font-medium break-all text-[#234a3a] hover:underline"
+                            className="block text-sm leading-[21px] font-medium break-all text-[#B04A2A] hover:underline"
                           >
                             {value}
                           </a>

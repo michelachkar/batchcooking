@@ -7,16 +7,22 @@ export async function OccasionsSection({
   topSpacer,
   wideHeader,
   ns = 'home',
+  source,
+  href = '/services',
 }: {
   topSpacer?: number
   wideHeader?: boolean
   ns?: Landing
+  /** Espace de messages des textes (par défaut `${ns}.occasions`) : photos de `ns`, textes d'une autre page. */
+  source?: string
+  /** Destination des cartes et du bouton. */
+  href?: string
 }) {
   const m = mediaOf(ns)
-  const oc = await getTranslations(`${ns}.occasions`)
+  const oc = await getTranslations(source ?? `${ns}.occasions`)
   const items = (oc.raw('occasions') as { name: string; description: string }[]).map((o, i) => ({
     ...o,
-    href: '/services',
+    href,
     ...m.occasions[i],
   }))
   return (
@@ -26,7 +32,7 @@ export async function OccasionsSection({
       highlight={oc('highlight')}
       description={oc('description')}
       occasions={items}
-      button={{ label: oc('button'), href: '/services' }}
+      button={{ label: oc('button'), href }}
       topSpacer={topSpacer}
       wideHeader={wideHeader}
     />

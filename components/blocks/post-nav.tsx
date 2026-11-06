@@ -5,9 +5,9 @@ import { CptAnim } from '@/components/blocks/cpt-anim'
 type Item = { label: string; title: string; href: string }
 
 const arrow =
-  'flex size-[52px] max-md:size-11 shrink-0 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#262c29] [transition:all_0.35s_cubic-bezier(0.4,0,0.2,1)] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] group-hover:border-[#262c29] group-hover:bg-[#262c29] group-hover:text-white group-focus-visible:border-[#262c29] group-focus-visible:bg-[#262c29] group-focus-visible:text-white'
+  'flex size-[52px] max-md:size-11 shrink-0 items-center justify-center rounded-full border border-[#e5e7eb] bg-white text-[#3A352E] [transition:all_0.35s_cubic-bezier(0.4,0,0.2,1)] group-hover:shadow-[0_4px_12px_rgba(0,0,0,0.12)] group-hover:border-[#3A352E] group-hover:bg-[#3A352E] group-hover:text-white group-focus-visible:border-[#3A352E] group-focus-visible:bg-[#3A352E] group-focus-visible:text-white'
 const link =
-  'group flex grow items-center gap-5 rounded-2xl border border-transparent bg-[#f4f3ef] px-7 py-6 text-[#234a3a] [transition:all_0.35s_cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-0.5 hover:border-[#e5e7eb] hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] focus-visible:border-[#e5e7eb] focus-visible:shadow-[0_8px_30px_rgba(0,0,0,0.08)] max-md:px-5 max-md:py-[18px]'
+  'group flex grow items-center gap-5 rounded-2xl border border-transparent bg-[#F0EBE3] px-7 py-6 text-[#B04A2A] [transition:all_0.35s_cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-0.5 hover:border-[#e5e7eb] hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] focus-visible:border-[#e5e7eb] focus-visible:shadow-[0_8px_30px_rgba(0,0,0,0.08)] max-md:px-5 max-md:py-[18px]'
 
 // Navigation « précédent / suivant » sous un contenu (services, membres, articles, réalisations).
 export function PostNav({ prev, next }: { prev?: Item; next?: Item }) {
@@ -29,7 +29,7 @@ export function PostNav({ prev, next }: { prev?: Item; next?: Item }) {
                 <span className="text-xs leading-[18px] font-semibold tracking-[0.96px] text-[#9ca3af] uppercase">
                   {prev.label}
                 </span>
-                <span className="truncate leading-[22.4px] font-semibold text-black max-md:text-sm max-md:leading-5">
+                <span className="text-ink truncate leading-[22.4px] font-semibold max-md:text-sm max-md:leading-5">
                   {prev.title}
                 </span>
               </span>
@@ -41,7 +41,7 @@ export function PostNav({ prev, next }: { prev?: Item; next?: Item }) {
                 <span className="text-xs leading-[18px] font-semibold tracking-[0.96px] text-[#9ca3af] uppercase">
                   {next.label}
                 </span>
-                <span className="truncate leading-[22.4px] font-semibold text-black max-md:text-sm max-md:leading-5">
+                <span className="text-ink truncate leading-[22.4px] font-semibold max-md:text-sm max-md:leading-5">
                   {next.title}
                 </span>
               </span>
