@@ -65,9 +65,9 @@ export function LeadProvider({
           texts={texts}
           packs={packs}
           onClose={() => setState(null)}
-          onConfirm={(submit) => {
+          onDone={() => {
             setState(null)
-            confirm('batch', submit)
+            confirm('batch')
           }}
         />
       )}

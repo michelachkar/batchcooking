@@ -8,6 +8,14 @@ import { useLead } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import styles from './quote-inquiry.module.css'
 
+// Nombre de convives : de 1 à 12, puis des tranches. La valeur envoyée à l'API est un nombre (`guests: Number(...)`).
+const GUESTS = [
+  ...Array.from({ length: 12 }, (_, i) => ({ value: String(i + 1), label: String(i + 1) })),
+  { value: '15', label: '13 à 15' },
+  { value: '20', label: '16 à 20' },
+  { value: '25', label: 'Plus de 20' },
+]
+
 export type QuoteOption = { value: string; label: string; text?: string; price?: string }
 
 export function Field({
@@ -195,16 +203,22 @@ export function QuoteInquiry(
             <p className={clsx(styles.intro, styles.soft)}>{p.intro}</p>
             <form onSubmit={onSubmit} className={styles.form}>
               <Field id="cc-guests" text={f.guests}>
-                <input
+                <select
                   id="cc-guests"
                   name="guests"
-                  type="number"
-                  min={1}
-                  max={50}
-                  inputMode="numeric"
                   required
-                  className={styles.control}
-                />
+                  defaultValue=""
+                  className={clsx(styles.control, styles.select)}
+                >
+                  <option value="" disabled>
+                    {f.guestsPlaceholder}
+                  </option>
+                  {GUESTS.map((g) => (
+                    <option key={g.value} value={g.value}>
+                      {g.label}
+                    </option>
+                  ))}
+                </select>
               </Field>
               <Field id="cc-location" text={f.location}>
                 <input

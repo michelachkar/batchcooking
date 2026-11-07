@@ -1471,7 +1471,8 @@
       "fields": {
         "choice": "Formule choisie",
         "choicePlaceholder": "Choisir une formule",
-        "guests": "Nombre d'invités",
+        "guests": "Invités",
+        "guestsPlaceholder": "Choisir",
         "location": "Lieu (ville)",
         "locationPlaceholder": "Paris 16e, Saint-Tropez…",
         "name": "Prénom",
@@ -1717,7 +1718,8 @@
       "fields": {
         "value": "Cours choisi",
         "choicePlaceholder": "Choisir un cours",
-        "guests": "Nombre de participants",
+        "guests": "Participants",
+        "guestsPlaceholder": "Choisir",
         "location": "Lieu (ville)",
         "locationPlaceholder": "Paris 16e, Lyon 3e…",
         "name": "Prénom",
@@ -2776,7 +2778,7 @@
     "submit": "Appel découverte sous 24h",
     "sending": "Envoi en cours…",
     "back": "Changer de formule",
-    "consent": "Ce rappel est gratuit et sans engagement. En envoyant ce formulaire, vous acceptez d'être recontacté(e) au sujet de votre demande.",
+    "consent": "Vous serez recontacté(e) dans les 24 h ouvrées. Gratuit et sans engagement.",
     "error": "Une erreur est survenue. Vérifiez vos coordonnées et réessayez.",
     "doneTitle": "Merci, c'est noté !",
     "doneText": "Nous vous rappelons sous un jour ouvré pour composer votre menu ensemble.",

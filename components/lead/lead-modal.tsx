@@ -1,13 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChefHat, Phone, User, X } from 'lucide-react'
+import { Check, ChefHat, Mail, Phone, User, X } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
 import type { LeadOpenOptions } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import { Switch } from '@/components/lead/switch'
-import type { ConfirmationTexts, ConfirmSubmit } from '@/components/lead/confirmation-dialog'
+import type { ConfirmationTexts } from '@/components/lead/confirmation-dialog'
 import styles from './lead-modal.module.css'
 import {
   DINNERS,
@@ -70,14 +70,14 @@ export function LeadModal({
   texts,
   packs,
   onClose,
-  onConfirm,
+  onDone,
 }: {
   opts: LeadOpenOptions
   texts: LeadTexts
   packs: LeadPack[]
   onClose: () => void
-  /** Clic sur le CTA : le provider ferme ce modal et ouvre « étapes suivantes + e-mail » ; la demande part à la confirmation. */
-  onConfirm: (submit: ConfirmSubmit) => void
+  /** La demande est partie : le provider ferme ce modal et ouvre « étapes suivantes ». */
+  onDone: () => void
 }) {
   const ref = useRef<HTMLDialogElement>(null)
   const direct = Boolean(opts.pack)
@@ -86,6 +86,7 @@ export function LeadModal({
   // Par défaut : 1 mois et 3 dîners, la combinaison la plus avantageuse.
   const [period, setPeriod] = useState<Period>(opts.period ?? 'month')
   const [dinners, setDinners] = useState<Dinners>(opts.dinners ?? DINNERS[0])
+  const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
 
   useEffect(() => {
     const d = ref.current
@@ -93,19 +94,25 @@ export function LeadModal({
   }, [])
 
   const pick = packs.find((p) => p.id === pickId) ?? packs[0]
-  function submit(e: React.FormEvent<HTMLFormElement>) {
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const f = new FormData(e.currentTarget)
-    const data = {
-      firstName: String(f.get('firstName') ?? ''),
-      phone: String(f.get('phone') ?? ''),
-      website: String(f.get('website') ?? ''),
+    const get = (k: string) => String(f.get(k) ?? '')
+    setStatus('sending')
+    const ok = await submitLead({
+      source: 'formula-modal',
+      service: 'batch',
+      email: get('email'),
+      firstName: get('firstName'),
+      phone: get('phone'),
+      website: get('website'),
       pack: pick.id,
       period,
       dinners,
       price: euro(priceAfter(pick.id, period, dinners)),
-    }
-    onConfirm((email) => submitLead({ source: 'formula-modal', service: 'batch', email, ...data }))
+    })
+    if (ok) onDone()
+    else setStatus('error')
   }
 
   return (
@@ -271,6 +278,23 @@ export function LeadModal({
                   />
                 </span>
               </div>
+              <div className={clsx(styles.field, styles.fieldWide)}>
+                <label htmlFor="lead-email" className={styles.label}>
+                  {texts.emailLabel}
+                </label>
+                <span className={styles.control}>
+                  <Mail aria-hidden className={styles.fieldIcon} />
+                  <input
+                    id="lead-email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="email"
+                    placeholder={texts.emailPlaceholder}
+                    className={styles.input}
+                  />
+                </span>
+              </div>
               {/* Champ piège anti-spam : invisible pour les personnes. */}
               <input
                 name="website"
@@ -280,8 +304,13 @@ export function LeadModal({
                 className={styles.trap}
               />
             </div>
-            <button type="submit" className={styles.submit}>
-              {texts.submit}
+            {status === 'error' && (
+              <p role="alert" className={styles.error}>
+                {texts.error}
+              </p>
+            )}
+            <button type="submit" disabled={status === 'sending'} className={styles.submit}>
+              {status === 'sending' ? texts.sending : texts.submit}
               <ArrowIcon className={styles.submitArrow} />
             </button>
             <p className={styles.consent}>{texts.consent}</p>

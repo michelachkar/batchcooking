@@ -610,10 +610,16 @@
 }
 
 .consent {
-  margin-top: 0.5rem;
-  color: rgb(85 80 68 / 0.7);
-  font-size: 12px;
+  margin-top: 0.75rem;
+  color: rgb(85 80 68 / 0.88);
+  font-size: 13px;
   line-height: 1.5;
+
+  @media (width < 768px) {
+    margin-top: 0.5rem;
+    font-size: 12px;
+    line-height: 1.4;
+  }
 }
 
 .back {
