@@ -8,12 +8,13 @@ import { site } from '@/lib/site'
 import clsx from 'clsx'
 import styles from './site-footer.module.css'
 
+// Un libellé = une URL distincte, avec un intitulé descriptif (mêmes pages que le menu principal).
 const servicesLinks = [
-  ['weekly', '/services'],
-  ['family', '/services'],
-  ['events', '/formule-evenement'],
-  ['gift', '/contact'],
-  ['menus', '/services'],
+  ['batch', '/services/batch-cooking'],
+  ['chef', '/services/chef-prive'],
+  ['cours', '/services/cours-de-cuisine'],
+  ['pricing', '/tarifs'],
+  ['recipes', '/recettes'],
 ] as const
 const companyLinks = [
   ['zones', '/zones'],

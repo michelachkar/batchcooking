@@ -2,7 +2,7 @@
 
 Next.js (App Router, rendu 100 % statique) + React Compiler + TypeScript + CSS Modules. Brief : voir `BRIEF.md` si présent ; avancement par étapes, validation entre chaque.
 
-Étapes faites : 0 (assets), 1 (analyse : `TOKENS.md`, `SECTIONS.md`), 3 (fondations), 4 (accueil et pages intérieures : à propos, services et détail, équipe et fiche, tarifs, FAQ, contact, blog (liste, 3 variantes, grille, article, catégories, archives, mots-clés), réalisations et détail, recherche, 404, pages de texte), 5 (contenu et SEO). Reste : page « Mobile Bar & Cocktails » (`/formule-evenement`), contenus réels, marque, hébergement.
+Étapes faites : 0 (assets), 1 (analyse : `TOKENS.md`, `SECTIONS.md`), 3 (fondations), 4 (accueil et pages intérieures : à propos, services et détail, équipe et fiche, tarifs, FAQ, contact, blog (liste, 3 variantes, grille, article, catégories, archives, mots-clés), réalisations et détail, recherche, 404, pages de texte), 5 (contenu et SEO). Reste : contenus réels, marque, hébergement.
 
 ## Commandes
 ```bash

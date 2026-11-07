@@ -23,7 +23,7 @@ import styles from './landing.module.css'
 import { getTranslations } from '@/lib/i18n'
 import { mediaOf, type Landing as LandingNs } from '@/lib/media'
 
-// Page d'accueil (messages et photos de l'espace `ns`) : l'accueil et la page « Mobile Bar & Cocktails » ont les mêmes sections dans le même ordre.
+// Page d'accueil (messages et photos de l'espace `ns`).
 export async function Landing({ ns }: { ns: LandingNs }) {
   const media = mediaOf(ns)
   const t = await getTranslations(`${ns}.hero`)

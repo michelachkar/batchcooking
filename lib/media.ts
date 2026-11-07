@@ -112,9 +112,6 @@ export const media = {
   })),
 }
 
-// La page « Mobile Bar & Cocktails » utilise les mêmes visuels provisoires que l'accueil.
-export const barMedia = media
-
-export type Landing = 'home' | 'bar'
-/** Photos d'une page d'accueil : celles de l'accueil ou celles de la page « Mobile Bar & Cocktails ». */
-export const mediaOf = (ns: Landing) => (ns === 'bar' ? barMedia : media)
+export type Landing = 'home'
+/** Photos d'une page d'accueil. */
+export const mediaOf = (_ns: Landing) => media

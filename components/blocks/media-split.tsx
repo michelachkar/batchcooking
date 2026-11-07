@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowIcon, Icon, type IconName } from '@/components/ui/icon'
 import clsx from 'clsx'
+import { rich } from '@/components/ui/rich-text'
 import styles from './media-split.module.css'
 
 type Img = {
@@ -115,7 +116,7 @@ export function MediaSplit(p: MediaSplitProps) {
         {p.subtitle && <p className={styles.subtitle}>{p.subtitle}</p>}
         {p.paragraphs?.map((t, i) => (
           <p key={i} className={clsx(styles.paragraph, i === 0 && styles.paragraphFirst)}>
-            {t}
+            {rich(t)}
           </p>
         ))}
         {p.stats && (

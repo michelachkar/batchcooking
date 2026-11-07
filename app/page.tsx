@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 import { Landing } from '@/components/sections/landing'
 
-// Accueil : le même ensemble de sections que la page « Mobile Bar & Cocktails » (voir components/sections/landing.tsx).
+// Accueil : voir components/sections/landing.tsx.
 export default async function HomePage() {
   return (
     <main id="contenu">

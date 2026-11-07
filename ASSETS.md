@@ -29,7 +29,6 @@ Source : `demo-data/main-home/content.xml`.
 | Blog, Blog Grid, Blog No Sidebar, Blog Left Sidebar | Blog (toutes les variantes gardées) | `blog/` (6 articles dans la démo) |
 | Portfolio (6 réalisations) | Réalisations (menus, événements) | `pages/` |
 | Testimonials (5) | Avis | `avis/` |
-| Mobile Bar & Cocktails (démo `mobile-bar-cocktails`) | Page gardée, à adapter plus tard | `pages/` |
 
 Rien n'est écarté pour l'instant : le nettoyage se fera quand le sitemap sera décidé.
 Pages légales (mentions, confidentialité, CGV) à ajouter, absentes de la démo.

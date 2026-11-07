@@ -36,7 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/tarifs', pageDate('tarifs')),
     entry('/faq', pageDate('faq')),
     entry('/contact', pageDate('contact')),
-    entry('/formule-evenement', pageDate('formule-evenement')),
     entry('/blog', pageDate('blog', posts)),
     entry('/realisations', pageDate('realisations', projects)),
     ...services.map((s) => entry(`/services/${s.slug}`, s.modified)),
