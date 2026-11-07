@@ -39,7 +39,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const { packs, ...leadTexts } = all.raw('lead') as LeadTexts & { packs: LeadPack[] }
 
   // Formules du formulaire de devis : lues dans les cartes de la page (une seule source pour titres et prix).
-  const formTexts = (ns: 'chefPage' | 'coursPage', items: 'packages' | 'ideas') => {
+  const serviceTitle = (id: 'chef' | 'cours') =>
+    (all.raw('quote') as QuoteTexts).services.find((s) => s.id === id)!.title
+  const formTexts = (
+    ns: 'chefPage' | 'coursPage',
+    items: 'packages' | 'ideas',
+    service: 'chef' | 'cours',
+  ) => {
     const form = all.raw(`${ns}.form`) as { options: { value: string; label: string }[] }
     const from = (all.raw(`${ns}.${items}.labels`) as { from: string }).from
     const cards = all.raw(`${ns}.${items}.items`) as {
@@ -53,6 +59,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     const other = form.options.filter((o) => o.value === 'autre')
     return {
       ...form,
+      serviceName: serviceTitle(service),
+      subtitle: leadTexts.subtitle,
       options: [
         ...cards.map((c) => ({
           value: c.value,
@@ -71,8 +79,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LeadProvider texts={leadTexts as LeadTexts} packs={packs}>
           <QuoteProvider
             texts={all.raw('quote') as QuoteTexts}
-            chef={formTexts('chefPage', 'packages')}
-            cours={formTexts('coursPage', 'ideas')}
+            chef={formTexts('chefPage', 'packages', 'chef')}
+            cours={formTexts('coursPage', 'ideas', 'cours')}
           >
             <SiteHeader />
             {children}

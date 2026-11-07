@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/blocks/page-head'
 import { BatchIntro } from '@/components/blocks/batch-page'
+import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
 import { Included } from '@/components/blocks/included'
 import type { IconName } from '@/components/ui/icon'
@@ -30,6 +31,7 @@ export default async function ChefPrivePage() {
   const homeMedia = mediaOf('home')
   const faqItems = c.raw('faq.items') as { question: string; answer: string }[]
   const quote = `${PATH}#devis`
+  const q = await getTranslations('chefPage.inquiry')
 
   return (
     <main id="contenu">
@@ -68,10 +70,33 @@ export default async function ChefPrivePage() {
         paragraphs={c.raw('intro.paragraphs') as string[]}
         highlights={c.raw('intro.highlights') as string[]}
         primary={{ label: c('intro.primary'), href: quote }}
-        secondary={{ label: c('intro.secondary'), href: '#deroule' }}
+        secondary={{ label: c('intro.secondary'), href: '#tarifs' }}
         image={{ src: '/assets/hero/chef.jpg', alt: c('intro.imageAlt') }}
         lead={false}
       />
+      <QuickInquiry
+        kicker={q('kicker')}
+        title={q('title')}
+        action="/contact#inquiry"
+        dateLabel={q('dateLabel')}
+        guestsLabel={q('guestsLabel')}
+        guestsPlaceholder={q('guestsPlaceholder')}
+        guestsOptions={q.raw('guestsOptions') as string[]}
+        locationLabel={q('locationLabel')}
+        locationPlaceholder={q('locationPlaceholder')}
+        button={q('button')}
+        pattern
+        lead={{
+          serviceLabel: q('serviceLabel'),
+          servicePlaceholder: q('servicePlaceholder'),
+          serviceOptions: q.raw('serviceOptions') as { value: string; label: string }[],
+          phoneLabel: q('phoneLabel'),
+          phonePlaceholder: q('phonePlaceholder'),
+          success: q('success'),
+          error: q('error'),
+        }}
+      />
+      <div id="tarifs" className={styles.anchor} />
       <PackageCards
         name="packages"
         tone="terracotta"
@@ -88,7 +113,6 @@ export default async function ChefPrivePage() {
         items={c.raw('packages.items') as Package[]}
         cta={{ label: c('packages.button'), href: quote }}
       />
-      <div id="deroule" className={styles.anchor} />
       <Included
         flush
         kicker={inc('kicker')}

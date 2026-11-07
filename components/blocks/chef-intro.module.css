@@ -1,5 +1,5 @@
 .root {
-  background-color: var(--color-cream);
+  background-color: #fff;
 
   @media (width < 1025px) {
     padding-top: 18px;

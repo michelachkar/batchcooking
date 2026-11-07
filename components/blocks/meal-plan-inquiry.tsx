@@ -1,9 +1,9 @@
 'use client'
 
-import { useState } from 'react'
 import { Phone } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon, Icon, type IconName } from '@/components/ui/icon'
+import { useLead } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import styles from './meal-plan-inquiry.module.css'
 
@@ -72,21 +72,23 @@ function SelectField({
 
 // Demande rapide « batch cooking » : foyer, repas par semaine, téléphone. <form method="get"> vers la page contact, sans JS.
 export function MealPlanInquiry(p: Props) {
-  const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
-  // Avec JavaScript, la demande part directement à /api/lead (même circuit que le modal) ; sans JavaScript, le formulaire GET renvoie vers la page contact.
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  const { confirm } = useLead()
+  // Avec JavaScript, le clic ouvre le modal « étapes suivantes + e-mail » ; la demande part à /api/lead à la confirmation.
+  // Sans JavaScript, le formulaire GET renvoie vers la page contact.
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const f = new FormData(form)
-    setStatus('sending')
-    const ok = await submitLead({
-      source: 'quick-form',
+    const data = {
       phone: String(f.get('phone') ?? ''),
       household: String(f.get('household') ?? ''),
       meals: String(f.get('meals') ?? ''),
+    }
+    confirm('batch', async (email) => {
+      const ok = await submitLead({ source: 'quick-form', service: 'batch', email, ...data })
+      if (ok) form.reset()
+      return ok
     })
-    setStatus(ok ? 'done' : 'error')
-    if (ok) form.reset()
   }
   return (
     <section data-section="quick-inquiry" className={styles.root}>
@@ -142,21 +144,11 @@ export function MealPlanInquiry(p: Props) {
               />
             </span>
           </div>
-          <button type="submit" disabled={status === 'sending'} className={styles.submit}>
+          <button type="submit" className={styles.submit}>
             {p.button}
             <ArrowIcon className={styles.submitArrow} />
           </button>
         </form>
-        <p
-          role="status"
-          className={clsx(
-            styles.status,
-            status === 'done' && styles.statusDone,
-            status === 'error' && styles.statusError,
-          )}
-        >
-          {status === 'done' ? p.success : status === 'error' ? p.error : p.note}
-        </p>
       </div>
     </section>
   )

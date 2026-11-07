@@ -2,7 +2,7 @@
 .root {
   margin: auto;
   width: min(560px, calc(100vw - 24px));
-  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 24px);
   overflow: auto;
   padding: 0;
   border-width: 0;
@@ -22,36 +22,35 @@
 
 .panel {
   position: relative;
-  padding-top: 2.25rem;
+  padding-top: 1.25rem;
   padding-inline: 2.25rem;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
 
   @media (width < 768px) {
     padding-inline: 1.25rem;
-    padding-top: 2rem;
-    padding-bottom: 1.5rem;
+    padding-top: 1.125rem;
+    padding-bottom: 1.25rem;
   }
 }
 
 .close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   display: inline-flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid #e3d9cc;
+  margin-left: auto;
+  border: 1px solid rgb(255 255 255 / 0.35);
   border-radius: calc(infinity * 1px);
-  background-color: #fff;
-  color: var(--color-ink);
+  background-color: rgb(255 255 255 / 0.12);
+  color: var(--color-ivory);
   cursor: pointer;
+  transition: background-color 0.2s ease;
 
   @media (hover: hover) {
     &:hover {
-      border-color: var(--color-forest);
-      color: var(--color-forest);
+      background-color: rgb(255 255 255 / 0.28);
     }
   }
 }
@@ -69,6 +68,59 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* En-tête du modal : rappelle le service demandé (batch cooking) à chaque étape */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-block: 0.875rem;
+  padding-inline: 1.5rem 1rem;
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
+
+  @media (width < 768px) {
+    gap: 0.75rem;
+    padding-inline: 1.25rem 0.875rem;
+  }
+}
+
+.headerIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: calc(infinity * 1px);
+  background-color: rgb(255 255 255 / 0.18);
+}
+
+.headerIconSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.headerText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.headerService {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.headerSub {
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgb(250 247 242 / 0.82);
 }
 
 .progress {
@@ -247,24 +299,24 @@
   flex-wrap: wrap;
   align-items: flex-start;
   column-gap: 1.5rem;
-  row-gap: 0.75rem;
-  margin-top: 1rem;
+  row-gap: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .engagement {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   font-size: 14px;
   line-height: 1.5;
   font-weight: 600;
 }
 
 .contactTitle {
-  margin: 1.5rem 0 0;
-  padding-top: 1.5rem;
+  margin: 1rem 0 0;
+  padding-top: 1rem;
   border-top-width: 1px;
   border-color: #eadfd3;
   font-family: var(--font-display);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.2;
   font-weight: 600;
 }
@@ -277,14 +329,20 @@
 
 .fields {
   display: grid;
-  gap: 1rem;
-  margin-top: 1.25rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.625rem 0.75rem;
+  margin-top: 0.75rem;
+}
+
+/* e-mail sur toute la largeur, prénom et téléphone côte à côte */
+.fieldWide {
+  grid-column: 1 / -1;
 }
 
 .field {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.25rem;
 }
 
 .control {
@@ -305,7 +363,7 @@
 
 .input {
   width: 100%;
-  height: 54px;
+  height: 46px;
   padding-right: 1rem;
   padding-left: 2.75rem;
   border: 1px solid transparent;
@@ -356,8 +414,8 @@
   justify-content: center;
   gap: 10px;
   width: 100%;
-  height: 54px;
-  margin-top: 1.5rem;
+  height: 50px;
+  margin-top: 1rem;
   padding-inline: 1.75rem;
   border-width: 0;
   border-radius: var(--radius-pill);
@@ -391,7 +449,7 @@
 }
 
 .consent {
-  margin-top: 0.75rem;
+  margin-top: 0.5rem;
   color: rgb(85 80 68 / 0.7);
   font-size: 12px;
   line-height: 1.5;

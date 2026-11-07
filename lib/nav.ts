@@ -10,7 +10,6 @@ export type NavItem = {
 }
 
 export const nav: readonly NavItem[] = [
-  { key: 'home', href: '/' },
   {
     key: 'services',
     href: '/services',
@@ -22,9 +21,9 @@ export const nav: readonly NavItem[] = [
   },
   { key: 'pricing', href: '/tarifs' },
   { key: 'recipes', href: '/recettes' },
-  { key: 'faq', href: '/faq' },
   { key: 'portfolio', href: '/realisations' },
   { key: 'journal', href: '/blog' },
+  { key: 'faq', href: '/faq' },
   { key: 'contact', href: '/contact' },
 ]
 

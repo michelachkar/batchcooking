@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420" fill="none" stroke="#55503f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+  <style>.f{fill:#55503f;fill-opacity:.09}</style>
+  <defs>
+    <path id="leaf" d="M0 0C5-7 15-7 20 0C15 7 5 7 0 0ZM3 0H17"/>
+  </defs>
+
+  <!-- carotte -->
+  <g transform="translate(55 60) rotate(-25) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M26 22C22 34 24 48 32 60C40 48 42 34 38 22C36 18 28 18 26 22Z"/>
+    <path d="M27 30h5M33 38h5M28 46h4M32 18C30 10 26 6 22 4M32 18C32 10 33 5 34 2M32 18C36 11 40 8 45 7"/>
+  </g>
+  <!-- tomate -->
+  <g transform="translate(190 50) rotate(10) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M32 18C16 16 6 28 8 40C10 54 24 60 32 60C40 60 54 54 56 40C58 28 48 16 32 18Z"/>
+    <path d="M32 19 22 14l6 6-10 2 10 3M32 19l10-5-6 6 10 2-10 3M32 19V9M16 36c0-4 2-7 5-9"/>
+  </g>
+  <!-- citron en rondelle -->
+  <g transform="translate(330 65) rotate(15) translate(-40 -40) scale(1.25)">
+    <circle class="f" cx="32" cy="32" r="24"/>
+    <circle cx="32" cy="32" r="19"/>
+    <path d="M32 32V13M32 32l13.4-13.4M32 32h19M32 32l13.4 13.4M32 32v19M32 32 18.6 45.4M32 32H13M32 32 18.6 18.6"/>
+  </g>
+  <!-- ail -->
+  <g transform="translate(120 165) rotate(-12) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M32 8C28 16 20 20 16 32C12 46 22 58 32 58C42 58 52 46 48 32C44 20 36 16 32 8Z"/>
+    <path d="M32 8V3M32 18C26 28 24 44 28 56M32 18C38 28 40 44 36 56M28 58l-2 4M32 58v4M36 58l2 4"/>
+  </g>
+  <!-- piment -->
+  <g transform="translate(255 160) rotate(-20) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M14 20C22 16 30 20 38 30C46 40 52 48 58 52C50 58 38 56 28 46C18 36 12 28 14 20Z"/>
+    <path d="M14 20C12 14 16 8 22 6l4-2M24 26C30 30 36 38 44 46"/>
+  </g>
+  <!-- avocat -->
+  <g transform="translate(365 185) rotate(18) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M32 6C42 6 46 20 50 32C54 46 46 58 32 58C18 58 10 46 14 32C18 20 22 6 32 6Z"/>
+    <path d="M32 14C38 14 41 24 44 34C47 44 41 52 32 52C23 52 17 44 20 34C23 24 26 14 32 14Z"/>
+    <circle cx="32" cy="40" r="8"/>
+  </g>
+  <!-- basilic -->
+  <g transform="translate(55 270) rotate(25) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M32 58C10 50 8 24 32 6C56 24 54 50 32 58Z"/>
+    <path d="M32 58V14M32 44 20 34M32 44l12-10M32 32 22 24M32 32l10-8"/>
+  </g>
+  <!-- champignon -->
+  <g transform="translate(190 275) rotate(-8) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M8 32C8 14 56 14 56 32Z"/>
+    <path d="M24 32C24 44 22 52 20 56H44C42 52 40 44 40 32"/>
+    <circle cx="22" cy="25" r="2"/><circle cx="34" cy="21" r="2"/><circle cx="44" cy="27" r="2"/>
+  </g>
+  <!-- radis -->
+  <g transform="translate(320 290) rotate(14) translate(-40 -40) scale(1.25)">
+    <path class="f" d="M32 26C18 26 12 38 20 48C24 54 28 58 32 62C36 58 40 54 44 48C52 38 46 26 32 26Z"/>
+    <path d="M32 26C28 16 20 10 14 12M32 26C32 16 32 8 32 4M32 26C36 16 44 10 50 12M32 62v2"/>
+  </g>
+  <!-- branche d'olivier -->
+  <g transform="translate(255 382) rotate(-10) translate(-40 -40) scale(1.25)">
+    <path d="M8 56C24 44 40 28 56 10"/>
+    <use href="#leaf" class="f" transform="translate(20 46) rotate(-70)"/>
+    <use href="#leaf" class="f" transform="translate(28 40) rotate(20)"/>
+    <use href="#leaf" class="f" transform="translate(36 32) rotate(-70)"/>
+    <use href="#leaf" class="f" transform="translate(44 24) rotate(20)"/>
+    <use href="#leaf" class="f" transform="translate(52 14) rotate(-60)"/>
+    <ellipse class="f" cx="30" cy="52" rx="4" ry="5.5"/>
+  </g>
+  <!-- feuille -->
+  <g transform="translate(120 380) rotate(35) translate(-40 -40) scale(1)">
+    <path class="f" d="M4 60C4 30 22 12 56 12c0 30-18 48-52 48z"/>
+    <path d="M4 60 36 28"/>
+  </g>
+</svg>

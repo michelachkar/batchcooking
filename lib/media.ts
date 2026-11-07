@@ -2,6 +2,8 @@
 
 export const media = {
   hero: { src: '/assets/hero/chef.jpg', width: 1280, height: 853 },
+  // 3 photos sous le titre du hero (accueil).
+  heroGallery: [1, 2, 3].map(() => ({ src: '/assets/placeholders/card.svg', width: 768, height: 1024 })),
   // Photos des cartes d'expériences.
   cards: [1, 2, 3].map(() => ({ src: '/assets/placeholders/card.svg', width: 768, height: 1024 })),
   chef: { src: '/assets/hero/chef.jpg', width: 1280, height: 853, position: '68% center' },

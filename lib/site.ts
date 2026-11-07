@@ -3,9 +3,9 @@ export const site = {
   name: 'Table&Tribu',
   phone: '01 23 45 67 89',
   phoneHref: 'tel:+33123456789',
-  email: 'bonjour@exemple.fr',
+  email: 'contact@tabletribu.com',
   address: '12 rue Exemple, 75000 Ville',
-  area: 'Ville et alentours',
+  area: 'Montpellier et alentours',
   hours: 'Lun - Sam, 9h00 - 19h00',
   social: [
     {

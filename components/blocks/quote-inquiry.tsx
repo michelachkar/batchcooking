@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, X } from 'lucide-react'
+import { ChefHat, X } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
+import { useLead } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import styles from './quote-inquiry.module.css'
 
@@ -31,6 +32,9 @@ export function Field({
 }
 
 export type QuoteInquiryTexts = {
+  /** Service concerné et sous-titre : repris dans l'en-tête, comme le modal du batch cooking. */
+  serviceName: string
+  subtitle: string
   kicker: string
   title: string
   intro: string
@@ -66,6 +70,7 @@ export function QuoteInquiry(
   const [status, setStatus] = useState<'idle' | 'sending' | 'done' | 'error'>('idle')
   const [step, setStep] = useState<1 | 2>(1)
   const [pick, setPick] = useState<string>('')
+  const { confirm } = useLead()
   const ref = useRef<HTMLDialogElement>(null)
   const f = p.fields
   const direct = Boolean(p.choice)
@@ -100,11 +105,13 @@ export function QuoteInquiry(
       email: get('email'),
       website: get('website'),
     })
-    setStatus(ok ? 'done' : 'error')
-    if (ok) form.reset()
+    setStatus(ok ? 'idle' : 'error')
+    if (ok) {
+      form.reset()
+      ref.current?.close()
+      confirm(p.service) // modal de confirmation : les étapes suivantes
+    }
   }
-
-  const done = status === 'done'
 
   return (
     <dialog
@@ -114,7 +121,14 @@ export function QuoteInquiry(
       onClick={(e) => e.target === ref.current && ref.current?.close()}
       className={styles.root}
     >
-      <div className={styles.panel}>
+      <header className={styles.header}>
+        <span className={styles.headerIcon}>
+          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
+        </span>
+        <span className={styles.headerText}>
+          <strong className={styles.headerService}>{p.serviceName}</strong>
+          <span className={styles.headerSub}>{p.subtitle}</span>
+        </span>
         <button
           type="button"
           onClick={() => ref.current?.close()}
@@ -123,8 +137,9 @@ export function QuoteInquiry(
         >
           <X aria-hidden className={styles.closeIcon} />
         </button>
-
-        {!done && !direct && (
+      </header>
+      <div className={styles.panel}>
+        {!direct && (
           <div className={styles.progress}>
             <p className={styles.label}>{p.step.replace('{n}', String(step))}</p>
             <div className={styles.bars} aria-hidden>
@@ -135,22 +150,7 @@ export function QuoteInquiry(
           </div>
         )}
 
-        {done ? (
-          <div className={styles.done}>
-            <span className={styles.doneBadge}>
-              <Check aria-hidden className={styles.doneIcon} strokeWidth={3} />
-            </span>
-            <h2 className={styles.doneTitle}>{p.kicker}</h2>
-            <p className={clsx(styles.doneText, styles.soft)}>{p.success}</p>
-            <button
-              type="button"
-              onClick={() => ref.current?.close()}
-              className={styles.doneButton}
-            >
-              {p.close}
-            </button>
-          </div>
-        ) : step === 1 ? (
+        {step === 1 ? (
           <div>
             <h2 className={styles.title}>{p.pickTitle}</h2>
             <p className={clsx(styles.pickIntro, styles.soft)}>{p.pickIntro}</p>

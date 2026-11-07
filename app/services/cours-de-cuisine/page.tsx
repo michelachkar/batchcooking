@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/blocks/page-head'
 import { BatchIntro } from '@/components/blocks/batch-page'
+import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { FormulaCards, Practical } from '@/components/blocks/chef-page'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
@@ -24,6 +25,8 @@ export default async function CoursDeCuisinePage() {
   const p = await getTranslations('pages')
   const c = await getTranslations('coursPage')
   const book = `${PATH}#devis`
+  const q = await getTranslations('coursPage.inquiry')
+  const ideas = c.raw('ideas.items') as (Package & { value: string })[]
 
   return (
     <main id="contenu">
@@ -61,11 +64,36 @@ export default async function CoursDeCuisinePage() {
         paragraphs={c.raw('intro.paragraphs') as string[]}
         highlights={c.raw('intro.highlights') as string[]}
         primary={{ label: c('intro.primary'), href: book }}
-        secondary={{ label: c('intro.secondary'), href: '#cours' }}
+        secondary={{ label: c('intro.secondary'), href: '#tarifs' }}
         image={{ src: '/assets/hero/chef.jpg', alt: c('intro.imageAlt') }}
         lead={false}
       />
-      <div id="cours" className={styles.anchor} />
+      <QuickInquiry
+        kicker={q('kicker')}
+        title={q('title')}
+        action="/contact#inquiry"
+        dateLabel={q('dateLabel')}
+        guestsLabel=""
+        guestsPlaceholder=""
+        guestsOptions={[]}
+        locationLabel=""
+        locationPlaceholder=""
+        button={q('button')}
+        pattern
+        lead={{
+          source: 'course-form',
+          selectKey: 'choice',
+          fixedService: 'cours',
+          serviceLabel: q('serviceLabel'),
+          servicePlaceholder: q('servicePlaceholder'),
+          serviceOptions: ideas.map((i) => ({ value: i.value, label: i.title })),
+          phoneLabel: q('phoneLabel'),
+          phonePlaceholder: q('phonePlaceholder'),
+          success: q('success'),
+          error: q('error'),
+        }}
+      />
+      <div id="tarifs" className={styles.anchor} />
       <PackageCards
         name="course-ideas"
         tone="terracotta"
@@ -79,7 +107,7 @@ export default async function CoursDeCuisinePage() {
             string
           >
         }
-        items={c.raw('ideas.items') as Package[]}
+        items={ideas}
         cta={{ label: c('ideas.button'), href: book }}
       />
       <Practical

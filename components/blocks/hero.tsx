@@ -1,20 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Clock, Feather, ChefHat, Sparkles } from 'lucide-react'
+import { BadgePercent } from 'lucide-react'
 import { LeadTrigger } from '@/components/lead/lead-trigger'
 import { ArrowIcon } from '@/components/ui/icon'
 import { RevealObserver } from '@/components/blocks/reveal-observer'
 import styles from './hero.module.css'
 import { HeroReviews, type HeroReview } from '@/components/blocks/hero-reviews'
 
-const BADGE_ICONS = {
-  mind: Feather,
-  time: Clock,
-  homemade: ChefHat,
-  clean: Sparkles,
-} as const
-
-export type HeroBadge = { icon: keyof typeof BADGE_ICONS; title: string; text?: string }
+export type HeroPhoto = { src: string; width: number; height: number; alt: string }
 
 // CTA principal : lien classique, ou déclencheur du modal de demande de rappel.
 function PrimaryTag({
@@ -32,8 +25,10 @@ type Props = {
   headline: string
   accent: string
   description: string
-  badges?: HeroBadge[]
+  gallery?: HeroPhoto[]
   googleReviews?: string
+  taxCredit?: string
+  creditNote?: { value: string; title: string; note: string }
   heroReviews?: { label: string; items: HeroReview[] }
   /** `lead` : le CTA ouvre le modal de demande de rappel (href sert de repli sans JavaScript). */
   primary: Cta & { lead?: boolean }
@@ -50,8 +45,10 @@ export function Hero({
   headline,
   accent,
   description,
-  badges,
+  gallery,
   googleReviews,
+  taxCredit,
+  creditNote,
   heroReviews,
   primary,
   secondary,
@@ -67,44 +64,9 @@ export function Hero({
       </noscript>
       <div className={styles.frame}>
         <div className={styles.content}>
-          <p className={styles.label}>{label}</p>
-          <h1 className={styles.title}>
-            <em className={styles.accent}>{accent}</em>
-            {headline}
-          </h1>
-          {badges?.length ? (
-            <ul className={styles.badges}>
-              {badges.map(({ icon, title, text }, i) => {
-                const Icon = BADGE_ICONS[icon]
-                return (
-                  <li key={icon} data-reveal="up" data-d={i + 1} className={styles.badge}>
-                    <span className={styles.badgeIconWrap}>
-                      <Icon aria-hidden className={styles.badgeIcon} strokeWidth={1.75} />
-                    </span>
-                    <span className={styles.badgeText}>
-                      <strong className={styles.badgeTitle}>{title}</strong>
-                      {text && <span className={styles.badgeNote}>{text}</span>}
-                    </span>
-                  </li>
-                )
-              })}
-            </ul>
-          ) : (
-            <p className={styles.description}>{description}</p>
-          )}
-          <div className={styles.actions}>
-            <PrimaryTag href={primary.href} lead={primary.lead} className={styles.primary}>
-              {primary.label}
-              <ArrowIcon className={styles.arrow} />
-            </PrimaryTag>
-            <Link href={secondary.href} className={styles.secondary}>
-              {secondary.label}
-              <ArrowIcon className={styles.arrow} />
-            </Link>
-          </div>
-          {googleReviews ? (
-            <div className={styles.proof}>
-              <div data-reveal="up" data-d="5" className={styles.google}>
+          {googleReviews && (
+            <div className={styles.topBar}>
+              <div className={styles.google}>
                 <span className={styles.googleLogo}>
                   <svg aria-hidden viewBox="0 0 24 24" className={styles.googleSvg}>
                     <path
@@ -132,10 +94,57 @@ export function Hero({
                   <span className={styles.googleText}>{googleReviews}</span>
                 </span>
               </div>
-              {heroReviews && <HeroReviews reviews={heroReviews.items} label={heroReviews.label} />}
+              {taxCredit && (
+                <>
+                  <span aria-hidden className={styles.topBarDivider} />
+                  <span className={styles.taxCredit}>
+                    <BadgePercent aria-hidden className={styles.taxCreditIcon} strokeWidth={1.75} />
+                    {taxCredit}
+                  </span>
+                </>
+              )}
             </div>
+          )}
+          <h1 className={styles.title}>
+            <em className={styles.accent}>{accent}</em>
+            {headline}
+          </h1>
+          {gallery?.length ? (
+            <ul className={styles.gallery}>
+              {gallery.map(({ alt, ...img }, i) => (
+                <li key={img.src + i} data-reveal="up" data-d={i + 1} className={styles.galleryItem}>
+                  <Image
+                    {...img}
+                    alt={alt}
+                    sizes="(min-width: 1025px) 15vw, 30vw"
+                    className={styles.galleryImg}
+                  />
+                </li>
+              ))}
+            </ul>
           ) : (
-            <p className={styles.meta}>{meta.text}</p>
+            <p className={styles.description}>{description}</p>
+          )}
+          <div className={styles.actions}>
+            <PrimaryTag href={primary.href} lead={primary.lead} className={styles.primary}>
+              {primary.label}
+              <ArrowIcon className={styles.arrow} />
+            </PrimaryTag>
+            <Link href={secondary.href} className={styles.secondary}>
+              {secondary.label}
+              <ArrowIcon className={styles.arrow} />
+            </Link>
+          </div>
+          {creditNote && (
+            <div data-reveal="up" data-d="5" className={styles.creditNote}>
+              <span aria-hidden className={styles.creditValue}>
+                {creditNote.value}
+              </span>
+              <span className={styles.creditText}>
+                <strong className={styles.creditTitle}>{creditNote.title}</strong>
+                <span className={styles.creditSub}>{creditNote.note}</span>
+              </span>
+            </div>
           )}
         </div>
 
@@ -150,11 +159,7 @@ export function Hero({
             sizes="(min-width: 1025px) 55vw, 100vw"
             className={styles.photo}
           />
-          <div className={styles.caption}>
-            <span className={styles.captionKicker}>{caption.kicker}</span>
-            <strong className={styles.captionTitle}>{caption.title}</strong>
-            <span className={styles.captionText}>{caption.text}</span>
-          </div>
+
         </div>
       </div>
     </section>

@@ -62,11 +62,11 @@ export function PhotoStrip({ kicker, title, handle, photos, galleryLabel }: Prop
         </header>
         <div tabIndex={0} aria-label={galleryLabel} className={styles.strip}>
           <ul className={styles.track}>
-            {photos.map((p) => (
-              <Tile key={p.src} photo={p} />
+            {photos.map((p, i) => (
+              <Tile key={p.src + i} photo={p} />
             ))}
-            {photos.map((p) => (
-              <Tile key={'d' + p.src} photo={p} hidden />
+            {photos.map((p, i) => (
+              <Tile key={'d' + p.src + i} photo={p} hidden />
             ))}
           </ul>
         </div>

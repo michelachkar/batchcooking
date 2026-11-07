@@ -8,6 +8,32 @@
   }
 }
 
+/* sans note sous le formulaire : même respiration en bas que le formulaire du batch cooking */
+.noNote {
+  padding-bottom: 44px;
+}
+
+/* même fond que le formulaire de l'accueil : crème + motif d'aliments en filigrane */
+.pattern {
+  position: relative;
+  z-index: 0;
+}
+
+.pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('/assets/patterns/food.svg');
+  background-size: 420px 420px;
+  opacity: 0.1;
+
+  @media (width < 768px) {
+    background-size: 320px 320px;
+  }
+}
+
 .inner {
   width: 100%;
   max-width: var(--container-site);

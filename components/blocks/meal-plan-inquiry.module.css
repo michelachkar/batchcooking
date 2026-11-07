@@ -12,6 +12,22 @@
   }
 }
 
+/* même motif d'aliments en filigrane que le hero */
+.root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('/assets/patterns/food.svg');
+  background-size: 420px 420px;
+  opacity: 0.1;
+
+  @media (width < 768px) {
+    background-size: 320px 320px;
+  }
+}
+
 .inner {
   width: 100%;
   max-width: var(--container-site);

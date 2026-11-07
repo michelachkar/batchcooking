@@ -113,15 +113,22 @@ export async function SiteHeader() {
         <div className={styles.compactBrand}>
           <Logo tagline={t('footer.tagline')} className={styles.compactLogo} />
         </div>
-        <MobileMenu
-          items={items}
-          brand={site.name}
-          labels={{
-            open: t('header.openMenu'),
-            close: t('header.closeMenu'),
-            toggle: t('header.toggleSub'),
-          }}
-        />
+        <div className={styles.compactActions}>
+          {/* CTA toujours visible dans le header collant, sans ouvrir le menu */}
+          <ButtonLink href="/contact#devis" className={styles.compactCta}>
+            <span className={styles.ctaFull}>{t('header.cta')}</span>
+            <span className={styles.ctaShort}>{t('header.ctaShort')}</span>
+          </ButtonLink>
+          <MobileMenu
+            items={items}
+            brand={site.name}
+            labels={{
+              open: t('header.openMenu'),
+              close: t('header.closeMenu'),
+              toggle: t('header.toggleSub'),
+            }}
+          />
+        </div>
       </div>
     </header>
   )

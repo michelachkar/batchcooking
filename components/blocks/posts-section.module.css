@@ -1,5 +1,6 @@
 /* ---- Titre de la section ---- */
 .intro {
+  background-color: #fff;
   line-height: 1.5;
 }
 
@@ -41,6 +42,7 @@
 
 /* ---- Grille des articles ---- */
 .posts {
+  background-color: #fff;
   line-height: 1.5;
 }
 

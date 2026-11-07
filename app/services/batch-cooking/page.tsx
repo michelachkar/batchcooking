@@ -3,6 +3,7 @@ import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/blocks/page-head'
 import { BatchIntro, IconSection, Timeline } from '@/components/blocks/batch-page'
 import { Audience, FaqList, WeekExample } from '@/components/blocks/home-v2'
+import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
 import { BatchPackages, type PackageCard } from '@/components/blocks/batch-packages'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
@@ -27,6 +28,7 @@ export default async function BatchCookingPage() {
   const b = await getTranslations('batchPage')
   const faqItems = b.raw('faq.items') as { question: string; answer: string }[]
   const quote = '/contact#inquiry'
+  const q = await getTranslations('home.inquiry')
   const pk = await getTranslations('batchPage.packages')
   const leadPacks = (await getTranslations('lead')).raw('packs') as {
     id: string
@@ -68,9 +70,27 @@ export default async function BatchCookingPage() {
         paragraphs={b.raw('intro.paragraphs') as string[]}
         highlights={b.raw('intro.highlights') as string[]}
         primary={{ label: b('intro.primary'), href: quote }}
-        secondary={{ label: b('intro.secondary'), href: '#deroule' }}
+        secondary={{ label: b('intro.secondary'), href: '#tarifs' }}
         image={{ src: '/assets/hero/chef.jpg', alt: b('intro.imageAlt') }}
       />
+      <MealPlanInquiry
+        kicker={q('kicker')}
+        title={q('title')}
+        action={quote}
+        householdLabel={q('householdLabel')}
+        householdPlaceholder={q('householdPlaceholder')}
+        householdOptions={q.raw('householdOptions') as { value: string; label: string }[]}
+        mealsLabel={q('mealsLabel')}
+        mealsPlaceholder={q('mealsPlaceholder')}
+        mealsOptions={q.raw('mealsOptions') as { value: string; label: string }[]}
+        phoneLabel={q('phoneLabel')}
+        phonePlaceholder={q('phonePlaceholder')}
+        button={q('button')}
+        note={q('note')}
+        success={q('success')}
+        error={q('error')}
+      />
+      <div id="tarifs" className={styles.anchor} />
       <BatchPackages
         flushTop
         tone="terracotta"

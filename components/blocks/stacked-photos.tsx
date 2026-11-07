@@ -7,9 +7,9 @@ type Props = { photos: { src: string; width: number; height: number; unoptimized
 export function StackedPhotos({ photos }: Props) {
   return (
     <div className={styles.root}>
-      {photos.map((p) => (
+      {photos.map((p, i) => (
         <Image
-          key={p.src}
+          key={p.src + i}
           src={p.src}
           alt=""
           width={p.width}

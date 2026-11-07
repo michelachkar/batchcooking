@@ -15,7 +15,7 @@ import { OccasionsSection } from '@/components/sections/occasions-section'
 import { ProposalSection } from '@/components/sections/proposal-section'
 import { ReviewsSection } from '@/components/sections/reviews-section'
 import { PostsSections } from '@/components/sections/posts-sections'
-import { Hero, type HeroBadge } from '@/components/blocks/hero'
+import { Hero } from '@/components/blocks/hero'
 import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
 import styles from './landing.module.css'
@@ -55,11 +55,21 @@ export async function Landing({ ns }: { ns: LandingNs }) {
         headline={t('headline')}
         accent={t('accent')}
         description={t('description')}
-        badges={ns === 'home' ? (t.raw('badges') as HeroBadge[]) : undefined}
+        gallery={
+          ns === 'home'
+            ? media.heroGallery.map((img, i) => ({ ...img, alt: t(`galleryAlts.${i}`) }))
+            : undefined
+        }
         primary={{ label: t('primary'), href: '/contact', lead: ns === 'home' }}
         secondary={{ label: t('secondary'), href: ns === 'home' ? '/recettes' : '/services' }}
         meta={{ text: t('meta') }}
         googleReviews={ns === 'home' ? t('googleReviews') : undefined}
+        taxCredit={ns === 'home' ? t('taxCredit') : undefined}
+        creditNote={
+          ns === 'home'
+            ? (t.raw('creditNote') as { value: string; title: string; note: string })
+            : undefined
+        }
         heroReviews={ns === 'home' ? { label: rv('navigation'), items: heroReviews } : undefined}
         image={{ ...media.hero, alt: t('imageAlt') }}
         caption={{
@@ -101,13 +111,13 @@ export async function Landing({ ns }: { ns: LandingNs }) {
           note={q('note')}
         />
       )}
-      <ExperiencesSection ns={ns} />
-      <ChefSection ns={ns} />
       <AboutSection ns={ns} />
+      <ExperiencesSection ns={ns} tone="cream" />
+      <ChefSection ns={ns} />
       <EventsSection ns={ns} />
       {zn && zc && (
         <Zones
-          tone="beige"
+          tone="white"
           kicker={zn('kicker')}
           title={zn('title')}
           intro={zn('intro')}

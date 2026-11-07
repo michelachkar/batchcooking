@@ -6,6 +6,7 @@
   "header": {
     "announce": "Réservations ouvertes pour les prochaines semaines",
     "cta": "Réservez votre chef",
+    "ctaShort": "Réserver",
     "search": "Rechercher",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
@@ -75,7 +76,7 @@
     "hero": {
       "label": "Votre batch cooking de Mèze à Lunel, en passant par Montpellier",
       "headline": "Tous vos dîners de la semaine sont préparés chez vous en un clin d'oeil.",
-      "accent": "Vous faites déjà beaucoup : laissez-nous préparer la table.",
+      "accent": "Fini la charge mentale des repas.",
       "description": "Éligible crédit d'impôt 50 %",
       "badges": [
         {
@@ -95,10 +96,17 @@
           "title": "Une cuisine propre et sans effort"
         }
       ],
-      "primary": "Planifier mes repas",
-      "secondary": "Découvrir mes recettes",
+      "primary": "Reservez vos repas",
+      "secondary": "Découvrez mes recettes",
       "meta": "Sans engagement · Reportez facilement",
+      "galleryAlts": ["Plat préparé par la cheffe", "Repas de la semaine prêts à réchauffer", "Cheffe en cuisine chez un client"],
       "googleReviews": "Avis Google",
+      "taxCredit": "50 % de crédit d'impôt",
+      "creditNote": {
+        "value": "−50 %",
+        "title": "de crédit d'impôt, tout de suite",
+        "note": "Grâce à l'Avance Immédiate : vous ne payez que la moitié"
+      },
       "imageAlt": "Cheffe en tenue blanche et toque, la main sur la hanche, souriante devant un fond blanc",
       "captionKicker": "Service à la personne",
       "captionTitle": "-50% de crédit d'impôt",
@@ -124,7 +132,7 @@
         }
       ],
       "mealsLabel": "Repas par semaine",
-      "button": "Être rappelé(e) gratuitement",
+      "button": "Appel découverte sous 24h",
       "note": "Sans engagement : nous vous rappelons généralement sous un jour ouvré.",
       "mealsPlaceholder": "Choisir",
       "mealsOptions": [
@@ -261,7 +269,7 @@
       ],
       "button": "Découvrir le batch cooking",
       "buttonHref": "/services/batch-cooking",
-      "secondaryButton": "Planifier mes repas",
+      "secondaryButton": "Reservez vos repas",
       "secondaryButtonHref": "/contact#inquiry",
       "images": [
         "Mains du chef dressant une assiette avant le service",
@@ -898,7 +906,7 @@
         "Une cuisine propre et sans effort"
       ],
       "primary": "Demander un devis",
-      "secondary": "Voir le déroulé",
+      "secondary": "Voir les tarifs",
       "imageAlt": "La cheffe en tenue blanche et toque, la main sur la hanche"
     },
     "audience": {
@@ -1160,6 +1168,28 @@
     }
   },
   "chefPage": {
+    "inquiry": {
+      "kicker": "Demande rapide",
+      "title": "Dites-nous l'essentiel",
+      "dateLabel": "Date souhaitée",
+      "serviceLabel": "Service souhaité",
+      "servicePlaceholder": "Choisir",
+      "serviceOptions": [
+        { "value": "batch", "label": "Batch cooking" },
+        { "value": "chef", "label": "Chef privé & expériences gastronomiques" },
+        { "value": "cours", "label": "Cours de cuisine à domicile" }
+      ],
+      "guestsLabel": "Nombre de personnes",
+      "guestsPlaceholder": "Combien de personnes ?",
+      "guestsOptions": ["1 à 2 personnes", "3 à 4 personnes", "5 à 8 personnes", "9 à 12 personnes", "12 personnes et plus"],
+      "locationLabel": "Lieu",
+      "locationPlaceholder": "Votre domicile ou lieu de réception",
+      "button": "Appel découverte sous 24h",
+      "phoneLabel": "Numéro de téléphone",
+      "phonePlaceholder": "06 12 34 56 78",
+      "success": "Merci ! Nous vous rappelons sous un jour ouvré.",
+      "error": "Une erreur est survenue. Vérifiez votre numéro et réessayez."
+    },
     "seo": {
       "title": "Chef privé & expériences gastronomiques à domicile",
       "description": "Dîner entre proches, anniversaire, repas d'affaires ou séjour en villa : un chef privé compose un menu sur mesure, fait les courses, cuisine et sert chez vous, puis range la cuisine."
@@ -1178,7 +1208,7 @@
         "Allergies et régimes pris en compte"
       ],
       "primary": "Demander un devis",
-      "secondary": "Voir le déroulé",
+      "secondary": "Voir les tarifs",
       "imageAlt": "Cheffe en tenue blanche et toque"
     },
     "occasions": {
@@ -1447,6 +1477,18 @@
     }
   },
   "coursPage": {
+    "inquiry": {
+      "kicker": "Demande rapide",
+      "title": "Dites-nous l'essentiel",
+      "dateLabel": "Date souhaitée",
+      "serviceLabel": "Cours",
+      "servicePlaceholder": "Choisir un cours",
+      "button": "Appel découverte sous 24h",
+      "phoneLabel": "Numéro de téléphone",
+      "phonePlaceholder": "06 12 34 56 78",
+      "success": "Merci ! Nous vous rappelons sous un jour ouvré.",
+      "error": "Une erreur est survenue. Vérifiez votre numéro et réessayez."
+    },
     "seo": {
       "title": "Cours de cuisine à domicile",
       "description": "Un chef vient chez vous pour un cours de cuisine à domicile : individuel, en couple, entre amis, en famille ou en entreprise. Ingrédients fournis, repas dégusté à la fin, bons cadeaux disponibles."
@@ -1465,7 +1507,7 @@
         "Un repas dégusté à la fin de la séance"
       ],
       "primary": "Demander un devis",
-      "secondary": "Voir les cours",
+      "secondary": "Voir les tarifs",
       "imageAlt": "Cheffe en tenue blanche et toque"
     },
     "formats": {
@@ -2643,11 +2685,55 @@
     }
   },
   "lead": {
-    "title": "Demande de rappel",
+    "confirmation": {
+      "title": "Demande bien reçue !",
+      "subtitle": "Vous n'avez plus rien à faire pour l'instant.",
+      "nextLabel": "La suite, étape par étape",
+      "button": "Fermer",
+      "ask": {
+        "title": "Voici la suite de votre demande",
+        "intro": "Voici comment ça se passe. Pour recevoir un accusé de réception, indiquez votre e-mail puis confirmez.",
+        "emailLabel": "Votre e-mail",
+        "emailPlaceholder": "vous@exemple.fr",
+        "emailHelp": "Nous vous envoyons un accusé de réception de votre demande.",
+        "confirm": "Confirmer ma demande",
+        "sending": "Envoi en cours…",
+        "error": "Une erreur est survenue. Vérifiez votre e-mail et réessayez."
+      },
+      "services": {
+        "batch": {
+          "name": "Batch cooking à domicile",
+          "steps": [
+            { "title": "Accusé de réception", "text": "Votre demande est enregistrée et un accusé de réception vous est envoyé par e-mail." },
+            { "title": "Notre appel sous 24h", "text": "Nous vous rappelons sous un jour ouvré pour composer votre menu parmi plus de 40 recettes et caler la date du passage." },
+            { "title": "La cheffe cuisine chez vous", "text": "À partir de vos courses, elle prépare 3 à 5 dîners dans votre cuisine, rangés et prêts à réchauffer." }
+          ]
+        },
+        "chef": {
+          "name": "Chef privé & expériences",
+          "steps": [
+            { "title": "Accusé de réception", "text": "Votre demande est enregistrée et un accusé de réception vous est envoyé par e-mail." },
+            { "title": "Notre appel sous 24h", "text": "Nous vous rappelons sous un jour ouvré pour parler de votre événement : date, invités, envies et contraintes alimentaires." },
+            { "title": "Votre menu sur mesure", "text": "Nous vous envoyons un devis gratuit et sans engagement, puis la cheffe cuisine et sert chez vous." }
+          ]
+        },
+        "cours": {
+          "name": "Cours de cuisine à domicile",
+          "steps": [
+            { "title": "Accusé de réception", "text": "Votre demande est enregistrée et un accusé de réception vous est envoyé par e-mail." },
+            { "title": "Notre appel sous 24h", "text": "Nous vous rappelons sous un jour ouvré pour choisir ensemble le cours, la date et le nombre de participants." },
+            { "title": "Le cours chez vous", "text": "La cheffe vient chez vous et vous guide pas à pas : vous cuisinez, puis vous dégustez ensemble." }
+          ]
+        }
+      }
+    },
+    "title": "Demande de rappel : batch cooking à domicile",
+    "service": "Batch cooking à domicile",
+    "subtitle": "Demande de rappel sous 24h sans engagement",
     "step": "Étape {n} sur 2",
     "close": "Fermer",
-    "compareTitle": "Quelle formule vous convient ?",
-    "compareIntro": "Les deux formules comprennent le même service. Seul le menu change : à choisir parmi nos recettes, ou entièrement sur mesure.",
+    "compareTitle": "Quelle formule de batch cooking vous convient ?",
+    "compareIntro": "Votre cheffe prépare chez vous vos dîners de la semaine. Les deux formules comprennent le même service. Seul le menu change : à choisir parmi nos recettes, ou entièrement sur mesure.",
     "from": "À partir de",
     "perWeek": "par semaine",
     "afterCredit": "après crédit d'impôt de 50 %",
@@ -2662,7 +2748,7 @@
     "emailPlaceholder": "vous@exemple.fr",
     "phoneLabel": "Téléphone",
     "phonePlaceholder": "06 12 34 56 78",
-    "submit": "Être rappelé(e) gratuitement",
+    "submit": "Appel découverte sous 24h",
     "sending": "Envoi en cours…",
     "back": "Changer de formule",
     "consent": "Ce rappel est gratuit et sans engagement. En envoyant ce formulaire, vous acceptez d'être recontacté(e) au sujet de votre demande.",
@@ -2698,7 +2784,7 @@
       "week": "1 passage de la cheffe, sans engagement.",
       "month": "4 passages de la cheffe, avec engagement d'1 mois."
     },
-    "configTitle": "Votre formule",
+    "configTitle": "Votre formule de batch cooking",
     "firstNameLabel": "Prénom (facultatif)",
     "firstNamePlaceholder": "Marie"
   },

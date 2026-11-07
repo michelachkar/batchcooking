@@ -1,9 +1,11 @@
 /* Section « À propos » : photos superposées, pastille, carte qualité, liste, boutons. */
 
 .root {
+  background-color: #fff;
+
   @media (width < 768px) {
-    margin-top: 50px;
-    margin-bottom: 2.5rem;
+    padding-top: 50px;
+    padding-bottom: 2.5rem;
   }
 }
 
@@ -101,7 +103,9 @@
   padding: 18px 1.75rem 18px 18px;
   border-radius: 18px;
   background-color: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 2px 6px rgba(58, 53, 46, 0.08),
+    0 16px 36px rgba(58, 53, 46, 0.16);
   white-space: nowrap;
   cursor: default;
   transition-property: translate, scale, box-shadow;
@@ -202,6 +206,9 @@
   padding: 9px 18px 9px 14px;
   border-radius: var(--radius-pill);
   background-color: #fff;
+  box-shadow:
+    0 1px 3px rgba(58, 53, 46, 0.1),
+    0 6px 16px rgba(58, 53, 46, 0.1);
   font-size: 14px;
   font-weight: 500;
   line-height: 1.5;
@@ -291,7 +298,9 @@
   padding: 1rem 1.25rem;
   border-radius: 18px;
   background-color: #fff;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 1px 3px rgba(58, 53, 46, 0.08),
+    0 10px 24px rgba(58, 53, 46, 0.1);
 }
 
 .stepNumber {
@@ -327,6 +336,9 @@
   padding: 30px 34px;
   border-radius: 22px;
   background-color: #fff;
+  box-shadow:
+    0 1px 3px rgba(58, 53, 46, 0.08),
+    0 14px 32px rgba(58, 53, 46, 0.1);
   transition-property: translate, box-shadow;
   transition-duration: 400ms;
   transition-timing-function: ease;
@@ -334,7 +346,9 @@
   @media (hover: hover) {
     &:hover {
       translate: 0 -0.25rem;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      box-shadow:
+        0 2px 6px rgba(58, 53, 46, 0.1),
+        0 22px 44px rgba(58, 53, 46, 0.16);
     }
   }
 }

@@ -270,6 +270,40 @@
   }
 }
 
+/* CTA + burger regroupés à droite de la barre compacte */
+.compactActions {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+
+  @media (width >= 768px) {
+    gap: 1.25rem;
+  }
+}
+
+.compactActions .compactCta {
+  height: 40px;
+  padding-inline: 16px;
+  font-size: 14px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ctaShort {
+  display: none;
+}
+
+/* très petits écrans : libellé court pour laisser la place au logo */
+@media (width < 420px) {
+  .ctaFull {
+    display: none;
+  }
+
+  .ctaShort {
+    display: inline;
+  }
+}
+
 .compactBrand {
   padding-left: 15px;
 

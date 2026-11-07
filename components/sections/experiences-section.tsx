@@ -16,7 +16,13 @@ type CardText = {
 }
 
 // « Nos services » : trois grandes cartes photo, même bloc sur l'accueil et sur la page Services (messages home.experiences).
-export async function ExperiencesSection({ ns = 'home' }: { ns?: Landing }) {
+export async function ExperiencesSection({
+  ns = 'home',
+  tone,
+}: {
+  ns?: Landing
+  tone?: 'white' | 'cream'
+}) {
   const media = mediaOf(ns)
   const x = await getTranslations(`${ns}.experiences`)
   const cards: ExperienceCard[] = (x.raw('cards') as CardText[]).map((c, i) => ({
@@ -31,6 +37,12 @@ export async function ExperiencesSection({ ns = 'home' }: { ns?: Landing }) {
     alt: c.alt,
   }))
   return (
-    <ExperienceCards kicker={x('kicker')} title={x('title')} intro={x('intro')} cards={cards} />
+    <ExperienceCards
+      kicker={x('kicker')}
+      title={x('title')}
+      intro={x('intro')}
+      cards={cards}
+      tone={tone}
+    />
   )
 }

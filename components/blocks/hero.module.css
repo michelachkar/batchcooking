@@ -1,6 +1,5 @@
 .root {
   background-color: #fff;
-  padding-top: 2.25rem;
 
   @media (width >= 768px) {
     padding-inline: 1.25rem;
@@ -27,11 +26,13 @@
 }
 
 .content {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-width: 0;
-  padding-top: 120px;
+  padding-top: 80px;
   padding-right: clamp(28px, 4.4vw, 72px);
   padding-bottom: 4rem;
   padding-left: clamp(24px, 3.6vw, 58px);
@@ -46,6 +47,22 @@
     padding-inline: 1.5rem;
     padding-top: 2.5rem;
     padding-bottom: 2.25rem;
+  }
+}
+
+/* motif d'aliments (légumes, feuilles, citron…) en filigrane sur la partie beige */
+.content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('/assets/patterns/food.svg');
+  background-size: 420px 420px;
+  opacity: 0.1;
+
+  @media (width < 768px) {
+    background-size: 320px 320px;
   }
 }
 
@@ -73,19 +90,23 @@
   margin-top: 1.75rem;
   margin-bottom: 26px;
   font-family: var(--font-display);
-  font-size: 40px;
+  font-size: 35px;
   line-height: 1.02;
   font-weight: 600;
   letter-spacing: -0.01em;
   font-synthesis: none;
   color: rgba(85, 80, 68, 1);
+  text-align: center;
 
   @media (width < 1025px) {
-    font-size: 46px;
+    font-size: 40px;
     line-height: 56px;
   }
 
   @media (width < 768px) {
+    font-size: 28px;
+    line-height: 30px;
+    
     margin-top: 22px;
     margin-bottom: 1.25rem;
   }
@@ -107,9 +128,9 @@
   }
 }
 
-.badges {
+.gallery {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.625rem;
 
   @media (width < 768px) {
@@ -117,64 +138,18 @@
   }
 }
 
-.badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.625rem;
-  padding-inline: 0.5rem;
-  padding-block: 0.875rem;
-  border: 1px solid color-mix(in oklab, var(--color-ink) 12%, transparent);
+.galleryItem {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
   border-radius: 14px;
-  background-color: color-mix(in oklab, var(--color-ink) 4%, transparent);
-  text-align: center;
-  transition:
-    background-color 0.25s ease,
-    border-color 0.25s ease;
-
-  @media (hover: hover) {
-    &:hover {
-      border-color: color-mix(in lab, var(--color-forest) 50%, transparent);
-      background-color: color-mix(in oklab, var(--color-ink) 7%, transparent);
-    }
-  }
+  background-color: color-mix(in oklab, var(--color-ink) 6%, transparent);
 }
 
-.badgeIconWrap {
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: calc(infinity * 1px);
-  background-color: color-mix(in lab, var(--color-forest) 10%, transparent);
-  color: var(--color-forest);
-}
-
-.badgeIcon {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.badgeText {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-  min-width: 0;
-}
-
-.badgeTitle {
-  font-size: 13px;
-  line-height: 1.3;
-  font-weight: 600;
-  color: rgba(85, 80, 68, 1);
-}
-
-.badgeNote {
-  font-size: 13px;
-  line-height: 1.35;
-  color: rgba(85, 80, 68, 0.78);
+.galleryImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .description {
@@ -191,25 +166,93 @@
 .actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  column-gap: 2rem;
-  row-gap: 18px;
+  justify-content: center;
+  gap: 0.8rem;
   margin-top: 42px;
 
-  @media (width < 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 2rem;
+  /* CTA de même taille : ils se partagent la ligne, ou s'empilent quand elle est trop étroite */
+  & > * {
+    flex: 1 1 15.5rem;
+    max-width: 18rem;
   }
+
+  @media (width < 768px) {
+    margin-top: 2rem;
+
+    & > * {
+      flex-basis: 100%;
+      max-width: none;
+    }
+  }
+}
+
+.creditNote {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 0.875rem;
+  margin-top: 1.5rem;
+  padding-block: 0.625rem;
+  padding-inline: 0.625rem 1.5rem;
+  border: 1.5px dashed color-mix(in oklab, var(--color-forest) 45%, transparent);
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in oklab, var(--color-forest) 7%, transparent);
+  text-align: left;
+
+  @media (width < 768px) {
+    align-self: stretch;
+    padding-right: 1.25rem;
+  }
+}
+
+/* pastille « −50 % » façon tampon, légèrement inclinée */
+.creditValue {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-forest);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-ivory);
+  rotate: -8deg;
+  box-shadow: 0 6px 14px color-mix(in oklab, var(--color-forest) 35%, transparent);
+}
+
+.creditText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.creditTitle {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--color-forest);
+}
+
+.creditSub {
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(85, 80, 68, 0.88);
 }
 
 .primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   padding-inline: 30px;
   padding-block: 18px;
-  border: 1px solid color-mix(in lab, var(--color-forest) 45%, transparent);
+  border: 2px solid color-mix(in lab, var(--color-forest) 45%, transparent); /* même épaisseur que le CTA secondaire */
   border-radius: var(--radius-pill);
   background-color: var(--color-forest);
   font-size: 1rem;
@@ -239,31 +282,37 @@
     outline: 2px solid var(--color-forest);
     outline-offset: 4px;
   }
+
+  @media (width < 768px) {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .secondary {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding-block: 0.25rem;
-  border-color: color-mix(in oklab, var(--color-ink) 35%, transparent);
-  border-bottom-width: 1px;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 2rem;
+  /* CTA secondaire : contour seul, même taille que le CTA principal */
+  border: 2px solid color-mix(in oklab, var(--color-ink) 30%, transparent);
+  border-radius: var(--radius-pill);
+  background-color: color-mix(in oklab, var(--color-ink) 7%, transparent);
   font-size: 1rem;
-  line-height: 1.5;
+  line-height: 1;
   font-weight: 600;
   color: rgba(85, 80, 68, 1);
-  transition:
-    border-color 0.25s ease,
-    color 0.25s ease;
+  transition-property: border-color, background-color, color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 
   @media (hover: hover) {
     &:hover {
       border-color: var(--color-forest);
+      background-color: color-mix(in oklab, var(--color-forest) 8%, transparent);
       color: var(--color-forest);
-    }
-
-    &:hover .arrow {
-      translate: 5px 0;
     }
   }
 
@@ -271,6 +320,29 @@
     outline: 2px solid var(--color-forest);
     outline-offset: 4px;
   }
+}
+
+.secondaryArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  transition-property: translate, rotate;
+  transition-duration: 400ms;
+  transition-timing-function: var(--ease-spring);
+
+  .secondary:hover & {
+    @media (hover: hover) {
+      translate: 0.25rem -0.25rem;
+      rotate: 45deg;
+    }
+  }
+}
+
+.secondaryArrowIcon {
+  width: 22px;
+  height: 22px;
 }
 
 .arrow {
@@ -292,16 +364,57 @@
   }
 }
 
+/* barre transparente au-dessus du titre : avis Google + crédit d'impôt */
+.topBar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  align-self: center;
+  margin-bottom: 0.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in oklab, var(--color-ink) 4%, transparent);
+
+  @media (width < 768px) {
+    gap: 0.5rem 0.875rem;
+    padding-inline: 0.5rem 1rem;
+  }
+}
+
+.topBarDivider {
+  width: 1px;
+  height: 1.75rem;
+  background-color: color-mix(in oklab, var(--color-ink) 20%, transparent);
+
+  @media (width < 480px) {
+    display: none;
+  }
+}
+
+.taxCredit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+.taxCreditIcon {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .google {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding-block: 0.5rem;
-  padding-right: 1.25rem;
-  padding-left: 0.5rem;
-  border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
-  border-radius: calc(infinity * 1px);
-  background-color: color-mix(in oklab, var(--color-ink) 6%, transparent);
 }
 
 .googleLogo {

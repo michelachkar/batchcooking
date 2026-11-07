@@ -1,12 +1,13 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, Mail, Phone, User, X } from 'lucide-react'
+import { Check, ChefHat, Phone, User, X } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
 import type { LeadOpenOptions } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import { Switch } from '@/components/lead/switch'
+import type { ConfirmationTexts, ConfirmSubmit } from '@/components/lead/confirmation-dialog'
 import styles from './lead-modal.module.css'
 import {
   DINNERS,
@@ -22,6 +23,9 @@ export type LeadPack = { id: PackId; title: string; label: string; features: str
 
 export type LeadTexts = {
   title: string
+  /** Service concerné, rappelé en tête de chaque étape. */
+  service: string
+  subtitle: string
   step: string
   close: string
   compareTitle: string
@@ -51,6 +55,7 @@ export type LeadTexts = {
   doneTitle: string
   doneText: string
   doneButton: string
+  confirmation: ConfirmationTexts
 }
 
 // Modal de demande de rappel (rendu une seule fois par <LeadProvider>).
@@ -60,20 +65,22 @@ export function LeadModal({
   texts,
   packs,
   onClose,
+  onConfirm,
 }: {
   opts: LeadOpenOptions
   texts: LeadTexts
   packs: LeadPack[]
   onClose: () => void
+  /** Clic sur le CTA : le provider ferme ce modal et ouvre « étapes suivantes + e-mail » ; la demande part à la confirmation. */
+  onConfirm: (submit: ConfirmSubmit) => void
 }) {
   const ref = useRef<HTMLDialogElement>(null)
   const direct = Boolean(opts.pack)
-  const [step, setStep] = useState<1 | 2 | 3>(direct ? 2 : 1)
+  const [step, setStep] = useState<1 | 2>(direct ? 2 : 1)
   const [pickId, setPickId] = useState<PackId>(opts.pack ?? packs[0].id)
   // Par défaut : 1 mois et 3 dîners, la combinaison la plus avantageuse.
   const [period, setPeriod] = useState<Period>(opts.period ?? 'month')
   const [dinners, setDinners] = useState<Dinners>(opts.dinners ?? DINNERS[0])
-  const [status, setStatus] = useState<'idle' | 'sending' | 'error'>('idle')
 
   useEffect(() => {
     const d = ref.current
@@ -87,24 +94,19 @@ export function LeadModal({
       ? `${texts.from} ${euro(fromPrice(id))} € ${texts.perWeek}`
       : `${euro(priceAfter(id, period, dinners))} € ${texts.perWeek}`
 
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
+  function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const f = new FormData(e.currentTarget)
-    setStatus('sending')
-    const ok = await submitLead({
-      source: 'formula-modal',
-      service: 'batch',
+    const data = {
       firstName: String(f.get('firstName') ?? ''),
-      email: String(f.get('email') ?? ''),
       phone: String(f.get('phone') ?? ''),
       website: String(f.get('website') ?? ''),
       pack: pick.id,
       period,
       dinners,
       price: euro(priceAfter(pick.id, period, dinners)),
-    })
-    setStatus(ok ? 'idle' : 'error')
-    if (ok) setStep(3)
+    }
+    onConfirm((email) => submitLead({ source: 'formula-modal', service: 'batch', email, ...data }))
   }
 
   return (
@@ -115,7 +117,14 @@ export function LeadModal({
       onClick={(e) => e.target === ref.current && ref.current?.close()}
       className={styles.root}
     >
-      <div className={styles.panel}>
+      <header className={styles.header}>
+        <span className={styles.headerIcon}>
+          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
+        </span>
+        <span className={styles.headerText}>
+          <strong className={styles.headerService}>{texts.service}</strong>
+          <span className={styles.headerSub}>{texts.subtitle}</span>
+        </span>
         <button
           type="button"
           onClick={() => ref.current?.close()}
@@ -124,8 +133,9 @@ export function LeadModal({
         >
           <X aria-hidden className={styles.closeIcon} />
         </button>
-
-        {step < 3 && !direct && (
+      </header>
+      <div className={styles.panel}>
+        {!direct && (
           <div className={styles.progress}>
             <p className={styles.label}>{texts.step.replace('{n}', String(step))}</p>
             <div className={styles.bars} aria-hidden>
@@ -206,7 +216,6 @@ export function LeadModal({
             </div>
             <p className={styles.engagement}>{texts.engagement[period]}</p>
             <h4 className={styles.contactTitle}>{texts.contactTitle}</h4>
-            <p className={styles.contactIntro}>{texts.contactIntro}</p>
             <div className={styles.fields}>
               <div className={styles.field}>
                 <label htmlFor="lead-firstname" className={styles.label}>
@@ -221,23 +230,6 @@ export function LeadModal({
                     autoComplete="given-name"
                     maxLength={60}
                     placeholder={texts.firstNamePlaceholder}
-                    className={styles.input}
-                  />
-                </span>
-              </div>
-              <div className={styles.field}>
-                <label htmlFor="lead-email" className={styles.label}>
-                  {texts.emailLabel}
-                </label>
-                <span className={styles.control}>
-                  <Mail aria-hidden className={styles.fieldIcon} />
-                  <input
-                    id="lead-email"
-                    name="email"
-                    type="email"
-                    required
-                    autoComplete="email"
-                    placeholder={texts.emailPlaceholder}
                     className={styles.input}
                   />
                 </span>
@@ -269,13 +261,8 @@ export function LeadModal({
                 className={styles.trap}
               />
             </div>
-            {status === 'error' && (
-              <p role="alert" className={styles.error}>
-                {texts.error}
-              </p>
-            )}
-            <button type="submit" disabled={status === 'sending'} className={styles.submit}>
-              {status === 'sending' ? texts.sending : texts.submit}
+            <button type="submit" className={styles.submit}>
+              {texts.submit}
               <ArrowIcon className={styles.submitArrow} />
             </button>
             <p className={styles.consent}>{texts.consent}</p>
@@ -283,23 +270,6 @@ export function LeadModal({
               {texts.back}
             </button>
           </form>
-        )}
-
-        {step === 3 && (
-          <div className={styles.done}>
-            <span className={styles.doneBadge}>
-              <Check aria-hidden className={styles.doneIcon} strokeWidth={3} />
-            </span>
-            <h3 className={clsx(styles.title, styles.doneTitle)}>{texts.doneTitle}</h3>
-            <p className={styles.doneText}>{texts.doneText}</p>
-            <button
-              type="button"
-              onClick={() => ref.current?.close()}
-              className={styles.doneButton}
-            >
-              {texts.doneButton}
-            </button>
-          </div>
         )}
       </div>
     </dialog>

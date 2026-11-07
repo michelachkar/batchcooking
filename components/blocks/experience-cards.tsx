@@ -17,14 +17,23 @@ export type ExperienceCard = {
   alt: string
 }
 
-type Props = { kicker: string; title: string; intro: string; cards: ExperienceCard[] }
+type Props = {
+  kicker: string
+  title: string
+  intro: string
+  cards: ExperienceCard[]
+  tone?: 'white' | 'cream'
+}
 
 // Cartes d'expériences : grandes cartes photo (3 colonnes, 2 en tablette, 1 en mobile), reprises du widget « experience-cards ».
 // Chaque carte est cliquable en entier via le lien (zone étirée).
-export function ExperienceCards({ kicker, title, intro, cards }: Props) {
+export function ExperienceCards({ kicker, title, intro, cards, tone = 'white' }: Props) {
   return (
-    <section data-section="experiences" className={styles.root}>
-      <div className={styles.band}>
+    <section
+      data-section="experiences"
+      className={clsx(styles.root, tone === 'cream' && styles.cream)}
+    >
+      <div className={clsx(styles.band, tone === 'cream' && styles.cream)}>
         <div className={styles.container}>
           <header className={styles.header}>
             <div>
