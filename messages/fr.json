@@ -77,6 +77,7 @@
       "label": "Votre batch cooking de Mèze à Lunel, en passant par Montpellier",
       "headline": "Tous vos dîners de la semaine sont préparés chez vous en un clin d'oeil.",
       "accent": "Fini la charge mentale des repas.",
+      "tagline": ["Délicieux", "Healthy", "Zéro vaisselle"],
       "description": "Éligible crédit d'impôt 50 %",
       "badges": [
         {
@@ -105,7 +106,27 @@
       "creditNote": {
         "value": "−50 %",
         "title": "de crédit d'impôt, tout de suite",
-        "note": "Grâce à l'Avance Immédiate : vous ne payez que la moitié"
+        "note": "Grâce à l'Avance Immédiate : vous ne payez que la moitié",
+        "cta": "En savoir plus"
+      },
+      "creditDialog": {
+        "close": "Fermer",
+        "title": "Vous ne payez que 50 % du prix",
+        "intro": "Pas d'avance de frais ni de démarche aux impôts : la moitié est déduite dès le paiement, grâce à l'Avance Immédiate.",
+        "exampleKicker": "Exemple concret",
+        "exampleTitle": "Sérénité, 3 dîners par semaine, sur 1 mois",
+        "rows": {
+          "full": "Prix du service",
+          "credit": "Crédit d'impôt déduit tout de suite",
+          "pay": "Vous payez"
+        },
+        "perWeek": "par semaine",
+        "stepsTitle": "Comment ça se passe",
+        "steps": [
+          { "title": "Vous réservez", "text": "Après notre appel, vous recevez un devis gratuit et sans engagement, avec le prix exact déjà divisé par deux." },
+          { "title": "Vous ne payez que la moitié", "text": "50 % du prix vous est débité, c'est tout. Rien d'autre à avancer, rien à récupérer ensuite." }
+        ],
+        "button": "Réserver mes repas"
       },
       "imageAlt": "Cheffe en tenue blanche et toque, la main sur la hanche, souriante devant un fond blanc",
       "captionKicker": "Service à la personne",
@@ -472,8 +493,6 @@
       "prev": "Recette précédente",
       "next": "Recette suivante",
       "navigation": "Carrousel de recettes",
-      "proofLong": "Une recette vous fait envie ? Je la cuisine chez vous. Demandez votre devis !",
-      "proofShort": "Une recette vous fait envie ? Demandez votre devis !",
       "projects": [
         {
           "alt": "Poulet rôti aux herbes et légumes de saison",
@@ -1723,6 +1742,8 @@
     }
   },
   "quote": {
+    "headerTitle": "Réservez votre chef",
+    "headerSub": "Réponse sous 24h, sans engagement",
     "title": "Quel service vous intéresse ?",
     "intro": "Choisissez votre service : nous vous posons ensuite quelques questions pour préparer votre devis.",
     "close": "Fermer",
@@ -2732,11 +2753,15 @@
     "subtitle": "Demande de rappel sous 24h sans engagement",
     "step": "Étape {n} sur 2",
     "close": "Fermer",
-    "compareTitle": "Quelle formule de batch cooking vous convient ?",
-    "compareIntro": "Votre cheffe prépare chez vous vos dîners de la semaine. Les deux formules comprennent le même service. Seul le menu change : à choisir parmi nos recettes, ou entièrement sur mesure.",
+    "compareTitle": "Quelle formule choisir ?",
+    "compareIntro": "Vos dîners de la semaine, préparés chez vous.",
+    "mealsBadge": "3 à 5 repas par semaine",
+    "menuLabel": "Votre menu",
     "from": "À partir de",
     "perWeek": "par semaine",
     "afterCredit": "après crédit d'impôt de 50 %",
+    "priceLabel": "Votre prix",
+    "creditLine": "{before} € − 50 % de crédit d'impôt",
     "periods": {
       "week": "1 semaine",
       "month": "1 mois"
@@ -2761,28 +2786,20 @@
         "id": "serenite",
         "title": "Sérénité",
         "label": "Pour démarrer simplement",
-        "features": [
-          "Plus de 40 recettes au choix",
-          "3 à 5 dîners par passage, cuisinés chez vous",
-          "1 semaine sans engagement ou 1 mois (4 passages)"
-        ]
+        "highlight": "Choisissez vos plats parmi les recettes présentées sur notre site"
       },
       {
         "id": "signature",
         "title": "Signature",
         "label": "Pour une table sur mesure",
-        "features": [
-          "Menu élaboré sur mesure, selon vos envies et contraintes",
-          "3 à 5 dîners par passage, cuisinés chez vous",
-          "1 semaine sans engagement ou 1 mois (4 passages)"
-        ]
+        "highlight": "Un menu composé avec la cheffe, selon vos envies et contraintes"
       }
     ],
     "periodLabel": "Durée",
     "dinnersLabel": "Dîners par prestation",
     "engagement": {
-      "week": "1 passage de la cheffe, sans engagement.",
-      "month": "4 passages de la cheffe, avec engagement d'1 mois."
+      "week": "1 passage de la cheffe, sans engagement",
+      "month": "4 passages de la cheffe, engagement 1 mois"
     },
     "configTitle": "Votre formule de batch cooking",
     "firstNameLabel": "Prénom (facultatif)",

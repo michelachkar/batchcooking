@@ -63,7 +63,6 @@ export default async function RecipesPage() {
             }}
           />
           <div className={styles.cta}>
-            <p className={styles.ctaText}>{ev('proofLong')}</p>
             <Link href="/contact#inquiry" className={styles.ctaLink}>
               Demander un devis
               <ArrowIcon />

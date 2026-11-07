@@ -182,13 +182,15 @@ export function QuoteInquiry(
           <div>
             <h2 className={styles.title}>{p.infoTitle}</h2>
             {picked && (
-              <p className={styles.picked}>
-                {picked.label}
-                {picked.price && <span className={styles.pickedPrice}>· {picked.price}</span>}
+              <div className={styles.picked}>
+                <span className={styles.pickedBody}>
+                  <span className={styles.pickedLabel}>{picked.label}</span>
+                  {picked.price && <span className={styles.pickedPrice}>{picked.price}</span>}
+                </span>
                 <button type="button" onClick={() => setStep(1)} className={styles.change}>
                   {p.back}
                 </button>
-              </p>
+              </div>
             )}
             <p className={clsx(styles.intro, styles.soft)}>{p.intro}</p>
             <form onSubmit={onSubmit} className={styles.form}>

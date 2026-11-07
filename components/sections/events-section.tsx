@@ -35,16 +35,18 @@ export async function EventsSection({
       projects={projects}
       cta={ev.has('cta') ? { label: ev('cta'), href: ev('ctaHref') } : undefined}
       carouselLabels={{ prev: ev('prev'), next: ev('next'), navigation: ev('navigation') }}
-      faces={m.faces}
+      faces={ns === 'home' ? undefined : m.faces}
       proof={{
         long: (
           <>
-            {ev('proofLong')} {phone}
+            {ev.has('proofLong') && `${ev('proofLong')} `}
+            {phone}
           </>
         ),
         short: (
           <>
-            {ev('proofShort')} {phone}
+            {ev.has('proofShort') && `${ev('proofShort')} `}
+            {phone}
           </>
         ),
       }}

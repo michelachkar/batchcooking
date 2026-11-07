@@ -51,19 +51,23 @@ export async function ReviewsSection({
       inset={variant === 'inset-proof'}
       initial={initial}
       tight={tight}
-      faces={m.faces}
-      proof={{
-        long: (
-          <>
-            {rv('proofLong')} {phone}
-          </>
-        ),
-        short: (
-          <>
-            {rv('proofShort')} {phone}
-          </>
-        ),
-      }}
+      faces={ns === 'home' ? undefined : m.faces}
+      proof={
+        ns === 'home'
+          ? undefined
+          : {
+              long: (
+                <>
+                  {rv('proofLong')} {phone}
+                </>
+              ),
+              short: (
+                <>
+                  {rv('proofShort')} {phone}
+                </>
+              ),
+            }
+      }
     />
   )
 }

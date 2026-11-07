@@ -5,6 +5,13 @@ import { LeadTrigger } from '@/components/lead/lead-trigger'
 import { ArrowIcon } from '@/components/ui/icon'
 import { RevealObserver } from '@/components/blocks/reveal-observer'
 import styles from './hero.module.css'
+import {
+  CreditDialog,
+  CreditNote,
+  CreditTrigger,
+  type CreditDialogTexts,
+  type CreditNoteTexts,
+} from '@/components/blocks/credit-note'
 import { HeroReviews, type HeroReview } from '@/components/blocks/hero-reviews'
 
 export type HeroPhoto = { src: string; width: number; height: number; alt: string }
@@ -26,9 +33,10 @@ type Props = {
   accent: string
   description: string
   gallery?: HeroPhoto[]
+  tagline?: string[]
   googleReviews?: string
   taxCredit?: string
-  creditNote?: { value: string; title: string; note: string }
+  creditNote?: { note: CreditNoteTexts; dialog: CreditDialogTexts }
   heroReviews?: { label: string; items: HeroReview[] }
   /** `lead` : le CTA ouvre le modal de demande de rappel (href sert de repli sans JavaScript). */
   primary: Cta & { lead?: boolean }
@@ -46,6 +54,7 @@ export function Hero({
   accent,
   description,
   gallery,
+  tagline,
   googleReviews,
   taxCredit,
   creditNote,
@@ -97,10 +106,10 @@ export function Hero({
               {taxCredit && (
                 <>
                   <span aria-hidden className={styles.topBarDivider} />
-                  <span className={styles.taxCredit}>
+                  <CreditTrigger className={styles.taxCredit}>
                     <BadgePercent aria-hidden className={styles.taxCreditIcon} strokeWidth={1.75} />
                     {taxCredit}
-                  </span>
+                  </CreditTrigger>
                 </>
               )}
             </div>
@@ -109,10 +118,24 @@ export function Hero({
             <em className={styles.accent}>{accent}</em>
             {headline}
           </h1>
+          {tagline?.length ? (
+            <p className={styles.tagline}>
+              {tagline.map((w) => (
+                <span key={w} className={styles.taglineItem}>
+                  {w}
+                </span>
+              ))}
+            </p>
+          ) : null}
           {gallery?.length ? (
             <ul className={styles.gallery}>
               {gallery.map(({ alt, ...img }, i) => (
-                <li key={img.src + i} data-reveal="up" data-d={i + 1} className={styles.galleryItem}>
+                <li
+                  key={img.src + i}
+                  data-reveal="up"
+                  data-d={i + 1}
+                  className={styles.galleryItem}
+                >
                   <Image
                     {...img}
                     alt={alt}
@@ -136,15 +159,10 @@ export function Hero({
             </Link>
           </div>
           {creditNote && (
-            <div data-reveal="up" data-d="5" className={styles.creditNote}>
-              <span aria-hidden className={styles.creditValue}>
-                {creditNote.value}
-              </span>
-              <span className={styles.creditText}>
-                <strong className={styles.creditTitle}>{creditNote.title}</strong>
-                <span className={styles.creditSub}>{creditNote.note}</span>
-              </span>
-            </div>
+            <>
+              <CreditNote note={creditNote.note} />
+              <CreditDialog value={creditNote.note.value} dialog={creditNote.dialog} />
+            </>
           )}
         </div>
 
@@ -159,7 +177,6 @@ export function Hero({
             sizes="(min-width: 1025px) 55vw, 100vw"
             className={styles.photo}
           />
-
         </div>
       </div>
     </section>

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { X } from 'lucide-react'
+import { ChefHat, CookingPot, GraduationCap, UtensilsCrossed, X } from 'lucide-react'
 import { QuoteInquiry, type QuoteInquiryTexts } from '@/components/blocks/quote-inquiry'
 import { useLead } from '@/components/lead/lead-provider'
 import styles from './quote-provider.module.css'
@@ -9,11 +9,15 @@ import styles from './quote-provider.module.css'
 type Service = 'batch' | 'chef' | 'cours'
 
 export type QuoteTexts = {
+  headerTitle: string
+  headerSub: string
   title: string
   intro: string
   close: string
   services: { id: Service; title: string; text: string }[]
 }
+
+const ICONS = { batch: CookingPot, chef: UtensilsCrossed, cours: GraduationCap } as const
 
 // Pages de service : le lien « #devis » d'une page ouvre directement le formulaire de son service.
 const BY_PATH: [string, Service][] = [
@@ -122,7 +126,14 @@ function Picker({
       onClick={(e) => e.target === el && el?.close()}
       className={styles.root}
     >
-      <div className={styles.panel}>
+      <header className={styles.header}>
+        <span className={styles.headerIcon}>
+          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
+        </span>
+        <span className={styles.headerText}>
+          <strong className={styles.headerTitle}>{texts.headerTitle}</strong>
+          <span className={styles.headerSub}>{texts.headerSub}</span>
+        </span>
         <button
           type="button"
           onClick={() => el?.close()}
@@ -131,17 +142,27 @@ function Picker({
         >
           <X aria-hidden className={styles.closeIcon} />
         </button>
+      </header>
+      <div className={styles.panel}>
         <h2 className={styles.title}>{texts.title}</h2>
         <p className={styles.intro}>{texts.intro}</p>
         <ul className={styles.list}>
-          {texts.services.map((s) => (
-            <li key={s.id}>
-              <button type="button" onClick={() => onPick(s.id)} className={styles.service}>
-                <span className={styles.serviceTitle}>{s.title}</span>
-                <span className={styles.serviceText}>{s.text}</span>
-              </button>
-            </li>
-          ))}
+          {texts.services.map((s) => {
+            const Icon = ICONS[s.id]
+            return (
+              <li key={s.id}>
+                <button type="button" onClick={() => onPick(s.id)} className={styles.service}>
+                  <span className={styles.serviceIcon}>
+                    <Icon aria-hidden className={styles.serviceIconSvg} strokeWidth={1.75} />
+                  </span>
+                  <span className={styles.serviceBody}>
+                    <span className={styles.serviceTitle}>{s.title}</span>
+                    <span className={styles.serviceText}>{s.text}</span>
+                  </span>
+                </button>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </dialog>

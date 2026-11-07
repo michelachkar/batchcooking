@@ -14,12 +14,13 @@ import {
   euro,
   fromPrice,
   priceAfter,
+  priceBefore,
   type Dinners,
   type PackId,
   type Period,
 } from '@/lib/lead/pricing'
 
-export type LeadPack = { id: PackId; title: string; label: string; features: string[] }
+export type LeadPack = { id: PackId; title: string; label: string; highlight: string }
 
 export type LeadTexts = {
   title: string
@@ -30,9 +31,13 @@ export type LeadTexts = {
   close: string
   compareTitle: string
   compareIntro: string
+  mealsBadge: string
+  menuLabel: string
   from: string
   perWeek: string
   afterCredit: string
+  priceLabel: string
+  creditLine: string
   periods: { week: string; month: string }
   dinners: string
   periodLabel: string
@@ -88,12 +93,6 @@ export function LeadModal({
   }, [])
 
   const pick = packs.find((p) => p.id === pickId) ?? packs[0]
-  // Étape 1 : prix d'appel ; étape 2 : prix exact de la combinaison choisie.
-  const priceText = (id: PackId) =>
-    step === 1
-      ? `${texts.from} ${euro(fromPrice(id))} € ${texts.perWeek}`
-      : `${euro(priceAfter(id, period, dinners))} € ${texts.perWeek}`
-
   function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     const f = new FormData(e.currentTarget)
@@ -165,23 +164,28 @@ export function LeadModal({
                 >
                   <span className={styles.packHead}>
                     <span className={styles.packName}>
-                      <span className={styles.packTitle}>{p.title}</span>
+                      <span className={styles.packTitleRow}>
+                        <span className={styles.packTitle}>{p.title}</span>
+                        <span className={styles.packBadge}>{texts.mealsBadge}</span>
+                      </span>
                       <span className={styles.packLabel}>{p.label}</span>
                     </span>
                     <span className={styles.packPrice}>
-                      <strong className={styles.packPriceValue}>{priceText(p.id)}</strong>
+                      <strong className={styles.packPriceValue}>
+                        {texts.from}{' '}
+                        <span className={styles.packAmount}>{euro(fromPrice(p.id))} €</span>{' '}
+                        {texts.perWeek}
+                      </strong>
                       <span className={styles.packNote}>{texts.afterCredit}</span>
                     </span>
                   </span>
-                  <ul className={styles.features}>
-                    {p.features.map((f) => (
-                      <li key={f} className={styles.feature}>
-                        <Check aria-hidden className={styles.featureCheck} strokeWidth={3} />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <ArrowIcon className={styles.packArrow} />
+                  <span className={styles.highlight}>
+                    <span className={styles.highlightText}>
+                      <span className={styles.highlightLabel}>{texts.menuLabel}</span>
+                      {p.highlight}
+                    </span>
+                    <ArrowIcon className={styles.packArrow} />
+                  </span>
                 </button>
               ))}
             </div>
@@ -191,9 +195,6 @@ export function LeadModal({
         {step === 2 && (
           <form onSubmit={submit}>
             <h3 className={styles.title}>{texts.configTitle}</h3>
-            <p className={styles.pick}>
-              {pick.title} · {priceText(pick.id)}
-            </p>
             <div className={styles.switches}>
               <Switch
                 label={texts.periodLabel}
@@ -213,6 +214,24 @@ export function LeadModal({
                   text: texts.dinners.replace('{n}', String(n)),
                 }))}
               />
+            </div>
+            {/* Le prix est la pièce centrale de l'étape : il « pulse » à chaque changement de choix. */}
+            <div className={styles.price} aria-live="polite">
+              <span className={styles.priceInfo}>
+                <span className={styles.priceLabel}>
+                  {texts.priceLabel} · {pick.title}
+                </span>
+                <span className={styles.priceOld}>
+                  {texts.creditLine.replace(
+                    '{before}',
+                    euro(priceBefore(pick.id, period, dinners)),
+                  )}
+                </span>
+              </span>
+              <span key={`${period}-${dinners}`} className={styles.priceValue}>
+                {euro(priceAfter(pick.id, period, dinners))} €
+                <span className={styles.priceUnit}>{texts.perWeek}</span>
+              </span>
             </div>
             <p className={styles.engagement}>{texts.engagement[period]}</p>
             <h4 className={styles.contactTitle}>{texts.contactTitle}</h4>

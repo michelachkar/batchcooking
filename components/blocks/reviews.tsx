@@ -14,8 +14,8 @@ type Props = {
   description: string
   reviews: Review[]
   labels: { prev: string; next: string; navigation: string }
-  faces: Img[]
-  proof: { long: React.ReactNode; short: React.ReactNode }
+  faces?: Img[]
+  proof?: { long: React.ReactNode; short: React.ReactNode }
   /** Encart arrondi dans la page (pages tarifs et FAQ) au lieu du bandeau pleine largeur de l'accueil. */
   inset?: boolean
   /** Avis actif au chargement. */
@@ -53,11 +53,13 @@ export function Reviews({
           description={description}
         />
         <ReviewsSlider reviews={reviews} labels={labels} initial={initial} />
-        <div className={styles.proof}>
-          <StackedPhotos photos={faces} />
-          <p className={clsx(styles.proofText, styles.proofLong)}>{proof.long}</p>
-          <p className={clsx(styles.proofText, styles.proofShort)}>{proof.short}</p>
-        </div>
+        {proof && (
+          <div className={styles.proof}>
+            {faces?.length ? <StackedPhotos photos={faces} /> : null}
+            <p className={clsx(styles.proofText, styles.proofLong)}>{proof.long}</p>
+            <p className={clsx(styles.proofText, styles.proofShort)}>{proof.short}</p>
+          </div>
+        )}
         <div className={styles.spacer} aria-hidden />
       </div>
     </section>

@@ -15,7 +15,7 @@ type Props = {
   /** Bouton sous le carrousel (facultatif). */
   cta?: { label: string; href: string }
   carouselLabels: { prev: string; next: string; navigation: string }
-  faces: { src: string; width: number; height: number; unoptimized?: boolean }[]
+  faces?: { src: string; width: number; height: number; unoptimized?: boolean }[]
   proof: { long: React.ReactNode; short: React.ReactNode }
   /** Espace au-dessus du titre (70 px sur l'accueil, 50 px sur la FAQ). */
   topSpacer?: number
@@ -64,7 +64,7 @@ export function EventsShowcase({
         </div>
       )}
       <div style={{ marginBottom: bottomGap }} className={styles.proof}>
-        <StackedPhotos photos={faces} />
+        {faces?.length ? <StackedPhotos photos={faces} /> : null}
         <p className={clsx(styles.proofText, styles.proofLong)}>{proof.long}</p>
         <p className={clsx(styles.proofText, styles.proofShort)}>{proof.short}</p>
       </div>

@@ -16,6 +16,7 @@ import { ProposalSection } from '@/components/sections/proposal-section'
 import { ReviewsSection } from '@/components/sections/reviews-section'
 import { PostsSections } from '@/components/sections/posts-sections'
 import { Hero } from '@/components/blocks/hero'
+import type { CreditDialogTexts, CreditNoteTexts } from '@/components/blocks/credit-note'
 import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
 import styles from './landing.module.css'
@@ -63,11 +64,15 @@ export async function Landing({ ns }: { ns: LandingNs }) {
         primary={{ label: t('primary'), href: '/contact', lead: ns === 'home' }}
         secondary={{ label: t('secondary'), href: ns === 'home' ? '/recettes' : '/services' }}
         meta={{ text: t('meta') }}
+        tagline={ns === 'home' ? (t.raw('tagline') as string[]) : undefined}
         googleReviews={ns === 'home' ? t('googleReviews') : undefined}
         taxCredit={ns === 'home' ? t('taxCredit') : undefined}
         creditNote={
           ns === 'home'
-            ? (t.raw('creditNote') as { value: string; title: string; note: string })
+            ? {
+                note: t.raw('creditNote') as CreditNoteTexts,
+                dialog: t.raw('creditDialog') as CreditDialogTexts,
+              }
             : undefined
         }
         heroReviews={ns === 'home' ? { label: rv('navigation'), items: heroReviews } : undefined}
@@ -138,73 +143,7 @@ export async function Landing({ ns }: { ns: LandingNs }) {
       />
       <ReviewsSection ns={ns} />
       <PostsSections ns={ns} />
-      {ns !== 'home' && (
-        <SampleMenus
-          kicker={m('kicker')}
-          title={m('title')}
-          intro={m('intro')}
-          note={m('note')}
-          menus={menus}
-          labels={{
-            open: m('open'),
-            close: m('close'),
-            panelKicker: m('panelKicker'),
-            cta: m('cta'),
-            more: (count) => m('more', { count }),
-          }}
-          ctaHref="/contact#inquiry"
-        />
-      )}
-      {ns !== 'home' && (
-        <Included
-          kicker={inc('kicker')}
-          title={inc('title')}
-          paragraphs={inc.raw('paragraphs') as string[]}
-          listTitle={inc('listTitle')}
-          listStyle="check"
-          columns={2}
-          items={inc.raw('items') as { icon: IconName; text: string }[]}
-          extras={{
-            title: inc('extrasTitle'),
-            items: inc.raw('extras') as { icon: IconName; label: string; value: string }[],
-          }}
-          note={inc('note')}
-          link={{ label: inc('link'), href: '/contact#inquiry' }}
-          linkStyle="button"
-          badge={{ icon: 'shield-check', value: inc('badgeValue'), text: inc('badgeText') }}
-          image={{ ...media.included, alt: inc('imageAlt') }}
-          inset={{ ...media.includedInset, alt: inc('insetAlt') }}
-        />
-      )}
-      {ns !== 'home' && (
-        <EveningSteps
-          kicker={es('kicker')}
-          title={es('title')}
-          button={{ label: es('button'), href: '/contact#inquiry' }}
-          steps={es.raw('steps') as { icon: IconName; title: string; text: string }[]}
-        />
-      )}
-      {ns !== 'home' && media.partners.length > 0 && (
-        <section data-section="partners" className={styles.partners}>
-          <div className={styles.partnersInner}>
-            <ClientCarousel
-              logos={media.partners.slice(0, 3)}
-              height={54}
-              className={styles.partnersCarousel}
-            />
-          </div>
-        </section>
-      )}
-      {ns !== 'home' && <OccasionsSection ns={ns} />}
-      {ns !== 'home' && (
-        <TeamSection
-          ns={ns}
-          show={['julien-marchetti', 'theo-ramirez', 'sofia-lindqvist', 'amara-okafor']}
-        />
-      )}
-      {ns !== 'home' && <TrustedSection ns={ns} />}
-      <div className={styles.spacer} aria-hidden />
-      {ns !== 'home' && <ProposalSection ns={ns} />}
+      
     </>
   )
 }
