@@ -13,7 +13,6 @@ import { media } from '@/lib/media'
 export async function Landing() {
   const t = await getTranslations('home.hero')
   const q = await getTranslations('home.inquiry')
-  const zn = await getTranslations('homeV2.zones')
   const zc = await getTranslations('zonesPage.cities')
   return (
     <>

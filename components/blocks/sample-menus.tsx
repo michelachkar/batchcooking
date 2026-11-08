@@ -1,9 +1,9 @@
 import Image from 'next/image'
-import { Check, X } from 'lucide-react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { MenuDialog } from '@/components/blocks/menu-dialog'
 import { ArrowIcon, Icon, type IconName } from '@/components/ui/icon'
+import { MarkBadge } from '@/components/ui/mark-badge'
 import { rich } from '@/components/ui/rich-text'
 import styles from './sample-menus.module.css'
 
@@ -12,11 +12,15 @@ export type SampleMenu = {
   icon: IconName
   label: string
   title: string
-  meta: string
-  tags: string[]
+  meta?: string
+  /** Courte phrase de présentation, à la place de la méta et des badges. */
+  description?: string
+  tags?: string[]
   courses: [string, string, ('yes' | 'no')?][]
   price: string
   priceNote: string
+  /** Coût par dîner, affiché sous le prix. */
+  perDinner?: string
 }
 
 const bold = rich
@@ -137,36 +141,28 @@ export function SampleMenus({
                     <div className={styles.spacer} />
                   )}
                   <h3 className={styles.cardTitle}>{m.title}</h3>
-                  <p className={styles.meta}>
-                    <Icon name="clock" className={styles.metaIcon} />
-                    {m.meta}
-                  </p>
-                  <ul className={styles.tags}>
-                    {m.tags.map((t) => (
-                      <li key={t} className={styles.tag}>
-                        <Icon name="leaf" className={styles.tagIcon} />
-                        {t}
-                      </li>
-                    ))}
-                  </ul>
+                  {m.meta && (
+                    <p className={styles.meta}>
+                      <Icon name="clock" className={styles.metaIcon} />
+                      {m.meta}
+                    </p>
+                  )}
+                  {m.description && <p className={styles.description}>{bold(m.description)}</p>}
+                  {m.tags && m.tags.length > 0 && (
+                    <ul className={styles.tags}>
+                      {m.tags.map((t) => (
+                        <li key={t} className={styles.tag}>
+                          <Icon name="leaf" className={styles.tagIcon} />
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <ol className={styles.courses}>
                     {shown.map(([course, desc, mark]) => (
                       <li key={course} className={styles.course}>
                         <span className={styles.courseName}>
-                          {mark && (
-                            <span
-                              className={clsx(
-                                styles.mark,
-                                mark === 'yes' ? styles.markYes : styles.markNo,
-                              )}
-                            >
-                              {mark === 'yes' ? (
-                                <Check aria-hidden className={styles.markIcon} strokeWidth={3} />
-                              ) : (
-                                <X aria-hidden className={styles.markIcon} strokeWidth={3} />
-                              )}
-                            </span>
-                          )}
+                          {mark && <MarkBadge mark={mark} />}
                           <span>{bold(course)}</span>
                         </span>
                         {desc && <span className={styles.courseDesc}>{bold(desc)}</span>}
@@ -185,6 +181,7 @@ export function SampleMenus({
                         {m.price}
                       </strong>
                       <span className={styles.priceNote}>{m.priceNote}</span>
+                      {m.perDinner && <span className={styles.perDinner}>{bold(m.perDinner)}</span>}
                     </div>
                     {cardCta && (
                       <CtaTag
@@ -201,7 +198,7 @@ export function SampleMenus({
                         <p className={styles.dialogKicker}>{labels.panelKicker}</p>
                         <h3 className={styles.dialogTitle}>{m.title}</h3>
                         <p className={styles.dialogMeta}>
-                          {m.meta} · {m.price}
+                          {[m.meta, m.price].filter(Boolean).join(' · ')}
                         </p>
                         <ol className={styles.dialogCourses}>
                           {m.courses.map(([course, desc], k) => (

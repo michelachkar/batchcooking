@@ -249,7 +249,7 @@
         145deg,
         var(--color-footer) 0%,
         var(--color-surface-dark) 52%,
-        #1b1816 100%
+        var(--color-ink-black) 100%
       );
       color: var(--color-cream);
     }
@@ -261,7 +261,7 @@
       145deg,
       var(--color-footer) 0%,
       var(--color-surface-dark) 52%,
-      #1b1816 100%
+      var(--color-ink-black) 100%
     );
     color: var(--color-cream);
     outline-style: none;

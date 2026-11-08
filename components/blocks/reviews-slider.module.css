@@ -80,19 +80,6 @@
   width: var(--rv-w);
 }
 
-/* Boutons précédent/suivant réservés au clavier et aux lecteurs d'écran. */
-.srOnly {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border-width: 0;
-}
-
 .card {
   position: relative;
   isolation: isolate;
@@ -215,7 +202,7 @@
   }
 
   .active & {
-    color: #fbfbfb;
+    color: var(--color-grey-50);
   }
 }
 
@@ -268,7 +255,7 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  color: #4e433d;
+  color: var(--color-umber-soft);
 
   .active & {
     color: var(--color-sage);

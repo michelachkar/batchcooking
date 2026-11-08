@@ -50,7 +50,7 @@ export async function AboutSection({
             )
           : undefined
       }
-      features={a.raw('features') as string[]}
+      features={a.has('features') ? (a.raw('features') as string[]) : undefined}
       extraButton={extra === 'pricing' ? { label: a('pricingButton'), href: '#tarifs' } : undefined}
       secondaryButton={
         a.has('secondaryButton')

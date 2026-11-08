@@ -15,7 +15,6 @@
   },
   "nav": {
     "about": "À propos",
-    "home": "Accueil",
     "services": "Services",
     "serviceBatch": "Batch cooking",
     "serviceChef": "Chef privé à domicile",
@@ -24,8 +23,7 @@
     "portfolio": "Réalisations",
     "pricing": "Tarifs",
     "recipes": "Recettes",
-    "faq": "FAQ",
-    "contact": "Contact"
+    "faq": "FAQ"
   },
   "footer": {
     "tagline": "Votre chef à domicile",
@@ -67,26 +65,7 @@
     "hero": {
       "headline": "Tous vos dîners de la semaine sont préparés chez vous en un clin d'oeil.",
       "accent": "Fini la charge mentale des repas.",
-      "tagline": ["Délicieux", "Healthy", "Zéro vaisselle"],
       "description": "Éligible crédit d'impôt 50 %",
-      "badges": [
-        {
-          "icon": "mind",
-          "title": "Un soulagement radical de la charge mentale"
-        },
-        {
-          "icon": "time",
-          "title": "Un gain de temps précieux"
-        },
-        {
-          "icon": "homemade",
-          "title": "Le « vrai » fait maison, sur-mesure"
-        },
-        {
-          "icon": "clean",
-          "title": "Une cuisine propre et sans effort"
-        }
-      ],
       "primary": "Reservez vos repas",
       "secondary": "Découvrez mes recettes",
       "galleryBadges": ["Délicieux", "Healthy", "Propre"],
@@ -252,11 +231,6 @@
       "badgeValue": "−50 %",
       "badgeText": "de crédit d'impôt, tout de suite : Vous ne payez que la moitié. Profitez-en !",
       "badgeAccent": "1",
-      "features": [
-        "Plus de 40 recettes au choix, menu sur mesure possible",
-        "Dîners prêts à réchauffer",
-        "Plus sain, budget maîtrisé, moins de gaspillage"
-      ],
       "steps": [
         {
           "icon": "checklist",
@@ -361,15 +335,6 @@
       "ctaHref": "/recettes"
     }
   },
-  "homeV2": {
-    "zones": {
-      "kicker": "Zones d'intervention",
-      "title": "Un chef près de chez vous",
-      "intro": "Nous cuisinons chez vous à Montpellier et dans les communes alentour. Retrouvez le détail des communes, des délais et des déplacements sur la page dédiée.",
-      "note": "Votre commune n'est pas listée ? Contactez-nous, nous vous répondrons sous un jour ouvré.",
-      "link": "Voir toutes les zones d'intervention"
-    }
-  },
   "servicesPage": {
     "compare": {
       "kicker": "Comparatif",
@@ -460,122 +425,56 @@
         }
       ]
     },
-    "included": {
-      "kicker": "Ce qui est inclus",
-      "title": "Tout est pris en charge",
-      "listTitle": "Inclus dans votre prestation",
-      "items": [
-        "Échange sur vos besoins et vos goûts",
-        "Choix parmi [plus de 40 recettes](/recettes) (menu sur mesure avec Signature)",
-        "3 à 5 dîners par prestation, cuisinés chez vous"
-      ],
-      "asideTitle": "Le détail de chaque formule",
-      "asideText": "Sérénité ou Signature : choisissez la formule qui vous convient, en 1 semaine sans engagement ou en 1 mois (4 passages). Le devis précise tout.",
-      "button": "Demander un devis"
-    },
-    "diets": {
-      "kicker": "Régimes et allergies",
-      "title": "Un menu qui tient compte de vos besoins",
-      "intro": "Précisez vos allergies et vos habitudes dès le premier échange : le menu est personnalisé en conséquence.",
-      "items": [
-        {
-          "icon": "gluten",
-          "title": "Sans gluten",
-          "text": "Des plats adaptés si vous évitez le gluten."
-        },
-        {
-          "icon": "veg",
-          "title": "Végétarien",
-          "text": "Des menus sans viande, variés et gourmands."
-        },
-        {
-          "icon": "kids",
-          "title": "Repas pour les enfants",
-          "text": "Des plats pensés pour les plus jeunes et faciles à réchauffer."
-        }
-      ]
-    },
-    "storage": {
-      "kicker": "Conservation et réchauffage",
-      "title": "Prêts à réchauffer, au moment souhaité",
-      "intro": "Chaque repas est portionné et conditionné dans des contenants adaptés.",
-      "items": [
-        {
-          "icon": "fridge",
-          "title": "Au réfrigérateur",
-          "text": "Les repas à consommer en début de semaine sont rangés au frais."
-        },
-        {
-          "icon": "freezer",
-          "title": "Au congélateur",
-          "text": "Les autres repas peuvent être congelés, pour les déguster plus tard."
-        },
-        {
-          "icon": "reheat",
-          "title": "Un réchauffage simple",
-          "text": "Il suffit de réchauffer et de déguster, sans cuisiner."
-        }
-      ],
-      "note": "Les durées de conservation et les consignes de réchauffage précises vous sont indiquées avec votre menu."
-    },
-    "week": {
-      "kicker": "Exemple de semaine",
-      "title": "À quoi ressemblent vos repas ?",
-      "intro": "Voici un exemple de menu pour une semaine de dîners. Chaque menu est ensuite composé avec vous.",
-      "note": "Menu donné à titre d'illustration.",
-      "days": [
-        {
-          "day": "Lundi",
-          "dish": "Poulet rôti aux herbes, légumes de saison"
-        },
-        {
-          "day": "Mardi",
-          "dish": "Curry de lentilles et riz basmati"
-        },
-        {
-          "day": "Mercredi",
-          "dish": "Gratin de pâtes aux légumes"
-        },
-        {
-          "day": "Jeudi",
-          "dish": "Poisson au four, purée maison"
-        },
-        {
-          "day": "Vendredi",
-          "dish": "Lasagnes maison"
-        }
-      ],
-      "button": "Demander un devis"
-    },
     "packages": {
       "kicker": "Nos formules",
       "title": "Choisissez votre formule",
-      "intro": "Deux formules : choisissez le nombre de dîners (3, 4 ou 5) et la durée, 1 semaine sans engagement ou 1 mois pour un meilleur tarif.",
+      "intro": "Trois formules : choisissez le nombre de dîners (3, 4 ou 5) et la durée, 1 semaine sans engagement ou 1 mois pour un meilleur tarif.",
       "note": "Prix après crédit d'impôt de 50 %, sous réserve d'éligibilité. Le devis, gratuit et sans engagement, précise tout.",
       "open": "Voir le détail",
       "close": "Fermer",
       "panelKicker": "Formule",
       "cta": "Demander un devis",
-      "more": "{count, plural, one {+ # autre inclus} other {+ # autres inclus}}",
       "cards": [
         {
-          "icon": "clock",
-          "alt": "Repas Sérénité préparés à domicile",
-          "tags": ["+40 recettes au choix"],
+          "icon": "leaf",
+          "alt": "Repas Essentiel préparés à domicile",
+          "description": "Les classiques maison, sans y penser",
           "week": {
-            "meta": "1 passage · sans engagement",
+            "tags": ["1 passage", "{n} dîners par semaine"],
             "courses": [
-              ["1 passage de la cheffe", "sans engagement"],
-              ["{n} dîners par prestation", "{per}"],
-              ["[Plus de 40 recettes](/recettes) au choix", "à composer selon vos goûts"]
+              ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+              ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "no"],
+              ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
             ]
           },
           "month": {
-            "meta": "4 passages · engagement 1 mois",
+            "tags": ["4 passages", "{n} dîners par semaine"],
             "courses": [
-              ["4 passages de la cheffe", "avec engagement d'1 mois"],
-              ["{n} dîners par prestation", "{per}"],
-              ["[Plus de 40 recettes](/recettes) au choix", "à composer selon vos goûts"]
+              ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+              ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "no"],
+              ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
+            ]
+          },
+          "id": "essentiel"
+        },
+        {
+          "icon": "clock",
+          "alt": "Repas Sérénité préparés à domicile",
+          "description": "La cuisine de cheffe, au quotidien",
+          "week": {
+            "tags": ["1 passage", "{n} dîners par semaine"],
+            "courses": [
+              ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+              ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "yes"],
+              ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
+            ]
+          },
+          "month": {
+            "tags": ["4 passages", "{n} dîners par semaine"],
+            "courses": [
+              ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+              ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "yes"],
+              ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
             ]
           },
           "id": "serenite"
@@ -583,21 +482,21 @@
         {
           "icon": "heart",
           "alt": "Repas Signature préparés à domicile",
-          "tags": ["Menu sur mesure"],
+          "description": "Votre menu, **rien que pour vous**",
           "week": {
-            "meta": "1 passage · sans engagement",
+            "tags": ["1 passage", "{n} dîners par semaine"],
             "courses": [
-              ["1 passage de la cheffe", "sans engagement"],
-              ["{n} dîners par prestation", "{per}"],
-              ["Menu élaboré **sur mesure**", "selon vos envies et contraintes"]
+              ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+              ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "yes"],
+              ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "yes"]
             ]
           },
           "month": {
-            "meta": "4 passages · engagement 1 mois",
+            "tags": ["4 passages", "{n} dîners par semaine"],
             "courses": [
-              ["4 passages de la cheffe", "avec engagement d'1 mois"],
-              ["{n} dîners par prestation", "{per}"],
-              ["Menu élaboré **sur mesure**", "selon vos envies et contraintes"]
+              ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+              ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "yes"],
+              ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "yes"]
             ]
           },
           "id": "signature"
@@ -611,7 +510,7 @@
       },
       "plan": "Demander un devis",
       "dinners": {
-        "label": "Nombre de dîners par prestation",
+        "label": "Nombre de dîners par semaine",
         "unit": "dîners"
       },
       "priceLine": "{price} € par semaine",
@@ -669,16 +568,9 @@
         { "value": "chef", "label": "Chef privé à domicile" },
         { "value": "cours", "label": "Cours de cuisine à domicile" }
       ],
-      "guestsLabel": "Nombre de personnes",
-      "guestsPlaceholder": "Combien de personnes ?",
-      "guestsOptions": ["1 à 2 personnes", "3 à 4 personnes", "5 à 8 personnes", "9 à 12 personnes", "12 personnes et plus"],
-      "locationLabel": "Lieu",
-      "locationPlaceholder": "Votre domicile ou lieu de réception",
       "button": "Appel découverte sous 24h",
       "phoneLabel": "Numéro de téléphone",
-      "phonePlaceholder": "06 12 34 56 78",
-      "success": "Merci ! Nous vous rappelons sous un jour ouvré.",
-      "error": "Une erreur est survenue. Vérifiez votre numéro et réessayez."
+      "phonePlaceholder": "06 12 34 56 78"
     },
     "seo": {
       "title": "Chef privé à domicile",
@@ -728,19 +620,6 @@
       "secondary": "Voir les tarifs",
       "imageAlt": "Cheffe en tenue blanche et toque"
     },
-    "occasions": {
-      "kicker": "Occasions pour lesquelles nous cuisinons",
-      "title": "Un menu pour chaque",
-      "highlight": "occasion",
-      "description": "Dîner entre proches, anniversaire, repas d'affaires ou séjour en villa : le chef compose un menu et un service pensés pour chaque moment.",
-      "button": "Demander un devis",
-      "occasions": [
-        { "name": "Dîner entre proches", "description": "Une table gastronomique à la maison" },
-        { "name": "Anniversaire & fêtes", "description": "Un menu autour de la personne fêtée" },
-        { "name": "Repas d'affaires", "description": "Clients, partenaires et équipes" },
-        { "name": "Villa ou location", "description": "Le chef s'adapte à la cuisine du lieu" }
-      ]
-    },
     "packages": {
       "kicker": "Formules",
       "title": "Choisissez votre formule",
@@ -761,6 +640,8 @@
           "title": "Cocktail dînatoire",
           "value": "cocktail",
           "subtitle": "Debout",
+          "summary": "Bouchées salées et sucrées, debout, pour 10 à 30 convives",
+          "summaryShort": "Bouchées salées et sucrées, debout",
           "text": "Bouchées salées et sucrées servies debout : parfait pour un apéritif prolongé ou un anniversaire.",
           "duration": "2 à 3 h",
           "group": "10 à 30 convives",
@@ -776,6 +657,8 @@
           "title": "Buffet",
           "value": "buffet",
           "subtitle": "Convivial",
+          "summary": "Plats chauds et froids à partager, pour 10 à 30 convives",
+          "summaryShort": "Plats chauds et froids à partager",
           "text": "Des plats à partager, chauds et froids, servis en libre-service : idéal pour les groupes et les fêtes.",
           "duration": "3 h",
           "group": "10 à 30 convives",
@@ -791,6 +674,8 @@
           "title": "Menu sur mesure",
           "value": "sur-mesure",
           "subtitle": "Le plus choisi",
+          "summary": "Entrée, plat et dessert avec vous, pour 2 à 12 convives",
+          "summaryShort": "Entrée, plat et dessert avec vous",
           "text": "Entrée, plat et dessert (ou plus) imaginés avec vous, selon vos envies, la saison et vos invités.",
           "duration": "3 à 4 h",
           "group": "2 à 12 convives",
@@ -800,77 +685,6 @@
           "menu": ["Menu en trois services ou plus", "Composé avec vous, validé avant la soirée", "Allergies et régimes pris en compte"],
           "included": ["Courses et préparation", "Cuisine et service à table", "Cuisine rangée et nettoyée"],
           "ideal": "Dîners entre proches, anniversaires, repas d'affaires"
-        }
-      ]
-    },
-    "timeline": {
-      "kicker": "Déroulé",
-      "title": "De la première discussion au dernier plat",
-      "intro": "Vous n'avez rien à gérer : voici comment se passe une prestation.",
-      "steps": [
-        { "title": "Échange sur le menu", "text": "Nous parlons de vos envies, de vos invités, de leurs allergies et de votre budget. Vous validez le menu avant la soirée." },
-        { "title": "Courses", "text": "Le chef sélectionne et achète les produits frais, de saison et de qualité, nécessaires au menu." },
-        { "title": "Cuisine et service", "text": "Le chef cuisine dans votre cuisine puis sert à table, plat après plat, au rythme de votre soirée." },
-        { "title": "Nettoyage", "text": "Après le dîner, la cuisine est rangée et nettoyée : vous la retrouvez comme vous l'avez laissée." }
-      ]
-    },
-    "menus": {
-      "kicker": "Exemples de menus",
-      "title": "Quelques idées pour vous inspirer",
-      "intro": "Chaque menu est adapté à la saison, à vos goûts et à vos contraintes. Ceux-ci donnent simplement une idée du style.",
-      "note": "Menus indicatifs : le menu final est toujours composé avec vous. Tarifs par personne, hors boissons.",
-      "open": "Voir le menu complet",
-      "close": "Fermer",
-      "panelKicker": "Exemple de menu",
-      "cta": "Demander un devis",
-      "plan": "Demander ce menu",
-      "more": { "one": "+ {count} autre plat", "other": "+ {count} autres plats" },
-      "cards": [
-        {
-          "icon": "heart",
-          "label": "Dîner entre proches",
-          "title": "Menu bistronomique",
-          "meta": "3 services · dîner assis",
-          "tags": ["De saison"],
-          "courses": [
-            ["Velouté de potimarron", "éclats de noisette, huile d'herbes"],
-            ["Filet de dorade rôtie", "fenouil confit, beurre blanc citronné"],
-            ["Tarte fine aux poires", "glace vanille, caramel au beurre salé"]
-          ],
-          "price": "À partir de 75 € par personne",
-          "priceNote": "hors boissons"
-        },
-        {
-          "icon": "sparkles",
-          "label": "Occasion spéciale",
-          "title": "Menu dégustation",
-          "meta": "6 services · dîner assis",
-          "tags": ["Gastronomique"],
-          "courses": [
-            ["Amuse-bouche du chef", ""],
-            ["Saint-Jacques snackées", "crème de chou-fleur, pomme verte"],
-            ["Ravioles de champignons", "bouillon de volaille, truffe"],
-            ["Filet de bœuf", "jus corsé, légumes racines glacés"],
-            ["Fromages affinés", "chutney de saison"],
-            ["Chocolat, framboise, basilic", ""]
-          ],
-          "price": "À partir de 110 € par personne",
-          "priceNote": "hors boissons"
-        },
-        {
-          "icon": "chef-hat",
-          "label": "Fête & grands groupes",
-          "title": "Buffet ou cocktail",
-          "meta": "Dès 10 convives · service libre",
-          "tags": ["À partager"],
-          "courses": [
-            ["Planches de charcuteries et fromages", ""],
-            ["Verrines et bouchées froides", "6 pièces par personne"],
-            ["Plat chaud mijoté", "riz parfumé ou gratin"],
-            ["Desserts mignons", "assortiment de quatre"]
-          ],
-          "price": "À partir de 45 € par personne",
-          "priceNote": "hors boissons"
         }
       ]
     },
@@ -908,42 +722,6 @@
         }
       ]
     },
-    "included": {
-      "kicker": "Inclus",
-      "title": "Tout est compris",
-      "listTitle": "Dans chaque prestation",
-      "items": [
-        "Échange préalable sur vos envies",
-        "Menu sur mesure, validé avec vous",
-        "Courses et préparation des produits",
-        "Cuisine dans votre propre cuisine",
-        "Service à table, plat après plat",
-        "Cuisine rangée et nettoyée après le dîner"
-      ],
-      "asideTitle": "Un devis gratuit, sous un jour ouvré",
-      "asideText": "Dites-nous la date, le nombre d'invités et le lieu : nous revenons vers vous avec une proposition de menu et un tarif détaillé.",
-      "button": "Demander un devis"
-    },
-    "pricing": {
-      "kicker": "Tarifs",
-      "title": "Un tarif par personne, sans surprise",
-      "intro": "Le prix dépend du format, du menu et du nombre d'invités. Voici nos tarifs de départ.",
-      "rows": [
-        { "name": "Cocktail dînatoire", "price": "dès 35 €", "text": "par personne, dès 10 convives" },
-        { "name": "Buffet", "price": "dès 45 €", "text": "par personne, dès 10 convives" },
-        { "name": "Menu sur mesure", "price": "dès 75 €", "text": "par personne, trois services" }
-      ],
-      "notes": [
-        "Les courses sont incluses dans le tarif.",
-        "Un acompte de 30 % confirme la date ; le solde est réglé le soir de la prestation.",
-        "Acompte conservé en cas d'annulation moins de 7 jours avant la date.",
-        "Un déplacement peut être facturé hors de la zone habituelle."
-      ],
-      "depositLabel": "Acompte",
-      "depositValue": "30 %",
-      "depositText": "à la réservation pour bloquer votre date",
-      "button": "Demander un devis"
-    },
     "faq": {
       "kicker": "Questions fréquentes",
       "title": "Tout savoir sur le chef privé",
@@ -961,14 +739,13 @@
       "step": "Étape {n} sur 2",
       "pickTitle": "Quelle formule vous convient ?",
       "pickIntro": "Choisissez la formule qui vous correspond : vous pourrez ensuite l'adapter avec le chef.",
-      "infoTitle": "Où vous recontacter ?",
+      "infoTitle": "Quelques précisions pour votre devis",
       "back": "Changer",
       "kicker": "Demander un devis",
       "title": "Votre demande",
       "intro": "Dites-nous quelle formule vous intéresse : nous vous recontactons dans les 24 h ouvrées pour préparer votre menu et fixer la date.",
       "fields": {
         "choice": "Formule choisie",
-        "choicePlaceholder": "Choisir une formule",
         "guests": "Invités",
         "guestsPlaceholder": "Choisir",
         "location": "Lieu (ville)",
@@ -984,7 +761,7 @@
         { "value": "cocktail", "label": "Cocktail dînatoire" },
         { "value": "buffet", "label": "Buffet" },
         { "value": "sur-mesure", "label": "Menu sur mesure" },
-        { "value": "autre", "label": "Autre demande, sur mesure" }
+        { "value": "autre", "label": "Autre demande, sur mesure", "text": "Un autre besoin ? Nous nous adaptons à votre événement", "textShort": "Un autre besoin ? Nous nous adaptons" }
       ],
       "close": "Fermer",
       "button": "Envoyer ma demande",
@@ -1003,9 +780,7 @@
       "servicePlaceholder": "Choisir un cours",
       "button": "Appel découverte sous 24h",
       "phoneLabel": "Numéro de téléphone",
-      "phonePlaceholder": "06 12 34 56 78",
-      "success": "Merci ! Nous vous rappelons sous un jour ouvré.",
-      "error": "Une erreur est survenue. Vérifiez votre numéro et réessayez."
+      "phonePlaceholder": "06 12 34 56 78"
     },
     "seo": {
       "title": "Cours de cuisine à domicile",
@@ -1075,6 +850,8 @@
           "value": "kids-family",
           "fixed": true,
           "subtitle": "Petits chefs, grands moments",
+          "summary": "Ateliers ludiques en famille, 2 à 6 enfants, parents bienvenus",
+          "summaryShort": "Ateliers ludiques en famille",
           "text": "Des ateliers gourmands et ludiques à partager en famille : cupcakes à décorer, burgers maison, cookies, mini-pizzas et bien d'autres recettes !",
           "duration": "2 h",
           "group": "2 à 6 enfants, parents bienvenus",
@@ -1091,6 +868,8 @@
           "value": "evjf-anniversaires",
           "fixed": true,
           "subtitle": "Cuisiner, célébrer, se souvenir",
+          "summary": "Atelier gourmand entre amis, de 4 à 12 personnes",
+          "summaryShort": "Atelier gourmand entre amis",
           "text": "Un atelier gourmand pour marquer l'occasion ! Entre cuisine, rires et partage, créez des souvenirs aussi délicieux que le moment.",
           "duration": "3 h",
           "group": "4 à 12 personnes",
@@ -1107,6 +886,8 @@
           "value": "menu-3-temps",
           "fixed": true,
           "subtitle": "De la cuisine à la table",
+          "summary": "Entrée, plat et dessert cuisinés ensemble, 2 à 8 personnes",
+          "summaryShort": "Entrée, plat et dessert à cuisiner",
           "text": "De l'entrée au dessert, imaginez, cuisinez et partagez un menu complet avec votre tribu. Le plaisir de tout préparer ensemble, jusqu'au moment de passer à table !",
           "duration": "3 h 30",
           "group": "2 à 8 personnes",
@@ -1145,77 +926,17 @@
         }
       ]
     },
-    "timeline": {
-      "kicker": "Déroulé d'une séance",
-      "title": "De l'arrivée du chef à la dégustation",
-      "intro": "Voici comment se passe un cours, étape par étape.",
-      "steps": [
-        { "title": "Accueil et mise en place", "text": "Le chef s'installe, présente le menu et distribue les tabliers. On passe en revue les gestes à connaître." },
-        { "title": "Démonstration", "text": "Le chef montre les techniques clés : découpe, cuisson, assaisonnement." },
-        { "title": "À vous de cuisiner", "text": "Chacun met la main à la pâte, avec les conseils du chef à chaque étape." },
-        { "title": "Dressage", "text": "On dresse les assiettes ensemble, pour que ce soit aussi beau que bon." },
-        { "title": "Repas dégusté à la fin", "text": "Vous vous installez à table pour savourer ce que vous avez cuisiné, avec le chef si vous le souhaitez." },
-        { "title": "Rangement", "text": "La cuisine est rangée et les recettes vous sont remises : vous pouvez les refaire dès le lendemain." }
-      ]
-    },
-    "gift": {
-      "kicker": "Idée cadeau",
-      "title": "Offrez un cours de cuisine",
-      "intro": "Un cadeau qui se vit et se partage : anniversaire, Noël, fête des mères, départ à la retraite ou remerciement.",
-      "items": [
-        { "icon": "gift", "title": "Bon cadeau au montant libre", "text": "Choisissez la somme : elle est déduite du cours réservé par la personne à qui vous l'offrez." },
-        { "icon": "ticket", "title": "Bon pour un cours précis", "text": "Individuel, en couple ou entre amis : vous offrez directement le format et le thème de votre choix." },
-        { "icon": "mail", "title": "Envoi simple et rapide", "text": "Le bon vous est envoyé par email, prêt à imprimer ou à transférer, avec un petit mot personnalisé." }
-      ],
-      "validity": "Bon valable 12 mois à compter de son achat.",
-      "button": "Offrir un cours"
-    },
-    "pricing": {
-      "kicker": "Tarifs",
-      "title": "Un tarif par personne, ingrédients compris",
-      "intro": "Le prix dépend du format et du nombre de participants. Voici nos tarifs de départ.",
-      "rows": [
-        { "name": "Enfants et famille", "price": "45 €", "text": "par participant, atelier d'environ 2 h" },
-        { "name": "En couple ou entre amis", "price": "65 €", "text": "par personne, 2 à 8 personnes" },
-        { "name": "Individuel", "price": "90 €", "text": "par personne, un cours rien que pour vous" },
-        { "name": "Entreprise", "price": "sur devis", "text": "selon le nombre de participants et le lieu" }
-      ],
-      "notes": [
-        "Les ingrédients, les recettes et le repas dégusté sont inclus dans le tarif.",
-        "Un déplacement peut être facturé hors de la zone habituelle.",
-        "Report possible sans frais jusqu'à 48 h avant le cours."
-      ],
-      "depositLabel": "Bon cadeau",
-      "depositValue": "dès 60 €",
-      "depositText": "à offrir pour le montant de votre choix",
-      "button": "Demander un devis"
-    },
-    "faq": {
-      "kicker": "Questions fréquentes",
-      "title": "Tout savoir sur les cours de cuisine à domicile",
-      "items": [
-        { "question": "Faut-il savoir cuisiner pour suivre un cours ?", "answer": "Non. Les cours s'adaptent à tous les niveaux, du débutant complet au cuisinier confirmé. Le chef ajuste les recettes et le rythme à votre groupe." },
-        { "question": "Qui fournit les ingrédients et le matériel ?", "answer": "Le chef apporte tous les ingrédients du menu et le matériel spécifique. Il vous suffit d'une cuisine équipée, avec four et plaques de cuisson." },
-        { "question": "Combien de temps dure un cours ?", "answer": "En général de 2 h 30 à 3 h 30, dégustation comprise. Un atelier enfants dure environ 2 h." },
-        { "question": "Combien de personnes peuvent participer ?", "answer": "De 1 à 8 personnes par cours. Pour un groupe plus important ou une équipe, contactez-nous pour un devis." },
-        { "question": "Mange-t-on ce que l'on a cuisiné ?", "answer": "Oui, le cours se termine par un repas pour savourer ensemble ce que vous avez préparé. Vous repartez aussi avec les recettes." },
-        { "question": "Peut-on choisir le thème du cours ?", "answer": "Oui : bases, cuisine de saison, pâtisserie, cuisine du monde, batch cooking ou menu complet. Le chef peut aussi composer un cours sur mesure." },
-        { "question": "Comment offrir un cours de cuisine ?", "answer": "Demandez un bon cadeau : au montant de votre choix ou pour un cours précis. Il est envoyé par email et valable 12 mois." },
-        { "question": "Les cours conviennent-ils aux enfants ?", "answer": "Oui, avec des ateliers ludiques pensés pour eux : pâtisseries, pizzas, burgers maison et autres recettes gourmandes." }
-      ]
-    },
     "form": {
       "step": "Étape {n} sur 2",
       "pickTitle": "Quel cours vous intéresse ?",
       "pickIntro": "Choisissez le cours qui vous correspond : le chef l'adaptera à votre groupe.",
-      "infoTitle": "Où vous recontacter ?",
+      "infoTitle": "Quelques précisions pour votre devis",
       "back": "Changer",
       "kicker": "Réserver un cours",
       "title": "Votre demande",
       "intro": "Dites-nous quel cours vous intéresse : nous vous recontactons dans les 24 h ouvrées pour fixer la date.",
       "fields": {
         "value": "Cours choisi",
-        "choicePlaceholder": "Choisir un cours",
         "guests": "Participants",
         "guestsPlaceholder": "Choisir",
         "location": "Lieu (ville)",
@@ -1231,7 +952,7 @@
         { "value": "kids-family", "label": "Kids & Family" },
         { "value": "evjf-anniversaires", "label": "EVJF & Anniversaires" },
         { "value": "menu-3-temps", "label": "Menu 3 temps" },
-        { "value": "autre", "label": "Autre cours, sur mesure" }
+        { "value": "autre", "label": "Autre cours, sur mesure", "text": "Une autre idée de cours ? Nous composons avec vous", "textShort": "Une autre idée ? Nous composons" }
       ],
       "close": "Fermer",
       "button": "Envoyer ma demande",
@@ -1265,8 +986,6 @@
     "navLabel": "Fil d'Ariane",
     "home": "Accueil",
     "services": {
-      "proofLong": "Une question ? Demandez votre devis : nous répondons sous un jour ouvré.",
-      "proofShort": "Demandez votre devis, réponse sous un jour ouvré.",
       "title": "Nos services",
       "crumb": "Services"
     },
@@ -1305,7 +1024,6 @@
     "hoursLabel": "Horaires",
     "responseLabel": "Délai de réponse",
     "responseValue": "Sous un jour ouvré",
-    "areaLabel": "Zone d'intervention",
     "followTitle": "Suivez-nous",
     "socialLabel": "Réseaux sociaux",
     "formTitle": "Écrivez-nous",
@@ -1447,6 +1165,7 @@
     "close": "Fermer",
     "compareTitle": "Quelle formule choisir ?",
     "compareIntro": "Vos dîners de la semaine, préparés chez vous.",
+    "recipesNewTab": "(s'ouvre dans un nouvel onglet)",
     "mealsBadge": "3 à 5 repas par semaine",
     "menuLabel": "Votre menu",
     "from": "À partir de",
@@ -1459,39 +1178,54 @@
       "month": "1 mois"
     },
     "dinners": "{n} dîners",
-    "contactTitle": "Où vous rappeler ?",
+    "contactTitle": "Vos coordonnées",
     "emailLabel": "Email",
     "emailPlaceholder": "vous@exemple.fr",
     "phoneLabel": "Téléphone",
     "phonePlaceholder": "06 12 34 56 78",
     "submit": "Appel découverte sous 24h",
     "sending": "Envoi en cours…",
-    "back": "Changer de formule",
+    "back": "Changer",
     "consent": "Vous serez recontacté(e) dans les 24 h ouvrées. Gratuit et sans engagement.",
     "error": "Une erreur est survenue. Vérifiez vos coordonnées et réessayez.",
     "packs": [
       {
+        "id": "essentiel",
+        "title": "Essentiel",
+        "label": "Pour démarrer sans y penser",
+        "highlight": "Les classiques maison, sans y penser",
+        "features": [
+          ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+          ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "no"],
+          ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
+        ]
+      },
+      {
         "id": "serenite",
         "title": "Sérénité",
         "label": "Pour démarrer simplement",
-        "highlight": "Choisissez vos plats parmi les recettes présentées sur notre site",
-        "features": ["Vous choisissez vos plats", "Parmi les recettes du site"]
+        "highlight": "La cuisine de cheffe, au quotidien",
+        "features": [
+          ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+          ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "yes"],
+          ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
+        ]
       },
       {
         "id": "signature",
         "title": "Signature",
         "label": "Pour une table sur mesure",
-        "highlight": "Un menu composé **sur mesure** avec la cheffe, selon vos envies et contraintes",
-        "features": ["La cheffe compose votre menu", "Selon vos envies", "Selon vos contraintes"]
+        "highlight": "Votre menu, **rien que pour vous**",
+        "features": [
+          ["Recettes [**classiques**](/recettes?formule=classiques) maison", "Les plats réconfortants du quotidien", "yes"],
+          ["Recettes [**Signature**](/recettes?formule=signature)", "Des plats de cheffe plus travaillés", "yes"],
+          ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "yes"]
+        ]
       }
     ],
-    "periodLabel": "Votre engagement",
-    "dinnersLabel": "Dîners par prestation",
-    "engagement": {
-      "week": "1 passage de la cheffe, sans engagement",
-      "month": "4 passages de la cheffe, engagement 1 mois"
-    },
-    "configTitle": "Votre formule de batch cooking",
+    "periodLabel": "Engagement",
+    "dinnersLabel": "Nombre de dîners par semaine",
+    "configTitle": "Votre formule",
     "firstNameLabel": "Prénom (facultatif)",
     "firstNamePlaceholder": "Marie"
   },
@@ -1655,7 +1389,7 @@
     }
   },
   "recipesPage": {
-    "filters": { "type": "Type de plat", "diet": "Régime", "allergen": "Allergènes", "all": "Toutes" },
+    "filters": { "type": "Type de plat", "diet": "Régime", "allergen": "Allergènes", "all": "Toutes", "pack": "Formule" },
     "count": "{n} recette(s) affichée(s)",
     "reset": "Réinitialiser les filtres",
     "empty": "Aucune recette ne correspond à ces filtres. Écrivez-nous : nous composons aussi des plats sur mesure.",
@@ -1724,7 +1458,7 @@
           },
           {
             "question": "Peut-on choisir les recettes ?",
-            "answer": "Oui. Choisissez parmi plus de 40 recettes avec la formule Sérénité, ou demandez un menu élaboré sur mesure avec la formule Signature. La page Recettes présente les saveurs, les ingrédients clés et les allergènes de chaque plat."
+            "answer": "Oui. Choisissez parmi nos recettes classiques avec la formule Essentiel, ajoutez les recettes Signature de la cheffe avec la formule Sérénité, ou demandez un menu élaboré sur mesure avec la formule Signature. La page Recettes présente les saveurs, les ingrédients clés et les allergènes de chaque plat."
           },
           {
             "question": "La cuisine est-elle rangée après la prestation ?",
@@ -1790,10 +1524,6 @@
     "count": "{n} réalisation(s) affichée(s)",
     "reset": "Réinitialiser les filtres",
     "filters": {
-      "occasion": "Occasion",
-      "city": "Commune",
-      "group": "Taille du groupe",
-      "diet": "Régime",
       "tags": "Filtrer par tag",
       "groups": { "small": "1 à 4 personnes", "medium": "5 à 10 personnes", "large": "Plus de 10 personnes" }
     },
@@ -1880,12 +1610,6 @@
         "title": "Cours de cuisine à domicile",
         "text": "Un cours à la maison, seul, en couple ou entre amis, ingrédients et repas compris : tarif par personne."
       }
-    },
-    "cta": {
-      "kicker": "Votre devis",
-      "title": "Un devis gratuit, sous un jour ouvré",
-      "text": "Dites-nous la date, le nombre de convives et votre commune : nous vous répondons avec un tarif détaillé.",
-      "button": "Demander un devis"
     }
   }
 }

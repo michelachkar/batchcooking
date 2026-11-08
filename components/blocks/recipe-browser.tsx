@@ -9,11 +9,13 @@ import {
   ALLERGENS,
   DIETS,
   DISH_TYPES,
+  RECIPE_PACKS,
   SPICE,
   type Allergen,
   type Diet,
   type DishType,
   type Recipe,
+  type RecipePack,
 } from '@/lib/recipes'
 
 export type RecipeCard = Recipe & { image: { src: string; unoptimized?: boolean } }
@@ -32,6 +34,7 @@ type Text = {
   spice: string
   cost: string
   budget: string
+  pack: string
 }
 
 function toggle<T>(list: T[], v: T) {
@@ -39,11 +42,21 @@ function toggle<T>(list: T[], v: T) {
 }
 
 // Recettes filtrables par type de plat, régime et allergène à éviter.
-export function RecipeBrowser({ recipes, text }: { recipes: RecipeCard[]; text: Text }) {
+export function RecipeBrowser({
+  recipes,
+  text,
+  initialPacks = [],
+}: {
+  recipes: RecipeCard[]
+  text: Text
+  /** Séries présélectionnées (lien depuis une formule). */
+  initialPacks?: RecipePack[]
+}) {
   const [type, setType] = useState<DishType | null>(null)
   const [diets, setDiets] = useState<Diet[]>([])
   const [avoid, setAvoid] = useState<Allergen[]>([])
   const [budgets, setBudgets] = useState<string[]>([])
+  const [packs, setPacks] = useState<RecipePack[]>(initialPacks)
 
   // On ne propose que les filtres qui existent dans les recettes.
   const types = useMemo(
@@ -70,16 +83,19 @@ export function RecipeBrowser({ recipes, text }: { recipes: RecipeCard[]; text: 
   const shown = recipes.filter(
     (r) =>
       (!type || r.type === type) &&
+      (packs.length === 0 || packs.includes(r.pack)) &&
       diets.every((d) => r.diets.includes(d)) &&
       !avoid.some((a) => r.allergens.includes(a)) &&
       (budgets.length === 0 || budgets.includes(String(r.cost))),
   )
-  const active = type !== null || diets.length > 0 || avoid.length > 0 || budgets.length > 0
+  const active =
+    type !== null || diets.length > 0 || avoid.length > 0 || budgets.length > 0 || packs.length > 0
   const reset = () => {
     setType(null)
     setDiets([])
     setAvoid([])
     setBudgets([])
+    setPacks([])
   }
 
   return (
@@ -102,6 +118,15 @@ export function RecipeBrowser({ recipes, text }: { recipes: RecipeCard[]; text: 
           })}
         </div>
         <div className={styles.filters}>
+          <FilterMenu
+            label={text.pack}
+            options={(Object.keys(RECIPE_PACKS) as RecipePack[]).map((k) => ({
+              value: k,
+              text: RECIPE_PACKS[k],
+            }))}
+            selected={packs}
+            onChange={(k) => setPacks(toggle(packs, k))}
+          />
           <FilterMenu
             label={text.diet}
             options={dietOpts.map((d) => ({ value: d, text: DIETS[d] }))}
@@ -188,24 +213,24 @@ export function RecipeBrowser({ recipes, text }: { recipes: RecipeCard[]; text: 
                 <dl className={styles.facts}>
                   <div className={styles.fact}>
                     <Globe aria-hidden className={styles.factIcon} />
-                    <dt className={styles.srOnly}>Cuisine</dt>
+                    <dt className="sr-only">Cuisine</dt>
                     <dd>{r.cuisine}</dd>
                   </div>
                   <div className={styles.fact}>
                     <Flame aria-hidden className={styles.factIcon} />
-                    <dt className={styles.srOnly}>{text.spice}</dt>
+                    <dt className="sr-only">{text.spice}</dt>
                     <dd>{SPICE[r.spice]}</dd>
                   </div>
                   {r.season && (
                     <div className={styles.fact}>
                       <Clock aria-hidden className={styles.factIcon} />
-                      <dt className={styles.srOnly}>Saison</dt>
+                      <dt className="sr-only">Saison</dt>
                       <dd>{r.season}</dd>
                     </div>
                   )}
                   <div className={styles.fact}>
                     <Snowflake aria-hidden className={styles.factIcon} />
-                    <dt className={styles.srOnly}>Conservation</dt>
+                    <dt className="sr-only">Conservation</dt>
                     <dd>
                       {r.storage} · {r.reheat}
                     </dd>

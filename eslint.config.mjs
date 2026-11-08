@@ -43,6 +43,7 @@ const config = [
   {
     ignores: [
       '.next/**',
+      '.next-*/**',
       '.open-next/**',
       '.wrangler/**',
       'playwright-report/**',

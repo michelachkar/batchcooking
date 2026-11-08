@@ -1,8 +1,9 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { ChefHat, Mail, X } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import clsx from 'clsx'
+import { ModalShell } from '@/components/ui/modal-shell'
 import styles from './confirmation-dialog.module.css'
 
 export type ConfirmService = 'batch' | 'chef' | 'cours'
@@ -72,31 +73,15 @@ export function ConfirmationDialog({
   const done = phase === 'done'
 
   return (
-    <dialog
-      ref={ref}
-      aria-labelledby="confirm-title"
+    <ModalShell
+      dialogRef={ref}
       onClose={onClose}
-      onClick={(e) => e.target === ref.current && ref.current?.close()}
-      className={styles.root}
+      title={s.name}
+      subtitle={subtitle}
+      closeLabel={close}
+      labelledBy="confirm-title"
+      narrow
     >
-      <header className={styles.header}>
-        <span className={styles.headerIcon}>
-          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
-        </span>
-        <span className={styles.headerText}>
-          <strong className={styles.headerService}>{s.name}</strong>
-          <span className={styles.headerSub}>{subtitle}</span>
-        </span>
-        <button
-          type="button"
-          onClick={() => ref.current?.close()}
-          aria-label={close}
-          className={styles.close}
-        >
-          <X aria-hidden className={styles.closeIcon} />
-        </button>
-      </header>
-
       <div className={styles.panel} role={done ? 'status' : undefined}>
         {done ? (
           <div className={styles.hero}>
@@ -183,6 +168,6 @@ export function ConfirmationDialog({
           </form>
         )}
       </div>
-    </dialog>
+    </ModalShell>
   )
 }

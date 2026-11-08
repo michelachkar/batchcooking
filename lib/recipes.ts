@@ -36,6 +36,11 @@ export const ALLERGENS = {
 } as const
 export type Allergen = keyof typeof ALLERGENS
 
+// Séries de recettes : classiques (plats maison du quotidien) et Signature (plats de la cheffe, plus travaillés).
+export const RECIPE_PACKS = { classiques: 'Classiques', signature: 'Signature' } as const
+export type RecipePack = keyof typeof RECIPE_PACKS
+export const isRecipePack = (v: unknown): v is RecipePack => v === 'classiques' || v === 'signature'
+
 export const SPICE = { doux: 'Doux', releve: 'Relevé', epice: 'Épicé' } as const
 export type Spice = keyof typeof SPICE
 
@@ -44,6 +49,8 @@ export type Recipe = {
   /** Texte alternatif de la photo. */
   alt: string
   type: DishType
+  /** Série de recettes : classiques du quotidien ou Signature (plats de la cheffe plus travaillés). */
+  pack: RecipePack
   /** Une ou deux phrases : saveurs, texture, style. */
   description: string
   /** Trois ou quatre ingrédients clés, sans quantités. */
@@ -69,6 +76,7 @@ export const recipes: Recipe[] = [
     title: 'Poulet rôti aux herbes',
     alt: 'Poulet rôti aux herbes et légumes de saison',
     type: 'viande',
+    pack: 'classiques',
     description:
       'Poulet fermier rôti, doré et fondant, parfumé aux herbes fraîches et servi avec des légumes de saison.',
     ingredients: ['Poulet fermier', 'Herbes fraîches', 'Légumes de saison'],
@@ -84,6 +92,7 @@ export const recipes: Recipe[] = [
     title: 'Curry de lentilles',
     alt: 'Curry de lentilles et riz basmati',
     type: 'vegetarien',
+    pack: 'signature',
     description:
       'Lentilles mijotées dans un lait de coco onctueux, épices chaudes et riz basmati parfumé.',
     ingredients: ['Lentilles', 'Lait de coco', 'Épices douces', 'Riz basmati'],
@@ -100,6 +109,7 @@ export const recipes: Recipe[] = [
     title: 'Gratin de pâtes aux légumes',
     alt: 'Gratin de pâtes aux légumes',
     type: 'complet',
+    pack: 'classiques',
     description:
       'Pâtes gratinées à la crème légère avec des légumes de saison, croustillant dessus et fondant dedans.',
     ingredients: ['Pâtes', 'Légumes de saison', 'Béchamel', 'Fromage'],
@@ -115,6 +125,7 @@ export const recipes: Recipe[] = [
     title: 'Poisson au four, purée maison',
     alt: 'Poisson au four avec purée maison',
     type: 'poisson',
+    pack: 'signature',
     description:
       'Filet de poisson blanc cuit au four, citron et herbes, accompagné d’une purée maison onctueuse.',
     ingredients: ['Poisson blanc', 'Citron', 'Herbes', 'Pommes de terre'],
@@ -130,6 +141,7 @@ export const recipes: Recipe[] = [
     title: 'Lasagnes maison',
     alt: 'Lasagnes maison',
     type: 'viande',
+    pack: 'classiques',
     description:
       'Lasagnes généreuses : ragù de bœuf mijoté, béchamel soyeuse et gratin doré, comme à la maison.',
     ingredients: ['Bœuf', 'Sauce tomate', 'Pâtes à lasagnes', 'Béchamel'],

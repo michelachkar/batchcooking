@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { ChefHat, CookingPot, GraduationCap, UtensilsCrossed, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { CookingPot, GraduationCap, UtensilsCrossed } from 'lucide-react'
 import { QuoteInquiry, type QuoteInquiryTexts } from '@/components/features/quote/quote-inquiry'
 import { useLead } from '@/components/features/lead/lead-provider'
+import { ModalShell } from '@/components/ui/modal-shell'
 import styles from './quote-provider.module.css'
 
 type Service = 'batch' | 'chef' | 'cours'
@@ -112,37 +113,22 @@ function Picker({
   onClose: () => void
   onPick: (s: Service) => void
 }) {
-  const [el, setEl] = useState<HTMLDialogElement | null>(null)
+  const ref = useRef<HTMLDialogElement>(null)
   useEffect(() => {
+    const el = ref.current
     if (!el) return
     if (open && !el.open) el.showModal()
     if (!open && el.open) el.close()
-  }, [open, el])
+  }, [open])
   return (
-    <dialog
-      ref={setEl}
-      aria-label={texts.title}
+    <ModalShell
+      dialogRef={ref}
       onClose={onClose}
-      onClick={(e) => e.target === el && el?.close()}
-      className={styles.root}
+      title={texts.headerTitle}
+      subtitle={texts.headerSub}
+      closeLabel={texts.close}
+      ariaLabel={texts.title}
     >
-      <header className={styles.header}>
-        <span className={styles.headerIcon}>
-          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
-        </span>
-        <span className={styles.headerText}>
-          <strong className={styles.headerTitle}>{texts.headerTitle}</strong>
-          <span className={styles.headerSub}>{texts.headerSub}</span>
-        </span>
-        <button
-          type="button"
-          onClick={() => el?.close()}
-          aria-label={texts.close}
-          className={styles.close}
-        >
-          <X aria-hidden className={styles.closeIcon} />
-        </button>
-      </header>
       <div className={styles.panel}>
         <h2 className={styles.title}>{texts.title}</h2>
         <p className={styles.intro}>{texts.intro}</p>
@@ -165,6 +151,6 @@ function Picker({
           })}
         </ul>
       </div>
-    </dialog>
+    </ModalShell>
   )
 }

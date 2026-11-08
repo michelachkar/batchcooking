@@ -1,26 +1,3 @@
-/* Demande de devis en deux étapes (<dialog> natif) : cours de cuisine et chef privé. */
-.root {
-  margin: auto;
-  width: min(560px, calc(100vw - 24px));
-  max-height: calc(100dvh - 24px);
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 0;
-  border-width: 0;
-  border-radius: 20px;
-  background-color: var(--color-white);
-  box-shadow: 0 30px 80px rgb(47 43 38 / 0.35);
-  color: var(--color-ink);
-
-  &::backdrop {
-    background-color: rgb(47 43 38 / 0.62);
-  }
-
-  &[open] {
-    animation: dialogIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-}
-
 .panel {
   position: relative;
   padding-top: 1.5rem;
@@ -32,86 +9,6 @@
     padding-top: 1rem;
     padding-bottom: 1.25rem;
   }
-}
-
-/* En-tête du modal : rappelle le service demandé (même en-tête que le modal du batch cooking) */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding-block: 0.875rem;
-  padding-inline: 1.5rem 1rem;
-  background-color: var(--color-forest);
-  color: var(--color-ivory);
-
-  @media (width < 768px) {
-    gap: 0.75rem;
-    padding-inline: 1.25rem 0.875rem;
-  }
-}
-
-.headerIcon {
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: calc(infinity * 1px);
-  background-color: rgb(255 255 255 / 0.18);
-}
-
-.headerIconSvg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.headerText {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.headerService {
-  font-family: var(--font-display);
-  font-size: 19px;
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.headerSub {
-  font-size: 13px;
-  line-height: 1.3;
-  color: rgb(250 247 242 / 0.82);
-}
-
-.close {
-  display: inline-flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-left: auto;
-  border: 1px solid rgb(255 255 255 / 0.35);
-  border-radius: calc(infinity * 1px);
-  background-color: rgb(255 255 255 / 0.12);
-  color: var(--color-ivory);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: rgb(255 255 255 / 0.28);
-    }
-  }
-}
-
-.closeIcon {
-  width: 18px;
-  height: 18px;
 }
 
 /* Étiquettes en capitales : n° d'étape et libellés des champs. */
@@ -141,7 +38,7 @@
   flex: 1;
   height: 0.25rem;
   border-radius: calc(infinity * 1px);
-  background-color: #eadfd3;
+  background-color: var(--color-sand-warm);
 }
 
 .barActive {
@@ -189,9 +86,9 @@
 
 .option {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.375rem;
   width: 100%;
   min-width: 0;
   padding: 1.25rem;
@@ -210,8 +107,6 @@
     stroke 150ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media (width < 768px) {
-    flex-direction: column;
-    gap: 0.375rem;
     padding: 0.875rem 1rem;
   }
 
@@ -244,62 +139,25 @@
   font-size: 14px;
 }
 
+/* Une description complète sur grand écran, une version courte sur mobile : toujours sur une ligne */
+.descShort {
+  @media (width >= 768px) {
+    display: none;
+  }
+}
+
+.descLong {
+  @media (width < 768px) {
+    display: none;
+  }
+}
+
 .optionPrice {
   flex: none;
   color: var(--color-forest);
   font-size: 16px;
   font-weight: 700;
   white-space: nowrap;
-}
-
-/* Étape 2 : coordonnées */
-.picked {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  padding-block: 0.375rem;
-  padding-right: 0.625rem;
-  padding-left: 1rem;
-  border-radius: 20px;
-  background-color: color-mix(in srgb, var(--color-forest) 10%, transparent);
-  color: var(--color-forest);
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.pickedBody {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.pickedLabel {
-  line-height: 1.25;
-}
-
-.pickedPrice {
-  font-weight: 400;
-}
-
-.change {
-  flex: none;
-  padding-block: 0.25rem;
-  padding-inline: 0.75rem;
-  border-radius: calc(infinity * 1px);
-  background-color: var(--color-white);
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: var(--color-forest);
-      color: var(--color-white);
-    }
-  }
 }
 
 .intro {
@@ -466,11 +324,4 @@
 .statusError {
   color: var(--color-forest);
   font-weight: 600;
-}
-
-@keyframes dialogIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.98);
-  }
 }

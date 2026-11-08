@@ -16,8 +16,8 @@ import { SampleMenus, type SampleMenu } from '@/components/blocks/sample-menus'
 import styles from './batch-packages.module.css'
 
 type Period = 'week' | 'month'
-type PerPeriod = Pick<SampleMenu, 'meta' | 'courses'>
-export type PackageCard = Pick<SampleMenu, 'icon' | 'label' | 'title' | 'tags'> & {
+type PerPeriod = Pick<SampleMenu, 'courses' | 'tags'>
+export type PackageCard = Pick<SampleMenu, 'icon' | 'label' | 'title' | 'description'> & {
   id: PackId
   week: PerPeriod
   month: PerPeriod
@@ -66,12 +66,9 @@ export function BatchPackages({
     const after = priceAfter(id, period, count)
     return {
       ...c,
-      meta: per.meta,
-      courses: per.courses.map(([a, b, m]) => [
-        a.replace('{n}', String(count)),
-        b.replace('{per}', perDinner.replace('{value}', euro(after / count))),
-        m,
-      ]),
+      tags: per.tags?.map((t) => t.replace('{n}', String(count))),
+      courses: per.courses,
+      perDinner: perDinner.replace('{value}', euro(after / count)),
       price: priceLine.replace('{price}', euro(after)),
       priceNote: priceNote.replace('{full}', euro(priceBefore(id, period, count))),
     }

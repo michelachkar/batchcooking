@@ -1,77 +1,3 @@
-/* Sélecteur de service du point d'entrée « devis » (<dialog> natif). */
-.root {
-  margin: auto;
-  width: min(560px, calc(100vw - 24px));
-  max-height: calc(100vh - 32px);
-  overflow: auto;
-  padding: 0;
-  border-width: 0;
-  border-radius: 20px;
-  background-color: var(--color-white);
-  box-shadow: 0 30px 80px rgb(47 43 38 / 0.35);
-  color: var(--color-ink);
-
-  &::backdrop {
-    background-color: rgb(47 43 38 / 0.62);
-  }
-
-  &[open] {
-    animation: dialogIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
-  }
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  padding-block: 0.875rem;
-  padding-inline: 1.5rem 1rem;
-  background-color: var(--color-forest);
-  color: var(--color-ivory);
-
-  @media (width < 768px) {
-    gap: 0.75rem;
-    padding-inline: 1.25rem 0.875rem;
-  }
-}
-
-.headerIcon {
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: calc(infinity * 1px);
-  background-color: rgb(255 255 255 / 0.18);
-}
-
-.headerIconSvg {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.headerText {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.headerTitle {
-  font-family: var(--font-display);
-  font-size: 19px;
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.headerSub {
-  font-size: 13px;
-  line-height: 1.3;
-  color: rgb(250 247 242 / 0.82);
-}
-
 .panel {
   padding-top: 1.5rem;
   padding-inline: 2.25rem;
@@ -82,33 +8,6 @@
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
   }
-}
-
-.close {
-  display: inline-flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-left: auto;
-  border: 1px solid rgb(255 255 255 / 0.35);
-  border-radius: calc(infinity * 1px);
-  background-color: rgb(255 255 255 / 0.12);
-  color: var(--color-ivory);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: rgb(255 255 255 / 0.28);
-    }
-  }
-}
-
-.closeIcon {
-  width: 18px;
-  height: 18px;
 }
 
 .title {
@@ -199,11 +98,4 @@
   color: var(--color-ink-88);
   font-size: 14px;
   line-height: 1.5;
-}
-
-@keyframes dialogIn {
-  from {
-    opacity: 0;
-    transform: translateY(18px) scale(0.98);
-  }
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, ChefHat, Mail, Phone, User, X } from 'lucide-react'
+import { Mail, Phone, User } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
 import { rich } from '@/components/ui/rich-text'
@@ -9,6 +9,9 @@ import type { LeadOpenOptions } from '@/components/features/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import { Switch } from '@/components/ui/switch'
 import type { ConfirmationTexts } from '@/components/features/lead/confirmation-dialog'
+import { MarkBadge } from '@/components/ui/mark-badge'
+import { ModalShell } from '@/components/ui/modal-shell'
+import { PickedChoice } from '@/components/ui/picked-choice'
 import styles from './lead-modal.module.css'
 import {
   DINNERS,
@@ -26,7 +29,7 @@ export type LeadPack = {
   title: string
   label: string
   highlight: string
-  features: string[]
+  features: [string, string, 'yes' | 'no'][]
 }
 
 export type LeadTexts = {
@@ -38,6 +41,7 @@ export type LeadTexts = {
   close: string
   compareTitle: string
   compareIntro: string
+  recipesNewTab: string
   mealsBadge: string
   menuLabel: string
   from: string
@@ -49,7 +53,6 @@ export type LeadTexts = {
   dinners: string
   periodLabel: string
   dinnersLabel: string
-  engagement: { week: string; month: string }
   configTitle: string
   contactTitle: string
   firstNameLabel: string
@@ -119,30 +122,14 @@ export function LeadModal({
   }
 
   return (
-    <dialog
-      ref={ref}
-      aria-label={texts.title}
+    <ModalShell
+      dialogRef={ref}
       onClose={onClose}
-      onClick={(e) => e.target === ref.current && ref.current?.close()}
-      className={styles.root}
+      title={texts.service}
+      subtitle={texts.subtitle}
+      closeLabel={texts.close}
+      ariaLabel={texts.title}
     >
-      <header className={styles.header}>
-        <span className={styles.headerIcon}>
-          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
-        </span>
-        <span className={styles.headerText}>
-          <strong className={styles.headerService}>{texts.service}</strong>
-          <span className={styles.headerSub}>{texts.subtitle}</span>
-        </span>
-        <button
-          type="button"
-          onClick={() => ref.current?.close()}
-          aria-label={texts.close}
-          className={styles.close}
-        >
-          <X aria-hidden className={styles.closeIcon} />
-        </button>
-      </header>
       <div className={styles.panel}>
         {!direct && (
           <div className={styles.progress}>
@@ -159,47 +146,53 @@ export function LeadModal({
           <div>
             <h3 className={styles.title}>{texts.compareTitle}</h3>
             <p className={styles.intro}>{texts.compareIntro}</p>
-            <div role="radiogroup" aria-label={texts.compareTitle} className={styles.packs}>
-              {packs.map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={pickId === p.id}
-                  onClick={() => {
-                    setPickId(p.id)
-                    setStep(2)
-                  }}
-                  className={styles.pack}
-                >
-                  <span className={styles.packName}>
-                    <span className={styles.packTitleRow}>
-                      <span className={styles.packTitle}>{p.title}</span>
-                      <span className={styles.packBadge}>{texts.mealsBadge}</span>
-                    </span>
-                    <span className={styles.packDescription}>{rich(p.highlight)}</span>
-                    <span className={styles.features}>
-                      {p.features.map((f) => (
-                        <span key={f} className={styles.feature}>
-                          <Check aria-hidden className={styles.featureCheck} strokeWidth={3} />
-                          {f}
-                        </span>
+            <div role="group" aria-label={texts.compareTitle} className={styles.packs}>
+              {packs.map((p) => {
+                const pick = () => {
+                  setPickId(p.id)
+                  setStep(2)
+                }
+                return (
+                  <div
+                    key={p.id}
+                    className={styles.pack}
+                    // Tout le bloc choisit la formule, sauf les liens vers les recettes.
+                    onClick={(e) => {
+                      if ((e.target as HTMLElement).closest('a')) return
+                      pick()
+                    }}
+                  >
+                    <button type="button" onClick={pick} className={styles.packTop}>
+                      <span className={styles.packTitleRow}>
+                        <span className={styles.packTitle}>{p.title}</span>
+                        <span className={styles.packBadge}>{texts.mealsBadge}</span>
+                      </span>
+                      <span className={styles.packDescription}>{rich(p.highlight)}</span>
+                    </button>
+                    <div className={styles.features}>
+                      {p.features.map(([name, , mark]) => (
+                        <div key={name} className={styles.feature}>
+                          <MarkBadge mark={mark} />
+                          <span className={styles.featureName}>
+                            {rich(name, { newTab: texts.recipesNewTab })}
+                          </span>
+                        </div>
                       ))}
-                    </span>
-                  </span>
-                  <span className={styles.packFooter}>
-                    <span className={styles.packPrice}>
-                      <strong className={styles.packPriceValue}>
-                        {texts.from}{' '}
-                        <span className={styles.packAmount}>{euro(fromPrice(p.id))} €</span>{' '}
-                        {texts.perWeek}
-                      </strong>
-                      <span className={styles.packNote}>{texts.afterCredit}</span>
-                    </span>
-                    <ArrowIcon className={styles.packArrow} />
-                  </span>
-                </button>
-              ))}
+                    </div>
+                    <button type="button" onClick={pick} className={styles.packFooter}>
+                      <span className={styles.packPrice}>
+                        <strong className={styles.packPriceValue}>
+                          {texts.from}{' '}
+                          <span className={styles.packAmount}>{euro(fromPrice(p.id))} €</span>{' '}
+                          {texts.perWeek}
+                        </strong>
+                        <span className={styles.packNote}>{texts.afterCredit}</span>
+                      </span>
+                      <ArrowIcon className={styles.packArrow} />
+                    </button>
+                  </div>
+                )
+              })}
             </div>
           </div>
         )}
@@ -207,25 +200,37 @@ export function LeadModal({
         {step === 2 && (
           <form onSubmit={submit}>
             <h3 className={styles.title}>{texts.configTitle}</h3>
+            <PickedChoice
+              label={pick.title}
+              detail={rich(pick.highlight)}
+              changeLabel={texts.back}
+              onChange={() => setStep(1)}
+            />
             <div className={styles.switches}>
-              <Switch
-                label={texts.periodLabel}
-                value={period}
-                onChange={setPeriod}
-                options={[
-                  { value: 'week', text: texts.periods.week },
-                  { value: 'month', text: texts.periods.month },
-                ]}
-              />
-              <Switch
-                label={texts.dinnersLabel}
-                value={dinners}
-                onChange={setDinners}
-                options={DINNERS.map((n) => ({
-                  value: n,
-                  text: texts.dinners.replace('{n}', String(n)),
-                }))}
-              />
+              <div className={styles.switchGroup}>
+                <span className={styles.switchLabel}>{texts.periodLabel}</span>
+                <Switch
+                  label={texts.periodLabel}
+                  value={period}
+                  onChange={setPeriod}
+                  options={[
+                    { value: 'week', text: texts.periods.week },
+                    { value: 'month', text: texts.periods.month },
+                  ]}
+                />
+              </div>
+              <div className={styles.switchGroup}>
+                <span className={styles.switchLabel}>{texts.dinnersLabel}</span>
+                <Switch
+                  label={texts.dinnersLabel}
+                  value={dinners}
+                  onChange={setDinners}
+                  options={DINNERS.map((n) => ({
+                    value: n,
+                    text: texts.dinners.replace('{n}', String(n)),
+                  }))}
+                />
+              </div>
             </div>
             {/* Le prix est la pièce centrale de l'étape : il « pulse » à chaque changement de choix. */}
             <div className={styles.price} aria-live="polite">
@@ -245,7 +250,6 @@ export function LeadModal({
                 <span className={styles.priceUnit}>{texts.perWeek}</span>
               </span>
             </div>
-            <p className={styles.engagement}>{texts.engagement[period]}</p>
             <h4 className={styles.contactTitle}>{texts.contactTitle}</h4>
             <div className={styles.fields}>
               <div className={styles.field}>
@@ -319,12 +323,9 @@ export function LeadModal({
               <ArrowIcon className={styles.submitArrow} />
             </button>
             <p className={styles.consent}>{texts.consent}</p>
-            <button type="button" onClick={() => setStep(1)} className={styles.back}>
-              {texts.back}
-            </button>
           </form>
         )}
       </div>
-    </dialog>
+    </ModalShell>
   )
 }

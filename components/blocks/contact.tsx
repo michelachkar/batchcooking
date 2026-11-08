@@ -83,7 +83,7 @@ export function Contact(p: ContactProps) {
             <li className={styles.item}>
               <Clock className={styles.icon} aria-hidden />
               <span className={styles.text}>
-                <span className={styles.srOnly}>{p.labels.hours} : </span>
+                <span className="sr-only">{p.labels.hours} : </span>
                 {p.hours}
               </span>
             </li>

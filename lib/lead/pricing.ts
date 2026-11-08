@@ -1,6 +1,6 @@
 // Source de vérité des formules et de leurs prix (avant crédit d'impôt, par semaine).
 // Les cartes de la page batch cooking et le modal de demande de rappel lisent tous deux ce fichier.
-export const PACKS = ['serenite', 'signature'] as const
+export const PACKS = ['essentiel', 'serenite', 'signature'] as const
 export type PackId = (typeof PACKS)[number]
 
 export const PERIODS = ['week', 'month'] as const
@@ -11,6 +11,7 @@ export type Dinners = (typeof DINNERS)[number]
 
 // Prix par semaine avant crédit d'impôt : [3 dîners, 4 dîners, 5 dîners].
 const PRICES: Record<PackId, Record<Period, readonly [number, number, number]>> = {
+  essentiel: { month: [79, 89, 99], week: [119, 129, 139] },
   serenite: { month: [99, 109, 119], week: [139, 149, 159] },
   signature: { month: [119, 129, 139], week: [159, 169, 179] },
 }

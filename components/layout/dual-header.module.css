@@ -22,7 +22,7 @@
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #393939;
+  color: var(--color-grey-850);
 
   &::before {
     content: '';

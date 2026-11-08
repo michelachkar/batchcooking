@@ -1,11 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { ChefHat, X } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
 import { useLead } from '@/components/features/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
+import { ModalShell } from '@/components/ui/modal-shell'
+import { PickedChoice } from '@/components/ui/picked-choice'
 import styles from './quote-inquiry.module.css'
 
 // Nombre de convives : de 1 à 12, puis des tranches. La valeur envoyée à l'API est un nombre (`guests: Number(...)`).
@@ -16,7 +17,15 @@ const GUESTS = [
   { value: '25', label: 'Plus de 20' },
 ]
 
-export type QuoteOption = { value: string; label: string; text?: string; price?: string }
+export type QuoteOption = {
+  value: string
+  label: string
+  /** Description sur toute la ligne (grand écran). */
+  text?: string
+  /** Version courte pour mobile ; sinon `text`. */
+  textShort?: string
+  price?: string
+}
 
 export function Field({
   id,
@@ -122,30 +131,14 @@ export function QuoteInquiry(
   }
 
   return (
-    <dialog
-      ref={ref}
-      aria-label={p.title}
+    <ModalShell
+      dialogRef={ref}
       onClose={p.onClose}
-      onClick={(e) => e.target === ref.current && ref.current?.close()}
-      className={styles.root}
+      title={p.serviceName}
+      subtitle={p.subtitle}
+      closeLabel={p.close}
+      ariaLabel={p.title}
     >
-      <header className={styles.header}>
-        <span className={styles.headerIcon}>
-          <ChefHat aria-hidden className={styles.headerIconSvg} strokeWidth={1.75} />
-        </span>
-        <span className={styles.headerText}>
-          <strong className={styles.headerService}>{p.serviceName}</strong>
-          <span className={styles.headerSub}>{p.subtitle}</span>
-        </span>
-        <button
-          type="button"
-          onClick={() => ref.current?.close()}
-          aria-label={p.close}
-          className={styles.close}
-        >
-          <X aria-hidden className={styles.closeIcon} />
-        </button>
-      </header>
       <div className={styles.panel}>
         {!direct && (
           <div className={styles.progress}>
@@ -178,7 +171,10 @@ export function QuoteInquiry(
                   <span className={styles.optionText}>
                     <span className={styles.optionTitle}>{o.label}</span>
                     {o.text && (
-                      <span className={clsx(styles.optionDesc, styles.soft)}>{o.text}</span>
+                      <span className={clsx(styles.optionDesc, styles.soft)}>
+                        <span className={o.textShort ? styles.descLong : undefined}>{o.text}</span>
+                        {o.textShort && <span className={styles.descShort}>{o.textShort}</span>}
+                      </span>
                     )}
                   </span>
                   {o.price && <strong className={styles.optionPrice}>{o.price}</strong>}
@@ -190,15 +186,12 @@ export function QuoteInquiry(
           <div>
             <h2 className={styles.title}>{p.infoTitle}</h2>
             {picked && (
-              <div className={styles.picked}>
-                <span className={styles.pickedBody}>
-                  <span className={styles.pickedLabel}>{picked.label}</span>
-                  {picked.price && <span className={styles.pickedPrice}>{picked.price}</span>}
-                </span>
-                <button type="button" onClick={() => setStep(1)} className={styles.change}>
-                  {p.back}
-                </button>
-              </div>
+              <PickedChoice
+                label={picked.label}
+                detail={picked.price}
+                changeLabel={p.back}
+                onChange={() => setStep(1)}
+              />
             )}
             <p className={clsx(styles.intro, styles.soft)}>{p.intro}</p>
             <form onSubmit={onSubmit} className={styles.form}>
@@ -292,6 +285,6 @@ export function QuoteInquiry(
           </div>
         )}
       </div>
-    </dialog>
+    </ModalShell>
   )
 }

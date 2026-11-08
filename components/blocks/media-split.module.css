@@ -2,17 +2,17 @@
 
 .dark {
   --ms-title: var(--color-cream);
-  --ms-accent: #e8a98e;
+  --ms-accent: var(--color-sage);
   --ms-text: rgba(244, 243, 239, 0.76);
   --ms-line: rgba(244, 243, 239, 0.16);
   --ms-stat-bg: rgba(255, 255, 255, 0.05);
-  --ms-inset-border: #413833;
+  --ms-inset-border: var(--color-umber);
 }
 
 .light {
-  --ms-title: #555044;
+  --ms-title: var(--color-ink);
   --ms-accent: var(--color-forest);
-  --ms-text: #625c50;
+  --ms-text: var(--color-body);
   --ms-line: var(--color-sand);
   --ms-stat-bg: rgba(255, 255, 255, 0.04);
   --ms-inset-border: var(--color-white);
@@ -148,7 +148,7 @@
   height: 42px;
   border-radius: 0.75rem;
   background-color: var(--color-forest);
-  color: #f0c8b8;
+  color: var(--color-sage-soft);
 }
 
 .badgeIconSvg {
@@ -485,7 +485,7 @@
   height: 34px;
   padding: 7px;
   border-radius: 10px;
-  background-color: #eee2dc;
+  background-color: var(--color-blush-light);
   color: var(--ms-accent);
   transition:
     background-color 0.3s ease,
@@ -508,7 +508,7 @@
   height: 1.5rem;
   padding: 0.25rem;
   border-radius: calc(infinity * 1px);
-  background-color: #eee2dc;
+  background-color: var(--color-blush-light);
   color: var(--ms-accent);
   transition:
     background-color 0.3s ease,
@@ -619,7 +619,7 @@
   padding: 17px 1.75rem;
   border-radius: var(--radius-pill);
   background-color: var(--color-forest);
-  color: #faf7f2;
+  color: var(--color-ivory);
   transition:
     background-color 0.25s ease,
     translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),

@@ -1,0 +1,53 @@
+/* Choix déjà fait, rappelé en tête de l'étape 2 des modals (formule, cours). */
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding-block: 0.375rem;
+  padding-right: 0.625rem;
+  padding-left: 1rem;
+  border-radius: 20px;
+  background-color: color-mix(in srgb, var(--color-forest) 10%, transparent);
+  color: var(--color-forest);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.detail {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.change {
+  flex: none;
+  padding-block: 0.25rem;
+  padding-inline: 0.75rem;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-white);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-forest);
+      color: var(--color-white);
+    }
+  }
+}

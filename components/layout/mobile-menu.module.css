@@ -65,7 +65,7 @@
   padding-top: 70px;
   padding-bottom: 30px;
   overflow-y: auto;
-  background-color: #111;
+  background-color: var(--color-grey-1000);
   box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
   color: var(--color-white);
 }

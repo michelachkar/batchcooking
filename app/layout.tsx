@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Caveat, Outfit, Plus_Jakarta_Sans } from 'next/font/google'
+import { Caveat, Great_Vibes, Outfit, Plus_Jakarta_Sans } from 'next/font/google'
 import { getTranslations } from '@/lib/i18n'
 import { SiteHeader } from '@/components/layout/site-header'
 import { SiteFooter } from '@/components/layout/site-footer'
@@ -20,6 +20,13 @@ const jakarta = Plus_Jakarta_Sans({
 })
 // Police manuscrite, réservée à la phrase d'accroche du hero.
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat', display: 'swap' })
+// Écriture cursive aux lettres liées, réservée au mot « Signature ».
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-signature',
+  display: 'swap',
+})
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' })
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -51,6 +58,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       value: string
       title: string
       subtitle: string
+      summary?: string
+      summaryShort?: string
       price: string
       priceNote: string
       fixed?: boolean
@@ -64,7 +73,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         ...cards.map((c) => ({
           value: c.value,
           label: c.title,
-          text: c.subtitle,
+          text: c.summary ?? c.subtitle,
+          textShort: c.summaryShort,
           price: `${c.fixed ? '' : `${from} `}${c.price} ${c.priceNote}`,
         })),
         ...other,
@@ -73,7 +83,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   }
 
   return (
-    <html lang="fr" className={`${jakarta.variable} ${outfit.variable} ${caveat.variable}`}>
+    <html
+      lang="fr"
+      className={`${jakarta.variable} ${outfit.variable} ${caveat.variable} ${greatVibes.variable}`}
+    >
       <body>
         <LeadProvider texts={leadTexts as LeadTexts} packs={packs}>
           <QuoteProvider

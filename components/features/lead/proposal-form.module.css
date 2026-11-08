@@ -59,7 +59,7 @@
     box-shadow 0.2s ease;
 
   &::placeholder {
-    color: #6b716d;
+    color: var(--color-sage-grey);
   }
 
   &:focus {
@@ -145,7 +145,7 @@
 .status {
   grid-column: 1 / -1;
   margin: 0;
-  color: #b4233c;
+  color: var(--color-error);
   font-size: 0.875rem;
   line-height: 1.5;
 }
@@ -161,46 +161,46 @@
 /* Teinte « wine » */
 .wine {
   .field {
-    color: #5a1e2b;
+    color: var(--color-wine);
   }
 
   .control {
-    border-color: #e3d5d0;
+    border-color: var(--color-rose-border);
     background-color: var(--color-white);
-    color: #2a1a1e;
+    color: var(--color-wine-ink);
 
     @media (hover: hover) {
       &:hover {
-        border-color: #c9a3ac;
+        border-color: var(--color-rose-mid);
       }
     }
 
     &:focus {
-      border-color: #5a1e2b;
+      border-color: var(--color-wine);
       box-shadow: 0 0 0 3px rgb(90 30 43 / 0.14);
     }
   }
 
   .note {
-    color: #6e5a5f;
+    color: var(--color-rose-grey);
   }
 
   .submit {
-    border-color: #5a1e2b;
-    background-color: #5a1e2b;
-    color: #f6f1e7;
+    border-color: var(--color-wine);
+    background-color: var(--color-wine);
+    color: var(--color-paper);
 
     @media (hover: hover) {
       &:hover {
-        border-color: #3f1420;
-        background-color: #3f1420;
+        border-color: var(--color-wine-dark);
+        background-color: var(--color-wine-dark);
         box-shadow: 0 14px 28px rgb(63 20 32 / 0.3);
       }
     }
 
     &:focus-visible {
-      border-color: #3f1420;
-      background-color: #3f1420;
+      border-color: var(--color-wine-dark);
+      background-color: var(--color-wine-dark);
     }
   }
 }
@@ -245,22 +245,22 @@
 
     @media (hover: hover) {
       &:hover {
-        border-color: #302925;
-        background-color: #302925;
+        border-color: var(--color-charcoal);
+        background-color: var(--color-charcoal);
         box-shadow: 0 14px 28px rgb(176 74 42 / 0.3);
       }
     }
 
     &:focus-visible {
-      border-color: #302925;
-      background-color: #302925;
+      border-color: var(--color-charcoal);
+      background-color: var(--color-charcoal);
     }
   }
 }
 
 /* Champ en erreur : la bordure rouge l'emporte sur les teintes et les états hover/focus. */
 .form .control[aria-invalid='true'] {
-  border-color: #b4233c;
+  border-color: var(--color-error);
 }
 
 /* Flèche des listes déroulantes. */

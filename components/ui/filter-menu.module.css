@@ -89,7 +89,7 @@
   flex: none;
   width: 18px;
   height: 18px;
-  border: 1px solid #cfc3b3;
+  border: 1px solid var(--color-sand-border);
   border-radius: 5px;
 
   &.checked {

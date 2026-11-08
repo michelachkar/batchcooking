@@ -129,10 +129,10 @@ export function ReviewsSlider({ reviews, labels, className, initial }: ReviewsSl
           </ul>
         </div>
       </div>
-      <button type="button" className={styles.srOnly} onClick={() => go(-1)}>
+      <button type="button" className="sr-only" onClick={() => go(-1)}>
         {labels.prev}
       </button>
-      <button type="button" className={styles.srOnly} onClick={() => go(1)}>
+      <button type="button" className="sr-only" onClick={() => go(1)}>
         {labels.next}
       </button>
     </div>

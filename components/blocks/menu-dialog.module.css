@@ -50,7 +50,7 @@
   padding: 0;
   border-width: 0;
   border-radius: 20px;
-  background-color: #faf7f2;
+  background-color: var(--color-ivory);
   box-shadow: 0 30px 80px rgba(47, 43, 38, 0.35);
   color: var(--color-ink);
 

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/layout/page-head'
 import { RecipeBrowser, type RecipeCard } from '@/components/blocks/recipe-browser'
-import { recipes } from '@/lib/recipes'
+import { isRecipePack, recipes } from '@/lib/recipes'
 import { ArrowIcon } from '@/components/ui/icon'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { media } from '@/lib/media'
@@ -19,7 +19,13 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 // Toutes les recettes, avec de quoi choisir (saveurs, ingrédients clés, régimes, allergènes, conservation) et des filtres.
-export default async function RecipesPage() {
+export default async function RecipesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ formule?: string | string[] }>
+}) {
+  const { formule } = await searchParams
+  const pack = isRecipePack(formule) ? formule : undefined
   const p = await getTranslations('pages')
   const ev = await getTranslations('home.events')
   const r = await getTranslations('recipesPage')
@@ -45,7 +51,9 @@ export default async function RecipesPage() {
         <div className={styles.inner}>
           <p className={styles.intro}>{ev('description')}</p>
           <RecipeBrowser
+            key={pack ?? 'all'}
             recipes={cards}
+            initialPacks={pack ? [pack] : []}
             text={{
               type: r('filters.type'),
               diet: r('filters.diet'),
@@ -60,6 +68,7 @@ export default async function RecipesPage() {
               spice: r('spice'),
               cost: r('cost'),
               budget: r('budget'),
+              pack: r('filters.pack'),
             }}
           />
           <div className={styles.cta}>

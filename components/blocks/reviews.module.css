@@ -70,7 +70,7 @@
   line-height: 22px;
   font-weight: 500;
   letter-spacing: -0.02em;
-  color: #3f3f3f;
+  color: var(--color-grey-800);
 }
 
 .proofLong {

@@ -38,7 +38,7 @@ export function CityHubs(p: {
                     style={{ background: ZONE_COLOR[c.zone] }}
                   />
                   {c.name}
-                  <span className={styles.srOnly}> ({p.zoneLabels[c.zone]})</span>
+                  <span className="sr-only"> ({p.zoneLabels[c.zone]})</span>
                 </li>
               ))}
             </ul>
