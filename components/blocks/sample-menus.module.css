@@ -265,30 +265,6 @@
   padding-top: 30px;
 }
 
-.label {
-  align-self: flex-start;
-  margin: 0.25rem 76px 18px 0;
-  padding: 6px 0.75rem;
-  border-radius: var(--radius-pill);
-  background-color: #eee2dc;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-forest-mid);
-  transition:
-    background-color 0.35s ease,
-    color 0.35s ease;
-
-  .card:hover & {
-    @media (hover: hover) {
-      background-color: var(--color-forest-mid);
-      color: #faf7f2;
-    }
-  }
-}
-
 .cardTitle {
   font-family: var(--font-display);
   font-size: 30px;

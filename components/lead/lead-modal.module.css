@@ -213,18 +213,6 @@
   }
 }
 
-.packHead {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-
-  @media (width < 768px) {
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-}
-
 .packName {
   display: flex;
   min-width: 0;
@@ -243,22 +231,11 @@
   }
 }
 
-.packLabel {
-  color: rgb(85 80 68 / 0.88);
-  font-size: 14px;
-}
-
 .packPrice {
   display: flex;
-  flex: none;
   flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
-
-  @media (width < 768px) {
-    align-items: flex-start;
-    text-align: left;
-  }
+  align-items: flex-start;
+  text-align: left;
 }
 
 .packPriceValue {
@@ -280,7 +257,7 @@
 .features {
   display: grid;
   gap: 0.375rem;
-  margin: 0;
+  margin: 0.5rem 0 0;
   padding: 0;
   list-style-type: none;
 }
@@ -299,34 +276,6 @@
   height: 1rem;
   margin-top: 0.125rem;
   color: #7d472c;
-}
-
-.highlight {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.5rem 0.75rem;
-  border-radius: 12px;
-  background-color: color-mix(in srgb, var(--color-forest) 10%, transparent);
-  font-size: 15px;
-  line-height: 1.4;
-  font-weight: 600;
-}
-
-.highlightText {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.highlightLabel {
-  color: var(--color-forest);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .packTitleRow {
@@ -482,12 +431,6 @@
   font-weight: 600;
 }
 
-.contactIntro {
-  margin-top: 0.5rem;
-  font-size: 15px;
-  line-height: 1.5;
-}
-
 .fields {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -641,67 +584,26 @@
   }
 }
 
-/* Étape 3 : confirmation */
-.done {
-  padding-block: 1rem;
-  text-align: center;
-}
-
-.doneBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 4rem;
-  height: 4rem;
-  margin-inline: auto;
-  border-radius: calc(infinity * 1px);
-  background-color: #7d472c;
-  color: #fff;
-}
-
-.doneIcon {
-  width: 2rem;
-  height: 2rem;
-}
-
-.doneTitle {
-  margin-top: 1.25rem;
-}
-
-.doneText {
-  max-width: 26rem;
-  margin-inline: auto;
-  margin-top: 0.75rem;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.doneButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  margin-top: 1.5rem;
-  padding-inline: 2rem;
-  border-width: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-forest);
-  color: #fff;
-  font-size: 1rem;
-  line-height: 1.5;
-  font-weight: 600;
-  cursor: pointer;
-
-  @media (hover: hover) {
-    &:hover {
-      background-color: var(--color-forest-dark);
-    }
-  }
-}
-
 @keyframes dialogIn {
   from {
     opacity: 0;
     transform: translateY(18px) scale(0.98);
   }
+}
+
+/* Explication de la formule, avant le prix */
+.packDescription {
+  color: rgb(85 80 68 / 0.9);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* Prix et flèche en pied de carte, séparés de la description */
+.packFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e3d9cc;
 }

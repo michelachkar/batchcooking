@@ -1,6 +1,6 @@
 import { getTranslations } from '@/lib/i18n'
 import { ExperienceCards, type ExperienceCard } from '@/components/blocks/experience-cards'
-import { mediaOf, type Landing } from '@/lib/media'
+import { media } from '@/lib/media'
 
 // Liens des trois cartes de l'accueil : une page par service.
 const HOME_LINKS = ['/services/batch-cooking', '/services/chef-prive', '/services/cours-de-cuisine']
@@ -15,16 +15,9 @@ type CardText = {
   alt: string
 }
 
-// « Nos services » : trois grandes cartes photo, même bloc sur l'accueil et sur la page Services (messages home.experiences).
-export async function ExperiencesSection({
-  ns = 'home',
-  tone,
-}: {
-  ns?: Landing
-  tone?: 'white' | 'cream'
-}) {
-  const media = mediaOf(ns)
-  const x = await getTranslations(`${ns}.experiences`)
+// « Nos services » : trois grandes cartes photo, accueil et page Services (messages home.experiences).
+export async function ExperiencesSection({ tone }: { tone?: 'white' | 'cream' }) {
+  const x = await getTranslations('home.experiences')
   const cards: ExperienceCard[] = (x.raw('cards') as CardText[]).map((c, i) => ({
     title: c.title,
     text: c.text,
@@ -32,7 +25,7 @@ export async function ExperiencesSection({
     tag: c.tag,
     icon: (c.icon || undefined) as ExperienceCard['icon'],
     linkText: c.linkText,
-    href: ns === 'home' ? HOME_LINKS[i] : '/services',
+    href: HOME_LINKS[i],
     image: media.cards[i],
     alt: c.alt,
   }))

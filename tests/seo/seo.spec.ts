@@ -1,6 +1,6 @@
 import { expect, test, type APIRequestContext } from '@playwright/test'
 
-// Tests SEO sur le build de test (contenus de démonstration) : chaque adresse du sitemap est contrôlée.
+// Tests SEO sur le build : chaque adresse du sitemap est contrôlée.
 // Adresses annoncées dans le menu mais pas encore construites (aucune pour l'instant).
 const PENDING: string[] = []
 
@@ -29,7 +29,7 @@ test('sitemap : adresses absolues, dates réelles, pages principales présentes'
     expect(Number.isNaN(Date.parse(e.lastmod)), `lastmod de ${e.loc}`).toBe(false)
   }
   const paths = entries.map((e) => pathOf(e.loc))
-  for (const p of ['/', '/services', '/equipe', '/tarifs', '/faq', '/contact', '/blog']) {
+  for (const p of ['/', '/services', '/tarifs', '/faq', '/contact', '/realisations']) {
     expect(paths, p).toContain(p)
   }
 })
@@ -38,18 +38,6 @@ test('robots.txt annonce le sitemap', async ({ request }) => {
   const res = await request.get('/robots.txt')
   expect(res.status()).toBe(200)
   expect(await res.text()).toMatch(/^Sitemap: https?:\/\/.+\/sitemap\.xml$/m)
-})
-
-test('flux RSS : un élément par article, adresses du sitemap', async ({ request }) => {
-  const entries = (await sitemap(request)).map((e) => e.loc)
-  const res = await request.get('/feed.xml')
-  expect(res.status()).toBe(200)
-  expect(res.headers()['content-type']).toContain('rss+xml')
-  const xml = await res.text()
-  const links = [...xml.matchAll(/<item>[\s\S]*?<link>(.*?)<\/link>/g)].map((m) => m[1])
-  const posts = entries.filter((l) => /\/blog\/[^/]+$/.test(l) && !/\/blog\/grille$/.test(l))
-  expect(links.length).toBe(posts.length)
-  for (const l of links) expect(entries).toContain(l)
 })
 
 test.describe('chaque page du sitemap', () => {
@@ -98,11 +86,7 @@ test.describe('chaque page du sitemap', () => {
       expect(types, path).toContain('Organization')
       expect(types, path).toContain('WebSite')
       if (path !== '/') expect(types, path).toContain('BreadcrumbList')
-      if (/^\/blog\/[^/]+$/.test(path) && path !== '/blog/grille') {
-        expect(types, path).toContain('BlogPosting')
-      }
       if (/^\/services\/[^/]+$/.test(path)) expect(types, path).toContain('Service')
-      if (/^\/equipe\/[^/]+$/.test(path)) expect(types, path).toContain('Person')
 
       // Toutes les images ont un alt (vide permis pour le décor) et des dimensions.
       const bad = await page.locator('img:not([alt])').count()

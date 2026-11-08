@@ -17,13 +17,11 @@ export type Project = {
 type Props = {
   projects: Project[]
   labels: { prev: string; next: string; navigation: string }
-  /** Titres à 24 px en mobile au lieu de 28 px (page FAQ). */
-  smallTitleMobile?: boolean
 }
 
 // Carrousel « réalisations » : slide actif centré (le central au chargement), boucle infinie, compteur et flèches.
 // Trois copies de la liste sont rendues pour que la boucle ne montre jamais de vide ; seule la copie centrale est interactive.
-export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) {
+export function ProjectsCarousel({ projects, labels }: Props) {
   const n = projects.length
   const [pos, setPos] = useState(n + Math.floor((n - 1) / 2))
   const [animate, setAnimate] = useState(true)
@@ -124,14 +122,7 @@ export function ProjectsCarousel({ projects, labels, smallTitleMobile }: Props) 
                         />
                         <div className={styles.caption}>
                           <p className={styles.type}>{p.type}</p>
-                          <h3
-                            className={clsx(
-                              styles.title,
-                              smallTitleMobile && styles.titleSmallMobile,
-                            )}
-                          >
-                            {p.title}
-                          </h3>
+                          <h3 className={styles.title}>{p.title}</h3>
                         </div>
                         <Link href={p.href} aria-label={p.title} className={styles.link} />
                       </article>

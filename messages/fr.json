@@ -15,23 +15,14 @@
   },
   "nav": {
     "home": "Accueil",
-    "about": "À propos",
     "services": "Services",
     "serviceBatch": "Batch cooking à domicile",
     "serviceChef": "Chef privé & expériences",
     "serviceCours": "Cours de cuisine à domicile",
-    "pages": "Pages",
-    "team": "Notre équipe",
-    "singleMember": "Fiche membre",
     "portfolio": "Réalisations",
-    "singlePortfolio": "Fiche réalisation",
     "pricing": "Tarifs",
     "recipes": "Recettes",
     "faq": "FAQ",
-    "journal": "Journal",
-    "blog": "Blog, barre droite",
-    "blogGrid": "Blog en grille",
-    "article": "Article",
     "contact": "Contact"
   },
   "footer": {
@@ -53,11 +44,8 @@
       "recipes": "Recettes"
     },
     "companyLinks": {
-      "about": "À propos",
       "zones": "Zones d'intervention",
-      "team": "Notre équipe",
       "portfolio": "Réalisations",
-      "journal": "Journal",
       "faq": "FAQ"
     },
     "rights": "© 2026 {name}. Tous droits réservés.",
@@ -74,7 +62,6 @@
   },
   "home": {
     "hero": {
-      "label": "Votre batch cooking de Mèze à Lunel, en passant par Montpellier",
       "headline": "Tous vos dîners de la semaine sont préparés chez vous en un clin d'oeil.",
       "accent": "Fini la charge mentale des repas.",
       "tagline": ["Délicieux", "Healthy", "Zéro vaisselle"],
@@ -99,9 +86,7 @@
       ],
       "primary": "Reservez vos repas",
       "secondary": "Découvrez mes recettes",
-      "meta": "Sans engagement · Reportez facilement",
       "galleryAlts": ["Plat préparé par la cheffe", "Repas de la semaine prêts à réchauffer", "Cheffe en cuisine chez un client"],
-      "googleReviews": "Avis Google",
       "taxCredit": "50 % de crédit d'impôt",
       "creditNote": {
         "value": "−50 %",
@@ -128,10 +113,7 @@
         ],
         "button": "Réserver mes repas"
       },
-      "imageAlt": "Cheffe en tenue blanche et toque, la main sur la hanche, souriante devant un fond blanc",
-      "captionKicker": "Service à la personne",
-      "captionTitle": "-50% de crédit d'impôt",
-      "captionText": "Vous ne payez que la moitié, grâce à l’Avance Immédiate."
+      "imageAlt": "Cheffe en tenue blanche et toque, la main sur la hanche, souriante devant un fond blanc"
     },
     "inquiry": {
       "kicker": "Demande rapide",
@@ -154,7 +136,6 @@
       ],
       "mealsLabel": "Repas par semaine",
       "button": "Appel découverte sous 24h",
-      "note": "Sans engagement : nous vous rappelons généralement sous un jour ouvré.",
       "mealsPlaceholder": "Choisir",
       "mealsOptions": [
         {
@@ -187,9 +168,7 @@
         }
       ],
       "phoneLabel": "Téléphone",
-      "phonePlaceholder": "06 12 34 56 78",
-      "success": "Merci ! Nous vous rappelons sous un jour ouvré.",
-      "error": "Une erreur est survenue. Vérifiez votre numéro et réessayez."
+      "phonePlaceholder": "06 12 34 56 78"
     },
     "experiences": {
       "kicker": "Nos services",
@@ -258,7 +237,7 @@
       "badgeValue": "4,9 / 5",
       "badgeText": "selon 380 hôtes",
       "imageAlt": "Portrait de la cheffe en tenue blanche et toque, la main sur la hanche",
-      "insetAlt": "Le chef choisissant des produits sur un marché fermier de Charleston"
+      "insetAlt": "La cheffe choisissant des produits au marché"
     },
     "about": {
       "label": "LE BATCH COOKING À DOMICILE",
@@ -297,120 +276,6 @@
         "Mains du chef dressant une assiette avant le service",
         "Repas servi à une table dressée pour des invités",
         "Une table de salle à manger dressée avec linge, bougies et cartes de menu avant l'arrivée des invités"
-      ]
-    },
-    "menus": {
-      "kicker": "Menus types",
-      "title": "Un aperçu de ce que nous cuisinons",
-      "intro": "Trois menus parmi les plus demandés par nos hôtes. Chacun est un point de départ : nous écrivons le menu final autour de vos invités, de la saison et de l'occasion.",
-      "note": "Les plats changent avec les saisons et les arrivages de nos producteurs et pêcheurs. Les allergies et demandes alimentaires sont discutées avec vous avant la confirmation de votre réservation.",
-      "open": "Voir le menu type",
-      "close": "Fermer le menu",
-      "panelKicker": "Menu type",
-      "cta": "Planifier ce menu",
-      "more": "{count, plural, one {+ # autre plat} other {+ # autres plats}}",
-      "cards": [
-        {
-          "icon": "chef-hat",
-          "label": "Le plus réservé",
-          "title": "Menu dégustation de saison",
-          "meta": "Six plats · 6 à 16 invités",
-          "tags": ["Accord mets-vins", "De saison"],
-          "courses": [
-            ["Croustillant de graines de sésame", "crevettes marinées, aneth, citron"],
-            ["Huître de Bulls Bay", "mignonette au concombre, citron caviar"],
-            ["Bisque de crabe femelle", "xérès, ciboulette, maïs doux"],
-            ["Mérou saisi", "riz Carolina Gold, beurre noisette, câpres"],
-            ["Magret de canard fumé", "glaçage au sorgho, légumes verts braisés, navet"],
-            ["Tarte aux noix de pécan au beurre noisette", "glace au babeurre"]
-          ],
-          "price": "À partir de 165 $ par invité",
-          "priceNote": "Accord mets-vins à partir de 75 $ par invité",
-          "alt": "Plats du menu dégustation de saison dressés sur la table"
-        },
-        {
-          "icon": "users",
-          "label": "Pour les groupes",
-          "title": "Table à partager",
-          "meta": "Convivial, à partager · 8 à 40 invités",
-          "tags": ["Adapté aux enfants", "Convivial, à partager"],
-          "courses": [
-            ["Pain au levain chaud", "beurre fermenté, fleur de sel"],
-            ["Salade de gombo grillé et tomate", "herbes, citron vert, piment"],
-            ["Crevettes et grits", "grits moulus à la meule, sauce tasso"],
-            ["Poulet grillé au bois", "salsa verde, pommes de terre rôties"],
-            ["Légumes de Johns Island", "beurre noisette, herbes"],
-            ["Cobbler à la pêche", "crème vanillée"]
-          ],
-          "price": "À partir de 110 $ par invité",
-          "priceNote": "Servi à table sur des plats",
-          "alt": "Repas de famille préparé à l'avance"
-        },
-        {
-          "icon": "lotus",
-          "label": "100 % végétal",
-          "title": "Dîner végétal",
-          "meta": "Cinq plats · 2 à 16 invités",
-          "tags": ["Vegan", "Option sans gluten"],
-          "courses": [
-            ["Tomate ancienne", "eau de tomate glacée, huile de basilic"],
-            ["Betteraves rôties", "crème de cajou, dukkah de pécan"],
-            ["Risotto de riz Carolina Gold", "champignons sauvages, thym"],
-            ["Chou grillé", "glaçage au miso blanc, échalotes croustillantes"],
-            ["Tarte au chocolat noir", "huile d'olive, fleur de sel, fruits rouges"]
-          ],
-          "price": "À partir de 135 $ par invité",
-          "priceNote": "Sans gluten sur demande",
-          "alt": "Plats végétaux de saison"
-        }
-      ]
-    },
-    "photos": {
-      "kicker": "De notre table",
-      "title": "Instants de nos dernières soirées",
-      "handle": "@savrio.dining",
-      "gallery": "Galerie photo",
-      "photos": [
-        {
-          "caption": "Huîtres pour un oyster roast d'hiver",
-          "icon": "fish"
-        },
-        {
-          "caption": "Mérou saisi, quatrième plat",
-          "icon": "chef-hat"
-        },
-        {
-          "caption": "Heure du cocktail signature",
-          "icon": "glass-champagne"
-        },
-        {
-          "caption": "Récolte du marché du samedi",
-          "icon": "basket"
-        },
-        {
-          "caption": "Tarte aux noix de pécan au beurre noisette",
-          "icon": "cake"
-        },
-        {
-          "caption": "Un toast pour vingt-cinq ans",
-          "icon": ""
-        },
-        {
-          "caption": "Betteraves végétales",
-          "icon": "plant-2"
-        },
-        {
-          "caption": "Crevettes et grits pour quarante",
-          "icon": "bowl"
-        },
-        {
-          "caption": "Fête d'anniversaire",
-          "icon": "confetti"
-        },
-        {
-          "caption": "Terrasse de villa au crépuscule",
-          "icon": "building-cottage"
-        }
       ]
     },
     "included": {
@@ -528,236 +393,6 @@
       ],
       "cta": "Voir toutes les recettes",
       "ctaHref": "/recettes"
-    },
-    "steps": {
-      "kicker": "Comment ça marche",
-      "title": "Comment la soirée se met en place",
-      "button": "Demander un devis",
-      "steps": [
-        {
-          "icon": "",
-          "title": "Parlez-nous de votre événement",
-          "text": "Indiquez la date, le nombre d'invités et le lieu. Nous répondons sous un jour ouvré."
-        },
-        {
-          "icon": "notebook",
-          "title": "Composez votre menu",
-          "text": "Nous vous envoyons un projet de menu que nous affinons avec vous, avec une dégustation pour les grands événements."
-        },
-        {
-          "icon": "clipboard-check",
-          "title": "Confirmez votre réservation",
-          "text": "Un acompte réserve votre date, et nous confirmons par écrit le personnel, les locations et les horaires."
-        },
-        {
-          "icon": "glass-cocktail",
-          "title": "Profitez de votre soirée",
-          "text": "Nous arrivons tôt, cuisinons, servons et laissons la cuisine impeccable. Vous restez avec vos invités."
-        }
-      ]
-    },
-    "occasions": {
-      "kicker": "Occasions pour lesquelles nous cuisinons",
-      "title": "Un menu pour chaque",
-      "highlight": "occasion",
-      "description": "Des dîners aux chandelles pour deux aux célébrations d'entreprise — des menus et un service pensés pour chaque moment.",
-      "button": "Voir les services",
-      "occasions": [
-        {
-          "name": "Dîner privé",
-          "description": "Dîners et soirées en amoureux"
-        },
-        {
-          "name": "Entreprise",
-          "description": "Lancements et dîners clients"
-        },
-        {
-          "name": "Mariages",
-          "description": "Répétitions et réceptions"
-        },
-        {
-          "name": "Célébrations",
-          "description": "Anniversaires et fêtes"
-        }
-      ]
-    },
-    "reviews": {
-      "kicker": "Hôtes vérifiés",
-      "title": "Apprécié par",
-      "highlight": "Nos invités",
-      "description": "Familles, couples et hôtes racontent leurs dîners préparés à la maison : des soirées plus sereines et de vraies tables partagées.",
-      "prev": "Avis précédent",
-      "next": "Avis suivant",
-      "navigation": "Avis clients",
-      "proofLong": "Planifiez votre événement avec nous dès aujourd'hui. Appelez le",
-      "proofShort": "Appelez-nous au",
-      "phone": "(843) 555-0147",
-      "reviews": [
-        {
-          "name": "Kathrine Katija",
-          "role": "Dîner d'anniversaire, Mount Pleasant",
-          "text": "« On aurait dit qu'un restaurant avait ouvert dans notre salle à manger pour une soirée. » Le chef Julien a composé sept plats autour de notre cave à vin et des allergies de nos invités. Le service était calme et discret, et la cuisine était plus propre à leur départ qu'à leur arrivée.",
-          "alt": "Portrait de Kathrine Katija"
-        },
-        {
-          "name": "Marcus Chen",
-          "role": "Responsable événementiel, Harbor & Vine",
-          "text": "« Le bar mobile a été le sujet de conversation de notre soirée d'entreprise. » L'équipe d'Amara a composé un menu de cocktails autour du lancement de notre produit et a servi 180 invités sans la moindre file d'attente. Trois personnes ont demandé sa carte avant la fin de la soirée.",
-          "alt": "Portrait de Marcus Chen"
-        },
-        {
-          "name": "Elena Rostova",
-          "role": "Mariée, Wild Dunes Resort",
-          "text": "« C'est une véritable hospitalité, pas un traiteur générique. » De la première dégustation à la dernière assiette débarrassée, chaque détail était pensé. Notre dîner de mariage et notre cocktail se sont déroulés à l'heure et avaient un goût que nos invités n'avaient jamais connu lors d'un mariage.",
-          "alt": "Portrait d'Elena Rostova"
-        }
-      ]
-    },
-    "team": {
-      "kicker": "Équipe cuisine et bar",
-      "title": "Vos chefs et",
-      "highlight": "barmans",
-      "description": "Chaque menu est cuisiné en pensant à vos invités. Nos chefs et barmans se sont formés dans des restaurants de Charleston à Lyon, et ils apportent ce savoir-faire à votre table.",
-      "vertical": "SAVRIO",
-      "profile": "Voir le profil de {name}"
-    },
-    "trusted": {
-      "title": "La confiance de plus de 100 lieux et organisateurs"
-    },
-    "proposal": {
-      "kicker": "Demander une proposition",
-      "title": "Dites-nous ce que vous célébrez.",
-      "text": "Partagez les détails de votre soirée et nous vous enverrons une proposition de menu sur mesure, un devis clair et les prochaines étapes pour réserver votre date.",
-      "points": [
-        {
-          "icon": "clock",
-          "text": "Réponse sous un jour ouvré"
-        },
-        {
-          "icon": "utensils",
-          "text": "Des menus écrits pour vos invités"
-        },
-        {
-          "icon": "leaf",
-          "text": "Chaque besoin alimentaire pris en compte"
-        },
-        {
-          "icon": "phone",
-          "text": "(843) 555-0147 · hello@savrio.com"
-        }
-      ],
-      "formTitle": "Les détails de votre événement",
-      "formIntro": "Cela prend environ deux minutes. Rien n'est réservé tant que vous n'avez pas validé le menu.",
-      "fields": [
-        {
-          "name": "name",
-          "label": "Nom",
-          "type": "text",
-          "placeholder": "Votre nom",
-          "required": true
-        },
-        {
-          "name": "email",
-          "label": "E-mail",
-          "type": "email",
-          "placeholder": "vous@exemple.fr",
-          "required": true
-        },
-        {
-          "name": "date",
-          "label": "Date souhaitée",
-          "type": "date"
-        },
-        {
-          "name": "location",
-          "label": "Lieu",
-          "type": "text",
-          "placeholder": "Domicile, ville ou code postal"
-        },
-        {
-          "name": "occasion",
-          "label": "Formule",
-          "type": "select",
-          "placeholder": "Choisir une formule",
-          "options": ["Dîner privé", "Célébration", "Mariage", "Événement d'entreprise", "Autre"]
-        },
-        {
-          "name": "guests",
-          "label": "Nombre de personnes",
-          "type": "select",
-          "placeholder": "Pour combien de personnes ?",
-          "options": [
-            "1 à 2 personnes",
-            "3 à 4 personnes",
-            "5 à 6 personnes",
-            "7 personnes ou plus"
-          ]
-        },
-        {
-          "name": "budget",
-          "label": "Budget",
-          "type": "select",
-          "placeholder": "Budget approximatif",
-          "options": [
-            "Moins de 100 €",
-            "100 à 200 €",
-            "200 à 400 €",
-            "Plus de 400 €",
-            "Je ne sais pas encore"
-          ]
-        },
-        {
-          "name": "experience",
-          "label": "Fréquence",
-          "type": "select",
-          "placeholder": "Choisir une fréquence",
-          "options": ["Une fois", "Chaque semaine", "Toutes les deux semaines", "Chaque mois"]
-        },
-        {
-          "name": "message",
-          "label": "Régimes alimentaires et précisions",
-          "type": "textarea",
-          "placeholder": "Allergies, préférences, matériel disponible, tout ce que nous devons savoir",
-          "full": true
-        }
-      ],
-      "note": "Nous répondons sous un jour ouvré avec une proposition de menus. Les dates sont confirmées après vérification de nos disponibilités.",
-      "submit": "Envoyer ma demande",
-      "messages": {
-        "success": "Merci, nous vous répondons sous un jour ouvré.",
-        "invalid": "Merci de vérifier les champs en erreur.",
-        "unavailable": "Le formulaire n'est pas encore disponible. Appelez-nous en attendant.",
-        "error": "Une erreur est survenue. Merci de réessayer."
-      }
-    },
-    "posts": {
-      "intro": {
-        "kicker": "Dernières notes",
-        "title": "Notes depuis",
-        "highlight": "notre cuisine",
-        "description": "Menus, conseils de réception et histoires vécues des dîners et bars que nous avons servis dans tout le Lowcountry."
-      },
-      "button": "Voir tous les articles",
-      "posts": [
-        {
-          "category": "DÎNER PRIVÉ",
-          "title": "À quoi s’attendre lors d’une dégustation avec un chef privé",
-          "href": "/blog/what-to-expect-from-a-private-chef-tasting",
-          "meta": ["27 avr. 2026", "0 commentaire"]
-        },
-        {
-          "category": "DÎNER PRIVÉ",
-          "title": "Chef privé : vos questions, nos réponses",
-          "href": "/blog/private-chef-questions-answered",
-          "meta": ["27 avr. 2026", "0 commentaire"]
-        },
-        {
-          "category": "COCKTAILS ET BAR",
-          "title": "Organiser un bar mobile pour votre fête",
-          "href": "/blog/planning-a-mobile-bar-for-your-party",
-          "meta": ["27 avr. 2026", "0 commentaire"]
-        }
-      ]
     }
   },
   "homeV2": {
@@ -767,105 +402,6 @@
       "intro": "Nous cuisinons chez vous à Montpellier et dans les communes alentour. Retrouvez le détail des communes, des délais et des déplacements sur la page dédiée.",
       "note": "Votre commune n'est pas listée ? Contactez-nous, nous vous répondrons sous un jour ouvré.",
       "link": "Voir toutes les zones d'intervention"
-    }
-  },
-  "aboutPage": {
-    "story": {
-      "kicker": "Mon histoire",
-      "title": "Cuisiner, c'est ma façon de prendre soin des gens",
-      "paragraphs": [
-        "Pour moi, un bon repas, c'est bien plus qu'une assiette : c'est du temps partagé, du réconfort, de l'attention. C'est pour ça que j'ai fait de la cuisine mon métier.",
-        "Et si je cuisine à domicile, c'est parce que c'est chez soi qu'on se sent le mieux. Dans votre cuisine, à votre rythme, avec vos habitudes : je m'adapte à vous, pas l'inverse.",
-        "Mon objectif est simple : vous offrir du temps, et de bons repas faits maison, sans que vous ayez à y penser."
-      ],
-      "imageAlt": "La cheffe en tenue blanche et toque, la main sur la hanche"
-    },
-    "journey": {
-      "kicker": "Parcours & expérience",
-      "title": "Une cuisine apprise, pratiquée et partagée",
-      "intro": "Chaque prestation s'appuie sur la même exigence : cuisiner avec soin, pour vous.",
-      "items": [
-        {
-          "icon": "heart",
-          "title": "Une passion",
-          "text": "La cuisine, c'est avant tout l'envie de faire plaisir et de transmettre."
-        },
-        {
-          "icon": "chef",
-          "title": "Une pratique",
-          "text": "Des gestes de chef, travaillés et adaptés à la cuisine de chacun."
-        },
-        {
-          "icon": "sparkles",
-          "title": "Un service sur mesure",
-          "text": "Batch cooking, chef privé, cours de cuisine : une offre pensée pour votre quotidien."
-        }
-      ]
-    },
-    "method": {
-      "kicker": "Ma façon de travailler",
-      "title": "Des produits frais, locaux et de saison",
-      "intro": "Une bonne cuisine commence par de bons produits. Voici ce qui guide mes choix.",
-      "items": [
-        {
-          "icon": "fresh",
-          "title": "Des produits frais",
-          "text": "Je privilégie des ingrédients frais, pour des plats savoureux et sains."
-        },
-        {
-          "icon": "local",
-          "title": "Des produits locaux",
-          "text": "Quand c'est possible, je choisis des produits de la région."
-        },
-        {
-          "icon": "season",
-          "title": "Une cuisine de saison",
-          "text": "Chaque menu suit les saisons, pour manger au meilleur moment."
-        }
-      ]
-    },
-    "values": {
-      "kicker": "Mes engagements",
-      "title": "Hygiène, qualité et discrétion",
-      "intro": "Entrer dans votre cuisine demande de la confiance. Voici mes engagements.",
-      "items": [
-        {
-          "icon": "hygiene",
-          "title": "Hygiène",
-          "text": "Une cuisine propre avant, pendant et après la prestation, dans le respect des règles d'hygiène."
-        },
-        {
-          "icon": "quality",
-          "title": "Qualité",
-          "text": "Des plats faits maison, soignés, préparés avec exigence du début à la fin."
-        },
-        {
-          "icon": "discretion",
-          "title": "Discrétion",
-          "text": "Je respecte votre intimité et votre foyer : j'interviens avec discrétion et bienveillance."
-        }
-      ]
-    },
-    "action": {
-      "kicker": "En action",
-      "title": "Un chef dans votre cuisine",
-      "photos": [
-        {
-          "alt": "La cheffe en tenue de cuisine"
-        },
-        {
-          "alt": "Portrait de la cheffe avec sa toque"
-        },
-        {
-          "alt": "La cheffe en tablier blanc"
-        }
-      ]
-    },
-    "note": {
-      "quote": "Je m'occupe des repas, pour que vous puissiez vous occuper du reste.",
-      "author": "Chef Meemz",
-      "text": "Un projet, une question ? Parlons-en : je vous réponds sous un jour ouvré, sans engagement.",
-      "button": "Me contacter"
     }
   },
   "servicesPage": {
@@ -1091,7 +627,7 @@
         {
           "icon": "clock",
           "alt": "Repas Sérénité préparés à domicile",
-          "tags": ["+40 recettes"],
+          "tags": ["+40 recettes au choix"],
           "week": {
             "meta": "1 passage · sans engagement",
             "courses": [
@@ -1113,7 +649,7 @@
         {
           "icon": "heart",
           "alt": "Repas Signature préparés à domicile",
-          "tags": ["Sur mesure"],
+          "tags": ["Menu sur mesure"],
           "week": {
             "meta": "1 passage · sans engagement",
             "courses": [
@@ -1134,10 +670,10 @@
         }
       ],
       "toggle": {
-        "label": "Durée",
+        "label": "Votre engagement",
         "week": "1 semaine",
         "month": "1 mois",
-        "hint": "Meilleur tarif"
+        "hint": "Votre engagement"
       },
       "plan": "Demander un devis",
       "dinners": {
@@ -1763,14 +1299,6 @@
     },
     "navLabel": "Fil d'Ariane",
     "home": "Accueil",
-    "about": {
-      "title": "À propos",
-      "crumb": "À propos"
-    },
-    "team": {
-      "title": "Notre équipe",
-      "crumb": "Notre équipe"
-    },
     "services": {
       "proofLong": "Une question ? Demandez votre devis : nous répondons sous un jour ouvré.",
       "proofShort": "Demandez votre devis, réponse sous un jour ouvré.",
@@ -1789,14 +1317,6 @@
       "title": "Contact",
       "crumb": "Contact"
     },
-    "blog": {
-      "title": "Blog",
-      "crumb": "Blog"
-    },
-    "blogGrid": {
-      "title": "Blog, grille",
-      "crumb": "Blog, grille"
-    },
     "portfolio": {
       "title": "Réalisations",
       "crumb": "Réalisations"
@@ -1805,167 +1325,9 @@
       "title": "404 - Page introuvable",
       "crumb": "404 Introuvable"
     },
-    "blogCategory": "Catégorie : {name}",
-    "blogArchive": "Archives : {month}",
-    "blogTag": "Mot-clé : {name}",
     "search": {
       "title": "Recherche",
       "crumb": "Recherche"
-    }
-  },
-  "services": {
-    "cta": "Voir la formule",
-    "items": [
-      {
-        "title": "Batch cooking à domicile",
-        "text": "Votre cheffe prépare chez vous 3 à 5 dîners par passage : menu à choisir parmi plus de 40 recettes, plats prêts à réchauffer.",
-        "icon": "fridge",
-        "href": "/services/batch-cooking"
-      },
-      {
-        "title": "Chef privé & expériences gastronomiques",
-        "text": "Dîners entre proches, anniversaires et occasions spéciales : un menu sur mesure, cuisiné et servi chez vous.",
-        "icon": "chef-hat",
-        "href": "/services/chef-prive"
-      },
-      {
-        "title": "Cours de cuisine à domicile",
-        "text": "Apprenez à cuisiner dans votre propre cuisine, avec vos ustensiles, vos produits et un chef qui s'adapte à votre niveau.",
-        "icon": "utensils",
-        "href": "/services/cours-de-cuisine"
-      }
-    ]
-  },
-  "pricing": {
-    "plans": [
-      {
-        "badge": "L'essentiel",
-        "title": "Formule Solo & Duo",
-        "features": [
-          "Une session de cuisine par semaine",
-          "Cinq plats portionnés et étiquetés",
-          "Menu adapté à vos goûts"
-        ],
-        "from": "À partir de",
-        "price": "00 € / semaine",
-        "cta": "Réserver un appel",
-        "href": "/contact",
-        "alt": "Plats portionnés pour une ou deux personnes"
-      },
-      {
-        "badge": "Le plus demandé",
-        "title": "Formule Famille",
-        "features": [
-          "Une session de cuisine par semaine",
-          "Huit plats généreux pour toute la tablée",
-          "Options enfants et grandes portions"
-        ],
-        "from": "À partir de",
-        "price": "00 € / semaine",
-        "cta": "Réserver un appel",
-        "href": "/contact",
-        "alt": "Repas préparés pour une famille"
-      },
-      {
-        "badge": "Sur mesure",
-        "title": "Formule Réception",
-        "features": [
-          "Devis selon le nombre d'invités",
-          "Buffet ou repas assis, livré prêt à dresser",
-          "Menu conçu avec vous en amont"
-        ],
-        "from": "À partir de",
-        "price": "Devis",
-        "cta": "Demander un devis",
-        "href": "/contact",
-        "alt": "Buffet préparé pour une réception à domicile"
-      }
-    ],
-    "projects": {
-      "expand": "Ouvrir",
-      "collapse": "Fermer",
-      "defaultOpen": 0,
-      "items": [
-        {
-          "title": "Semaine type pour un couple actif",
-          "text": "Cinq plats portionnés, pensés pour deux personnes qui rentrent tard, prêts à réchauffer en quelques minutes.",
-          "tags": ["Batch cooking", "Équilibré"],
-          "alt": "Plats de la semaine pour un couple"
-        },
-        {
-          "title": "Repas pour une famille de quatre",
-          "text": "Des plats généreux et simples à partager, cuisinés en une matinée et rangés avant l'heure du midi.",
-          "tags": ["Famille", "Grandes portions"],
-          "alt": "Repas de famille préparés à l'avance"
-        },
-        {
-          "title": "Menu sans gluten sur deux semaines",
-          "text": "Un accompagnement renforcé pour composer des repas adaptés, sans sacrifier la variété.",
-          "tags": ["Régime spécifique", "Sans gluten"],
-          "alt": "Menu sans gluten préparé à domicile"
-        },
-        {
-          "title": "Buffet pour une réception à domicile",
-          "text": "Des plats froids et chauds préparés à l'avance pour une vingtaine d'invités, livrés prêts à dresser.",
-          "tags": ["Réception", "Sur mesure"],
-          "alt": "Buffet préparé pour une réception"
-        }
-      ]
-    }
-  },
-  "faq": {
-    "items": [
-      {
-        "question": "Comment se déroule une session de batch cooking ?",
-        "answer": "Votre cheffe arrive chez vous, cuisine 3 à 5 dîners en une session, puis les range au réfrigérateur avant de repartir."
-      },
-      {
-        "question": "Combien de temps dure une session ?",
-        "answer": "Comptez en moyenne trois à quatre heures pour 3 à 5 dîners, selon le nombre de personnes à nourrir."
-      },
-      {
-        "question": "Puis-je adapter le menu à mes allergies ou régimes ?",
-        "answer": "Oui. Chaque menu est construit avec vous en amont : régimes sans gluten, sans lactose, végétariens ou toute autre préférence sont pris en compte dès la préparation."
-      },
-      {
-        "question": "Dans quelles zones intervenez-vous ?",
-        "answer": "Nous nous déplaçons dans toute la métropole et ses environs proches. Contactez-nous avec votre adresse pour confirmer la disponibilité."
-      },
-      {
-        "question": "Dois-je fournir les ingrédients ?",
-        "answer": "Oui, vous faites les courses à partir du menu validé ensemble, et la cheffe cuisine avec vos ingrédients."
-      },
-      {
-        "question": "Comment annuler ou reporter une réservation ?",
-        "answer": "Contactez-nous au moins 48 heures à l'avance pour reporter ou annuler une session sans frais."
-      }
-    ],
-    "photos": [
-      {
-        "alt": "Préparation des plats de la semaine en cuisine"
-      },
-      {
-        "alt": "Repas portionnés et rangés au réfrigérateur"
-      }
-    ],
-    "stats": [
-      {
-        "label": "Personnalisation du menu",
-        "value": 95
-      },
-      {
-        "label": "Ponctualité du service",
-        "value": 100
-      },
-      {
-        "label": "Produits locaux",
-        "value": 80
-      }
-    ],
-    "cta": {
-      "title": "Un menu sur mesure",
-      "text": "Parlons de votre date, de vos invités et de votre menu",
-      "button": "Réserver un appel"
     }
   },
   "contact": {
@@ -2040,69 +1402,6 @@
       "button": "Voir toutes les communes"
     }
   },
-  "service": {
-    "included": "Ce qui est inclus",
-    "benefits": "Les plus",
-    "faq": "Questions fréquentes",
-    "price": "Tarif",
-    "turnaround": "Délai",
-    "cta": "Demander un devis",
-    "categories": "Catégories",
-    "prev": "Précédent",
-    "next": "Suivant",
-    "related": "Autres services",
-    "categoryItems": [
-      {
-        "name": "Batch cooking à domicile",
-        "href": "/services/batch-cooking"
-      },
-      {
-        "name": "Chef privé & expériences gastronomiques",
-        "href": "/services/chef-prive"
-      },
-      {
-        "name": "Cours de cuisine à domicile",
-        "href": "/services/cours-de-cuisine"
-      }
-    ]
-  },
-  "member": {
-    "crumb": "Équipe",
-    "about": "À propos",
-    "responsibility": "Rôle",
-    "experience": "Expérience",
-    "skills": "Compétences",
-    "prev": "Précédent",
-    "next": "Suivant",
-    "related": "Autres membres",
-    "metaDescription": "{name}, {role}. Parcours, compétences et façon de travailler au sein de l'équipe."
-  },
-  "blog": {
-    "readMore": "Lire la suite",
-    "tags": "Mots-clés :",
-    "search": "Rechercher",
-    "recent": "Articles récents",
-    "archives": "Archives",
-    "categories": "Catégories",
-    "tagsTitle": "Nuage de mots-clés",
-    "comments": {
-      "title": "Commentaires récents",
-      "on": "sur",
-      "items": []
-    }
-  },
-  "project": {
-    "details": "Détails du projet",
-    "client": "Client",
-    "date": "Date",
-    "location": "Lieu",
-    "url": "Adresse",
-    "category": "Catégorie",
-    "gallery": "Galerie du projet",
-    "related": "Projets similaires",
-    "prev": "Précédent",
-    "next": "Suivant"
-  },
   "notFound": {
     "code": "404",
     "title": "Désolé, cette page n’existe pas !",
@@ -2112,27 +1411,22 @@
   "seo": {
     "default": "Des repas faits maison, préparés à l'avance pour toute la semaine : batch cooking à domicile pour les familles, les couples et les actifs.",
     "homeTitle": "Batch cooking à domicile pour toute la semaine",
-    "about": "Qui nous sommes, notre façon de cuisiner et ce qui rend nos repas préparés à l'avance simples à vivre au quotidien.",
-    "team": "Rencontrez les cuisiniers qui préparent vos repas de la semaine : parcours, spécialités et façon de travailler.",
     "services": "Batch cooking hebdomadaire, formule famille, événements : découvrez nos services et ce qu'ils incluent.",
     "pricing": "Tous nos tarifs à Montpellier : batch cooking à domicile, chef privé et cours de cuisine, avec le déplacement selon votre zone.",
     "faq": "Les réponses aux questions les plus fréquentes : commande, conservation, allergies, livraison et paiement.",
     "contact": "Parlez-nous de votre semaine : dites-nous la date, le nombre de convives et vos envies, nous répondons sous un jour ouvré.",
-    "blog": "Conseils, idées de menus et coulisses : le journal de notre cuisine pour mieux organiser vos repas.",
     "portfolio": "Nos réalisations récentes : repas de la semaine, dîners et événements préparés pour nos clients.",
-    "search": "Recherche dans les services, articles, réalisations et l'équipe."
+    "search": "Recherche dans les services et les réalisations."
   },
   "search": {
     "label": "Rechercher sur le site",
     "button": "Rechercher",
     "results": "{count} résultats pour « {query} »",
-    "empty": "Saisissez un mot pour chercher dans les services, les articles, les réalisations et l’équipe.",
+    "empty": "Saisissez un mot pour chercher dans les services et les réalisations.",
     "none": "Aucun résultat. Essayez un autre mot.",
     "types": {
       "service": "Service",
-      "post": "Article",
-      "project": "Réalisation",
-      "member": "Équipe"
+      "project": "Réalisation"
     },
     "resultOne": "1 résultat pour « {query} »",
     "resultNone": "Aucun résultat pour « {query} »"
@@ -2200,7 +1494,6 @@
     },
     "dinners": "{n} dîners",
     "contactTitle": "Où vous rappeler ?",
-    "contactIntro": "Laissez-nous vos coordonnées : nous vous rappelons sous un jour ouvré pour valider votre menu.",
     "emailLabel": "Email",
     "emailPlaceholder": "vous@exemple.fr",
     "phoneLabel": "Téléphone",
@@ -2210,24 +1503,23 @@
     "back": "Changer de formule",
     "consent": "Vous serez recontacté(e) dans les 24 h ouvrées. Gratuit et sans engagement.",
     "error": "Une erreur est survenue. Vérifiez vos coordonnées et réessayez.",
-    "doneTitle": "Merci, c'est noté !",
-    "doneText": "Nous vous rappelons sous un jour ouvré pour composer votre menu ensemble.",
-    "doneButton": "Fermer",
     "packs": [
       {
         "id": "serenite",
         "title": "Sérénité",
         "label": "Pour démarrer simplement",
-        "highlight": "Choisissez vos plats parmi les recettes présentées sur notre site"
+        "highlight": "Choisissez vos plats parmi les recettes présentées sur notre site",
+        "features": ["Vous choisissez vos plats", "Parmi les recettes du site"]
       },
       {
         "id": "signature",
         "title": "Signature",
         "label": "Pour une table sur mesure",
-        "highlight": "Un menu composé avec la cheffe, selon vos envies et contraintes"
+        "highlight": "Un menu composé **sur mesure** avec la cheffe, selon vos envies et contraintes",
+        "features": ["La cheffe compose votre menu", "Selon vos envies", "Selon vos contraintes"]
       }
     ],
-    "periodLabel": "Durée",
+    "periodLabel": "Votre engagement",
     "dinnersLabel": "Dîners par prestation",
     "engagement": {
       "week": "1 passage de la cheffe, sans engagement",

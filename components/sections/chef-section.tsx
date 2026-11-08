@@ -1,12 +1,11 @@
 import { getTranslations } from '@/lib/i18n'
 import { ChefIntro } from '@/components/blocks/chef-intro'
 import type { IconName } from '@/components/ui/icon'
-import { mediaOf, type Landing } from '@/lib/media'
+import { media } from '@/lib/media'
 
-// Présentation de la cheffe ou du chef : même bloc sur l'accueil et sur la page À propos (messages home.chef).
-export async function ChefSection({ ns = 'home' }: { ns?: Landing }) {
-  const m = mediaOf(ns)
-  const c = await getTranslations(`${ns}.chef`)
+// Présentation de la cheffe ou du chef : accueil (messages home.chef).
+export async function ChefSection() {
+  const c = await getTranslations('home.chef')
   return (
     <ChefIntro
       kicker={c('kicker')}
@@ -17,8 +16,8 @@ export async function ChefSection({ ns = 'home' }: { ns?: Landing }) {
       quote={c.raw('quote') as { text: string; author: string }}
       caption={c('caption')}
       badge={{ icon: 'award', value: c('badgeValue'), text: c('badgeText') }}
-      image={{ ...m.chef, alt: c('imageAlt') }}
-      inset={{ ...m.chefInset, alt: c('insetAlt') }}
+      image={{ ...media.chef, alt: c('imageAlt') }}
+      inset={{ ...media.chefInset, alt: c('insetAlt') }}
     />
   )
 }

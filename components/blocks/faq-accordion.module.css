@@ -61,7 +61,7 @@
   margin-bottom: 1rem;
 }
 
-/* L'accordéon Elementor glisse en 400 ms (slideDown jQuery, easing « swing »). */
+/* L'accordéon glisse en 400 ms. */
 @media (prefers-reduced-motion: no-preference) {
   .item {
     interpolate-size: allow-keywords;

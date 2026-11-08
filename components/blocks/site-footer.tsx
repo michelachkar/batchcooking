@@ -18,9 +18,7 @@ const servicesLinks = [
 ] as const
 const companyLinks = [
   ['zones', '/zones'],
-  ['team', '/equipe'],
   ['portfolio', '/realisations'],
-  ['journal', '/blog'],
   ['faq', '/faq'],
 ] as const
 
@@ -31,7 +29,7 @@ export async function SiteFooter() {
     <footer className={styles.root}>
       {/* Bandeau d'appel à l'action */}
       <section className={styles.cta}>
-        {/* Rayures (masquées à gauche) et halo, comme dans la démo */}
+        {/* Rayures (masquées à gauche) et halo */}
         <div aria-hidden className={styles.stripes} />
         <div aria-hidden className={styles.halo} />
         <div className={styles.ctaInner}>

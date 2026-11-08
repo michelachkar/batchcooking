@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Check, ChefHat, Mail, Phone, User, X } from 'lucide-react'
 import clsx from 'clsx'
 import { ArrowIcon } from '@/components/ui/icon'
+import { rich } from '@/components/ui/rich-text'
 import type { LeadOpenOptions } from '@/components/lead/lead-provider'
 import { submitLead } from '@/lib/lead/submit'
 import { Switch } from '@/components/lead/switch'
@@ -20,7 +21,13 @@ import {
   type Period,
 } from '@/lib/lead/pricing'
 
-export type LeadPack = { id: PackId; title: string; label: string; highlight: string }
+export type LeadPack = {
+  id: PackId
+  title: string
+  label: string
+  highlight: string
+  features: string[]
+}
 
 export type LeadTexts = {
   title: string
@@ -45,7 +52,6 @@ export type LeadTexts = {
   engagement: { week: string; month: string }
   configTitle: string
   contactTitle: string
-  contactIntro: string
   firstNameLabel: string
   firstNamePlaceholder: string
   emailLabel: string
@@ -57,9 +63,6 @@ export type LeadTexts = {
   back: string
   consent: string
   error: string
-  doneTitle: string
-  doneText: string
-  doneButton: string
   confirmation: ConfirmationTexts
 }
 
@@ -169,14 +172,22 @@ export function LeadModal({
                   }}
                   className={styles.pack}
                 >
-                  <span className={styles.packHead}>
-                    <span className={styles.packName}>
-                      <span className={styles.packTitleRow}>
-                        <span className={styles.packTitle}>{p.title}</span>
-                        <span className={styles.packBadge}>{texts.mealsBadge}</span>
-                      </span>
-                      <span className={styles.packLabel}>{p.label}</span>
+                  <span className={styles.packName}>
+                    <span className={styles.packTitleRow}>
+                      <span className={styles.packTitle}>{p.title}</span>
+                      <span className={styles.packBadge}>{texts.mealsBadge}</span>
                     </span>
+                    <span className={styles.packDescription}>{rich(p.highlight)}</span>
+                    <span className={styles.features}>
+                      {p.features.map((f) => (
+                        <span key={f} className={styles.feature}>
+                          <Check aria-hidden className={styles.featureCheck} strokeWidth={3} />
+                          {f}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                  <span className={styles.packFooter}>
                     <span className={styles.packPrice}>
                       <strong className={styles.packPriceValue}>
                         {texts.from}{' '}
@@ -184,12 +195,6 @@ export function LeadModal({
                         {texts.perWeek}
                       </strong>
                       <span className={styles.packNote}>{texts.afterCredit}</span>
-                    </span>
-                  </span>
-                  <span className={styles.highlight}>
-                    <span className={styles.highlightText}>
-                      <span className={styles.highlightLabel}>{texts.menuLabel}</span>
-                      {p.highlight}
                     </span>
                     <ArrowIcon className={styles.packArrow} />
                   </span>

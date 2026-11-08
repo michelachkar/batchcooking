@@ -1,4 +1,4 @@
-/* Conteneur des gabarits à colonnes (service, équipe, blog, portfolio) :
+/* Conteneur des gabarits à colonnes (réalisations) :
    marges 0 / 24 / 40 px selon la largeur, 1360 px au plus. */
 @layer layout {
   .container-x {

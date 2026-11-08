@@ -2,7 +2,7 @@ import Link from 'next/link'
 import clsx from 'clsx'
 import styles from './button.module.css'
 
-// Deux familles de boutons dans Savrio : le bouton du header (pilule verte, 16/600) et ceux du bandeau du footer (15/700).
+// Deux familles de boutons : le bouton du header (pilule verte, 16/600) et ceux du bandeau du footer (15/700).
 type Props = React.ComponentProps<typeof Link> & {
   variant?: 'primary' | 'light' | 'outline' | null
 }

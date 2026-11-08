@@ -5,19 +5,18 @@ import { ButtonLink } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
 import { SubmenuLink } from '@/components/blocks/submenu-link'
 import { MobileMenu } from '@/components/blocks/mobile-menu'
-import { resolveNav } from '@/lib/nav'
+import { nav } from '@/lib/nav'
 import { site } from '@/lib/site'
 import styles from './site-header.module.css'
 
 export async function SiteHeader() {
   const t = await getTranslations()
-  const items = resolveNav().map((item) => ({
+  const items = nav.map((item) => ({
     label: t(`nav.${item.key}`),
     href: item.href,
     children: item.children?.map((c) => ({ label: t(`nav.${c.key}`), href: c.href })),
   }))
 
-  // Build de test visuel : hauteurs fractionnaires de la démo (le logo y est une image), pour garder la même phase de rendu sur toute la page.
   return (
     <header id="site-header" className={styles.root}>
       <a href="#contenu" className={styles.skip}>
@@ -108,7 +107,7 @@ export async function SiteHeader() {
         </div>
       </div>
 
-      {/* Tablette et mobile ≤ 1024 px. Le logo est affiché très grand en tablette dans la démo : dimensions reprises. */}
+      {/* Tablette et mobile ≤ 1024 px. */}
       <div className={styles.compact}>
         <div className={styles.compactBrand}>
           <Logo tagline={t('footer.tagline')} className={styles.compactLogo} />

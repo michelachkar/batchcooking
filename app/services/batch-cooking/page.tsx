@@ -86,9 +86,6 @@ export default async function BatchCookingPage() {
         phoneLabel={q('phoneLabel')}
         phonePlaceholder={q('phonePlaceholder')}
         button={q('button')}
-        note={q('note')}
-        success={q('success')}
-        error={q('error')}
       />
       <div id="tarifs" className={styles.anchor} />
       <BatchPackages
@@ -114,19 +111,19 @@ export default async function BatchCookingPage() {
         ctaHref={quote}
         cardCta={pk('plan')}
       />
-      <Audience
-        tone="white"
-        kicker={b('audience.kicker')}
-        title={b('audience.title')}
-        items={b.raw('audience.items') as { title: string; text: string }[]}
-      />
       <div id="deroule" className={styles.anchor} />
       <Timeline
-        tone="beige"
+        tone="white"
         kicker={b('timeline.kicker')}
         title={b('timeline.title')}
         intro={b('timeline.intro')}
         steps={b.raw('timeline.steps') as { title: string; text: string }[]}
+      />
+      <Audience
+        tone="beige"
+        kicker={b('audience.kicker')}
+        title={b('audience.title')}
+        items={b.raw('audience.items') as { title: string; text: string }[]}
       />
       <IconSection
         name="diets"

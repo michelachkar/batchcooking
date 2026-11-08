@@ -312,7 +312,7 @@
   }
 }
 
-/* le logo est affiché très grand en tablette dans la démo : dimensions reprises */
+/* logo agrandi en tablette */
 .compactLogo {
   font-size: 24px;
 
@@ -321,7 +321,7 @@
   }
 }
 
-/* Sous-menus : superfish (animation { opacity, height: 'show' }, speed 'fast' = 200 ms, délai de 800 ms à la sortie).
+/* Sous-menus : apparition en 200 ms, délai de 800 ms à la sortie.
    La hauteur est rendue par un clip-path, le contenu ne bouge pas (overflow hidden). */
 .submenu {
   visibility: hidden;

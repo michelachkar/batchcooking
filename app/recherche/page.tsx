@@ -3,10 +3,8 @@ import { getTranslations } from '@/lib/i18n'
 import { Suspense } from 'react'
 import { PageHead } from '@/components/blocks/page-head'
 import { SiteSearch, type SearchEntry } from '@/components/blocks/site-search'
-import { getPosts } from '@/lib/content/blog'
 import { getProjects } from '@/lib/content/projects'
-import { getServices, servicePages } from '@/lib/content/services'
-import { getTeam } from '@/lib/content/team'
+import { servicePages } from '@/lib/content/services'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 
@@ -39,23 +37,11 @@ export default async function SearchPage() {
   )
   const entries: SearchEntry[] = [
     ...services,
-    ...getPosts().map((x) => ({
-      type: 'post',
-      title: x.data.title,
-      text: x.data.excerpt,
-      href: `/blog/${x.slug}`,
-    })),
     ...getProjects().map((x) => ({
       type: 'project',
       title: x.data.title,
       text: x.data.excerpt,
       href: `/realisations/${x.slug}`,
-    })),
-    ...getTeam().map((m) => ({
-      type: 'member',
-      title: m.data.name,
-      text: m.data.role,
-      href: `/equipe/${m.slug}`,
     })),
   ]
   return (

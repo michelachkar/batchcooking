@@ -5,10 +5,17 @@
   margin-bottom: -22px;
   padding-top: 22px;
   padding-bottom: 44px;
+  /* mêmes marges latérales que les autres sections (Shell), sinon la carte touche les bords de l'écran */
+  padding-inline: 2.5rem;
   background-color: var(--color-cream);
+
+  @media (width < 1025px) {
+    padding-inline: 26px;
+  }
 
   @media (width < 768px) {
     padding-top: 14px;
+    padding-inline: 1rem;
   }
 }
 
@@ -181,7 +188,6 @@
 .select {
   padding-right: 2.5rem;
   appearance: none;
-  /* La puce « chevron » du modèle d'origine n'a jamais été générée (aucun background-image) : conservé tel quel. */
   background-repeat: no-repeat;
   background-position: right 14px center;
   background-size: 16px;
@@ -234,26 +240,4 @@
       translate: 5px 0;
     }
   }
-}
-
-.status {
-  margin-top: 0.75rem;
-  padding-left: 30px;
-  color: rgb(85 80 68 / 0.88);
-  font-size: 14px;
-  line-height: 1.5;
-
-  @media (width < 1025px) {
-    padding-left: 22px;
-  }
-
-  @media (width < 768px) {
-    padding-left: 0.25rem;
-  }
-}
-
-/* Seule la graisse s'applique : dans l'original, la couleur de base du message l'emportait sur celles des états. */
-.statusDone,
-.statusError {
-  font-weight: 600;
 }

@@ -39,7 +39,7 @@
     opacity: 1;
   }
 
-  /* Variante « fade-up » (réglage de la démo : 150 ms) : montée de 28 px, titre décalé de 200 ms. */
+  /* Variante « fade-up » (150 ms) : montée de 28 px, titre décalé de 200 ms. */
   [data-dh='up'] [data-dh-t] {
     opacity: 0;
     transform: translateY(28px);
@@ -163,23 +163,5 @@
   [data-reveal] {
     opacity: 1;
     animation: none !important;
-  }
-}
-
-/* ===== Pages CPT (script mt-cpt-page-animations) : éléments masqués avant leur révélation, sur bureau uniquement ;
-   repli de 3 s si le script ne s'exécute pas, comme l'original. Les visuels « réduire les animations » restent inchangés. */
-@keyframes cm-anim-fallback {
-  to {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-@media (min-width: 992px) and (prefers-reduced-motion: no-preference) {
-  [data-cm-section]:not([data-cm-children]):not([data-cm-done]),
-  [data-cm-child]:not([data-cm-done]),
-  [data-cm-item]:not([data-cm-done]) {
-    visibility: hidden;
-    opacity: 0;
-    animation: cm-anim-fallback 0s 3s forwards;
   }
 }

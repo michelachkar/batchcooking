@@ -33,7 +33,7 @@ type Props = {
 }
 
 // Page contact : coordonnées et réseaux à gauche, carte blanche avec le formulaire de demande à droite.
-// Sous 1025 px les deux blocs s'empilent (la démo écrase la carte à 74 px de large en tablette : défaut non reproduit).
+// Sous 1025 px les deux blocs s'empilent.
 export function Contact(p: Props) {
   return (
     <section id="contact" data-section="contact" className={styles.root}>

@@ -28,7 +28,6 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(siteUrl),
     title: { default: site.name, template: `%s | ${site.name}` },
     description: s('default'),
-    alternates: { types: { 'application/rss+xml': '/feed.xml' } },
     robots: nonProductionRobots,
   }
 }

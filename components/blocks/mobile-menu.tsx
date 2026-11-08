@@ -37,7 +37,7 @@ export function MobileMenu({ items, brand, labels }: Props) {
         }}
         className={styles.burger}
       >
-        {/* Ouvert, les trois traits deviennent une croix (visible sous le fond, comme dans la démo). */}
+        {/* Ouvert, les trois traits deviennent une croix. */}
         <span aria-hidden className={styles.bars}>
           <span className={clsx(styles.bar, styles.barTop, open && styles.open)} />
           <span className={clsx(styles.bar, styles.barMiddle, open && styles.open)} />
@@ -90,7 +90,7 @@ export function MobileMenu({ items, brand, labels }: Props) {
                   )}
                 </div>
                 {item.children && (
-                  // slideDown/slideUp jQuery de 200 ms (easing swing), rendu par grid-rows
+                  // ouverture/fermeture en 200 ms, rendue par grid-rows
                   <div className={clsx(styles.sub, expanded === item.label && styles.open)}>
                     <ul className={styles.subList}>
                       {item.children.map((child) => (

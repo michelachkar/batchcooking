@@ -169,14 +169,6 @@
   }
 }
 
-/* Page FAQ : titres à 24 px en mobile au lieu de 28 px. */
-.titleSmallMobile {
-  @media (width < 768px) {
-    font-size: 1.5rem;
-    line-height: 1.4;
-  }
-}
-
 .link {
   position: absolute;
   inset: 0;

@@ -100,51 +100,6 @@ export function serviceNode(o: {
   }
 }
 
-export function articleNode(o: {
-  path: string
-  title: string
-  description: string
-  published: string
-  modified?: string
-  author?: string
-  image?: string
-}): Node {
-  return {
-    '@type': 'BlogPosting',
-    '@id': `${absoluteUrl(o.path)}#article`,
-    mainEntityOfPage: absoluteUrl(o.path),
-    headline: o.title,
-    description: o.description,
-    datePublished: o.published,
-    dateModified: o.modified ?? o.published,
-    author: o.author ? { '@type': 'Person', name: o.author } : organizationRef,
-    publisher: organizationRef,
-    inLanguage: 'fr-FR',
-    ...(o.image && { image: absoluteUrl(o.image) }),
-  }
-}
-
-export function personNode(o: { path: string; name: string; role: string; image?: string }): Node {
-  return {
-    '@type': 'Person',
-    '@id': `${absoluteUrl(o.path)}#person`,
-    name: o.name,
-    jobTitle: o.role,
-    worksFor: organizationRef,
-    ...(o.image && { image: absoluteUrl(o.image) }),
-  }
-}
-
-/** Avis clients : uniquement de vrais avis, sinon rien. */
-export function reviewNodes(reviews: { author: string; text: string }[]): Node[] {
-  return reviews.map((r) => ({
-    '@type': 'Review',
-    author: { '@type': 'Person', name: r.author },
-    reviewBody: r.text,
-    itemReviewed: organizationRef,
-  }))
-}
-
 export function projectNode(o: {
   path: string
   name: string

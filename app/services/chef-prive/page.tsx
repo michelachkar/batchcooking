@@ -6,7 +6,6 @@ import { QuickInquiry } from '@/components/blocks/quick-inquiry'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
 import { Included } from '@/components/blocks/included'
 import type { IconName } from '@/components/ui/icon'
-import { mediaOf } from '@/lib/media'
 import { Practical } from '@/components/blocks/chef-page'
 import { FaqList } from '@/components/blocks/home-v2'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
@@ -28,7 +27,6 @@ export default async function ChefPrivePage() {
   const p = await getTranslations('pages')
   const c = await getTranslations('chefPage')
   const inc = await getTranslations('home.included')
-  const homeMedia = mediaOf('home')
   const faqItems = c.raw('faq.items') as { question: string; answer: string }[]
   const quote = `${PATH}#devis`
   const q = await getTranslations('chefPage.inquiry')
@@ -130,8 +128,8 @@ export default async function ChefPrivePage() {
         link={{ label: inc('link'), href: quote }}
         linkStyle="button"
         badge={{ icon: 'shield-check', value: inc('badgeValue'), text: inc('badgeText') }}
-        image={{ ...homeMedia.included, alt: inc('imageAlt') }}
-        inset={{ ...homeMedia.includedInset, alt: inc('insetAlt') }}
+        image={{ ...media.included, alt: inc('imageAlt') }}
+        inset={{ ...media.includedInset, alt: inc('insetAlt') }}
       />
       <Practical
         tone="beige"

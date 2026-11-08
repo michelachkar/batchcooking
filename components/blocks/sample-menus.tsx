@@ -136,7 +136,6 @@ export function SampleMenus({
                   ) : (
                     <div className={styles.spacer} />
                   )}
-                  <span className={styles.label}>{m.label}</span>
                   <h3 className={styles.cardTitle}>{m.title}</h3>
                   <p className={styles.meta}>
                     <Icon name="clock" className={styles.metaIcon} />

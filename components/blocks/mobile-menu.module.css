@@ -27,7 +27,7 @@
   background-color: var(--color-ink);
 }
 
-/* ouvert, les trois traits deviennent une croix (visible sous le fond, comme dans la démo) */
+/* ouvert, les trois traits deviennent une croix */
 .barTop,
 .barBottom {
   transition-property: transform, translate, scale, rotate;
@@ -146,7 +146,7 @@
   }
 }
 
-/* slideDown/slideUp jQuery de 200 ms (easing swing), rendu par grid-template-rows */
+/* ouverture/fermeture en 200 ms, rendue par grid-template-rows */
 .sub {
   display: grid;
   visibility: hidden;

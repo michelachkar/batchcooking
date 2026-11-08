@@ -15,7 +15,7 @@
   position: relative;
   display: grid;
   grid-template-columns: 45% minmax(0, 1fr);
-  min-height: 777px; /* hauteur du hero de la démo */
+  min-height: 777px;
   overflow: hidden;
   background-color: rgba(240, 235, 227, 1);
 
@@ -63,26 +63,6 @@
 
   @media (width < 768px) {
     background-size: 320px 320px;
-  }
-}
-
-.label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 13px;
-  line-height: 1.4;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-forest);
-
-  &::before {
-    content: '';
-    flex: none;
-    width: 34px;
-    height: 1px;
-    background-color: currentcolor;
   }
 }
 
@@ -296,49 +276,11 @@
   }
 }
 
-.secondaryArrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 22px;
-  height: 22px;
-  transition-property: translate, rotate;
-  transition-duration: 400ms;
-  transition-timing-function: var(--ease-spring);
-
-  .secondary:hover & {
-    @media (hover: hover) {
-      translate: 0.25rem -0.25rem;
-      rotate: 45deg;
-    }
-  }
-}
-
-.secondaryArrowIcon {
-  width: 22px;
-  height: 22px;
-}
-
 .arrow {
   transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
-.proof {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 3.5rem;
-  padding-top: 26px;
-  border-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
-  border-top-width: 1px;
-
-  @media (width < 768px) {
-    margin-top: 2.25rem;
-  }
-}
-
-/* barre transparente au-dessus du titre : avis Google + crédit d'impôt */
+/* barre transparente au-dessus du titre : crédit d'impôt */
 .topBar {
   display: flex;
   flex-wrap: wrap;
@@ -348,24 +290,14 @@
   align-self: center;
   margin-bottom: 0.5rem;
   padding-block: 0.5rem;
-  padding-inline: 0.75rem 1.25rem;
+  padding-inline: 1rem;
   border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
   border-radius: calc(infinity * 1px);
   background-color: color-mix(in oklab, var(--color-ink) 4%, transparent);
 
   @media (width < 768px) {
     gap: 0.5rem 0.875rem;
-    padding-inline: 0.5rem 1rem;
-  }
-}
-
-.topBarDivider {
-  width: 1px;
-  height: 1.75rem;
-  background-color: color-mix(in oklab, var(--color-ink) 20%, transparent);
-
-  @media (width < 480px) {
-    display: none;
+    padding-inline: 0.875rem;
   }
 }
 
@@ -401,67 +333,6 @@
   flex: none;
   width: 1.25rem;
   height: 1.25rem;
-}
-
-.google {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.googleLogo {
-  display: flex;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: calc(infinity * 1px);
-  background-color: #fff;
-}
-
-.googleSvg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-.googleRating {
-  display: flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.stars {
-  font-size: 16px;
-  line-height: 1;
-  letter-spacing: 3px;
-  color: #fbbc05;
-}
-
-.googleText {
-  font-size: 14px;
-  line-height: 1;
-  font-weight: 600;
-  color: rgba(85, 80, 68, 1);
-}
-
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  column-gap: 14px;
-  row-gap: 6px;
-  margin-top: 3.5rem;
-  padding-top: 26px;
-  border-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
-  border-top-width: 1px;
-  font-size: 15px;
-  line-height: 1.5;
-  color: rgba(85, 80, 68, 0.88);
-
-  @media (width < 768px) {
-    margin-top: 2.25rem;
-  }
 }
 
 .media {
@@ -510,60 +381,4 @@
       scale: 1.045;
     }
   }
-}
-
-.caption {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  max-width: min(320px, calc(100% - 48px));
-  padding-inline: 1.25rem;
-  padding-block: 1rem;
-  border-radius: 14px;
-  background-color: color-mix(in oklab, var(--color-cream) 95%, transparent);
-  box-shadow: 0 18px 40px rgba(47, 43, 38, 0.18);
-  color: rgba(85, 80, 68, 1);
-  transition:
-    translate 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
-    box-shadow 0.45s ease;
-
-  @media (hover: hover) {
-    .media:hover & {
-      translate: 0 -0.375rem;
-      box-shadow: 0 26px 50px rgba(47, 43, 38, 0.28);
-    }
-  }
-
-  @media (width < 768px) {
-    right: 14px;
-    bottom: 14px;
-    left: 14px;
-    max-width: none;
-  }
-}
-
-.captionKicker {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-forest);
-}
-
-.captionTitle {
-  font-family: var(--font-display);
-  font-size: 21px;
-  line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -0.02em;
-}
-
-.captionText {
-  font-size: 14px;
-  line-height: 1.45;
-  color: var(--color-body);
 }

@@ -27,7 +27,7 @@ const BY_PATH: [string, Service][] = [
 ]
 
 // Point d'entrée unique des demandes de devis : tout lien se terminant par #devis (header, footer, boutons des pages)
-// ouvre le formulaire du service de sa page, ou un choix de service ailleurs (accueil, contact, blog…).
+// ouvre le formulaire du service de sa page, ou un choix de service ailleurs (accueil, contact…).
 // Sans JavaScript, ces liens mènent à /contact#devis.
 export function QuoteProvider({
   texts,

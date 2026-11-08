@@ -22,9 +22,6 @@ type Props = {
   phoneLabel: string
   phonePlaceholder: string
   button: string
-  note: string
-  success: string
-  error: string
 }
 
 function SelectField({

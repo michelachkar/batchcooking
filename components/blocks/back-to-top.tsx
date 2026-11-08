@@ -7,7 +7,7 @@ import styles from './back-to-top.module.css'
 type Props = { label: string }
 
 // Bouton « retour en haut » (fonction globale du thème) : visible au-delà de 300 px de défilement.
-// Comme dans Savrio, la transition (0,3 s) n'existe que sur l'état visible : l'apparition se fond, la disparition est immédiate.
+// La transition (0,3 s) n'existe que sur l'état visible : l'apparition se fond, la disparition est immédiate.
 export function BackToTop({ label }: Props) {
   const [visible, setVisible] = useState(false)
 
@@ -18,7 +18,7 @@ export function BackToTop({ label }: Props) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Défilement vers le haut en 300 ms (jQuery animate, easing « swing »).
+  // Défilement vers le haut en 300 ms (easing « swing »).
   const toTop = () => {
     const from = window.scrollY
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return window.scrollTo(0, 0)

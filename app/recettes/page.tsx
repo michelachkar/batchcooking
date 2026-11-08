@@ -39,7 +39,7 @@ export default async function RecipesPage() {
         title={TITLE}
         crumbs={[{ label: p('home'), href: '/' }, { label: TITLE }]}
         navLabel={p('navLabel')}
-        background={media.heads.blog}
+        background={media.heads.recipes}
       />
       <section data-section="recipes" className={styles.section}>
         <div className={styles.inner}>

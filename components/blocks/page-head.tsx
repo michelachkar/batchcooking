@@ -11,7 +11,7 @@ type Props = {
   navLabel: string
   /** Photo d'arrière-plan (facultative) : le bandeau reste sombre sans elle. */
   background?: { src: string; unoptimized?: boolean }
-  /** Marge de 10 px de chaque côté en mobile (gabarits service, blog, réalisations). */
+  /** Marge de 10 px de chaque côté en mobile (réalisations). */
   inset?: boolean
   /** Bandeau seul, sans fil d'Ariane ni titre (page 404, dont le titre est dans le corps). */
   bare?: boolean
@@ -19,7 +19,7 @@ type Props = {
   cta?: { label: string; href: string; lead?: boolean }
 }
 
-// Bandeau de titre des pages intérieures : photo voilée de vert, pastille de fil d'Ariane et titre (modèle « savrio-pagehead »).
+// Bandeau de titre des pages intérieures : photo voilée de vert, pastille de fil d'Ariane et titre.
 export function PageHead({ title, crumbs, navLabel, background, inset, bare, cta }: Props) {
   return (
     <section data-section="head" className={clsx(styles.root, inset && styles.inset)}>

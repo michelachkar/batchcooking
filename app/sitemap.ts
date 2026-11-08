@@ -1,11 +1,9 @@
 import { statSync } from 'node:fs'
 import { join } from 'node:path'
 import type { MetadataRoute } from 'next'
-import { getPosts } from '@/lib/content/blog'
 import { getPages } from '@/lib/content/pages'
 import { getProjects } from '@/lib/content/projects'
 import { servicePages } from '@/lib/content/services'
-import { getTeam } from '@/lib/content/team'
 import { absoluteUrl } from '@/lib/seo'
 
 // Calculé au build : le sitemap lit des fichiers sources, absents du runtime Cloudflare.
@@ -19,28 +17,22 @@ function pageDate(route: string, content: { modified: Date }[] = []) {
 
 // Plan du site : pages et contenus avec leur vraie date de modification.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const posts = getPosts().map((p) => ({ ...p, modified: p.data.updated ?? p.data.date }))
   // Pages de service dédiées : date = celle de leur fichier.
   const services = servicePages.map((s) => ({
     slug: s.slug,
     modified: pageDate(`services/${s.slug}`),
   }))
-  const team = getTeam()
   const projects = getProjects()
   const entry = (path: string, lastModified: Date) => ({ url: absoluteUrl(path), lastModified })
   return [
     entry('/', pageDate('')),
-    entry('/equipe', pageDate('equipe', team)),
     entry('/services', pageDate('services', services)),
     entry('/zones', pageDate('zones')),
     entry('/tarifs', pageDate('tarifs')),
     entry('/faq', pageDate('faq')),
     entry('/contact', pageDate('contact')),
-    entry('/blog', pageDate('blog', posts)),
     entry('/realisations', pageDate('realisations', projects)),
     ...services.map((s) => entry(`/services/${s.slug}`, s.modified)),
-    ...team.map((m) => entry(`/equipe/${m.slug}`, m.modified)),
-    ...posts.map((p) => entry(`/blog/${p.slug}`, p.modified)),
     ...projects.map((p) => entry(`/realisations/${p.slug}`, p.modified)),
     ...getPages().map((p) => entry(`/${p.slug}`, p.data.updated)),
   ]

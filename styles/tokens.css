@@ -24,7 +24,7 @@
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
       monospace;
 
-    /* Conteneur boxed de la démo */
+    /* Largeur maximale du contenu */
     --container-site: 1320px;
 
     /* Ombres */
@@ -40,4 +40,4 @@
 }
 
 /* Breakpoints (les media queries n'acceptent pas var()) :
-   mobile < 768px, tablette 768 à 1024px, bureau >= 1025px (grille Elementor). */
+   mobile < 768px, tablette 768 à 1024px, bureau >= 1025px. */

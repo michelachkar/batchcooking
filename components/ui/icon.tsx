@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import styles from './icon.module.css'
 
-// Icônes de contour (jeu Tabler, trait 1,6 px, grille 24) utilisées par les widgets de la démo ; une icône = un chemin.
+// Icônes de contour (jeu Tabler, trait 1,6 px, grille 24); une icône = un chemin.
 const paths = {
   'calendar-event': (
     <>
@@ -176,7 +176,7 @@ export function Icon({ name, className }: { name: IconName; className?: string }
   )
 }
 
-/** Flèche des boutons de la démo (trait 2 px). */
+/** Flèche des boutons (trait 2 px). */
 export function ArrowIcon({ className }: { className?: string }) {
   return (
     <svg

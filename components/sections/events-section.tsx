@@ -1,31 +1,14 @@
 import { getTranslations } from '@/lib/i18n'
 import { EventsShowcase } from '@/components/blocks/events-showcase'
-import styles from './events-section.module.css'
-import { mediaOf, type Landing } from '@/lib/media'
+import { media } from '@/lib/media'
 
-// « Réalisations récentes » : mêmes textes partout (home.events), seuls les espaces autour changent selon la page.
-export async function EventsSection({
-  topSpacer,
-  bottomGap,
-  smallTitleMobile,
-  ns = 'home',
-}: {
-  topSpacer?: number
-  bottomGap?: number
-  smallTitleMobile?: boolean
-  ns?: Landing
-}) {
-  const m = mediaOf(ns)
-  const ev = await getTranslations(`${ns}.events`)
+// Recettes de l'accueil (messages home.events).
+export async function EventsSection() {
+  const ev = await getTranslations('home.events')
   const projects = (
     ev.raw('projects') as { alt: string; type: string; title: string; href: string }[]
-  ).map((p, i) => ({ ...p, image: m.events[i] }))
+  ).map((p, i) => ({ ...p, image: media.events[i] }))
   if (projects.length === 0) return null
-  const phone = ev.has('phone') ? (
-    <a href={`tel:${ev('phone').replace(/\D/g, '')}`} className={styles.phone}>
-      <strong>{ev('phone')}</strong>
-    </a>
-  ) : null
   return (
     <EventsShowcase
       kicker={ev('kicker')}
@@ -33,26 +16,7 @@ export async function EventsSection({
       highlight={ev('highlight')}
       description={ev('description')}
       projects={projects}
-      cta={ev.has('cta') ? { label: ev('cta'), href: ev('ctaHref') } : undefined}
       carouselLabels={{ prev: ev('prev'), next: ev('next'), navigation: ev('navigation') }}
-      faces={ns === 'home' ? undefined : m.faces}
-      proof={{
-        long: (
-          <>
-            {ev.has('proofLong') && `${ev('proofLong')} `}
-            {phone}
-          </>
-        ),
-        short: (
-          <>
-            {ev.has('proofShort') && `${ev('proofShort')} `}
-            {phone}
-          </>
-        ),
-      }}
-      topSpacer={topSpacer}
-      bottomGap={bottomGap}
-      smallTitleMobile={smallTitleMobile}
     />
   )
 }

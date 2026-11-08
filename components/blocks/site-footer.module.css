@@ -22,7 +22,7 @@
   }
 }
 
-/* rayures (masquées à gauche) et halo, comme dans la démo */
+/* rayures (masquées à gauche) et halo */
 .stripes,
 .halo {
   position: absolute;
