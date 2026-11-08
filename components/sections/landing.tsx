@@ -1,11 +1,11 @@
 import { ExperiencesSection } from '@/components/sections/experiences-section'
 import { AboutSection } from '@/components/sections/about-section'
-import { ChefSection } from '@/components/sections/chef-section'
-import { Zones } from '@/components/blocks/home-v2'
+import { ZonesSection } from '@/components/sections/zones-section'
 import { EventsSection } from '@/components/sections/events-section'
+import { ReviewsSection } from '@/components/sections/reviews-section'
 import { Hero } from '@/components/blocks/hero'
 import type { CreditDialogTexts, CreditNoteTexts } from '@/components/blocks/credit-note'
-import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
+import { MealPlanInquiry } from '@/components/features/lead/meal-plan-inquiry'
 import { getTranslations } from '@/lib/i18n'
 import { media } from '@/lib/media'
 
@@ -21,11 +21,16 @@ export async function Landing() {
         headline={t('headline')}
         accent={t('accent')}
         description={t('description')}
-        gallery={media.heroGallery.map((img, i) => ({ ...img, alt: t(`galleryAlts.${i}`) }))}
+        gallery={media.heroGallery.map((img, i) => ({
+          ...img,
+          alt: t(`galleryAlts.${i}`),
+          badge: t(`galleryBadges.${i}`),
+        }))}
         primary={{ label: t('primary'), href: '/contact', lead: true }}
         secondary={{ label: t('secondary'), href: '/recettes' }}
-        tagline={t.raw('tagline') as string[]}
+        googleReviews={t('googleReviews')}
         taxCredit={t('taxCredit')}
+        zone={{ text: t('zone.text'), label: t('zone.link'), href: '/zones' }}
         creditNote={{
           note: t.raw('creditNote') as CreditNoteTexts,
           dialog: t.raw('creditDialog') as CreditDialogTexts,
@@ -47,21 +52,9 @@ export async function Landing() {
         button={q('button')}
       />
       <AboutSection />
-      <ExperiencesSection tone="cream" />
-      <ChefSection />
       <EventsSection />
-      <Zones
-        tone="white"
-        kicker={zn('kicker')}
-        title={zn('title')}
-        intro={zn('intro')}
-        areas={(zc.raw('hubs') as { title: string; text: string }[]).map((h) => ({
-          name: h.title,
-          text: h.text,
-        }))}
-        note={zn('note')}
-        link={{ label: zn('link'), href: '/zones' }}
-      />
+      <ExperiencesSection />
+      <ReviewsSection />
     </>
   )
 }

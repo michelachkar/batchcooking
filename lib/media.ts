@@ -19,6 +19,12 @@ export const media = {
   includedInset: placeholder(768, 768),
   // Photos du carrousel de recettes de l'accueil.
   events: [1, 2, 3, 4, 5, 6].map(() => placeholder(768, 1024)),
+  // Photos des 3 étapes du batch cooking (page batch cooking).
+  batchSteps: [1, 2, 3].map(() => placeholder(768, 576)),
+  // Photos des 3 étapes du chef privé (page chef privé).
+  chefSteps: [1, 2, 3].map(() => placeholder(768, 576)),
+  // Photos des auteurs d'avis (vraies photos uniquement).
+  reviews: [1, 2, 3].map(() => placeholder(768, 1024)),
   // Photos des bandeaux de page (facultatives) : sans elles le bandeau reste uni.
   heads: {
     services: undefined,

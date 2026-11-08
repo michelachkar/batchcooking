@@ -2,7 +2,7 @@
   font-weight: 600;
   color: var(--color-forest);
   text-decoration-line: underline;
-  text-decoration-color: color-mix(in oklab, #b04a2a 40%, transparent);
+  text-decoration-color: color-mix(in oklab, var(--color-forest) 40%, transparent);
   text-underline-offset: 2px;
 
   @media (hover: hover) {

@@ -1,11 +1,11 @@
 import clsx from 'clsx'
 import { CheckCircle2, Clock, Hourglass, Mail, MapPin, Phone } from 'lucide-react'
-import { DualHeader } from '@/components/blocks/dual-header'
-import { ProposalForm, type ProposalField } from '@/components/blocks/proposal-form'
+import { DualHeader } from '@/components/layout/dual-header'
+import { ProposalForm, type ProposalField } from '@/components/features/lead/proposal-form'
 import type { ProposalState } from '@/lib/proposal-schema'
 import styles from './contact.module.css'
 
-type Props = {
+type ContactProps = {
   kicker: string
   title: string
   highlight: string
@@ -34,7 +34,7 @@ type Props = {
 
 // Page contact : coordonnées et réseaux à gauche, carte blanche avec le formulaire de demande à droite.
 // Sous 1025 px les deux blocs s'empilent.
-export function Contact(p: Props) {
+export function Contact(p: ContactProps) {
   return (
     <section id="contact" data-section="contact" className={styles.root}>
       <div className={styles.info}>

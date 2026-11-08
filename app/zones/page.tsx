@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { CityHubs, ZoneServices, ZonesMap } from '@/components/blocks/zones-page'
+import { PageHead } from '@/components/layout/page-head'
+import { CityHubs } from '@/components/blocks/city-hubs'
+import { ZoneCallout } from '@/components/blocks/zone-callout'
+import { ZoneServices } from '@/components/blocks/zone-services'
+import { ZonesCta } from '@/components/blocks/zones-cta'
+import { ZonesMap } from '@/components/blocks/zones-map'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
@@ -42,6 +46,11 @@ export default async function ZonesPage() {
           note: z('map.note'),
         }}
       />
+      <ZoneCallout
+        title={z('callout.title')}
+        text={z('callout.text')}
+        cta={{ label: z('callout.link'), href: '/contact#devis' }}
+      />
       <CityHubs
         kicker={z('cities.kicker')}
         title={z('cities.title')}
@@ -56,6 +65,13 @@ export default async function ZonesPage() {
         travelLabel={z('services.travelLabel')}
         delayLabel={z('services.delayLabel')}
         zones={z.raw('services.zones') as Parameters<typeof ZoneServices>[0]['zones']}
+      />
+      <ZonesCta
+        kicker={z('cta.kicker')}
+        title={z('cta.title')}
+        text={z('cta.text')}
+        button={z('cta.button')}
+        tone="white"
       />
     </main>
   )

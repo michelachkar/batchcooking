@@ -37,7 +37,7 @@
   border-radius: calc(infinity * 1px);
   background-color: var(--color-forest);
   font-size: 13px;
-  color: #fff;
+  color: var(--color-white);
 }
 
 .chevron {
@@ -59,7 +59,7 @@
   padding: 0.5rem;
   border: 1px solid var(--color-sand);
   border-radius: 14px;
-  background-color: #fff;
+  background-color: var(--color-white);
   box-shadow: 0 18px 40px rgba(85, 80, 68, 0.16);
 }
 
@@ -95,7 +95,7 @@
   &.checked {
     border-color: var(--color-forest);
     background-color: var(--color-forest);
-    color: #fff;
+    color: var(--color-white);
   }
 }
 

@@ -14,14 +14,14 @@ export type Project = {
   href: string
 }
 
-type Props = {
+type ProjectsCarouselProps = {
   projects: Project[]
   labels: { prev: string; next: string; navigation: string }
 }
 
 // Carrousel « réalisations » : slide actif centré (le central au chargement), boucle infinie, compteur et flèches.
 // Trois copies de la liste sont rendues pour que la boucle ne montre jamais de vide ; seule la copie centrale est interactive.
-export function ProjectsCarousel({ projects, labels }: Props) {
+export function ProjectsCarousel({ projects, labels }: ProjectsCarouselProps) {
   const n = projects.length
   const [pos, setPos] = useState(n + Math.floor((n - 1) / 2))
   const [animate, setAnimate] = useState(true)

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { Heading, Shell } from '@/components/blocks/home-v2'
+import { PageHead } from '@/components/layout/page-head'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Section } from '@/components/ui/section'
 import { RealisationsGallery } from '@/components/blocks/realisations-gallery'
-import { ZonesCta } from '@/components/blocks/zones-page'
+import { ZonesCta } from '@/components/blocks/zones-cta'
 import { toRealisationCard } from '@/lib/content/project-card'
 import { getProjects } from '@/lib/content/projects'
 import { media } from '@/lib/media'
@@ -43,8 +44,8 @@ export default async function PortfolioPage() {
         navLabel={p('navLabel')}
         background={media.heads.portfolio}
       />
-      <Shell name="realisations">
-        <Heading kicker={r('kicker')} title={r('title')} intro={r('intro')} />
+      <Section name="realisations">
+        <SectionHeading kicker={r('kicker')} title={r('title')} intro={r('intro')} />
         <RealisationsGallery
           items={items}
           services={Object.entries(services).map(([id, label]) => ({ id, label }))}
@@ -58,7 +59,7 @@ export default async function PortfolioPage() {
             groups: r.raw('filters.groups') as Record<'small' | 'medium' | 'large', string>,
           }}
         />
-      </Shell>
+      </Section>
       <ZonesCta
         kicker={r('cta.kicker')}
         title={r('cta.title')}

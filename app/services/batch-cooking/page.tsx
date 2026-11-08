@@ -1,10 +1,14 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { BatchIntro, IconSection, Timeline } from '@/components/blocks/batch-page'
-import { Audience, FaqList, WeekExample } from '@/components/blocks/home-v2'
-import { MealPlanInquiry } from '@/components/blocks/meal-plan-inquiry'
+import { PageHead } from '@/components/layout/page-head'
+import { ServiceIntro } from '@/components/blocks/service-intro'
+import { IconSection } from '@/components/blocks/icon-section'
+import { AudienceSection } from '@/components/sections/audience-section'
+import { FaqSection } from '@/components/sections/faq-section'
+import { WeekExampleSection } from '@/components/sections/week-example-section'
+import { MealPlanInquiry } from '@/components/features/lead/meal-plan-inquiry'
 import { BatchPackages, type PackageCard } from '@/components/blocks/batch-packages'
+import { AboutSection } from '@/components/sections/about-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
@@ -64,15 +68,7 @@ export default async function BatchCookingPage() {
         background={media.heads.service}
         cta={{ label: b('intro.primary'), href: quote, lead: true }}
       />
-      <BatchIntro
-        kicker={b('intro.kicker')}
-        title={b('intro.title')}
-        paragraphs={b.raw('intro.paragraphs') as string[]}
-        highlights={b.raw('intro.highlights') as string[]}
-        primary={{ label: b('intro.primary'), href: quote }}
-        secondary={{ label: b('intro.secondary'), href: '#tarifs' }}
-        image={{ src: '/assets/hero/chef.jpg', alt: b('intro.imageAlt') }}
-      />
+      <AboutSection showLearnMore={false} extra="pricing" />
       <MealPlanInquiry
         kicker={q('kicker')}
         title={q('title')}
@@ -111,38 +107,22 @@ export default async function BatchCookingPage() {
         ctaHref={quote}
         cardCta={pk('plan')}
       />
-      <div id="deroule" className={styles.anchor} />
-      <Timeline
-        tone="white"
-        kicker={b('timeline.kicker')}
-        title={b('timeline.title')}
-        intro={b('timeline.intro')}
-        steps={b.raw('timeline.steps') as { title: string; text: string }[]}
+      <ServiceIntro
+        kicker={b('intro.kicker')}
+        title={b('intro.title')}
+        paragraphs={b.raw('intro.paragraphs') as string[]}
+        highlights={b.raw('intro.highlights') as string[]}
+        primary={{ label: b('intro.primary'), href: quote }}
+        secondary={{ label: b('intro.secondary'), href: '#tarifs' }}
+        image={{ src: '/assets/hero/chef.jpg', alt: b('intro.imageAlt') }}
       />
-      <Audience
+      <AudienceSection
         tone="beige"
         kicker={b('audience.kicker')}
         title={b('audience.title')}
         items={b.raw('audience.items') as { title: string; text: string }[]}
       />
-      <IconSection
-        name="diets"
-        tone="white"
-        kicker={b('diets.kicker')}
-        title={b('diets.title')}
-        intro={b('diets.intro')}
-        items={b.raw('diets.items') as IconCard[]}
-      />
-      <WeekExample
-        tone="beige"
-        kicker={b('week.kicker')}
-        title={b('week.title')}
-        intro={b('week.intro')}
-        note={b('week.note')}
-        days={b.raw('week.days') as { day: string; dish: string }[]}
-        cta={{ label: b('week.button'), href: quote }}
-      />
-      <FaqList tone="white" kicker={b('faq.kicker')} title={b('faq.title')} items={faqItems} />
+      <FaqSection tone="white" kicker={b('faq.kicker')} title={b('faq.title')} items={faqItems} />
     </main>
   )
 }

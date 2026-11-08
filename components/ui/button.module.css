@@ -51,18 +51,18 @@
 
   @media (hover: hover) {
     &:hover {
-      background-color: #fff;
+      background-color: var(--color-white);
     }
   }
 }
 
 .outline {
-  border-color: color-mix(in oklab, var(--color-white, #fff) 45%, transparent);
-  color: #fff;
+  border-color: color-mix(in oklab, var(--color-white) 45%, transparent);
+  color: var(--color-white);
 
   @media (hover: hover) {
     &:hover {
-      background-color: color-mix(in oklab, var(--color-white, #fff) 10%, transparent);
+      background-color: color-mix(in oklab, var(--color-white) 10%, transparent);
     }
   }
 }

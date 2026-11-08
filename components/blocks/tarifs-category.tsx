@@ -1,23 +1,21 @@
 import Link from 'next/link'
 import clsx from 'clsx'
-import { ChefHat, CookingPot, GraduationCap } from 'lucide-react'
-import { RevealObserver } from '@/components/blocks/reveal-observer'
+import { RevealObserver } from '@/components/ui/reveal-observer'
 import { ArrowIcon } from '@/components/ui/icon'
 import styles from './tarifs-category.module.css'
-
-const ICONS = { batch: CookingPot, chef: ChefHat, cours: GraduationCap } as const
+import { SERVICE_ICONS, type ServiceIconName } from '@/components/ui/icon-registry'
 
 // Bandeau de catégorie de la page Tarifs : nomme le service auquel se rapportent les tarifs qui suivent.
 export function TarifCategory(p: {
   id: string
-  icon: keyof typeof ICONS
+  icon: ServiceIconName
   tone: 'white' | 'beige' | 'sand'
   label: string
   title: string
   text: string
   link: { label: string; href: string }
 }) {
-  const Icon = ICONS[p.icon]
+  const Icon = SERVICE_ICONS[p.icon]
   return (
     <section
       id={p.id}

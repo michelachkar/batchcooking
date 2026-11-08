@@ -82,9 +82,9 @@
   width: 42px;
   height: 42px;
   padding: 0;
-  border: 1px solid #e3d9cc;
+  border: 1px solid var(--color-sand);
   border-radius: calc(infinity * 1px);
-  background-color: #fff;
+  background-color: var(--color-white);
   color: var(--color-ink);
   cursor: pointer;
 

@@ -15,7 +15,7 @@ type Labels = {
   groups: Record<'small' | 'medium' | 'large', string>
 }
 
-type Props = {
+type RealisationsGalleryProps = {
   items: RealisationCardData[]
   /** Services à proposer en onglet, dans l'ordre (seuls ceux qui ont des réalisations sont affichés). */
   services: { id: string; label: string }[]
@@ -28,7 +28,7 @@ const uniq = (xs: (string | undefined)[]) =>
   [...new Set(xs.filter((x): x is string => Boolean(x)))].sort((a, b) => a.localeCompare(b, 'fr'))
 
 // Galerie des réalisations : onglets par service, puis filtres par occasion, commune, taille du groupe et régime.
-export function RealisationsGallery({ items, services, labels }: Props) {
+export function RealisationsGallery({ items, services, labels }: RealisationsGalleryProps) {
   const [service, setService] = useState<string | null>(null)
   const [tags, setTags] = useState<string[]>([])
 

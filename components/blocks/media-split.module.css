@@ -1,7 +1,7 @@
 /* Photo + récit. Les variables --ms-* (titre, accent, texte, filet…) dépendent du ton ; --ms-cols et les --ms-inset-* viennent du composant. */
 
 .dark {
-  --ms-title: #f0ebe3;
+  --ms-title: var(--color-cream);
   --ms-accent: #e8a98e;
   --ms-text: rgba(244, 243, 239, 0.76);
   --ms-line: rgba(244, 243, 239, 0.16);
@@ -11,11 +11,11 @@
 
 .light {
   --ms-title: #555044;
-  --ms-accent: #b04a2a;
+  --ms-accent: var(--color-forest);
   --ms-text: #625c50;
-  --ms-line: #e3d9cc;
+  --ms-line: var(--color-sand);
   --ms-stat-bg: rgba(255, 255, 255, 0.04);
-  --ms-inset-border: #ffffff;
+  --ms-inset-border: var(--color-white);
 }
 
 .root {
@@ -40,7 +40,7 @@
   aspect-ratio: 4 / 5;
   margin: 0 0 30px;
   border-radius: 18px;
-  background-color: #e3d9cc;
+  background-color: var(--color-sand);
 
   @media (width < 1025px) {
     max-width: 560px;
@@ -125,6 +125,21 @@
   }
 }
 
+/* barre de confiance (identique à celle du hero), posée en haut de la photo */
+.trustBar {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 2;
+  max-width: calc(100% - 2.5rem);
+
+  @media (width < 768px) {
+    top: 0.75rem;
+    right: 0.75rem;
+    max-width: calc(100% - 1.5rem);
+  }
+}
+
 .badgeIcon {
   display: inline-flex;
   align-items: center;
@@ -132,7 +147,7 @@
   width: 42px;
   height: 42px;
   border-radius: 0.75rem;
-  background-color: #b04a2a;
+  background-color: var(--color-forest);
   color: #f0c8b8;
 }
 
@@ -294,6 +309,16 @@
       translate: 0 -0.25rem;
       border-color: var(--ms-accent);
     }
+  }
+}
+
+.statLink {
+  color: inherit;
+  text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--ms-accent);
+    outline-offset: 3px;
   }
 }
 
@@ -472,7 +497,7 @@
     @media (hover: hover) {
       rotate: -8deg;
       background-color: var(--ms-accent);
-      color: #fff;
+      color: var(--color-white);
     }
   }
 }
@@ -496,7 +521,7 @@
       scale: 1.08;
       rotate: -8deg;
       background-color: var(--ms-accent);
-      color: #fff;
+      color: var(--color-white);
     }
   }
 }

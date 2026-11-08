@@ -2,7 +2,7 @@
 
 import { useRef } from 'react'
 import { ChevronRight, X } from 'lucide-react'
-import { useLead } from '@/components/lead/lead-provider'
+import { useLead } from '@/components/features/lead/lead-provider'
 import { euro, priceAfter, priceBefore } from '@/lib/lead/pricing'
 import styles from './credit-note.module.css'
 

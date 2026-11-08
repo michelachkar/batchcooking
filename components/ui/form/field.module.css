@@ -1,0 +1,73 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+/* Étiquette en capitales au-dessus de chaque champ. */
+.label {
+  color: var(--color-forest);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.control {
+  position: relative;
+  display: block;
+}
+
+.fieldIcon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  z-index: 1;
+  width: 19px;
+  height: 19px;
+  translate: 0 -50%;
+  color: var(--color-forest);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  height: 54px;
+  padding-right: 1rem;
+  padding-left: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-size: 16px;
+  line-height: 1;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+
+  &::placeholder {
+    color: var(--color-ink-50);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-blush);
+    }
+  }
+
+  &:focus {
+    border-color: var(--color-forest);
+    background-color: var(--color-white);
+    outline-style: none;
+  }
+}
+
+.select {
+  padding-right: 2.5rem;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 16px;
+}

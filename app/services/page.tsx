@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { Compare } from '@/components/blocks/services-page'
+import { PageHead } from '@/components/layout/page-head'
+import { ServicesCompare } from '@/components/blocks/services-compare'
 import { ExperiencesSection } from '@/components/sections/experiences-section'
 import { media } from '@/lib/media'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
@@ -35,7 +35,7 @@ export default async function ServicesPage() {
         background={media.heads.services}
       />
       <ExperiencesSection />
-      <Compare
+      <ServicesCompare
         kicker={v('compare.kicker')}
         title={v('compare.title')}
         columns={v.raw('compare.columns') as string[]}

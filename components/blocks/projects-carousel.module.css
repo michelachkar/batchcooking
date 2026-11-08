@@ -13,7 +13,7 @@
     --pp-w: clamp(280px, 42vw, 320px);
   }
 
-  @media (width >= 1024px) {
+  @media (width >= 1025px) {
     --pp-gap: 20px;
     --pp-w: clamp(300px, 30vw, 440px);
   }
@@ -245,14 +245,24 @@
     &:hover {
       translate: 0 -1px;
       border-color: rgb(47 43 38 / 0.45);
-      background-image: linear-gradient(145deg, #2f2b26 0%, #3a352e 52%, #1b1816 100%);
+      background-image: linear-gradient(
+        145deg,
+        var(--color-footer) 0%,
+        var(--color-surface-dark) 52%,
+        #1b1816 100%
+      );
       color: var(--color-cream);
     }
   }
 
   &:focus-visible {
     translate: 0 -1px;
-    background-image: linear-gradient(145deg, #2f2b26 0%, #3a352e 52%, #1b1816 100%);
+    background-image: linear-gradient(
+      145deg,
+      var(--color-footer) 0%,
+      var(--color-surface-dark) 52%,
+      #1b1816 100%
+    );
     color: var(--color-cream);
     outline-style: none;
   }

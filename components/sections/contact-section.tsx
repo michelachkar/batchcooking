@@ -1,6 +1,6 @@
 import { getTranslations } from '@/lib/i18n'
 import { Contact } from '@/components/blocks/contact'
-import type { ProposalField } from '@/components/blocks/proposal-form'
+import type { ProposalField } from '@/components/features/lead/proposal-form'
 import { site } from '@/lib/site'
 
 // Coordonnées : celles de lib/site (provisoires tant que la marque n'est pas décidée) ; textes dans messages/contact.

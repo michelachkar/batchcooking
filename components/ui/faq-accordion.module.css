@@ -1,0 +1,81 @@
+.item {
+  border: 1px solid var(--color-sand);
+  background-color: var(--color-white);
+
+  &:not(:first-child) {
+    border-top-width: 0;
+  }
+}
+
+.question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px;
+  cursor: pointer;
+  list-style-type: none;
+  font-family: var(--font-display);
+  font-size: 16px;
+  line-height: 19.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-ink);
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  .item[open] & {
+    color: var(--color-body);
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1rem;
+  fill: currentcolor;
+
+  .item[open] & {
+    color: var(--color-forest);
+  }
+}
+
+/* Barre verticale du « + » : masquée quand la question est ouverte (il reste le « − »). */
+.plusBar {
+  .item[open] & {
+    display: none;
+  }
+}
+
+.answer {
+  border-color: var(--color-sand);
+  border-top-width: 1px;
+  padding: 25px;
+  line-height: 27px;
+  color: var(--color-body);
+}
+
+.answerText {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+/* L'accordéon glisse en 400 ms. */
+@media (prefers-reduced-motion: no-preference) {
+  .item {
+    interpolate-size: allow-keywords;
+
+    &::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition:
+        block-size 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+        content-visibility 0.4s allow-discrete;
+    }
+
+    &[open]::details-content {
+      block-size: auto;
+    }
+  }
+}

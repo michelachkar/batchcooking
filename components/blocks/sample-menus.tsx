@@ -44,7 +44,7 @@ function CtaTag({
   )
 }
 
-type Props = {
+type SampleMenusProps = {
   kicker: string
   title: string
   intro: string
@@ -90,7 +90,7 @@ export function SampleMenus({
   flushTop,
   hideHeader,
   tone = 'beige',
-}: Props) {
+}: SampleMenusProps) {
   const dark = tone === 'terracotta'
   const bg = dark ? styles.toneTerracotta : tone === 'white' ? styles.toneWhite : styles.toneBeige
   return (

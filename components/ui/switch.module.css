@@ -1,0 +1,43 @@
+/* Sélecteur à bascule (radio) : pastille arrondie contenant les options. */
+.root {
+  display: inline-flex;
+  padding: 0.25rem;
+  border: 1px solid color-mix(in srgb, var(--color-forest) 30%, transparent);
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-white);
+}
+
+.option {
+  padding-block: 0.625rem;
+  padding-inline: 1.5rem;
+  border-width: 0;
+  border-radius: calc(infinity * 1px);
+  background-color: transparent;
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    outline-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    text-decoration-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 150ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (width < 768px) {
+    padding-inline: 1rem;
+  }
+
+  @media (hover: hover) {
+    &:not([aria-checked='true']):hover {
+      color: var(--color-forest);
+    }
+  }
+
+  &[aria-checked='true'] {
+    background-color: var(--color-forest);
+    color: var(--color-white);
+  }
+}

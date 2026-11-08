@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowIcon, Icon, type IconName } from '@/components/ui/icon'
 import clsx from 'clsx'
+import { TrustBar } from '@/components/blocks/trust-bar'
 import { rich } from '@/components/ui/rich-text'
 import styles from './media-split.module.css'
 
@@ -23,11 +24,13 @@ export type MediaSplitProps = {
   inset?: Img & { alt: string }
   caption?: string
   badge?: { icon?: IconName; value: string; text: string }
+  /** Barre de confiance (avis Google + crédit d'impôt) sur la photo, comme dans le hero. */
+  trustBar?: { googleReviews: string; taxCredit?: string }
   kicker?: string
   title: string
   subtitle?: string
   paragraphs?: string[]
-  stats?: { icon?: IconName; value: string; label: string }[]
+  stats?: { icon?: IconName; value: string; label: string; href?: string }[]
   quote?: { text: string; author?: string }
   listTitle?: string
   listStyle?: 'line' | 'check'
@@ -98,6 +101,13 @@ export function MediaSplit(p: MediaSplitProps) {
             </span>
           </span>
         )}
+        {p.trustBar && (
+          <TrustBar
+            googleReviews={p.trustBar.googleReviews}
+            taxCredit={p.trustBar.taxCredit}
+            className={styles.trustBar}
+          />
+        )}
       </figure>
       {p.inset && (
         <span
@@ -121,17 +131,28 @@ export function MediaSplit(p: MediaSplitProps) {
         ))}
         {p.stats && (
           <div className={styles.stats}>
-            {p.stats.map((s) => (
-              <div key={s.value} className={styles.stat}>
-                {s.icon && (
-                  <span className={styles.statIcon}>
-                    <Icon name={s.icon} className={styles.statIconSvg} />
-                  </span>
-                )}
-                <strong className={styles.statValue}>{s.value}</strong>
-                <span className={styles.statLabel}>{s.label}</span>
-              </div>
-            ))}
+            {p.stats.map((s) => {
+              const content = (
+                <>
+                  {s.icon && (
+                    <span className={styles.statIcon}>
+                      <Icon name={s.icon} className={styles.statIconSvg} />
+                    </span>
+                  )}
+                  <strong className={styles.statValue}>{s.value}</strong>
+                  <span className={styles.statLabel}>{s.label}</span>
+                </>
+              )
+              return s.href ? (
+                <Link key={s.value} href={s.href} className={clsx(styles.stat, styles.statLink)}>
+                  {content}
+                </Link>
+              ) : (
+                <div key={s.value} className={styles.stat}>
+                  {content}
+                </div>
+              )
+            })}
           </div>
         )}
         {p.quote && (

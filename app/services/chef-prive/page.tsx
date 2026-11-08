@@ -1,13 +1,12 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { BatchIntro } from '@/components/blocks/batch-page'
-import { QuickInquiry } from '@/components/blocks/quick-inquiry'
+import { PageHead } from '@/components/layout/page-head'
+import { ServiceIntro } from '@/components/blocks/service-intro'
+import { CallbackInquiry } from '@/components/features/lead/callback-inquiry'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
-import { Included } from '@/components/blocks/included'
-import type { IconName } from '@/components/ui/icon'
-import { Practical } from '@/components/blocks/chef-page'
-import { FaqList } from '@/components/blocks/home-v2'
+import { ProcessSection } from '@/components/sections/process-section'
+import { PracticalInfo } from '@/components/blocks/practical-info'
+import { FaqSection } from '@/components/sections/faq-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage, serviceNode } from '@/lib/jsonld'
 import { media } from '@/lib/media'
@@ -26,7 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ChefPrivePage() {
   const p = await getTranslations('pages')
   const c = await getTranslations('chefPage')
-  const inc = await getTranslations('home.included')
   const faqItems = c.raw('faq.items') as { question: string; answer: string }[]
   const quote = `${PATH}#devis`
   const q = await getTranslations('chefPage.inquiry')
@@ -62,37 +60,23 @@ export default async function ChefPrivePage() {
         background={media.heads.service}
         cta={{ label: c('intro.primary'), href: quote }}
       />
-      <BatchIntro
-        kicker={c('intro.kicker')}
-        title={c('intro.title')}
-        paragraphs={c.raw('intro.paragraphs') as string[]}
-        highlights={c.raw('intro.highlights') as string[]}
-        primary={{ label: c('intro.primary'), href: quote }}
-        secondary={{ label: c('intro.secondary'), href: '#tarifs' }}
-        image={{ src: '/assets/hero/chef.jpg', alt: c('intro.imageAlt') }}
-        lead={false}
+      <ProcessSection
+        ns="chefPage.process"
+        photos={media.chefSteps}
+        extraButton={{ href: '#tarifs' }}
       />
-      <QuickInquiry
+      <CallbackInquiry
         kicker={q('kicker')}
         title={q('title')}
         action="/contact#inquiry"
         dateLabel={q('dateLabel')}
-        guestsLabel={q('guestsLabel')}
-        guestsPlaceholder={q('guestsPlaceholder')}
-        guestsOptions={q.raw('guestsOptions') as string[]}
-        locationLabel={q('locationLabel')}
-        locationPlaceholder={q('locationPlaceholder')}
         button={q('button')}
         pattern
-        lead={{
-          serviceLabel: q('serviceLabel'),
-          servicePlaceholder: q('servicePlaceholder'),
-          serviceOptions: q.raw('serviceOptions') as { value: string; label: string }[],
-          phoneLabel: q('phoneLabel'),
-          phonePlaceholder: q('phonePlaceholder'),
-          success: q('success'),
-          error: q('error'),
-        }}
+        serviceLabel={q('serviceLabel')}
+        servicePlaceholder={q('servicePlaceholder')}
+        serviceOptions={q.raw('serviceOptions') as { value: string; label: string }[]}
+        phoneLabel={q('phoneLabel')}
+        phonePlaceholder={q('phonePlaceholder')}
       />
       <div id="tarifs" className={styles.anchor} />
       <PackageCards
@@ -111,33 +95,23 @@ export default async function ChefPrivePage() {
         items={c.raw('packages.items') as Package[]}
         cta={{ label: c('packages.button'), href: quote }}
       />
-      <Included
-        flush
-        kicker={inc('kicker')}
-        title={inc('title')}
-        paragraphs={inc.raw('paragraphs') as string[]}
-        listTitle={inc('listTitle')}
-        listStyle="check"
-        columns={2}
-        items={inc.raw('items') as { icon: IconName; text: string }[]}
-        extras={{
-          title: inc('extrasTitle'),
-          items: inc.raw('extras') as { icon: IconName; label: string; value: string }[],
-        }}
-        note={inc('note')}
-        link={{ label: inc('link'), href: quote }}
-        linkStyle="button"
-        badge={{ icon: 'shield-check', value: inc('badgeValue'), text: inc('badgeText') }}
-        image={{ ...media.included, alt: inc('imageAlt') }}
-        inset={{ ...media.includedInset, alt: inc('insetAlt') }}
+      <ServiceIntro
+        kicker={c('intro.kicker')}
+        title={c('intro.title')}
+        paragraphs={c.raw('intro.paragraphs') as string[]}
+        highlights={c.raw('intro.highlights') as string[]}
+        primary={{ label: c('intro.primary'), href: quote }}
+        secondary={{ label: c('intro.secondary'), href: '#tarifs' }}
+        image={{ src: '/assets/hero/chef.jpg', alt: c('intro.imageAlt') }}
+        lead={false}
       />
-      <Practical
+      <PracticalInfo
         tone="beige"
         kicker={c('practical.kicker')}
         title={c('practical.title')}
         cols={c.raw('practical.cols') as { icon: string; title: string; items: string[] }[]}
       />
-      <FaqList tone="white" kicker={c('faq.kicker')} title={c('faq.title')} items={faqItems} />
+      <FaqSection tone="white" kicker={c('faq.kicker')} title={c('faq.title')} items={faqItems} />
     </main>
   )
 }

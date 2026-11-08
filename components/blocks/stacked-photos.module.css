@@ -1,0 +1,18 @@
+.root {
+  display: inline-flex;
+}
+
+.photo {
+  display: block;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--color-white);
+  border-radius: 31%;
+  object-fit: cover;
+
+  /* chevauchement des portraits */
+  &:not(:first-child) {
+    margin-left: -16.33px;
+  }
+}

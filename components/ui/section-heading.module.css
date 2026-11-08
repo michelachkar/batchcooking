@@ -1,0 +1,60 @@
+.heading {
+  max-width: 46rem;
+  margin-bottom: 2.75rem;
+
+  @media (width < 768px) {
+    margin-bottom: 2rem;
+  }
+}
+
+.headingCenter {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+
+  &::before {
+    content: '';
+    width: 34px;
+    height: 1px;
+    background-color: currentcolor;
+  }
+
+  &.light {
+    color: color-mix(in oklab, var(--color-white) 80%, transparent);
+  }
+}
+
+.headingTitle {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+
+  &.light {
+    color: var(--color-white);
+  }
+}
+
+.intro {
+  margin-top: 1rem;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--color-ink-88);
+
+  &.light {
+    color: color-mix(in oklab, var(--color-white) 85%, transparent);
+  }
+}

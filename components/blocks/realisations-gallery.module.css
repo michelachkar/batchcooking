@@ -15,9 +15,9 @@
 .pill {
   padding: 0.375rem 1rem;
   border: 1px solid;
-  border-color: #e3d9cc;
+  border-color: var(--color-sand);
   border-radius: calc(infinity * 1px);
-  background-color: #fff;
+  background-color: var(--color-white);
   font-size: 14px;
   font-weight: 600;
   color: rgb(85 80 68 / 0.92);
@@ -28,15 +28,15 @@
 
   @media (hover: hover) {
     &:hover {
-      border-color: #b04a2a;
-      color: #b04a2a;
+      border-color: var(--color-forest);
+      color: var(--color-forest);
     }
   }
 
   &[aria-pressed='true'] {
-    border-color: #b04a2a;
-    background-color: #b04a2a;
-    color: #fff;
+    border-color: var(--color-forest);
+    background-color: var(--color-forest);
+    color: var(--color-white);
   }
 }
 
@@ -50,23 +50,23 @@
 .count {
   margin-bottom: 1.5rem;
   font-size: 15px;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .reset {
   margin-left: 0.75rem;
   font-weight: 600;
   text-decoration-line: underline;
-  color: #b04a2a;
+  color: var(--color-forest);
 }
 
 .empty {
   padding: 2rem;
-  border: 1px solid #e3d9cc;
+  border: 1px solid var(--color-sand);
   border-radius: 18px;
   font-size: 17px;
   text-align: center;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .list {

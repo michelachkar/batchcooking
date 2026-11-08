@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
 import styles from './page.module.css'
-import { PageHead } from '@/components/blocks/page-head'
-import { FaqAccordion, type FaqItem } from '@/components/blocks/faq-accordion'
+import { PageHead } from '@/components/layout/page-head'
+import { FaqAccordion, type FaqItem } from '@/components/ui/faq-accordion'
 import { FaqThemes } from '@/components/blocks/faq-themes'
-import { Heading, Shell } from '@/components/blocks/home-v2'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Section } from '@/components/ui/section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
@@ -49,12 +50,12 @@ export default async function FaqPage() {
       />
       {sections.map((s, i) => (
         <div key={s.id} id={s.id} className={styles.section}>
-          <Shell name={`faq-${s.id}`} tone={tones[i % 2]}>
-            <Heading kicker={s.kicker} title={s.title} />
+          <Section name={`faq-${s.id}`} tone={tones[i % 2]}>
+            <SectionHeading kicker={s.kicker} title={s.title} />
             <div className={styles.accordion} data-reveal="up">
               <FaqAccordion items={s.items} name={`faq-${s.id}`} openFirst={i === 0} />
             </div>
-          </Shell>
+          </Section>
         </div>
       ))}
     </main>

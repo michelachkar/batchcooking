@@ -14,11 +14,13 @@
     "mainNav": "Navigation principale"
   },
   "nav": {
+    "about": "À propos",
     "home": "Accueil",
     "services": "Services",
-    "serviceBatch": "Batch cooking à domicile",
-    "serviceChef": "Chef privé & expériences",
-    "serviceCours": "Cours de cuisine à domicile",
+    "serviceBatch": "Batch cooking",
+    "serviceChef": "Chef privé à domicile",
+    "serviceCours": "Cours de cuisine",
+    "zones": "Zones d'intervention",
     "portfolio": "Réalisations",
     "pricing": "Tarifs",
     "recipes": "Recettes",
@@ -38,7 +40,7 @@
     "visit": "Contact",
     "servicesLinks": {
       "batch": "Batch cooking à domicile",
-      "chef": "Chef privé & expériences",
+      "chef": "Chef privé à domicile",
       "cours": "Cours de cuisine à domicile",
       "pricing": "Tarifs",
       "recipes": "Recettes"
@@ -46,7 +48,8 @@
     "companyLinks": {
       "zones": "Zones d'intervention",
       "portfolio": "Réalisations",
-      "faq": "FAQ"
+      "faq": "FAQ",
+      "contact": "Contact"
     },
     "rights": "© 2026 {name}. Tous droits réservés.",
     "legal": {
@@ -86,8 +89,14 @@
       ],
       "primary": "Reservez vos repas",
       "secondary": "Découvrez mes recettes",
+      "galleryBadges": ["Délicieux", "Healthy", "Propre"],
       "galleryAlts": ["Plat préparé par la cheffe", "Repas de la semaine prêts à réchauffer", "Cheffe en cuisine chez un client"],
+      "googleReviews": "Avis Google",
       "taxCredit": "50 % de crédit d'impôt",
+      "zone": {
+        "text": "Chez vous, à Montpellier et alentours.",
+        "link": "Voir les zones"
+      },
       "creditNote": {
         "value": "−50 %",
         "title": "de crédit d'impôt, tout de suite",
@@ -117,7 +126,7 @@
     },
     "inquiry": {
       "kicker": "Demande rapide",
-      "title": "Dites-nous l'essentiel",
+      "title": "Batch Cooking à domicile",
       "householdLabel": "Personnes dans le foyer",
       "householdPlaceholder": "Choisir",
       "householdOptions": [
@@ -185,7 +194,7 @@
           "alt": "Chef préparant plusieurs plats dans une cuisine à domicile et les rangeant dans des boîtes de conservation"
         },
         {
-          "title": "Chef privé & expériences gastronomiques",
+          "title": "Chef privé à domicile",
           "text": "Dîners entre proches, anniversaires et occasions spéciales : un menu sur mesure, cuisiné et servi chez vous.",
           "meta": "Dîners & événements",
           "icon": "chef-hat",
@@ -234,8 +243,6 @@
         "author": "Chef Meemz"
       },
       "caption": "Cuisine en privé depuis 2012",
-      "badgeValue": "4,9 / 5",
-      "badgeText": "selon 380 hôtes",
       "imageAlt": "Portrait de la cheffe en tenue blanche et toque, la main sur la hanche",
       "insetAlt": "La cheffe choisissant des produits au marché"
     },
@@ -252,24 +259,27 @@
       ],
       "steps": [
         {
-          "title": "Parlons de vos besoins",
-          "text": "Le nombre de personnes, vos goûts, vos habitudes et vos éventuelles allergies."
+          "icon": "checklist",
+          "title": "Vous composez votre menu",
+          "text": "Un court échange pour cerner vos goûts, vos habitudes et vos allergies, puis vous choisissez parmi [plus de 40 recettes](/recettes). Avec la formule Signature, je crée un menu sur mesure.",
+          "alt": "Plats faits maison présentés dans des boîtes en verre"
         },
         {
-          "title": "Votre menu sur mesure",
-          "text": "Vous choisissez parmi plus de 40 recettes, ou composez un menu sur mesure, et validez avant la séance."
+          "icon": "chef",
+          "title": "La cheffe cuisine chez vous",
+          "text": "Une fois les courses faites d'après le menu validé, la cheffe prépare 3 à 5 dîners directement dans votre cuisine.",
+          "alt": "La cheffe en train de cuisiner dans une cuisine"
         },
         {
-          "title": "Un chef cuisine chez vous",
-          "text": "À partir de vos courses, préparation de 3 à 5 dîners dans votre cuisine."
-        },
-        {
+          "icon": "boxes",
           "title": "Vos dîners sont prêts",
-          "text": "Plats conditionnés et rangés au réfrigérateur ou au congélateur, prêts à réchauffer."
+          "text": "Chaque plat est rangé au réfrigérateur ou au congélateur : il ne vous reste qu'à réchauffer et à savourer.",
+          "alt": "Boîtes de repas empilées, prêtes à réchauffer"
         }
       ],
       "button": "Découvrir le batch cooking",
       "buttonHref": "/services/batch-cooking",
+      "pricingButton": "Voir les tarifs",
       "secondaryButton": "Reservez vos repas",
       "secondaryButtonHref": "/contact#inquiry",
       "images": [
@@ -278,78 +288,34 @@
         "Une table de salle à manger dressée avec linge, bougies et cartes de menu avant l'arrivée des invités"
       ]
     },
-    "included": {
-      "kicker": "Le déroulé de la soirée",
-      "title": "Comment se passe votre dîner avec chef privé",
-      "paragraphs": [
-        "Dîner gastronomique entre proches, anniversaire ou occasion spéciale : le chef s'occupe de tout, du premier échange jusqu'au dernier plat, et vous restez avec vos invités.",
-        "Voici comment se déroule votre soirée, et ce qui est inclus."
-      ],
-      "listTitle": "Ce qui est inclus",
-      "items": [
+    "reviews": {
+      "kicker": "Hôtes vérifiés",
+      "title": "Apprécié par",
+      "highlight": "Nos invités",
+      "description": "Familles, couples et hôtes racontent leurs dîners préparés à la maison : des soirées plus sereines et de vraies tables partagées.",
+      "prev": "Avis précédent",
+      "next": "Avis suivant",
+      "navigation": "Avis clients",
+      "reviews": [
         {
-          "icon": "message-circle",
-          "text": "Échange sur vos envies et vos invités"
+          "name": "Kathrine Katija",
+          "role": "Dîner d'anniversaire, Mount Pleasant",
+          "text": "« On aurait dit qu'un restaurant avait ouvert dans notre salle à manger pour une soirée. » Le chef Julien a composé sept plats autour de notre cave à vin et des allergies de nos invités. Le service était calme et discret, et la cuisine était plus propre à leur départ qu'à leur arrivée.",
+          "alt": "Portrait de Kathrine Katija"
         },
         {
-          "icon": "notebook",
-          "text": "Menu sur mesure, validé avec vous"
+          "name": "Marcus Chen",
+          "role": "Responsable événementiel, Harbor & Vine",
+          "text": "« Le bar mobile a été le sujet de conversation de notre soirée d'entreprise. » L'équipe d'Amara a composé un menu de cocktails autour du lancement de notre produit et a servi 180 invités sans la moindre file d'attente. Trois personnes ont demandé sa carte avant la fin de la soirée.",
+          "alt": "Portrait de Marcus Chen"
         },
         {
-          "icon": "shopping-cart",
-          "text": "Courses et préparation des ingrédients"
-        },
-        {
-          "icon": "flame",
-          "text": "Cuisine dans votre propre cuisine"
-        },
-        {
-          "icon": "soup",
-          "text": "Service à table, plat après plat"
-        },
-        {
-          "icon": "shield-check",
-          "text": "Allergies et régimes pris en compte"
-        },
-        {
-          "icon": "sparkles",
-          "text": "Cuisine rangée et nettoyée après le dîner"
+          "name": "Elena Rostova",
+          "role": "Mariée, Wild Dunes Resort",
+          "text": "« C'est une véritable hospitalité, pas un traiteur générique. » De la première dégustation à la dernière assiette débarrassée, chaque détail était pensé. Notre dîner de mariage et notre cocktail se sont déroulés à l'heure et avaient un goût que nos invités n'avaient jamais connu lors d'un mariage.",
+          "alt": "Portrait d'Elena Rostova"
         }
-      ],
-      "extrasTitle": "Le déroulé, étape par étape",
-      "extras": [
-        {
-          "icon": "message-circle",
-          "label": "Échange et menu",
-          "value": "Avant la soirée"
-        },
-        {
-          "icon": "shopping-cart",
-          "label": "Courses et préparation",
-          "value": "Le jour J"
-        },
-        {
-          "icon": "flame",
-          "label": "Cuisine sur place",
-          "value": "En début de soirée"
-        },
-        {
-          "icon": "soup",
-          "label": "Service à table",
-          "value": "Pendant le dîner"
-        },
-        {
-          "icon": "sparkles",
-          "label": "Nettoyage et rangement",
-          "value": "Après le dîner"
-        }
-      ],
-      "note": "Chaque soirée est composée sur mesure : le menu, le nombre d'invités et les éventuelles options sont détaillés dans votre devis.",
-      "link": "Demander un devis",
-      "badgeValue": "Sur mesure",
-      "badgeText": "Un menu composé avec vous",
-      "imageAlt": "Chef privé dressant une assiette dans une cuisine pendant un dîner à domicile",
-      "insetAlt": "Table dressée pour un dîner entre proches"
+      ]
     },
     "events": {
       "kicker": "Recettes",
@@ -452,8 +418,7 @@
       "kicker": "Batch cooking à domicile",
       "title": "Tous vos repas de la semaine, préparés chez vous",
       "paragraphs": [
-        "Le batch cooking à domicile consiste à préparer, en une seule session de cuisine, plusieurs dîners à l'avance. Plutôt que de cuisiner chaque soir, votre cheffe se déplace chez vous, cuisine 3 à 5 dîners dans votre propre cuisine à partir de [plus de 40 recettes](/recettes).",
-        "Les dîners sont ensuite conditionnés au réfrigérateur ou au congélateur, prêts à être réchauffés et dégustés au moment souhaité. Une semaine pour essayer sans engagement, ou un mois (4 passages) pour un meilleur tarif."
+        "Plutôt que de cuisiner chaque soir, votre cheffe cuisine chez vous 3 à 5 dîners en une seule session. Une semaine pour essayer sans engagement, ou un mois (4 passages) pour un meilleur tarif."
       ],
       "highlights": [
         "Un gain de temps précieux",
@@ -492,37 +457,6 @@
         {
           "title": "Les seniors",
           "text": "Des repas variés et savoureux, préparés pour vous, sans effort."
-        }
-      ]
-    },
-    "timeline": {
-      "kicker": "Le déroulé",
-      "title": "De la première prise de contact à la dernière boîte rangée",
-      "intro": "Voici comment se passe votre batch cooking, étape par étape.",
-      "steps": [
-        {
-          "title": "Vous nous contactez",
-          "text": "Vous remplissez le formulaire de demande : nous vous répondons sous un jour ouvré, sans engagement."
-        },
-        {
-          "title": "Parlons de vos besoins",
-          "text": "Le nombre de personnes, vos goûts, vos habitudes et vos éventuelles allergies."
-        },
-        {
-          "title": "Votre menu sur mesure",
-          "text": "Vous choisissez parmi [plus de 40 recettes](/recettes) et validez avant la séance. Avec la formule signature je pourrai vous créer un menu sur mesure."
-        },
-        {
-          "title": "Vos courses",
-          "text": "Vous faites les courses à partir du menu validé : la cheffe cuisine avec vos ingrédients."
-        },
-        {
-          "title": "Un chef cuisine chez vous",
-          "text": "À chaque passage, la cheffe prépare 3 à 5 dîners dans votre propre cuisine."
-        },
-        {
-          "title": "Vos dîners sont prêts",
-          "text": "Vos plats sont conditionnés et rangés au réfrigérateur ou au congélateur, prêts à réchauffer."
         }
       ]
     },
@@ -732,7 +666,7 @@
       "servicePlaceholder": "Choisir",
       "serviceOptions": [
         { "value": "batch", "label": "Batch cooking" },
-        { "value": "chef", "label": "Chef privé & expériences gastronomiques" },
+        { "value": "chef", "label": "Chef privé à domicile" },
         { "value": "cours", "label": "Cours de cuisine à domicile" }
       ],
       "guestsLabel": "Nombre de personnes",
@@ -747,12 +681,39 @@
       "error": "Une erreur est survenue. Vérifiez votre numéro et réessayez."
     },
     "seo": {
-      "title": "Chef privé & expériences gastronomiques à domicile",
+      "title": "Chef privé à domicile",
       "description": "Dîner entre proches, anniversaire, repas d'affaires ou séjour en villa : un chef privé compose un menu sur mesure, fait les courses, cuisine et sert chez vous, puis range la cuisine."
     },
-    "crumb": "Chef privé & expériences",
+    "process": {
+      "label": "LE CHEF PRIVÉ À DOMICILE",
+      "title": "Le chef privé : comment ça marche ?",
+      "button": "Demander un devis",
+      "buttonHref": "/services/chef-prive#devis",
+      "extraButton": "Voir les tarifs",
+      "steps": [
+        {
+          "icon": "checklist",
+          "title": "Vous composez votre menu",
+          "text": "Un échange sur vos envies, vos invités, leurs allergies et votre budget. Vous validez le menu avant la soirée.",
+          "alt": "Menu de dîner en cours de rédaction avec la cheffe"
+        },
+        {
+          "icon": "chef",
+          "title": "Le chef cuisine chez vous",
+          "text": "Il fait les courses, puis cuisine dans votre cuisine et sert à table, plat après plat, au rythme de votre soirée.",
+          "alt": "Chef privé dressant une assiette dans une cuisine"
+        },
+        {
+          "icon": "sparkles",
+          "title": "Vous profitez de la soirée",
+          "text": "Vous restez avec vos invités. Après le dîner, la cuisine est rangée et nettoyée : vous la retrouvez comme avant.",
+          "alt": "Table dressée pour un dîner entre proches"
+        }
+      ]
+    },
+    "crumb": "Chef privé à domicile",
     "intro": {
-      "kicker": "Chef privé & expériences",
+      "kicker": "Chef privé à domicile",
       "title": "Un dîner de restaurant, dans votre salle à manger",
       "paragraphs": [
         "Le chef vient chez vous, dans votre villa ou votre location : il compose le menu avec vous, fait les courses, cuisine sur place et sert à table. Vous restez avec vos invités.",
@@ -1288,11 +1249,15 @@
     "close": "Fermer",
     "services": [
       { "id": "batch", "title": "Batch cooking à domicile", "text": "Plusieurs dîners préparés en une session, cuisinés chez vous." },
-      { "id": "chef", "title": "Chef privé & expériences", "text": "Un dîner sur mesure, cuisiné et servi chez vous." },
+      { "id": "chef", "title": "Chef privé à domicile", "text": "Un dîner sur mesure, cuisiné et servi chez vous." },
       { "id": "cours", "title": "Cours de cuisine à domicile", "text": "Un cours pour apprendre, seul, à deux ou en groupe." }
     ]
   },
   "pages": {
+    "about": {
+      "title": "À propos",
+      "crumb": "À propos"
+    },
     "zones": {
       "title": "Zones d'intervention",
       "crumb": "Zones d'intervention"
@@ -1413,6 +1378,7 @@
     "homeTitle": "Batch cooking à domicile pour toute la semaine",
     "services": "Batch cooking hebdomadaire, formule famille, événements : découvrez nos services et ce qu'ils incluent.",
     "pricing": "Tous nos tarifs à Montpellier : batch cooking à domicile, chef privé et cours de cuisine, avec le déplacement selon votre zone.",
+    "about": "Rencontrez Chef Meemz : votre chef à domicile pour le batch cooking, les dîners privés et les cours de cuisine à Montpellier.",
     "faq": "Les réponses aux questions les plus fréquentes : commande, conservation, allergies, livraison et paiement.",
     "contact": "Parlez-nous de votre semaine : dites-nous la date, le nombre de convives et vos envies, nous répondons sous un jour ouvré.",
     "portfolio": "Nos réalisations récentes : repas de la semaine, dîners et événements préparés pour nos clients.",
@@ -1457,7 +1423,7 @@
           ]
         },
         "chef": {
-          "name": "Chef privé & expériences",
+          "name": "Chef privé à domicile",
           "steps": [
             { "title": "Accusé de réception", "text": "Votre demande est enregistrée et un accusé de réception vous est envoyé par e-mail." },
             { "title": "Notre appel sous 24h", "text": "Nous vous rappelons sous un jour ouvré pour parler de votre événement : date, invités, envies et contraintes alimentaires." },
@@ -1547,12 +1513,17 @@
         "z3": "Zone 3 : sur demande, supplément ou minimum de commande"
       },
       "sea": "Mer Méditerranée",
-      "note": "Carte schématique : les distances sont indicatives. Votre commune n'apparaît pas ? Écrivez-nous, nous étudions chaque demande."
+      "note": "Carte schématique : les distances sont indicatives. Une commune absente de la carte ou de la liste est desservie dès qu'elle se trouve dans la zone."
+    },
+    "callout": {
+      "title": "Votre ville ou village n'est pas cité ? Pas de souci.",
+      "text": "Les communes ci-dessous ne sont que des exemples. Du moment que vous habitez dans la zone d'intervention, autour de Montpellier, nous pouvons vous servir, même si votre commune n'apparaît pas dans la liste. Un doute ? Dites-nous où vous êtes, nous vous confirmons sous un jour ouvré.",
+      "link": "Vérifier ma commune"
     },
     "cities": {
       "kicker": "Villes desservies",
       "title": "Votre ville, et les communes autour",
-      "intro": "Chaque ville principale regroupe les communes proches que nous desservons. La pastille indique la zone de chaque commune.",
+      "intro": "Chaque ville principale regroupe des communes proches, à titre d'exemples : la liste n'est pas exhaustive. La pastille indique la zone de chaque commune.",
       "hubs": [
         {
           "title": "Montpellier",
@@ -1679,7 +1650,7 @@
     "cta": {
       "kicker": "Votre commune",
       "title": "Votre commune n'est pas listée ?",
-      "text": "Dites-nous où vous habitez, nous vous répondons sous un jour ouvré avec le déplacement et les disponibilités.",
+      "text": "Si vous êtes dans la zone, nous pouvons intervenir chez vous. Dites-nous où vous habitez : nous vous répondons sous un jour ouvré avec le déplacement et les disponibilités.",
       "button": "Demander un devis"
     }
   },
@@ -1882,6 +1853,18 @@
     }
   },
   "tarifsPage": {
+    "picker": {
+      "kicker": "Vos tarifs",
+      "title": "Pour quel service souhaitez-vous voir les tarifs ?",
+      "intro": "Choisissez un service : nous vous amenons directement à ses tarifs.",
+      "cta": "Voir les tarifs",
+      "from": "Dès",
+      "batch": "Vos dîners de la semaine, cuisinés chez vous et prêts à réchauffer.",
+      "batchUnit": "par semaine",
+      "batchNote": "après crédit d'impôt de 50 %",
+      "chef": "Un dîner entre proches ou une fête, cuisiné et servi chez vous.",
+      "cours": "Un cours de cuisine à la maison, seul, en couple ou entre amis."
+    },
     "categories": {
       "label": "Tarifs",
       "link": "Découvrir ce service",

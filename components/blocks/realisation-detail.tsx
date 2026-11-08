@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { CalendarDays, Clock, MapPin, Quote, Users, UtensilsCrossed } from 'lucide-react'
-import { Cta, Heading, Shell } from '@/components/blocks/home-v2'
+import { CtaButton } from '@/components/blocks/cta-button'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Section } from '@/components/ui/section'
 import styles from './realisation-detail.module.css'
 
 type Img = { src: string; width: number; height: number; alt: string; unoptimized?: boolean }
@@ -28,10 +30,10 @@ export function Context(p: {
   children: React.ReactNode
 }) {
   return (
-    <Shell name="real-context">
+    <Section name="real-context">
       <div className={styles.contextLayout}>
         <div>
-          <Heading kicker={p.kicker} title={p.title} />
+          <SectionHeading kicker={p.kicker} title={p.title} />
           <div data-reveal="up" className={styles.contextBody}>
             {p.children}
           </div>
@@ -54,7 +56,7 @@ export function Context(p: {
           </dl>
         </aside>
       </div>
-    </Shell>
+    </Section>
   )
 }
 
@@ -62,8 +64,8 @@ export function Context(p: {
 export function MenuList(p: { kicker: string; title: string; items: string[] }) {
   if (p.items.length === 0) return null
   return (
-    <Shell name="real-menu" tone="beige">
-      <Heading kicker={p.kicker} title={p.title} />
+    <Section name="real-menu" tone="beige">
+      <SectionHeading kicker={p.kicker} title={p.title} />
       <ol className={styles.menu} data-reveal="up">
         {p.items.map((m, i) => (
           <li key={m} className={styles.menuItem}>
@@ -72,7 +74,7 @@ export function MenuList(p: { kicker: string; title: string; items: string[] }) 
           </li>
         ))}
       </ol>
-    </Shell>
+    </Section>
   )
 }
 
@@ -80,8 +82,8 @@ export function MenuList(p: { kicker: string; title: string; items: string[] }) 
 export function Photos(p: { kicker: string; title: string; photos: Img[] }) {
   if (p.photos.length === 0) return null
   return (
-    <Shell name="real-photos">
-      <Heading kicker={p.kicker} title={p.title} />
+    <Section name="real-photos">
+      <SectionHeading kicker={p.kicker} title={p.title} />
       <ul className={styles.photoList}>
         {p.photos.map((ph, i) => (
           <li key={ph.src + i} data-reveal="up" data-d={(i % 3) + 1} className={styles.photo}>
@@ -96,21 +98,21 @@ export function Photos(p: { kicker: string; title: string; photos: Img[] }) {
           </li>
         ))}
       </ul>
-    </Shell>
+    </Section>
   )
 }
 
 // Avis du client.
 export function ClientReview(p: { kicker: string; title: string; quote: string; author: string }) {
   return (
-    <Shell name="real-review" tone="beige">
-      <Heading kicker={p.kicker} title={p.title} />
+    <Section name="real-review" tone="beige">
+      <SectionHeading kicker={p.kicker} title={p.title} />
       <figure data-reveal="up" className={styles.review}>
         <Quote aria-hidden className={styles.reviewIcon} strokeWidth={1.5} />
         <blockquote className={styles.reviewQuote}>{p.quote}</blockquote>
         <figcaption className={styles.reviewAuthor}>{p.author}</figcaption>
       </figure>
-    </Shell>
+    </Section>
   )
 }
 
@@ -123,11 +125,11 @@ export function QuoteCta(p: {
   href: string
 }) {
   return (
-    <Shell name="real-cta">
+    <Section name="real-cta">
       <div className={styles.cta} data-reveal="up">
-        <Heading kicker={p.kicker} title={p.title} intro={p.text} />
-        <Cta href={p.href} label={p.button} />
+        <SectionHeading kicker={p.kicker} title={p.title} intro={p.text} />
+        <CtaButton href={p.href} label={p.button} />
       </div>
-    </Shell>
+    </Section>
   )
 }

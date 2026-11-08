@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import clsx from 'clsx'
-import { Switch } from '@/components/lead/switch'
-import { useLead } from '@/components/lead/lead-provider'
+import { Switch } from '@/components/ui/switch'
+import { useLead } from '@/components/features/lead/lead-provider'
 import {
   DINNERS,
   euro,
@@ -23,7 +23,7 @@ export type PackageCard = Pick<SampleMenu, 'icon' | 'label' | 'title' | 'tags'> 
   month: PerPeriod
 }
 
-type Props = {
+type BatchPackagesProps = {
   kicker: string
   title: string
   intro: string
@@ -57,7 +57,7 @@ export function BatchPackages({
   moreTemplate,
   labels,
   ...rest
-}: Props) {
+}: BatchPackagesProps) {
   const { open } = useLead()
   const [period, setPeriod] = useState<Period>('month')
   const [count, setCount] = useState<Dinners>(DINNERS[0])

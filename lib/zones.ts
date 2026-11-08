@@ -62,3 +62,10 @@ export function project(lat: number, lon: number) {
 
 export const center = project(43.611, 3.877)
 export const KM = 20 // pixels par kilomètre
+
+/** Couleur d'affichage de chaque zone (carte, pastilles, bandeaux). */
+export const ZONE_COLOR: Record<ZoneId, string> = {
+  z1: '#B04A2A',
+  z2: '#C9894A',
+  z3: '#8A8174',
+}

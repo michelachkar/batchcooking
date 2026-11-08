@@ -1,0 +1,209 @@
+/* Sélecteur de service du point d'entrée « devis » (<dialog> natif). */
+.root {
+  margin: auto;
+  width: min(560px, calc(100vw - 24px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  padding: 0;
+  border-width: 0;
+  border-radius: 20px;
+  background-color: var(--color-white);
+  box-shadow: 0 30px 80px rgb(47 43 38 / 0.35);
+  color: var(--color-ink);
+
+  &::backdrop {
+    background-color: rgb(47 43 38 / 0.62);
+  }
+
+  &[open] {
+    animation: dialogIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-block: 0.875rem;
+  padding-inline: 1.5rem 1rem;
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
+
+  @media (width < 768px) {
+    gap: 0.75rem;
+    padding-inline: 1.25rem 0.875rem;
+  }
+}
+
+.headerIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: calc(infinity * 1px);
+  background-color: rgb(255 255 255 / 0.18);
+}
+
+.headerIconSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.headerText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.headerTitle {
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.headerSub {
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgb(250 247 242 / 0.82);
+}
+
+.panel {
+  padding-top: 1.5rem;
+  padding-inline: 2.25rem;
+  padding-bottom: 2rem;
+
+  @media (width < 768px) {
+    padding-inline: 1.25rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
+.close {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-left: auto;
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: calc(infinity * 1px);
+  background-color: rgb(255 255 255 / 0.12);
+  color: var(--color-ivory);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: rgb(255 255 255 / 0.28);
+    }
+  }
+}
+
+.closeIcon {
+  width: 18px;
+  height: 18px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
+  @media (width < 768px) {
+    font-size: 24px;
+  }
+}
+
+.intro {
+  margin-block: 0.5rem 1.25rem;
+  color: var(--color-ink-88);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.service {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--color-sand);
+  border-radius: 14px;
+  background-color: rgb(240 235 227 / 0.5);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      border-color: var(--color-forest);
+      background-color: var(--color-white);
+    }
+  }
+}
+
+.serviceIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.serviceIconSvg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.serviceBody {
+  min-width: 0;
+}
+
+.serviceTitle {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.serviceText {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-ink-88);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+}

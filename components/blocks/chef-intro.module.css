@@ -1,5 +1,5 @@
 .root {
-  background-color: #fff;
+  background-color: var(--color-white);
 
   @media (width < 1025px) {
     padding-top: 18px;
@@ -12,7 +12,7 @@
 
 .band {
   padding-inline: 2.5rem;
-  background-color: #fff;
+  background-color: var(--color-white);
 
   @media (width < 1025px) {
     padding-inline: 26px;

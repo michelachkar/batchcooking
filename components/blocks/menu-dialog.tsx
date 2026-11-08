@@ -4,11 +4,16 @@ import { useRef } from 'react'
 import { ArrowIcon } from '@/components/ui/icon'
 import styles from './menu-dialog.module.css'
 
-type Props = { label: string; closeLabel: string; title: string; children: React.ReactNode }
+type MenuDialogProps = {
+  label: string
+  closeLabel: string
+  title: string
+  children: React.ReactNode
+}
 
 // Bouton + fenêtre native <dialog> : Échap, focus et piège de focus sont gérés par le navigateur.
 // Le contenu (menu complet) est rendu côté serveur ; seul l'ouverture et la fermeture passent par le client.
-export function MenuDialog({ label, closeLabel, title, children }: Props) {
+export function MenuDialog({ label, closeLabel, title, children }: MenuDialogProps) {
   const ref = useRef<HTMLDialogElement>(null)
   return (
     <>

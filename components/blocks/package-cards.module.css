@@ -45,7 +45,7 @@
   flex-direction: column;
   padding: 2rem;
   border-radius: 18px;
-  background-color: #fff;
+  background-color: var(--color-white);
 
   @media (width < 768px) {
     padding: 1.5rem;
@@ -58,8 +58,8 @@
 }
 
 .cardLight {
-  border: 1px solid #e3d9cc;
-  box-shadow: 0 10px 30px rgba(85, 80, 68, 0.08);
+  border: 1px solid var(--color-sand);
+  box-shadow: 0 10px 30px var(--color-ink-08);
 }
 
 .cardDark {
@@ -96,7 +96,7 @@
   margin-top: 1rem;
   font-size: 16px;
   line-height: 1.65;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .facts {
@@ -105,8 +105,8 @@
   gap: 0.75rem;
   margin-top: 1.25rem;
   padding-block: 1rem;
-  border-color: #e3d9cc;
-  border-block: 1px solid #e3d9cc;
+  border-color: var(--color-sand);
+  border-block: 1px solid var(--color-sand);
 
   @media (width < 768px) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -203,7 +203,7 @@
   margin-top: 1.25rem;
   font-size: 15px;
   line-height: 1.5;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .idealLabel {
@@ -227,7 +227,7 @@
 
 .from {
   font-size: 14px;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .price {
@@ -239,5 +239,5 @@
 .priceNote {
   font-size: 15px;
   font-weight: 400;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }

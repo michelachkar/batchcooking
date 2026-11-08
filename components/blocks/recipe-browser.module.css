@@ -6,7 +6,7 @@
   gap: 1rem 2rem;
   margin-bottom: 1.5rem;
   border-bottom: 1px solid;
-  border-color: #e3d9cc;
+  border-color: var(--color-sand);
 }
 
 .tabs {
@@ -22,20 +22,20 @@
   border-color: transparent;
   font-size: 16px;
   font-weight: 600;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
   transition:
     color 0.2s ease,
     border-color 0.2s ease;
 
   @media (hover: hover) {
     &:hover {
-      color: rgb(85 80 68);
+      color: var(--color-ink);
     }
   }
 
   &[aria-pressed='true'] {
-    border-color: #b04a2a;
-    color: #b04a2a;
+    border-color: var(--color-forest);
+    color: var(--color-forest);
   }
 }
 
@@ -49,23 +49,23 @@
 .count {
   margin-bottom: 1.5rem;
   font-size: 16px;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .reset {
   margin-left: 0.75rem;
   font-weight: 600;
   text-decoration-line: underline;
-  color: #b04a2a;
+  color: var(--color-forest);
 }
 
 .empty {
   padding: 2rem;
-  border: 1px solid #e3d9cc;
+  border: 1px solid var(--color-sand);
   border-radius: 18px;
   font-size: 17px;
   text-align: center;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .list {
@@ -86,16 +86,16 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #e3d9cc;
+  border: 1px solid var(--color-sand);
   border-radius: 18px;
-  background-color: #fff;
+  background-color: var(--color-white);
   box-shadow: 0 10px 30px rgb(85 80 68 / 0.06);
 }
 
 .media {
   position: relative;
   aspect-ratio: 4 / 3;
-  background-color: #2f2b26;
+  background-color: var(--color-footer);
 }
 
 .image {
@@ -123,7 +123,7 @@
   line-height: 1rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #b04a2a;
+  color: var(--color-forest);
 }
 
 .cost {
@@ -133,7 +133,7 @@
 }
 
 .costOn {
-  color: #b04a2a;
+  color: var(--color-forest);
 }
 
 .costOff {
@@ -145,19 +145,19 @@
   font-size: 22px;
   font-weight: 600;
   line-height: 1.2;
-  color: rgb(85 80 68);
+  color: var(--color-ink);
 }
 
 .description {
   font-size: 16px;
   line-height: 1.6;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .ingredients {
   font-size: 15px;
   line-height: 1.5;
-  color: rgb(85 80 68);
+  color: var(--color-ink);
 }
 
 .diets {
@@ -197,7 +197,7 @@
   width: 1rem;
   height: 1rem;
   margin-top: 0.125rem;
-  color: #b04a2a;
+  color: var(--color-forest);
 }
 
 .facts {
@@ -206,7 +206,7 @@
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid;
-  border-color: #e3d9cc;
+  border-color: var(--color-sand);
   font-size: 14px;
   color: rgb(85 80 68 / 0.92);
 }
@@ -221,7 +221,7 @@
   flex: none;
   width: 1rem;
   height: 1rem;
-  color: #b04a2a;
+  color: var(--color-forest);
 }
 
 .srOnly {
@@ -240,5 +240,5 @@
   margin-top: 2rem;
   font-size: 15px;
   line-height: 1.6;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }

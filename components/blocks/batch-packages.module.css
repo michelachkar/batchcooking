@@ -33,10 +33,10 @@
 .caption {
   font-size: 14px;
   font-weight: 600;
-  color: rgba(85, 80, 68, 0.88);
+  color: var(--color-ink-88);
 }
 
 /* Sur le bandeau terracotta */
 .onDark {
-  color: #fff;
+  color: var(--color-white);
 }

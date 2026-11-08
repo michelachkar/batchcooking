@@ -17,7 +17,7 @@ export type ExperienceCard = {
   alt: string
 }
 
-type Props = {
+type ExperienceCardsProps = {
   kicker: string
   title: string
   intro: string
@@ -27,7 +27,13 @@ type Props = {
 
 // Cartes d'expériences : grandes cartes photo (3 colonnes, 2 en tablette, 1 en mobile), reprises du widget « experience-cards ».
 // Chaque carte est cliquable en entier via le lien (zone étirée).
-export function ExperienceCards({ kicker, title, intro, cards, tone = 'white' }: Props) {
+export function ExperienceCards({
+  kicker,
+  title,
+  intro,
+  cards,
+  tone = 'white',
+}: ExperienceCardsProps) {
   return (
     <section
       data-section="experiences"

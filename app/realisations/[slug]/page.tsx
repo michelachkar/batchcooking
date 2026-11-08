@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { Heading, Shell } from '@/components/blocks/home-v2'
+import { PageHead } from '@/components/layout/page-head'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Section } from '@/components/ui/section'
 import { RealisationCard } from '@/components/blocks/realisation-card'
 import {
   ClientReview,
@@ -129,14 +130,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
         href={QUOTE[data.service]}
       />
       {related.length > 0 && (
-        <Shell name="real-related" tone="beige">
-          <Heading kicker={r('related.kicker')} title={r('related.title')} />
+        <Section name="real-related" tone="beige">
+          <SectionHeading kicker={r('related.kicker')} title={r('related.title')} />
           <ul className={styles.related}>
             {related.map((e) => (
               <RealisationCard key={e.slug} r={toRealisationCard(e, services)} />
             ))}
           </ul>
-        </Shell>
+        </Section>
       )}
     </main>
   )

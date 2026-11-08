@@ -1,0 +1,93 @@
+/* BatchIntro : définition, points forts et photo */
+.introGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 3.5rem;
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.introText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.introParagraph {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-ink-88);
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-bottom: 2rem;
+}
+
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.highlightMark {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-forest);
+  color: var(--color-white);
+}
+
+.highlightIcon {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.5rem;
+  row-gap: 1rem;
+}
+
+.secondaryLink {
+  padding-bottom: 0.25rem;
+  border-color: var(--color-forest);
+  border-bottom: 1px solid var(--color-forest);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+.photo {
+  position: relative;
+  aspect-ratio: 4/5;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  background-color: rgb(240 235 227 / 1);
+
+  @media (width < 1025px) {
+    max-width: 460px;
+  }
+}
+
+.photoImage {
+  object-fit: cover;
+  object-position: 68% center;
+}

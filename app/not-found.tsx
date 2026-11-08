@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
+import { PageHead } from '@/components/layout/page-head'
 import { media } from '@/lib/media'
 import clsx from 'clsx'
 import styles from './not-found.module.css'

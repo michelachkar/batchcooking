@@ -12,7 +12,7 @@
 }
 
 .white {
-  background-color: #fff;
+  background-color: var(--color-white);
 }
 
 .beige {
@@ -25,11 +25,10 @@
 
 .inner {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  column-gap: 2.5rem;
-  row-gap: 1.25rem;
+  gap: 1.25rem;
+  text-align: center;
   max-width: var(--container-site);
   margin-inline: auto;
   padding-top: 72px;
@@ -41,8 +40,10 @@
 
 .intro {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1.25rem;
+  max-width: 46rem;
 }
 
 .badge {
@@ -89,7 +90,7 @@
   margin-top: 0.5rem;
   font-size: 16px;
   line-height: 1.5;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .link {

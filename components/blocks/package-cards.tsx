@@ -1,6 +1,8 @@
 import { Check, Clock, GraduationCap, Users } from 'lucide-react'
 import clsx from 'clsx'
-import { Cta, Heading, Shell } from '@/components/blocks/home-v2'
+import { CtaButton } from '@/components/blocks/cta-button'
+import { SectionHeading } from '@/components/ui/section-heading'
+import { Section } from '@/components/ui/section'
 import styles from './package-cards.module.css'
 
 export type Package = {
@@ -48,8 +50,10 @@ export function PackageCards(p: {
       { Icon: GraduationCap, label: p.labels.level, value: c.level },
     ] as const
   return (
-    <Shell name={p.name} tone={p.tone ?? 'beige'}>
-      {!p.hideHeader && <Heading kicker={p.kicker} title={p.title} intro={p.intro} light={dark} />}
+    <Section name={p.name} tone={p.tone ?? 'beige'}>
+      {!p.hideHeader && (
+        <SectionHeading kicker={p.kicker} title={p.title} intro={p.intro} light={dark} />
+      )}
       <ul
         className={clsx(
           styles.list,
@@ -122,11 +126,15 @@ export function PackageCards(p: {
                   {c.price} <span className={styles.priceNote}>{c.priceNote}</span>
                 </strong>
               </p>
-              <Cta href={p.cta.href} label={p.cta.label} attrs={{ 'data-quote-choice': c.value }} />
+              <CtaButton
+                href={p.cta.href}
+                label={p.cta.label}
+                attrs={{ 'data-quote-choice': c.value }}
+              />
             </div>
           </li>
         ))}
       </ul>
-    </Shell>
+    </Section>
   )
 }

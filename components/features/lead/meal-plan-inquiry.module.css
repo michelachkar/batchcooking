@@ -1,0 +1,179 @@
+/* Demande rapide « batch cooking » : foyer, repas par semaine, téléphone. */
+.root {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -22px;
+  padding-top: 22px;
+  padding-bottom: 44px;
+  /* mêmes marges latérales que les autres sections (Shell), sinon la carte touche les bords de l'écran */
+  padding-inline: 2.5rem;
+  background-color: var(--color-cream);
+
+  @media (width < 1025px) {
+    padding-inline: 26px;
+  }
+
+  @media (width < 768px) {
+    padding-top: 14px;
+    padding-inline: 1rem;
+  }
+}
+
+/* même motif d'aliments en filigrane que le hero */
+.root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url('/assets/patterns/food.svg');
+  background-size: 420px 420px;
+  opacity: 0.1;
+
+  @media (width < 768px) {
+    background-size: 320px 320px;
+  }
+}
+
+.inner {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: minmax(170px, 1.05fr) repeat(3, minmax(0, 1fr)) auto;
+  align-items: flex-end;
+  gap: 1rem;
+  padding-block: 22px;
+  padding-right: 22px;
+  padding-left: 30px;
+  border: 1px solid var(--color-sand);
+  border-radius: 18px;
+  background-color: var(--color-white);
+  box-shadow: 0 22px 50px rgb(47 43 38 / 0.07);
+  transition:
+    box-shadow 0.4s ease,
+    border-color 0.4s ease;
+
+  @media (width < 1025px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 22px;
+  }
+
+  @media (width < 768px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 14px;
+    padding-inline: 18px;
+    padding-block: 1.25rem;
+  }
+
+  &:focus-within {
+    border-color: var(--color-blush);
+    box-shadow: 0 28px 60px rgb(47 43 38 / 0.11);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-blush);
+      box-shadow: 0 28px 60px rgb(47 43 38 / 0.11);
+    }
+  }
+}
+
+.intro {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  gap: 14px;
+
+  @media (width < 1025px) {
+    grid-column: 1 / -1;
+  }
+}
+
+.badge {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 14px;
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Sur-titre du formulaire. */
+.kicker {
+  color: var(--color-forest);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.title {
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 54px;
+  padding-inline: 1.75rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-forest);
+  color: var(--color-ivory);
+  font-size: 1rem;
+  line-height: 1;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s ease,
+    translate 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 0.3s ease;
+
+  @media (width < 1025px) {
+    grid-column: 1 / -1;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -0.125rem;
+      background-color: var(--color-forest-dark);
+      box-shadow: 0 12px 24px rgb(176 74 42 / 0.3);
+    }
+  }
+
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 3px;
+    outline-color: var(--color-forest);
+  }
+}
+
+.submitArrow {
+  transition: translate 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  @media (hover: hover) {
+    .submit:hover & {
+      translate: 5px 0;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
+import { PageHead } from '@/components/layout/page-head'
 import { RecipeBrowser, type RecipeCard } from '@/components/blocks/recipe-browser'
 import { recipes } from '@/lib/recipes'
 import { ArrowIcon } from '@/components/ui/icon'

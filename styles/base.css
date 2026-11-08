@@ -3,6 +3,12 @@
   html {
     -webkit-text-size-adjust: 100%;
   }
+  /* Liens d'ancre (ex. choix du service sur la page Tarifs) : défilement doux, sauf préférence contraire. */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
   body {
     font-family: var(--font-sans);
     font-size: 16px;

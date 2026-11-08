@@ -1,5 +1,5 @@
 import styles from './faq-themes.module.css'
-import { Shell } from '@/components/blocks/home-v2'
+import { Section } from '@/components/ui/section'
 
 // Intro de la FAQ et liens vers chaque thème.
 export function FaqThemes(p: {
@@ -8,7 +8,7 @@ export function FaqThemes(p: {
   themes: { id: string; label: string }[]
 }) {
   return (
-    <Shell name="faq-themes">
+    <Section name="faq-themes">
       <div className={styles.root} data-reveal="up">
         <p className={styles.intro}>{p.intro}</p>
         <nav aria-label={p.label}>
@@ -23,6 +23,6 @@ export function FaqThemes(p: {
           </ul>
         </nav>
       </div>
-    </Shell>
+    </Section>
   )
 }

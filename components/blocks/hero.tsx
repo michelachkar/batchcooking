@@ -1,19 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { BadgePercent } from 'lucide-react'
-import { LeadTrigger } from '@/components/lead/lead-trigger'
+import { MapPin } from 'lucide-react'
+import { LeadTrigger } from '@/components/features/lead/lead-trigger'
 import { ArrowIcon } from '@/components/ui/icon'
-import { RevealObserver } from '@/components/blocks/reveal-observer'
+import { RevealObserver } from '@/components/ui/reveal-observer'
+import { TrustBar } from '@/components/blocks/trust-bar'
 import styles from './hero.module.css'
 import {
   CreditDialog,
   CreditNote,
-  CreditTrigger,
   type CreditDialogTexts,
   type CreditNoteTexts,
 } from '@/components/blocks/credit-note'
 
-export type HeroPhoto = { src: string; width: number; height: number; alt: string }
+export type HeroPhoto = { src: string; width: number; height: number; alt: string; badge?: string }
 
 // CTA principal : lien classique, ou déclencheur du modal de demande de rappel.
 function PrimaryTag({
@@ -26,13 +26,16 @@ function PrimaryTag({
 
 type Cta = { label: string; href: string }
 
-type Props = {
+type HeroProps = {
   headline: string
   accent: string
   description: string
   gallery?: HeroPhoto[]
   tagline?: string[]
+  googleReviews?: string
   taxCredit?: string
+  /** Une phrase discrète sur la zone desservie, avec un lien vers la page Zones. */
+  zone?: { text: string; label: string; href: string }
   creditNote?: { note: CreditNoteTexts; dialog: CreditDialogTexts }
   /** `lead` : le CTA ouvre le modal de demande de rappel (href sert de repli sans JavaScript). */
   primary: Cta & { lead?: boolean }
@@ -48,12 +51,14 @@ export function Hero({
   description,
   gallery,
   tagline,
+  googleReviews,
   taxCredit,
+  zone,
   creditNote,
   primary,
   secondary,
   image,
-}: Props) {
+}: HeroProps) {
   return (
     <section data-section="hero" className={styles.root}>
       <RevealObserver />
@@ -62,30 +67,32 @@ export function Hero({
       </noscript>
       <div className={styles.frame}>
         <div className={styles.content}>
-          {taxCredit && (
-            <div className={styles.topBar}>
-              <CreditTrigger className={styles.taxCredit}>
-                <BadgePercent aria-hidden className={styles.taxCreditIcon} strokeWidth={1.75} />
-                {taxCredit}
-              </CreditTrigger>
-            </div>
+          {googleReviews && (
+            <TrustBar
+              googleReviews={googleReviews}
+              taxCredit={taxCredit}
+              className={styles.topBar}
+            />
           )}
           <h1 className={styles.title}>
             <em className={styles.accent}>{accent}</em>
             {headline}
           </h1>
-          {tagline?.length ? (
-            <p className={styles.tagline}>
-              {tagline.map((w) => (
-                <span key={w} className={styles.taglineItem}>
-                  {w}
-                </span>
-              ))}
-            </p>
-          ) : null}
+          {zone && (
+            <div className={styles.zone}>
+              <p className={styles.zoneText}>
+                <MapPin aria-hidden className={styles.zoneIcon} strokeWidth={1.75} />
+                {zone.text}
+              </p>
+              <Link href={zone.href} className={styles.zoneLink}>
+                {zone.label}
+                <ArrowIcon className={styles.zoneArrow} />
+              </Link>
+            </div>
+          )}
           {gallery?.length ? (
             <ul className={styles.gallery}>
-              {gallery.map(({ alt, ...img }, i) => (
+              {gallery.map(({ alt, badge, ...img }, i) => (
                 <li
                   key={img.src + i}
                   data-reveal="up"
@@ -98,6 +105,7 @@ export function Hero({
                     sizes="(min-width: 1025px) 15vw, 30vw"
                     className={styles.galleryImg}
                   />
+                  {badge && <span className={styles.galleryBadge}>{badge}</span>}
                 </li>
               ))}
             </ul>

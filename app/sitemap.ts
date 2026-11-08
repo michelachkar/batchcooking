@@ -27,6 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     entry('/', pageDate('')),
     entry('/services', pageDate('services', services)),
+    entry('/a-propos', pageDate('a-propos')),
     entry('/zones', pageDate('zones')),
     entry('/tarifs', pageDate('tarifs')),
     entry('/faq', pageDate('faq')),

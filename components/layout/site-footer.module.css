@@ -1,0 +1,419 @@
+.root {
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+}
+
+/* ---------- Bandeau d'appel à l'action ---------- */
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding-inline: 1rem;
+  padding-block: 2.5rem;
+  background-image: linear-gradient(120deg, var(--color-forest) 0%, #8f3b20 100%);
+  color: var(--color-cream);
+
+  @media (width >= 768px) {
+    padding-inline: 1.75rem;
+    padding-block: 3rem;
+  }
+  @media (width >= 1025px) {
+    padding-inline: 2.5rem;
+    padding-block: 4rem;
+  }
+}
+
+/* rayures (masquées à gauche) et halo */
+.stripes,
+.halo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.stripes {
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.06) 0 1px,
+    transparent 1px 14px
+  );
+  mask-image: linear-gradient(90deg, transparent 0%, #000 55%, #000 100%);
+}
+
+.halo {
+  background-image: radial-gradient(circle at 88% 50%, rgb(255 255 255 / 0.14) 0%, transparent 45%);
+}
+
+.ctaInner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  max-width: var(--container-site);
+  margin-inline: auto;
+
+  @media (width >= 1025px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+  }
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 768px;
+  padding: 10px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  line-height: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--color-sage-soft);
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: 45px;
+  line-height: 56px;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-white);
+
+  @media (width >= 1025px) {
+    font-size: 68px;
+    line-height: 68px;
+  }
+}
+
+.ctaLead {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 27.2px;
+  color: color-mix(in oklab, var(--color-white) 78%, transparent);
+}
+
+.ctaButtons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+
+  @media (width >= 1025px) {
+    justify-content: flex-end;
+  }
+}
+
+/* ---------- Colonnes ---------- */
+.columns {
+  padding-inline: 1rem;
+  border-bottom: 1px solid;
+  border-color: color-mix(in oklab, var(--color-ink) 10%, transparent);
+
+  @media (width >= 768px) {
+    padding-inline: 1.75rem;
+  }
+  @media (width >= 1025px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: var(--container-site);
+  margin-inline: auto;
+
+  @media (width >= 1025px) {
+    grid-template-columns: 409px 225px 224px 462px;
+  }
+}
+
+/* colonne de base : 20 px de titre en dessous de 1025 px, filet bas en mobile/tablette */
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 42px;
+  padding-block: 2rem;
+  border-bottom: 1px solid;
+  border-color: color-mix(in oklab, var(--color-ink) 10%, transparent);
+
+  @media (width >= 768px) {
+    padding-inline: 1.5rem;
+    padding-block: 2.5rem;
+  }
+  @media (width >= 1025px) {
+    padding-inline: 2rem;
+    padding-block: 3.5rem;
+    border-bottom-width: 0;
+  }
+}
+
+.colAbout {
+  grid-column: span 2 / span 2;
+  gap: 1.25rem;
+
+  @media (width >= 1025px) {
+    grid-column: span 1 / span 1;
+    padding-right: 2rem;
+    padding-left: 0;
+    border-right-width: 1px;
+  }
+}
+
+.colServices {
+  padding-right: 0.75rem;
+
+  @media (width >= 768px) {
+    padding-right: 1.5rem;
+  }
+  @media (width >= 1025px) {
+    padding-right: 2rem;
+  }
+}
+
+.colCompany {
+  @media (width >= 1025px) {
+    border-right-width: 1px;
+  }
+}
+
+.colVisit {
+  grid-column: span 2 / span 2;
+  border-bottom-width: 0;
+
+  @media (width >= 768px) {
+    grid-column: span 1 / span 1;
+  }
+}
+
+.logo {
+  font-size: 36px;
+  color: var(--color-ink);
+}
+
+.about {
+  max-width: 376px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 25.5px;
+  color: color-mix(in oklab, var(--color-ink) 80%, transparent);
+
+  @media (width >= 768px) {
+    max-width: none;
+  }
+  @media (width >= 1025px) {
+    max-width: 376px;
+  }
+}
+
+.social {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 14px;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 43.5px;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 10%, transparent);
+  border-radius: calc(infinity * 1px);
+  color: color-mix(in oklab, var(--color-ink) 90%, transparent);
+  transition-property:
+    color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 300ms;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-forest);
+      color: var(--color-forest);
+    }
+  }
+}
+
+/* titres de colonne : 20 px en dessous de 1025 px (h4 du thème), 13 px au-dessus */
+.heading {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+
+  @media (width >= 1025px) {
+    font-size: 13px;
+    line-height: 0.75rem;
+  }
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  color: color-mix(in oklab, var(--color-ink) 90%, transparent);
+}
+
+.linkItem {
+  padding-bottom: 7px;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+/* liens des colonnes (`footer .menu .menu-item a` du thème) : transition 250 ms ease */
+.link {
+  transition-property:
+    color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 250ms;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-forest);
+    }
+  }
+}
+
+.visitList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 16px;
+  line-height: 22.5px;
+  font-weight: 500;
+  color: color-mix(in oklab, var(--color-ink) 90%, transparent);
+}
+
+.visitItem {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 0.5rem;
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.visitIcon {
+  flex-shrink: 0;
+  color: var(--color-forest);
+}
+
+/* ---------- Filigrane : le nom en contour, rogné par le bas ---------- */
+.watermark {
+  height: 82.5px;
+  padding-top: 1.75rem;
+  overflow: hidden;
+  text-align: center;
+
+  @media (width >= 768px) {
+    height: 159.7px;
+    padding-top: 3rem;
+  }
+  @media (width >= 1025px) {
+    height: 257.4px;
+  }
+}
+
+.watermarkText {
+  font-family: var(--font-display);
+  font-size: 56px;
+  line-height: 67.275px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 2px rgb(176 74 42 / 0.35);
+
+  @media (width >= 768px) {
+    font-size: 112px;
+    line-height: 137.78px;
+  }
+  @media (width >= 1025px) {
+    font-size: 200px;
+    line-height: 258.336px;
+  }
+}
+
+/* ---------- Ligne basse ---------- */
+.bottom {
+  padding-inline: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 29px;
+  font-size: 14px;
+  line-height: 13px;
+  font-weight: 500;
+
+  @media (width >= 768px) {
+    display: flex;
+    align-items: center;
+    height: 68.5px;
+    padding-inline: 1.75rem;
+    padding-block: 0;
+  }
+  @media (width >= 1025px) {
+    height: 73px;
+    padding-inline: 2.5rem;
+  }
+}
+
+.bottomInner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+
+  @media (width >= 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.rights {
+  letter-spacing: 0.2px;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.75rem;
+  color: color-mix(in oklab, var(--color-ink) 70%, transparent);
+}
+
+.legalLink {
+  line-height: 19.5px;
+  transition-property:
+    color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: ease;
+  transition-duration: 300ms;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-forest);
+    }
+  }
+}
+
+.crafted {
+  letter-spacing: 0.2px;
+  color: var(--color-forest);
+}

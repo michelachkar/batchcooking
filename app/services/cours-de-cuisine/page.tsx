@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
-import { PageHead } from '@/components/blocks/page-head'
-import { BatchIntro } from '@/components/blocks/batch-page'
-import { QuickInquiry } from '@/components/blocks/quick-inquiry'
-import { FormulaCards, Practical } from '@/components/blocks/chef-page'
+import { PageHead } from '@/components/layout/page-head'
+import { ServiceIntro } from '@/components/blocks/service-intro'
+import { CallbackInquiry } from '@/components/features/lead/callback-inquiry'
+import { FormulaCards } from '@/components/blocks/formula-cards'
+import { PracticalInfo } from '@/components/blocks/practical-info'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { serviceNode } from '@/lib/jsonld'
@@ -58,7 +59,7 @@ export default async function CoursDeCuisinePage() {
         background={media.heads.service}
         cta={{ label: c('intro.primary'), href: book }}
       />
-      <BatchIntro
+      <ServiceIntro
         kicker={c('intro.kicker')}
         title={c('intro.title')}
         paragraphs={c.raw('intro.paragraphs') as string[]}
@@ -68,30 +69,21 @@ export default async function CoursDeCuisinePage() {
         image={{ src: '/assets/hero/chef.jpg', alt: c('intro.imageAlt') }}
         lead={false}
       />
-      <QuickInquiry
+      <CallbackInquiry
         kicker={q('kicker')}
         title={q('title')}
         action="/contact#inquiry"
         dateLabel={q('dateLabel')}
-        guestsLabel=""
-        guestsPlaceholder=""
-        guestsOptions={[]}
-        locationLabel=""
-        locationPlaceholder=""
         button={q('button')}
         pattern
-        lead={{
-          source: 'course-form',
-          selectKey: 'choice',
-          fixedService: 'cours',
-          serviceLabel: q('serviceLabel'),
-          servicePlaceholder: q('servicePlaceholder'),
-          serviceOptions: ideas.map((i) => ({ value: i.value, label: i.title })),
-          phoneLabel: q('phoneLabel'),
-          phonePlaceholder: q('phonePlaceholder'),
-          success: q('success'),
-          error: q('error'),
-        }}
+        source="course-form"
+        selectKey="choice"
+        fixedService="cours"
+        serviceLabel={q('serviceLabel')}
+        servicePlaceholder={q('servicePlaceholder')}
+        serviceOptions={ideas.map((i) => ({ value: i.value, label: i.title }))}
+        phoneLabel={q('phoneLabel')}
+        phonePlaceholder={q('phonePlaceholder')}
       />
       <div id="tarifs" className={styles.anchor} />
       <PackageCards
@@ -110,7 +102,7 @@ export default async function CoursDeCuisinePage() {
         items={ideas}
         cta={{ label: c('ideas.button'), href: book }}
       />
-      <Practical
+      <PracticalInfo
         tone="beige"
         columns={2}
         kicker={c('provided.kicker')}

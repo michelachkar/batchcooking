@@ -1,6 +1,6 @@
 .section {
   padding-inline: 2.5rem;
-  background-color: #fff;
+  background-color: var(--color-white);
 
   @media (width < 1025px) {
     padding-inline: 26px;
@@ -26,7 +26,7 @@
   margin-bottom: 2.5rem;
   font-size: 17px;
   line-height: 1.65;
-  color: rgb(85 80 68 / 0.88);
+  color: var(--color-ink-88);
 }
 
 .cta {
@@ -47,11 +47,11 @@
   gap: 0.75rem;
   padding: 16px 30px;
   border-radius: var(--radius-pill);
-  background-color: #b04a2a;
+  background-color: var(--color-forest);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1;
-  color: #fff;
+  color: var(--color-white);
 
   @media (hover: hover) {
     &:hover {

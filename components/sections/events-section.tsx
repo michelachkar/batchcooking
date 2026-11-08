@@ -16,6 +16,7 @@ export async function EventsSection() {
       highlight={ev('highlight')}
       description={ev('description')}
       projects={projects}
+      cta={{ label: ev('cta'), href: ev('ctaHref') }}
       carouselLabels={{ prev: ev('prev'), next: ev('next'), navigation: ev('navigation') }}
     />
   )

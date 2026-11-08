@@ -1,0 +1,104 @@
+.wrap {
+  overflow: hidden;
+  border-radius: 18px;
+  background-color: var(--color-white);
+  box-shadow: 0 10px 30px var(--color-ink-08);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+
+  /* Cartes empilées en mobile */
+  @media (width < 768px) {
+    display: block;
+  }
+}
+
+.head {
+  @media (width < 768px) {
+    display: none;
+  }
+}
+
+.corner {
+  width: 18%;
+  padding: 1.25rem;
+}
+
+.columnHead {
+  padding: 1.25rem;
+  border-color: var(--color-sand-light);
+  border-left: 1px solid var(--color-sand-light);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.body {
+  @media (width < 768px) {
+    display: block;
+  }
+}
+
+.row {
+  border-color: var(--color-sand-light);
+  border-top: 1px solid var(--color-sand-light);
+
+  @media (width < 768px) {
+    display: block;
+    padding: 1.25rem;
+  }
+}
+
+.rowLabel {
+  padding: 1.25rem;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+
+  @media (width < 768px) {
+    display: block;
+    padding: 0;
+    padding-bottom: 0.75rem;
+  }
+}
+
+.cell {
+  padding: 1.25rem;
+  border-color: var(--color-sand-light);
+  border-left: 1px solid var(--color-sand-light);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-ink-88);
+
+  @media (width < 768px) {
+    display: block;
+    padding: 0;
+    padding-bottom: 0.75rem;
+    border-left-width: 0;
+  }
+}
+
+/* Nom de la colonne, visible seulement en cartes empilées */
+.cellLabel {
+  display: none;
+  margin-bottom: 0.125rem;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-ink);
+
+  @media (width < 768px) {
+    display: block;
+  }
+}
+
+.note {
+  margin-top: 1rem;
+  font-size: 15px;
+  color: var(--color-ink-88);
+}

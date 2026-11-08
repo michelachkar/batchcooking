@@ -1,0 +1,105 @@
+/* barre transparente au-dessus du titre : avis Google + crédit d'impôt */
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+  align-self: center;
+  padding-block: 0.5rem;
+  padding-inline: 0.75rem 1.25rem;
+  border: 1px solid color-mix(in oklab, var(--color-ink) 15%, transparent);
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in oklab, var(--color-ink) 4%, transparent);
+
+  @media (width < 768px) {
+    gap: 0.5rem 0.875rem;
+    padding-inline: 0.5rem 1rem;
+  }
+}
+
+.topBarDivider {
+  width: 1px;
+  height: 1.75rem;
+  background-color: color-mix(in oklab, var(--color-ink) 20%, transparent);
+
+  @media (width < 480px) {
+    display: none;
+  }
+}
+
+.taxCredit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-forest);
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-forest) 40%, transparent);
+  text-underline-offset: 4px;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration-color: currentcolor;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+}
+
+.taxCreditIcon {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.google {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.googleLogo {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: calc(infinity * 1px);
+  background-color: var(--color-white);
+}
+
+.googleSvg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.googleRating {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.stars {
+  font-size: 16px;
+  line-height: 1;
+  letter-spacing: 3px;
+  color: #fbbc05;
+}
+
+.googleText {
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--color-ink);
+}

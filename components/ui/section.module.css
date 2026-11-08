@@ -1,0 +1,37 @@
+.shell {
+  padding-inline: 2.5rem;
+
+  @media (width < 1025px) {
+    padding-inline: 26px;
+  }
+
+  @media (width < 768px) {
+    padding-inline: 1rem;
+  }
+}
+
+.white {
+  background-color: var(--color-white);
+}
+
+.beige {
+  background-color: rgba(240, 235, 227, 1);
+}
+
+.terracotta {
+  background-color: var(--color-forest);
+}
+
+.shellInner {
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-block: 64px;
+
+  @media (width < 1025px) {
+    padding-block: 52px;
+  }
+
+  @media (width < 768px) {
+    padding-block: 2.5rem;
+  }
+}
