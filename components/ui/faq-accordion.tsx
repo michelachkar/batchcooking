@@ -1,3 +1,4 @@
+import { rich } from '@/components/ui/rich-text'
 import styles from './faq-accordion.module.css'
 
 export type FaqItem = { question: string; answer: string }
@@ -29,7 +30,7 @@ export function FaqAccordion({
             </svg>
           </summary>
           <div className={styles.answer}>
-            <p className={styles.answerText}>{item.answer}</p>
+            <p className={styles.answerText}>{rich(item.answer)}</p>
           </div>
         </details>
       ))}

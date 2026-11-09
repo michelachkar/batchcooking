@@ -632,3 +632,20 @@
     translate: none;
   }
 }
+
+/* Transparence légère une fois le header réduit : fond crème à 88 % et flou de l'arrière-plan. */
+.root[data-scrolled] {
+  background-color: transparent;
+
+  .mainbar,
+  .compact {
+    background-color: color-mix(in oklab, var(--color-cream) 88%, transparent);
+    -webkit-backdrop-filter: saturate(1.4) blur(12px);
+    backdrop-filter: saturate(1.4) blur(12px);
+  }
+}
+
+.mainbar,
+.compact {
+  transition: background-color 0.25s ease;
+}

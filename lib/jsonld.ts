@@ -73,6 +73,10 @@ export function webPage(o: {
   }
 }
 
+/** Texte brut d'un message : retire **gras** et [texte](lien). */
+const plain = (s: string) =>
+  s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*(.+?)\*\*/g, '$1')
+
 export function faqPage(items: { question: string; answer: string }[]): Node | null {
   if (items.length === 0) return null
   return {
@@ -80,7 +84,7 @@ export function faqPage(items: { question: string; answer: string }[]): Node | n
     mainEntity: items.map((q) => ({
       '@type': 'Question',
       name: q.question,
-      acceptedAnswer: { '@type': 'Answer', text: q.answer },
+      acceptedAnswer: { '@type': 'Answer', text: plain(q.answer) },
     })),
   }
 }
