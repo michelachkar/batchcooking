@@ -321,16 +321,16 @@
   }
 }
 
-/* Sous-menus : apparition en 200 ms, délai de 800 ms à la sortie.
+/* Sous-menus : apparition en 200 ms, délai de 150 ms à la sortie.
    La hauteur est rendue par un clip-path, le contenu ne bouge pas (overflow hidden). */
 .submenu {
   visibility: hidden;
   opacity: 0;
   clip-path: inset(0 0 100% 0);
   transition:
-    opacity 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.8s,
-    clip-path 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.8s,
-    visibility 0s linear 1s;
+    opacity 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.15s,
+    clip-path 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 0.15s,
+    visibility 0s linear 0.35s;
 
   @media (prefers-reduced-motion: reduce) {
     transition-delay: 0s;
@@ -349,4 +349,286 @@
 /* Après un clic sur un lien : fermeture immédiate, sans le délai de sortie. */
 .menuItem[data-closed] > .submenu {
   transition-delay: 0s;
+}
+
+/* Méga-menu « Services » : 3 cartes image + texte SEO, puis une barre de liens. */
+.submenu.mega {
+  left: 50%;
+  width: min(820px, 92vw);
+  padding: 24px;
+  border-radius: 0 0 var(--radius-dropdown) var(--radius-dropdown);
+  translate: -50% 0;
+}
+
+.menuItem:not([data-closed]):hover > .mega,
+.menuItem:not([data-closed]):focus-within > .mega {
+  clip-path: inset(0 -40px -40px -40px);
+}
+
+.megaEyebrow {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-forest);
+}
+
+.megaGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.megaCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+  color: var(--color-ink);
+  white-space: normal;
+}
+
+.megaMedia {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: var(--color-sand-light);
+}
+
+.megaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.megaTag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-ivory);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-forest);
+}
+
+.megaTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+
+  & svg {
+    flex: none;
+    color: var(--color-forest);
+    transition: translate 0.25s ease;
+  }
+}
+
+.megaText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+@media (hover: hover) {
+  .megaCard:hover .megaImg {
+    transform: scale(1.06);
+  }
+
+  .megaCard:hover .megaTitle {
+    color: var(--color-forest);
+  }
+
+  .megaCard:hover .megaTitle svg {
+    translate: 2px -2px;
+  }
+}
+
+.megaFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background-color: var(--color-sand-light);
+}
+
+.megaZones,
+.megaAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-ink);
+  white-space: nowrap;
+
+  & span {
+    color: var(--color-body);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-forest);
+    }
+  }
+}
+
+.megaZones svg {
+  color: var(--color-forest);
+}
+
+.megaAll {
+  font-weight: 700;
+  color: var(--color-forest);
+}
+
+/* Méga-menu à deux cartes (Recettes) : plus étroit, deux colonnes. */
+.submenu.megaTwo {
+  width: min(560px, 92vw);
+}
+
+.megaTwo .megaGrid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.megaAll {
+  margin-left: auto;
+}
+
+/* Header réduit au défilement (data-scrolled posé par HeaderShrink) : le moins haut possible. */
+.mainbarInner,
+.menuLink,
+.brandLogo,
+.compact,
+.compactLogo,
+.compactBrand {
+  transition-property: height, padding, font-size;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+}
+
+.root[data-scrolled] {
+  .mainbarInner {
+    height: 48px;
+  }
+
+  .brandLogo {
+    font-size: 20px;
+  }
+
+  .brandLogo > span:last-child > span:nth-child(2) {
+    display: none;
+  }
+
+  .menuLink {
+    padding-block: 4px;
+  }
+
+  .actions {
+    padding: 0;
+  }
+
+  .compact {
+    padding-block: 4px;
+  }
+
+  .compactBrand {
+    padding-block: 0;
+  }
+
+  .compactLogo {
+    font-size: 20px;
+  }
+
+  .compactActions .compactCta {
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainbarInner,
+  .menuLink,
+  .brandLogo,
+  .compact,
+  .compactLogo,
+  .compactBrand {
+    transition: none;
+  }
+}
+
+/* CTA du header (desktop) : pilule avec pastille-flèche, ombre colorée et léger soulèvement au survol. */
+.actions .headerCta {
+  height: 46px;
+  gap: 12px;
+  padding-block: 0;
+  padding-inline: 22px 8px;
+  background-image: linear-gradient(135deg, var(--color-forest), var(--color-forest-dark));
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  box-shadow:
+    0 6px 16px color-mix(in oklab, var(--color-forest) 35%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--color-white) 25%, transparent);
+  transition-property: translate, box-shadow, height, background-color;
+  transition-duration: 0.25s;
+
+  @media (hover: hover) {
+    &:hover {
+      translate: 0 -2px;
+      box-shadow:
+        0 10px 22px color-mix(in oklab, var(--color-forest) 45%, transparent),
+        inset 0 1px 0 color-mix(in oklab, var(--color-white) 25%, transparent);
+    }
+
+    &:hover .ctaArrow {
+      scale: 1.1;
+      background-color: var(--color-white);
+    }
+  }
+}
+
+.actions .headerCta .ctaArrow {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-ivory);
+  color: var(--color-forest);
+  transition:
+    scale 0.3s ease,
+    background-color 0.25s ease;
+}
+
+.root[data-scrolled] .actions .headerCta {
+  height: 38px;
+
+  & .ctaArrow {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .actions .headerCta,
+  .actions .headerCta .ctaArrow {
+    transition: none;
+  }
+
+  .actions .headerCta:hover {
+    translate: none;
+  }
 }

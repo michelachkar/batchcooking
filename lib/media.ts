@@ -23,6 +23,14 @@ export const media = {
   batchSteps: [1, 2, 3].map(() => placeholder(768, 576)),
   // Photos des 3 étapes du chef privé (page chef privé).
   chefSteps: [1, 2, 3].map(() => placeholder(768, 576)),
+  // Images du méga-menu « Services » (une image par carte, clé = clé du sous-menu de lib/nav.ts). Remplacez par de vraies photos 4:3.
+  navMega: {
+    serviceBatch: placeholder(640, 480),
+    serviceChef: placeholder(640, 480),
+    serviceCours: placeholder(640, 480),
+    recipeClassiques: placeholder(640, 480),
+    recipeSignature: placeholder(640, 480),
+  } as Record<string, { src: string; width: number; height: number }>,
   // Photos des auteurs d'avis (vraies photos uniquement).
   reviews: [1, 2, 3].map(() => placeholder(768, 1024)),
   // Photos des bandeaux de page (facultatives) : sans elles le bandeau reste uni.

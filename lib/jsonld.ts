@@ -1,5 +1,6 @@
 import { absoluteUrl, siteUrl } from '@/lib/seo'
 import { provisional, site } from '@/lib/site'
+import { communes } from '@/lib/zones'
 
 type Node = Record<string, unknown>
 
@@ -115,5 +116,30 @@ export function projectNode(o: {
     dateCreated: o.created,
     creator: organizationRef,
     ...(o.image && { image: absoluteUrl(o.image) }),
+  }
+}
+
+/** Activité locale (accueil) : zone desservie issue de lib/zones.ts ; téléphone et adresse publiés seulement une fois définitifs. */
+export function localBusiness(): Node {
+  return {
+    '@type': 'LocalBusiness',
+    '@id': `${siteUrl}/#localbusiness`,
+    name: site.name,
+    url: absoluteUrl('/'),
+    parentOrganization: organizationRef,
+    description:
+      'Cheffe à domicile : batch cooking, chef privé et cours de cuisine à Montpellier et alentours.',
+    knowsAbout: ['Batch cooking', 'Chef privé à domicile', 'Cours de cuisine'],
+    areaServed: communes
+      .filter((c) => c.zone !== 'z3')
+      .map((c) => ({ '@type': 'City', name: c.name })),
+    ...(provisional
+      ? {}
+      : {
+          telephone: site.phone,
+          email: site.email,
+          address: site.address,
+          openingHours: site.hours,
+        }),
   }
 }

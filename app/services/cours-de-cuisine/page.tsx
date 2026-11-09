@@ -8,6 +8,7 @@ import { PracticalInfo } from '@/components/blocks/practical-info'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { serviceNode } from '@/lib/jsonld'
+import { ServiceInspirationsSection } from '@/components/sections/service-inspirations-section'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 import styles from './page.module.css'
@@ -102,6 +103,7 @@ export default async function CoursDeCuisinePage() {
         items={ideas}
         cta={{ label: c('ideas.button'), href: book }}
       />
+      <ServiceInspirationsSection service="cours" />
       <PracticalInfo
         tone="beige"
         columns={2}

@@ -4,7 +4,7 @@
     "backToTop": "Retour en haut de page"
   },
   "header": {
-    "announce": "Réservations ouvertes pour les prochaines semaines",
+    "announce": "Cheffe à domicile à Montpellier : réservez votre batch cooking, 50 % de crédit d'impôt",
     "cta": "Réservez votre chef",
     "ctaShort": "Réserver",
     "search": "Rechercher",
@@ -14,7 +14,7 @@
     "mainNav": "Navigation principale"
   },
   "nav": {
-    "about": "À propos",
+    "about": "La Cheffe",
     "services": "Services",
     "serviceBatch": "Batch cooking",
     "serviceChef": "Chef privé à domicile",
@@ -23,16 +23,50 @@
     "portfolio": "Réalisations",
     "pricing": "Tarifs",
     "recipes": "Recettes",
+    "recipeClassiques": "Recettes classiques",
+    "recipeSignature": "Recettes signatures",
     "faq": "FAQ"
+  },
+  "megaMenu": {
+    "heads": {
+      "services": { "eyebrow": "Nos prestations", "all": "Voir tous les services" },
+      "recipes": { "eyebrow": "Nos recettes", "all": "Voir toutes les recettes" }
+    },
+    "zonesText": "Montpellier et alentours : trouvez votre ville",
+    "recipeClassiques": {
+      "tag": "Au quotidien",
+      "text": "Des recettes classiques faites maison : plats réconfortants du quotidien, simples à refaire, qui se conservent et se réchauffent facilement.",
+      "alt": "Plat mijoté maison, recette classique"
+    },
+    "recipeSignature": {
+      "tag": "Plus travaillées",
+      "text": "Des plats signatures de cheffe, plus élaborés et créatifs, pour vos dîners d'exception avec chef privé à domicile.",
+      "alt": "Assiette dressée, recette signature de la cheffe"
+    },
+    "serviceBatch": {
+      "tag": "Pour la semaine",
+      "text": "Votre cheffe cuisine chez vous 3 à 5 dîners faits maison, prêts à réchauffer. Idéal pour les familles actives.",
+      "alt": "Plats de batch cooking faits maison, en barquettes"
+    },
+    "serviceChef": {
+      "tag": "Pour recevoir",
+      "text": "Un dîner d'exception à domicile : menu sur mesure, courses, service et cuisine rangée. Anniversaires et repas entre amis.",
+      "alt": "Cheffe à domicile dressant un plat"
+    },
+    "serviceCours": {
+      "tag": "Pour apprendre",
+      "text": "Des ateliers de cuisine à la maison, en solo, en famille ou entre amis, pour cuisiner et déguster ensemble.",
+      "alt": "Atelier de cuisine en famille à domicile"
+    }
   },
   "footer": {
     "tagline": "Votre chef à domicile",
     "eyebrow": "Planifiez votre semaine",
     "title": "Votre table vous attend.",
-    "text": "Dites-nous la date, le nombre de convives et vos envies. Nous répondons sous un jour ouvré.",
+    "text": "Dites-nous la date, le nombre de convives et vos envies. Pour un batch cooking à domicile, un dîner avec chef privé ou un cours de cuisine à Montpellier et alentours, nous vous répondons sous un jour ouvré.",
     "ctaPrimary": "Réservez votre chef",
     "ctaCall": "Appeler le {phone}",
-    "about": "Une cuisine saine, de saison et locale, aux saveurs du monde entier, pour vous rendre du temps autour de la table.",
+    "about": "Une cuisine saine, de saison et locale, aux saveurs du monde entier, pour vous rendre du temps autour de la table. Cheffe à domicile à Montpellier et alentours, je propose du batch cooking, un service de chef privé et des cours de cuisine, avec des produits frais et des recettes maison pour vos repas de la semaine ou vos dîners entre amis.",
     "services": "Services",
     "company": "Entreprise",
     "visit": "Contact",
@@ -63,8 +97,8 @@
   },
   "home": {
     "hero": {
-      "headline": "Tous vos dîners de la semaine sont préparés chez vous en un clin d'oeil.",
-      "accent": "Fini la charge mentale des repas.",
+      "headline": "Votre cheffe prépare tous vos dîners de la semaine, chez vous.",
+      "accent": "Batch cooking à domicile à Montpellier.",
       "description": "Éligible crédit d'impôt 50 %",
       "primary": "Reservez vos repas",
       "secondary": "Découvrez mes recettes",
@@ -73,7 +107,7 @@
       "googleReviews": "Avis Google",
       "taxCredit": "50 % de crédit d'impôt",
       "zone": {
-        "text": "Chez vous, à Montpellier et alentours.",
+        "text": "À Montpellier, Mèze, Lunel et alentours.",
         "link": "Voir les zones"
       },
       "creditNote": {
@@ -87,7 +121,7 @@
         "title": "Vous ne payez que 50 % du prix",
         "intro": "Pas d'avance de frais ni de démarche aux impôts : la moitié est déduite dès le paiement, grâce à l'Avance Immédiate.",
         "exampleKicker": "Exemple concret",
-        "exampleTitle": "Sérénité, 3 dîners par semaine, sur 1 mois",
+        "exampleTitle": "Signature, 3 dîners par semaine, sur 1 mois",
         "rows": {
           "full": "Prix du service",
           "credit": "Crédit d'impôt déduit tout de suite",
@@ -235,7 +269,7 @@
         {
           "icon": "checklist",
           "title": "Vous composez votre menu",
-          "text": "Un court échange pour cerner vos goûts, vos habitudes et vos allergies, puis vous choisissez parmi [plus de 40 recettes](/recettes). Avec la formule Signature, je crée un menu sur mesure.",
+          "text": "Un court échange pour cerner vos goûts, vos habitudes et vos allergies, puis vous choisissez parmi [plus de 40 recettes](/recettes). Avec la formule Sur mesure, je crée votre menu.",
           "alt": "Plats faits maison présentés dans des boîtes en verre"
         },
         {
@@ -261,6 +295,51 @@
         "Repas servi à une table dressée pour des invités",
         "Une table de salle à manger dressée avec linge, bougies et cartes de menu avant l'arrivée des invités"
       ]
+    },
+    "faq": {
+      "kicker": "Questions fréquentes",
+      "title": "Vos questions sur le chef à domicile",
+      "cta": "Voir toute la FAQ",
+      "ctaHref": "/faq",
+      "items": [
+        {
+          "question": "Qu'est-ce que le batch cooking à domicile ?",
+          "answer": "Votre cheffe se déplace chez vous et prépare en une session 3 à 5 dîners faits maison, conditionnés et prêts à être réchauffés pendant la semaine."
+        },
+        {
+          "question": "Quelle est la différence avec un chef privé à domicile ?",
+          "answer": "Le batch cooking prépare vos repas de la semaine à l'avance. Le chef privé cuisine et sert un dîner d'exception pour vous et vos invités, avec un menu sur mesure."
+        },
+        {
+          "question": "Dans quelles villes intervenez-vous ?",
+          "answer": "À Montpellier et dans sa première couronne, déplacement inclus. Les communes plus éloignées sont desservies sur demande, avec un éventuel supplément de déplacement."
+        },
+        {
+          "question": "Peut-on tenir compte des allergies et des régimes ?",
+          "answer": "Oui. Chaque menu est personnalisé selon vos goûts, vos habitudes, vos allergies et vos besoins alimentaires."
+        },
+        {
+          "question": "Le crédit d'impôt de 50 % s'applique-t-il ?",
+          "answer": "Le batch cooking à domicile est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate, sous réserve d'éligibilité."
+        },
+        {
+          "question": "Comment réserver ma cheffe ?",
+          "answer": "Remplissez le formulaire de demande : vous recevez une réponse généralement sous un jour ouvré, sans engagement."
+        }
+      ]
+    },
+    "areas": {
+      "kicker": "Zones d'intervention",
+      "title": "Votre cheffe à domicile à Montpellier et alentours",
+      "intro": "Batch cooking, [chef privé](/services/chef-prive) et [cours de cuisine](/services/cours-de-cuisine) : je me déplace chez vous à Montpellier et dans les communes voisines. Découvrez le [batch cooking à domicile](/services/batch-cooking) et consultez nos [tarifs](/tarifs).",
+      "zones": {
+        "z1": { "title": "Montpellier et première couronne", "text": "Déplacement inclus" },
+        "z2": { "title": "À 15 à 30 minutes", "text": "Petit supplément de déplacement" },
+        "z3": { "title": "Sur demande", "text": "Supplément ou minimum de commande" }
+      },
+      "note": "Votre commune n'est pas citée ? Elle est probablement desservie : dites-nous où vous habitez et nous vous répondons sous un jour ouvré.",
+      "cta": "Voir la carte des zones",
+      "ctaHref": "/zones"
     },
     "reviews": {
       "kicker": "Hôtes vérifiés",
@@ -292,10 +371,10 @@
       ]
     },
     "events": {
-      "kicker": "Recettes",
-      "title": "Mes",
-      "highlight": "Recettes",
-      "description": "Quelques-unes de mes recettes préférées : des plats faits maison, simples à refaire, qui se conservent et se réchauffent facilement.",
+      "kicker": "Recettes Délicieuses",
+      "title": "Les recettes maison de la",
+      "highlight": "cheffe",
+      "description": "Des recettes savoureuses, originales et créatives, imaginées par une cheffe passionnée. Des plats maison faciles à conserver pour le batch cooking, et des plats signatures raffinés pour vos dîners avec chef privé à domicile.",
       "prev": "Recette précédente",
       "next": "Recette suivante",
       "navigation": "Carrousel de recettes",
@@ -376,7 +455,7 @@
   "batchPage": {
     "seo": {
       "title": "Batch cooking à domicile à Montpellier, Mèze et Lunel",
-      "description": "Votre cheffe prépare chez vous 3 à 5 dîners par passage : menu à choisir parmi plus de 40 recettes, plats prêts à réchauffer. À partir de 49,50 € par semaine après crédit d'impôt."
+      "description": "Votre cheffe cuisine 3 à 5 dîners chez vous, à Montpellier et alentours. Batch cooking, chef privé, cours de cuisine à domicile. 50 % de crédit d'impôt."
     },
     "crumb": "Batch cooking",
     "intro": {
@@ -459,7 +538,7 @@
         },
         {
           "icon": "clock",
-          "alt": "Repas Sérénité préparés à domicile",
+          "alt": "Repas Signature préparés à domicile",
           "description": "La cuisine de cheffe, au quotidien",
           "week": {
             "tags": ["1 passage", "{n} dîners par semaine"],
@@ -477,11 +556,11 @@
               ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "no"]
             ]
           },
-          "id": "serenite"
+          "id": "signature"
         },
         {
           "icon": "heart",
-          "alt": "Repas Signature préparés à domicile",
+          "alt": "Repas Sur mesure préparés à domicile",
           "description": "Votre menu, **rien que pour vous**",
           "week": {
             "tags": ["1 passage", "{n} dîners par semaine"],
@@ -499,7 +578,7 @@
               ["Recettes **sur mesure** pour vous", "Un menu composé selon vos envies et contraintes", "yes"]
             ]
           },
-          "id": "signature"
+          "id": "surmesure"
         }
       ],
       "toggle": {
@@ -1093,7 +1172,7 @@
   },
   "seo": {
     "default": "Des repas faits maison, préparés à l'avance pour toute la semaine : batch cooking à domicile pour les familles, les couples et les actifs.",
-    "homeTitle": "Batch cooking à domicile pour toute la semaine",
+    "homeTitle": "Batch cooking à domicile à Montpellier | Table & Tribu",
     "services": "Batch cooking hebdomadaire, formule famille, événements : découvrez nos services et ce qu'ils incluent.",
     "pricing": "Tous nos tarifs à Montpellier : batch cooking à domicile, chef privé et cours de cuisine, avec le déplacement selon votre zone.",
     "about": "Rencontrez Chef Meemz : votre chef à domicile pour le batch cooking, les dîners privés et les cours de cuisine à Montpellier.",
@@ -1201,8 +1280,8 @@
         ]
       },
       {
-        "id": "serenite",
-        "title": "Sérénité",
+        "id": "signature",
+        "title": "Signature",
         "label": "Pour démarrer simplement",
         "highlight": "La cuisine de cheffe, au quotidien",
         "features": [
@@ -1212,8 +1291,8 @@
         ]
       },
       {
-        "id": "signature",
-        "title": "Signature",
+        "id": "surmesure",
+        "title": "Sur mesure",
         "label": "Pour une table sur mesure",
         "highlight": "Votre menu, **rien que pour vous**",
         "features": [
@@ -1458,7 +1537,7 @@
           },
           {
             "question": "Peut-on choisir les recettes ?",
-            "answer": "Oui. Choisissez parmi nos recettes classiques avec la formule Essentiel, ajoutez les recettes Signature de la cheffe avec la formule Sérénité, ou demandez un menu élaboré sur mesure avec la formule Signature. La page Recettes présente les saveurs, les ingrédients clés et les allergènes de chaque plat."
+            "answer": "Oui. Choisissez parmi nos recettes classiques avec la formule Essentiel, ajoutez les recettes Signature de la cheffe avec la formule Signature, ou demandez un menu élaboré sur mesure avec la formule Sur mesure. La page Recettes présente les saveurs, les ingrédients clés et les allergènes de chaque plat."
           },
           {
             "question": "La cuisine est-elle rangée après la prestation ?",
@@ -1513,6 +1592,22 @@
         ]
       }
     ]
+  },
+  "inspirations": {
+    "kicker": "Inspirations",
+    "cta": "Voir toutes les réalisations",
+    "batch": {
+      "title": "Batch cooking : des idées de semaines réussies",
+      "intro": "Familles, couples, sportifs : découvrez comment nos clients organisent leurs repas de la semaine avec le batch cooking à domicile à Montpellier."
+    },
+    "chef": {
+      "title": "Chef privé : des dîners dont on se souvient",
+      "intro": "Anniversaires, buffets de fête, déjeuners d'équipe : quelques exemples de tables imaginées avec notre chef privé à domicile à Montpellier et alentours."
+    },
+    "cours": {
+      "title": "Cours de cuisine : des ateliers qui donnent envie",
+      "intro": "En solo, en couple, entre amis ou avec les enfants : des cours de cuisine à domicile à Montpellier pour apprendre et déguster ensemble."
+    }
   },
   "realisationsPage": {
     "kicker": "Nos réalisations",

@@ -99,7 +99,7 @@ export function ProjectsCarousel({ projects, labels }: ProjectsCarouselProps) {
                   const isActive = copy === 1 && i === active
                   return (
                     <li
-                      key={`${copy}-${p.href}`}
+                      key={`${copy}-${i}`}
                       inert={copy !== 1}
                       aria-hidden={copy !== 1 || undefined}
                       className={clsx(styles.slide, isActive && styles.slideActive)}

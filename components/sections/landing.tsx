@@ -3,6 +3,8 @@ import { AboutSection } from '@/components/sections/about-section'
 import { ZonesSection } from '@/components/sections/zones-section'
 import { EventsSection } from '@/components/sections/events-section'
 import { ReviewsSection } from '@/components/sections/reviews-section'
+import { HomeFaqSection } from '@/components/sections/home-faq-section'
+import { HomeAreasSection } from '@/components/sections/home-areas-section'
 import { Hero } from '@/components/blocks/hero'
 import type { CreditDialogTexts, CreditNoteTexts } from '@/components/blocks/credit-note'
 import { MealPlanInquiry } from '@/components/features/lead/meal-plan-inquiry'
@@ -54,6 +56,8 @@ export async function Landing() {
       <EventsSection />
       <ExperiencesSection />
       <ReviewsSection />
+      <HomeFaqSection />
+      <HomeAreasSection />
     </>
   )
 }

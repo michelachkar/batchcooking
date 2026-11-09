@@ -11,6 +11,7 @@ import { BatchPackages, type PackageCard } from '@/components/blocks/batch-packa
 import { AboutSection } from '@/components/sections/about-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
+import { ServiceInspirationsSection } from '@/components/sections/service-inspirations-section'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 import styles from './page.module.css'
@@ -107,6 +108,7 @@ export default async function BatchCookingPage() {
         ctaHref={quote}
         cardCta={pk('plan')}
       />
+      <ServiceInspirationsSection service="batch" />
       <ServiceIntro
         kicker={b('intro.kicker')}
         title={b('intro.title')}

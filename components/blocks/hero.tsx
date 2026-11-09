@@ -75,7 +75,7 @@ export function Hero({
             />
           )}
           <h1 className={styles.title}>
-            <em className={styles.accent}>{accent}</em>
+            <em className={styles.accent}>{accent}</em> 
             {headline}
           </h1>
           {zone && (

@@ -58,12 +58,12 @@ export function CreditNote({ note }: { note: CreditNoteTexts }) {
   )
 }
 
-// Modal explicatif. L'exemple chiffré lit les prix dans lib/lead/pricing (Sérénité, 3 dîners, 1 mois).
+// Modal explicatif. L'exemple chiffré lit les prix dans lib/lead/pricing (Signature, 3 dîners, 1 mois).
 export function CreditDialog({ value, dialog }: { value: string; dialog: CreditDialogTexts }) {
   const ref = useRef<HTMLDialogElement>(null)
   const { open } = useLead()
-  const full = priceBefore('serenite', 'month', 3)
-  const pay = priceAfter('serenite', 'month', 3)
+  const full = priceBefore('signature', 'month', 3)
+  const pay = priceAfter('signature', 'month', 3)
   return (
     <dialog
       ref={ref}

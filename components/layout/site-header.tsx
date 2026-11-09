@@ -1,10 +1,14 @@
 import { getTranslations } from '@/lib/i18n'
 import Link from 'next/link'
+import clsx from 'clsx'
 import { ArrowUpRight, Leaf, Mail, MapPin, Phone, Search } from 'lucide-react'
 import { ButtonLink } from '@/components/ui/button'
 import { Logo } from '@/components/ui/logo'
 import { SubmenuLink } from '@/components/layout/submenu-link'
+import { HeaderShrink } from '@/components/layout/header-shrink'
 import { MobileMenu } from '@/components/layout/mobile-menu'
+import Image from 'next/image'
+import { media } from '@/lib/media'
 import { nav } from '@/lib/nav'
 import { site } from '@/lib/site'
 import styles from './site-header.module.css'
@@ -12,13 +16,20 @@ import styles from './site-header.module.css'
 export async function SiteHeader() {
   const t = await getTranslations()
   const items = nav.map((item) => ({
+    key: item.key,
     label: t(`nav.${item.key}`),
     href: item.href,
-    children: item.children?.map((c) => ({ label: t(`nav.${c.key}`), href: c.href })),
+    children: item.children?.map((c) => ({
+      label: t(`nav.${c.key}`),
+      href: c.href,
+      mega: c.mega,
+      key: c.key,
+    })),
   }))
 
   return (
     <header id="site-header" className={styles.root}>
+      <HeaderShrink />
       <a href="#contenu" className={styles.skip}>
         {t('site.skip')}
       </a>
@@ -77,16 +88,79 @@ export async function SiteHeader() {
                         </svg>
                       )}
                     </Link>
-                    {item.children && (
-                      <ul className={styles.submenu}>
-                        {item.children.map((child) => (
-                          <li key={child.label}>
-                            <SubmenuLink href={child.href} className={styles.submenuLink}>
-                              {child.label}
-                            </SubmenuLink>
-                          </li>
-                        ))}
-                      </ul>
+                    {item.children && item.children.some((c) => c.mega) ? (
+                      <div
+                        className={clsx(
+                          styles.submenu,
+                          styles.mega,
+                          item.children.filter((c) => c.mega).length === 2 && styles.megaTwo,
+                        )}
+                      >
+                        <p className={styles.megaEyebrow}>
+                          {t(`megaMenu.heads.${item.key}.eyebrow`)}
+                        </p>
+                        <ul className={styles.megaGrid}>
+                          {item.children
+                            .filter((c) => c.mega)
+                            .map((child) => (
+                              <li key={child.key}>
+                                <SubmenuLink href={child.href} className={styles.megaCard}>
+                                  <span className={styles.megaMedia}>
+                                    <Image
+                                      src={media.navMega[child.key].src}
+                                      width={media.navMega[child.key].width}
+                                      height={media.navMega[child.key].height}
+                                      alt={t(`megaMenu.${child.key}.alt`)}
+                                      sizes="220px"
+                                      className={styles.megaImg}
+                                    />
+                                    <span className={styles.megaTag}>
+                                      {t(`megaMenu.${child.key}.tag`)}
+                                    </span>
+                                  </span>
+                                  <span className={styles.megaTitle}>
+                                    {child.label}
+                                    <ArrowUpRight size={16} strokeWidth={2.5} aria-hidden />
+                                  </span>
+                                  <span className={styles.megaText}>
+                                    {t(`megaMenu.${child.key}.text`)}
+                                  </span>
+                                </SubmenuLink>
+                              </li>
+                            ))}
+                        </ul>
+                        <div className={styles.megaFooter}>
+                          {item.children
+                            .filter((c) => !c.mega)
+                            .map((child) => (
+                              <SubmenuLink
+                                key={child.key}
+                                href={child.href}
+                                className={styles.megaZones}
+                              >
+                                <MapPin size={15} aria-hidden />
+                                <strong>{child.label}</strong>
+                                <span>{t('megaMenu.zonesText')}</span>
+                              </SubmenuLink>
+                            ))}
+                          <SubmenuLink href={item.href} className={styles.megaAll}>
+                            {t(`megaMenu.heads.${item.key}.all`)}
+                            <ArrowUpRight size={15} strokeWidth={2.5} aria-hidden />
+                          </SubmenuLink>
+                        </div>
+                      </div>
+                    ) : (
+                      item.children && (
+                        <ul className={styles.submenu}>
+                          {item.children.map((child) => (
+                            <li key={child.label}>
+                              <SubmenuLink href={child.href} className={styles.submenuLink}>
+                                {child.label}
+                              </SubmenuLink>
+                            </li>
+                          ))}
+                        </ul>
+                      )
                     )}
                   </li>
                 ))}
@@ -96,7 +170,7 @@ export async function SiteHeader() {
               <Link href="/recherche" aria-label={t('header.search')} className={styles.searchLink}>
                 <Search size={17} strokeWidth={4} aria-hidden />
               </Link>
-              <ButtonLink href="/contact#devis">
+              <ButtonLink href="/contact#devis" className={styles.headerCta}>
                 {t('header.cta')}
                 <span className={styles.ctaArrow}>
                   <ArrowUpRight size={17} strokeWidth={3} aria-hidden />
