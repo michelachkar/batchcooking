@@ -6,8 +6,9 @@ import { CallbackInquiry } from '@/components/features/lead/callback-inquiry'
 import { FormulaCards } from '@/components/blocks/formula-cards'
 import { PracticalInfo } from '@/components/blocks/practical-info'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
+import { FaqSection } from '@/components/sections/faq-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
-import { serviceNode } from '@/lib/jsonld'
+import { faqPage, serviceNode } from '@/lib/jsonld'
 import { ServiceInspirationsSection } from '@/components/sections/service-inspirations-section'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
@@ -29,6 +30,7 @@ export default async function CoursDeCuisinePage() {
   const book = `${PATH}#devis`
   const q = await getTranslations('coursPage.inquiry')
   const ideas = c.raw('ideas.items') as (Package & { value: string })[]
+  const faqItems = c.raw('faq.items') as { question: string; answer: string }[]
 
   return (
     <main id="contenu">
@@ -47,6 +49,7 @@ export default async function CoursDeCuisinePage() {
             description: c('seo.description'),
             image: '/assets/hero/chef.jpg',
           }),
+          faqPage(faqItems),
         ]}
       />
       <PageHead
@@ -58,6 +61,7 @@ export default async function CoursDeCuisinePage() {
         ]}
         navLabel={p('navLabel')}
         background={media.heads.service}
+        description={p('heads.cours')}
         cta={{ label: c('intro.primary'), href: book }}
       />
       <ServiceIntro
@@ -128,6 +132,13 @@ export default async function CoursDeCuisinePage() {
         title={c('themes.title')}
         intro={c('themes.intro')}
         items={c.raw('themes.items') as IconCard[]}
+      />
+      <FaqSection
+        name="cours-faq"
+        tone="white"
+        kicker={c('faq.kicker')}
+        title={c('faq.title')}
+        items={faqItems}
       />
     </main>
   )

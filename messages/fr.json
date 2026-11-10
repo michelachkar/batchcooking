@@ -4,7 +4,11 @@
     "backToTop": "Retour en haut de page"
   },
   "header": {
-    "announce": "Cheffe à domicile à Montpellier : réservez votre batch cooking, 50 % de crédit d'impôt",
+    "announce": [
+      { "label": "Batch Cooking", "href": "/services/batch-cooking" },
+      { "label": "Chef Privé", "href": "/services/chef-prive" },
+      { "label": "Cours de cuisine", "href": "/services/cours-de-cuisine" }
+    ],
     "cta": "Réservez votre chef",
     "ctaShort": "Réserver",
     "search": "Rechercher",
@@ -66,7 +70,7 @@
     "text": "Dites-nous la date, le nombre de convives et vos envies. Pour un batch cooking à domicile, un dîner avec chef privé ou un cours de cuisine à Montpellier et alentours, nous vous répondons sous un jour ouvré.",
     "ctaPrimary": "Réservez votre chef",
     "ctaCall": "Appeler le {phone}",
-    "about": "Une cuisine saine, de saison et locale, aux saveurs du monde entier, pour vous rendre du temps autour de la table. Cheffe à domicile à Montpellier et alentours, je propose du batch cooking, un service de chef privé et des cours de cuisine, avec des produits frais et des recettes maison pour vos repas de la semaine ou vos dîners entre amis.",
+    "about": "Une cuisine saine, de saison et locale, inspirée des saveurs du monde, pour vous faire gagner du temps et retrouver le plaisir de la table. Cheffe à domicile à Montpellier et alentours, je propose du batch cooking, des dîners avec chef privé et des cours de cuisine, avec des produits frais et des recettes maison, pour vos repas de la semaine comme pour vos dîners entre amis.",
     "services": "Services",
     "company": "Entreprise",
     "visit": "Contact",
@@ -98,16 +102,16 @@
   "home": {
     "hero": {
       "headline": "Votre cheffe prépare tous vos dîners de la semaine, chez vous.",
-      "accent": "Batch cooking à domicile à Montpellier.",
+      "accent": "Batch cooking à domicile à Montpellier",
       "description": "Éligible crédit d'impôt 50 %",
-      "primary": "Reservez vos repas",
+      "primary": "Réservez vos repas",
       "secondary": "Découvrez mes recettes",
       "galleryBadges": ["Délicieux", "Healthy", "Propre"],
       "galleryAlts": ["Plat préparé par la cheffe", "Repas de la semaine prêts à réchauffer", "Cheffe en cuisine chez un client"],
       "googleReviews": "Avis Google",
       "taxCredit": "50 % de crédit d'impôt",
       "zone": {
-        "text": "À Montpellier, Mèze, Lunel et alentours.",
+        "text": "À Montpellier et 30km autour.",
         "link": "Voir les zones"
       },
       "creditNote": {
@@ -194,7 +198,7 @@
     },
     "experiences": {
       "kicker": "Nos services",
-      "title": "Trois façons de vous régaler, avec un chef chez vous",
+      "title": "Trois façons de vous régaler à Montpellier et alentours, avec un chef à domicile",
       "intro": "Que vous cherchiez à vous libérer de la cuisine au quotidien, à recevoir autour d'un repas d'exception ou à apprendre de nouveaux gestes, un chef vient à votre domicile.",
       "cards": [
         {
@@ -262,6 +266,7 @@
     "about": {
       "label": "LE BATCH COOKING À DOMICILE",
       "title": "Le batch cooking : comment ça marche ?",
+      "intro": "En une seule séance chez vous, à Montpellier ou dans les environs, la cheffe prépare 3 à 5 dîners pour la semaine. Vous choisissez le menu, elle s'occupe du reste.",
       "badgeValue": "−50 %",
       "badgeText": "de crédit d'impôt, tout de suite : Vous ne payez que la moitié. Profitez-en !",
       "badgeAccent": "1",
@@ -269,13 +274,13 @@
         {
           "icon": "checklist",
           "title": "Vous composez votre menu",
-          "text": "Un court échange pour cerner vos goûts, vos habitudes et vos allergies, puis vous choisissez parmi [plus de 40 recettes](/recettes). Avec la formule Sur mesure, je crée votre menu.",
+          "text": "Après un court échange sur vos goûts et allergies, vous choisissez parmi [plus de 40 recettes](/recettes) ou je crée votre menu **Sur mesure**.",
           "alt": "Plats faits maison présentés dans des boîtes en verre"
         },
         {
           "icon": "chef",
           "title": "La cheffe cuisine chez vous",
-          "text": "Une fois les courses faites d'après le menu validé, la cheffe prépare 3 à 5 dîners directement dans votre cuisine.",
+          "text": "Une fois le menu validé et les courses faites, la cheffe prépare 3 à 5 dîners directement dans votre cuisine.",
           "alt": "La cheffe en train de cuisiner dans une cuisine"
         },
         {
@@ -288,7 +293,7 @@
       "button": "Découvrir le batch cooking",
       "buttonHref": "/services/batch-cooking",
       "pricingButton": "Voir les tarifs",
-      "secondaryButton": "Reservez vos repas",
+      "secondaryButton": "Réservez vos repas",
       "secondaryButtonHref": "/contact#inquiry",
       "images": [
         "Mains du chef dressant une assiette avant le service",
@@ -307,12 +312,20 @@
           "answer": "Le [batch cooking à domicile](/services/batch-cooking) consiste à faire préparer chez vous, en une seule session, 3 à 5 dîners faits maison. Votre cheffe cuisine dans votre propre cuisine avec des produits de saison, puis range les plats au réfrigérateur, prêts à être réchauffés pendant la semaine."
         },
         {
-          "question": "Quelle est la différence avec un chef privé à domicile ?",
-          "answer": "Le batch cooking prépare vos repas de la semaine à l'avance. Le [chef privé à domicile](/services/chef-prive) cuisine et sert un dîner d'exception pour vous et vos invités, avec un menu sur mesure, anniversaires et repas entre amis compris."
+          "question": "Comment se déroule une session de batch cooking ?",
+          "answer": "Vous nous indiquez vos goûts, vos allergies et votre date ; nous composons le menu avec vous ; vous faites les courses à partir de la liste. Le jour J, la cheffe arrive à l'heure convenue, cuisine vos 3 à 5 dîners en une session, les répartit dans des contenants, range la cuisine et repart. Comptez en moyenne trois à quatre heures."
         },
         {
           "question": "Combien coûte le service ?",
           "answer": "Le batch cooking démarre à 49,50 € par passage après crédit d'impôt (99 € avant crédit). Un dîner avec chef privé démarre à 35 € par personne, et un [cours de cuisine](/services/cours-de-cuisine) à 45 € par personne. Retrouvez le détail de chaque formule sur la page des [tarifs](/tarifs)."
+        },
+        {
+          "question": "Le crédit d'impôt de 50 % s'applique-t-il ?",
+          "answer": "Oui, le batch cooking à domicile est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate : l'avantage est appliqué dès le paiement, sous réserve d'éligibilité. Les prix du batch cooking affichés sur la page des [tarifs](/tarifs) tiennent déjà compte de ce crédit."
+        },
+        {
+          "question": "Quel engagement faut-il prendre ?",
+          "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine, sans renouvellement automatique. Découvrez les formules de [batch cooking](/services/batch-cooking) pour choisir celle qui vous convient."
         },
         {
           "question": "Qui fait les courses ?",
@@ -323,36 +336,16 @@
           "answer": "Les plats sont conditionnés et conservés au réfrigérateur, en général 2 à 4 jours, ou au congélateur pour la plupart des recettes. Chaque [recette](/recettes) indique sa durée de conservation et le mode de réchauffage conseillé : four, poêle, casserole ou micro-ondes."
         },
         {
-          "question": "Proposez-vous des cours de cuisine à domicile ?",
-          "answer": "Oui. Mes [cours de cuisine à domicile](/services/cours-de-cuisine) se font en solo, en couple, en famille ou entre amis, avec tous les ingrédients fournis et un repas dégusté à la fin. Vous pouvez aussi offrir un bon cadeau, valable 12 mois."
+          "question": "Peut-on tenir compte des allergies et des régimes ?",
+          "answer": "Oui. Chaque menu est personnalisé selon vos goûts, vos habitudes et vos besoins : sans gluten, sans lactose, végétarien ou toute autre préférence. Signalez vos allergies dès votre demande, et retrouvez les allergènes de chaque plat sur la page des [recettes](/recettes)."
         },
         {
           "question": "Dans quelles villes intervenez-vous ?",
           "answer": "À Montpellier et dans sa première couronne (Castelnau-le-Lez, Lattes, Juvignac, Saint-Jean-de-Védas), déplacement inclus. Les communes à 15 à 30 minutes, comme Mauguio ou Palavas-les-Flots, ont un petit supplément de déplacement ; plus loin, c'est sur demande. Consultez la carte des [zones d'intervention](/zones)."
         },
         {
-          "question": "Peut-on tenir compte des allergies et des régimes ?",
-          "answer": "Oui. Chaque menu est personnalisé selon vos goûts, vos habitudes et vos besoins : sans gluten, sans lactose, végétarien ou toute autre préférence. Signalez vos allergies dès votre demande, et retrouvez les allergènes de chaque plat sur la page des [recettes](/recettes)."
-        },
-        {
-          "question": "Le crédit d'impôt de 50 % s'applique-t-il ?",
-          "answer": "Oui, le batch cooking à domicile est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate : l'avantage est appliqué dès le paiement, sous réserve d'éligibilité. Les prix du batch cooking affichés sur la page des [tarifs](/tarifs) tiennent déjà compte de ce crédit."
-        },
-        {
-          "question": "Quel engagement faut-il prendre ?",
-          "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine. Découvrez les formules de [batch cooking](/services/batch-cooking) pour choisir celle qui vous convient."
-        },
-        {
-          "question": "Peut-on annuler ou reporter une réservation ?",
-          "answer": "Oui. Prévenez-nous au moins 48 heures à l'avance pour reporter ou annuler un batch cooking ou un cours, sans frais. Pour un dîner avec chef privé, la date peut être reportée sans frais plus de 7 jours avant ; l'acompte est conservé en cas d'annulation plus tardive."
-        },
-        {
-          "question": "Combien de temps à l'avance faut-il réserver ?",
-          "answer": "En général sous une semaine à Montpellier et en première couronne, et sous une à deux semaines pour les communes plus éloignées, selon notre planning. Plus vous demandez tôt, plus le choix de dates est large."
-        },
-        {
-          "question": "Comment réserver ma cheffe ?",
-          "answer": "Remplissez le [formulaire de contact](/contact) : indiquez la date, le nombre de convives et votre commune. Nous vous répondons généralement sous un jour ouvré, avec un devis gratuit et sans engagement."
+          "question": "Puis-je annuler ou reporter une session ?",
+          "answer": "Oui, sans frais si vous nous prévenez au moins 48 heures à l'avance, par le formulaire de [contact](/contact) ou par téléphone. Pour un dîner privé, la date peut être reportée sans frais plus de 7 jours avant ; l'acompte est conservé en cas d'annulation moins de 7 jours avant la date."
         }
       ]
     },
@@ -633,32 +626,56 @@
           "answer": "C'est la préparation, en une seule session, de 3 à 5 dîners. Votre cheffe se déplace chez vous et cuisine dans votre propre cuisine."
         },
         {
+          "question": "Comment se déroule une session de batch cooking ?",
+          "answer": "Dans votre demande de devis, vous nous indiquez vos goûts, vos allergies, la date et votre commune. Nous composons le menu avec vous, puis vous faites les courses à partir de la liste. Le jour J, la cheffe arrive à l'heure convenue, cuisine 3 à 5 dîners en une session, les répartit dans des contenants, range la cuisine et repart. Comptez en moyenne trois à quatre heures, selon le nombre de personnes à nourrir."
+        },
+        {
+          "question": "Le batch cooking convient-il à une personne seule ou à un couple ?",
+          "answer": "Oui. Les portions sont adaptées à votre foyer, sans gaspillage : une personne, un couple ou une famille. Vous choisissez 3, 4 ou 5 dîners par semaine selon vos besoins."
+        },
+        {
+          "question": "Dois-je être présent(e) pendant la session ?",
+          "answer": "Pas pendant toute la session : une personne majeure doit simplement être présente à l'arrivée et au départ de la cheffe. Lors de la première session, prévoyez 10 à 15 minutes pour lui faire découvrir votre cuisine et lui rappeler allergies et préférences."
+        },
+        {
+          "question": "Que dois-je préparer avant la session ?",
+          "answer": "Quatre choses suffisent : une cuisine équipée (four, plaques de cuisson, réfrigérateur), un plan de travail dégagé et un lave-vaisselle vide, tous les ingrédients de la liste, et des contenants de conservation en nombre suffisant. La cheffe s'occupe du reste !"
+        },
+        {
           "question": "Faites-vous les courses ?",
-          "answer": "Non, les courses sont à votre charge : vous les faites à partir du menu validé ensemble, et la cheffe cuisine avec vos ingrédients."
+          "answer": "Non, les courses sont à votre charge : vous les faites à partir du menu validé ensemble, et la cheffe cuisine avec vos ingrédients. La liste précise vous est envoyée avant la session."
+        },
+        {
+          "question": "Comment sont conditionnés les repas ?",
+          "answer": "La cheffe répartit les plats dans des contenants, idéalement en verre (le plastique convient aussi). Prévoyez-en en nombre suffisant : nous vous précisons la quantité avec le menu. À la fin de la session, il ne vous reste qu'à les ranger au réfrigérateur ou au congélateur."
         },
         {
           "question": "Comment les repas sont-ils conservés ?",
-          "answer": "Les dîners sont conditionnés et conservés au réfrigérateur ou au congélateur, prêts à être réchauffés au moment souhaité."
+          "answer": "Les dîners sont conditionnés et conservés au réfrigérateur (en général 2 à 4 jours) ou au congélateur, prêts à être réchauffés au moment souhaité. Chaque recette précise sa durée de conservation."
         },
         {
           "question": "Peut-on tenir compte des allergies et des régimes ?",
-          "answer": "Oui. Le menu est personnalisé selon vos goûts, vos habitudes et vos besoins alimentaires."
+          "answer": "Oui. Le menu est personnalisé selon vos goûts, vos habitudes et vos besoins alimentaires. Signalez vos allergies dès votre demande de devis et rappelez-les à la cheffe au début de la session. Les plats étant préparés chez vous, avec vos ustensiles, nous ne pouvons pas garantir l'absence totale de traces d'allergènes."
         },
         {
           "question": "Quel engagement faut-il prendre ?",
-          "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine."
+          "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine. Il n'y a jamais de renouvellement automatique : à la fin de votre mois, vous décidez de la suite."
         },
         {
           "question": "Comment fonctionne le crédit d'impôt de 50 % ?",
-          "answer": "Le service est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate : l'avantage est appliqué dès le paiement. Sous réserve d'éligibilité."
+          "answer": "Le service est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate : l'avantage est appliqué dès le paiement. Sous réserve d'éligibilité. Le prix affiché est déjà celui après crédit."
+        },
+        {
+          "question": "Puis-je annuler ou reporter une session ?",
+          "answer": "Oui, sans frais si vous nous prévenez au moins 48 heures à l'avance. Moins de 48 heures avant, la session peut être facturée selon les conditions de votre devis. Situation exceptionnelle (hospitalisation, deuil…) ? Contactez-nous : nous étudions chaque cas."
         },
         {
           "question": "Dans quelles villes intervenez-vous ?",
-          "answer": "Nous intervenons à domicile dans le secteur de Montpellier, de Mèze et de Lunel. Si votre commune est proche, contactez-nous pour vérifier."
+          "answer": "Nous intervenons à Montpellier et dans sa première couronne, déplacement inclus, puis jusqu'à 30 minutes alentour avec un petit supplément. Plus loin, c'est sur demande. Votre commune n'est pas citée ? Consultez la page [Zones d'intervention](/zones) ou contactez-nous pour vérifier."
         },
         {
           "question": "Comment réserver ?",
-          "answer": "Remplissez le formulaire de demande : nous vous répondons généralement sous un jour ouvré, sans engagement."
+          "answer": "Remplissez le formulaire de demande de devis : dites-nous la date, le nombre de convives et votre commune. Nous vous répondons sous un jour ouvré, avec un devis gratuit et sans engagement."
         }
       ]
     }
@@ -835,11 +852,38 @@
       "items": [
         { "question": "Pour quelles occasions faire appel à un chef privé ?", "answer": "Dîner entre proches, anniversaire, fête, repas d'affaires ou séjour en villa : le chef s'occupe de tout, du premier échange jusqu'au dernier plat." },
         { "question": "Le menu est-il personnalisé ?", "answer": "Oui. Il est composé avec vous selon vos envies, vos invités et leurs besoins alimentaires, puis validé avant la soirée." },
-        { "question": "Qui fait les courses et le nettoyage ?", "answer": "Le chef fait les courses, prépare et cuisine, puis laisse la cuisine rangée et nettoyée après le dîner." },
-        { "question": "Combien d'invités pouvez-vous accueillir ?", "answer": "En dîner assis, de 2 à 12 convives. En buffet ou en cocktail, jusqu'à 30. Pour plus, contactez-nous." },
-        { "question": "De quel matériel ai-je besoin ?", "answer": "Le chef apporte ses ustensiles. Il vous suffit d'une cuisine avec four, plaques et réfrigérateur, et de la vaisselle pour le service." },
-        { "question": "Comment réserver et quel est l'acompte ?", "answer": "Envoyez votre demande : après validation du menu, un acompte de 30 % confirme la date et le solde est réglé le soir de la prestation." },
-        { "question": "Que se passe-t-il en cas d'annulation ?", "answer": "L'acompte est conservé si vous annulez moins de 7 jours avant la date ; avant, la date peut être reportée sans frais." }
+        {
+          "question": "Peut-on signaler des allergies ou des régimes ?",
+          "answer": "Oui, et c'est essentiel : signalez-les dès votre demande, pour vous comme pour vos invités. Le menu est composé en conséquence et validé avec vous avant la soirée. Les plats étant préparés dans votre cuisine, nous ne pouvons pas garantir l'absence totale de traces d'allergènes."
+        },
+        {
+          "question": "Combien coûte un dîner avec chef privé ?",
+          "answer": "À partir de 35 € par personne, courses, préparation, service et rangement de la cuisine compris. Le prix dépend du format (dîner assis, buffet, cocktail ou menu sur mesure) et du nombre de convives : retrouvez le détail sur la page des [tarifs](/tarifs)."
+        },
+        {
+          "question": "Qui fait les courses et le nettoyage ?",
+          "answer": "Le chef fait les courses, prépare et cuisine, puis laisse la cuisine rangée et nettoyée après le dîner."
+        },
+        {
+          "question": "Combien d'invités pouvez-vous accueillir ?",
+          "answer": "En dîner assis, de 2 à 12 convives. En buffet ou en cocktail, jusqu'à 30. Pour plus, contactez-nous."
+        },
+        {
+          "question": "De quel matériel ai-je besoin ?",
+          "answer": "Le chef apporte ses ustensiles. Il vous suffit d'une cuisine avec four, plaques et réfrigérateur, et de la vaisselle pour le service."
+        },
+        {
+          "question": "Combien de temps à l'avance faut-il réserver ?",
+          "answer": "En général sous une semaine à Montpellier et en première couronne, un peu plus pour les communes éloignées. Pour une date précise (week-end, fêtes), demandez tôt : le choix de dates est plus large."
+        },
+        {
+          "question": "Comment réserver et quel est l'acompte ?",
+          "answer": "Envoyez votre demande : après validation du menu, un acompte de 30 % confirme la date et le solde est réglé le soir de la prestation."
+        },
+        {
+          "question": "Que se passe-t-il en cas d'annulation ?",
+          "answer": "L'acompte est conservé si vous annulez moins de 7 jours avant la date ; avant, la date peut être reportée sans frais."
+        }
       ]
     },
     "form": {
@@ -879,6 +923,52 @@
     }
   },
   "coursPage": {
+    "faq": {
+      "kicker": "Questions fréquentes",
+      "title": "Tout savoir sur les cours de cuisine à domicile",
+      "items": [
+        {
+          "question": "Faut-il avoir déjà de l'expérience en cuisine ?",
+          "answer": "Non. Chaque cours est adapté à votre niveau, du débutant au passionné : le chef vous guide geste après geste et ajuste le rythme et le menu à votre groupe."
+        },
+        {
+          "question": "Que fournit le chef, et que dois-je prévoir ?",
+          "answer": "Le chef apporte tous les ingrédients frais, les recettes détaillées à garder, les ustensiles spécifiques et les tabliers. Vous prévoyez une cuisine avec four, plaques et évier, un plan de travail assez grand pour le groupe, et la vaisselle et les couverts pour la dégustation."
+        },
+        {
+          "question": "Combien de personnes peuvent participer ?",
+          "answer": "De un à douze participants selon le format : individuel, en couple, entre amis (4 à 8 personnes), EVJF et anniversaires (4 à 12), ou atelier enfants (2 à 6). Pour un groupe plus grand ou un cours en entreprise, contactez-nous."
+        },
+        {
+          "question": "Combien de temps dure un cours ?",
+          "answer": "De 2 h à 3 h 30 selon le cours : 2 h pour un atelier Kids & Family, 3 h pour un EVJF ou un anniversaire, 3 h 30 pour un menu en trois temps."
+        },
+        {
+          "question": "Déguste-t-on ce que l'on a cuisiné ?",
+          "answer": "Oui : le cours se termine par un repas (ou un goûter pour les enfants) que vous dégustez ensemble. Pour les ateliers enfants, les créations peuvent être emportées."
+        },
+        {
+          "question": "À partir de quel âge les enfants peuvent-ils participer ?",
+          "answer": "Les ateliers Kids & Family sont ouverts dès 5 ans, pour 2 à 6 enfants, avec leurs parents si vous le souhaitez."
+        },
+        {
+          "question": "Peut-on signaler des allergies ?",
+          "answer": "Oui, signalez allergies et régimes à la réservation : le menu est adapté. Les plats étant préparés dans votre cuisine, nous ne pouvons pas garantir l'absence totale de traces d'allergènes."
+        },
+        {
+          "question": "Comment est calculé le prix d'un cours ?",
+          "answer": "Le prix est par personne (par enfant pour les ateliers enfants), ingrédients et repas compris : 45 € pour Kids & Family, 65 € pour un EVJF ou un anniversaire, 75 € pour un menu en trois temps. Le déplacement est inclus à Montpellier et en première couronne. Le crédit d'impôt de 50 % concerne le batch cooking, pas les cours."
+        },
+        {
+          "question": "Peut-on offrir une prestation ?",
+          "answer": "Oui, pour un cours de cuisine : demandez un bon cadeau, au montant de votre choix ou pour un cours précis. Il est envoyé par email et valable 12 mois. Avant d'offrir, vérifiez que la personne habite dans une zone où nous intervenons."
+        },
+        {
+          "question": "Puis-je annuler ou reporter un cours ?",
+          "answer": "Oui, sans frais si vous nous prévenez au moins 48 heures à l'avance. Moins de 48 heures avant, le cours peut être facturé selon les conditions de votre devis."
+        }
+      ]
+    },
     "inquiry": {
       "kicker": "Demande rapide",
       "title": "Dites-nous l'essentiel",
@@ -1082,6 +1172,19 @@
     ]
   },
   "pages": {
+    "heads": {
+      "about": "Rencontrez Chef Meemz, cheffe à domicile à Montpellier et alentours : son parcours, sa cuisine de saison et sa manière de travailler chez vous, en batch cooking, en chef privé ou en cours de cuisine.",
+      "zones": "Votre cheffe se déplace à Montpellier et dans un rayon d'environ 30 km : première couronne, déplacement inclus, puis communes plus éloignées sur demande. Vérifiez si votre commune est desservie.",
+      "services": "Batch cooking pour vos repas de la semaine, chef privé pour vos dîners et réceptions, cours de cuisine pour apprendre chez vous : trois services de cheffe à domicile à Montpellier, éligibles au crédit d'impôt de 50 % pour le batch cooking.",
+      "contact": "Parlez-nous de votre projet : batch cooking, dîner avec chef privé ou cours de cuisine à domicile à Montpellier. Indiquez la date, le nombre de convives et votre commune : nous vous répondons sous un jour ouvré, sans engagement.",
+      "faq": "Tarifs, crédit d'impôt, allergies, courses, matériel, annulation : toutes les réponses sur le batch cooking, le chef privé et les cours de cuisine à domicile à Montpellier et alentours.",
+      "pricing": "Les tarifs de votre cheffe à domicile à Montpellier : batch cooking à la semaine ou au mois, chef privé et cours de cuisine. Choisissez votre formule et découvrez le prix, avec 50 % de crédit d'impôt sur le batch cooking.",
+      "portfolio": "Dîners d'anniversaire, buffets de fête, batch cooking en famille, cours de cuisine entre amis : parcourez les réalisations de la cheffe chez ses clients à Montpellier et alentours.",
+      "recipes": "Plats maison, faciles à conserver et à réchauffer, et plats signature plus raffinés : parcourez les recettes de la cheffe pour votre batch cooking ou votre dîner avec chef privé à Montpellier, avec régimes et allergènes indiqués.",
+      "chef": "Un chef privé vient cuisiner chez vous à Montpellier : menu sur mesure, courses, service à table et cuisine rangée. Pour un dîner entre amis, un anniversaire, un repas d'affaires ou un séjour en villa.",
+      "batch": "Votre cheffe prépare 3 à 5 dîners faits maison en une seule session dans votre cuisine, à Montpellier et alentours. Menu sur mesure, repas prêts à réchauffer et 50 % de crédit d'impôt.",
+      "cours": "Un chef vient chez vous avec les ingrédients pour un cours de cuisine à domicile à Montpellier : en solo, en couple, entre amis, en famille ou en équipe. Vous dégustez votre menu à la fin."
+    },
     "about": {
       "title": "À propos",
       "crumb": "À propos"
@@ -1122,6 +1225,28 @@
     }
   },
   "contact": {
+    "faq": {
+      "kicker": "Questions fréquentes",
+      "title": "Avant de nous écrire",
+      "items": [
+        {
+          "question": "Sous quel délai me répondez-vous ?",
+          "answer": "Nous répondons sous un jour ouvré, par e-mail ou par téléphone, avec un devis gratuit et sans engagement."
+        },
+        {
+          "question": "Que dois-je indiquer dans ma demande ?",
+          "answer": "Quelques mots suffisent : le service qui vous intéresse, la date souhaitée, le nombre de personnes, votre commune, et vos allergies ou envies. Nous complétons ensemble ce qui manque."
+        },
+        {
+          "question": "Le devis est-il gratuit ?",
+          "answer": "Oui, le devis est gratuit et sans engagement. Il précise le menu, le déplacement selon votre zone, le prix et, pour le batch cooking, le prix avant et après crédit d'impôt."
+        },
+        {
+          "question": "Puis-je modifier ma demande ou mes allergies après l'avoir envoyée ?",
+          "answer": "Oui, écrivez-nous ou appelez-nous à tout moment avant la session : nous mettons à jour votre menu et votre devis. Rappelez aussi vos allergies à la cheffe le jour J."
+        }
+      ]
+    },
     "kicker": "Contact",
     "title": "Parlons de",
     "highlight": "votre menu",
@@ -1204,7 +1329,7 @@
     "services": "Batch cooking hebdomadaire, formule famille, événements : découvrez nos services et ce qu'ils incluent.",
     "pricing": "Tous nos tarifs à Montpellier : batch cooking à domicile, chef privé et cours de cuisine, avec le déplacement selon votre zone.",
     "about": "Rencontrez Chef Meemz : votre chef à domicile pour le batch cooking, les dîners privés et les cours de cuisine à Montpellier.",
-    "faq": "Les réponses aux questions les plus fréquentes : commande, conservation, allergies, livraison et paiement.",
+    "faq": "Toutes les réponses sur le batch cooking à domicile à Montpellier : déroulé d'une session, courses, conservation, allergies, zones, crédit d'impôt de 50 % et paiement.",
     "contact": "Parlez-nous de votre semaine : dites-nous la date, le nombre de convives et vos envies, nous répondons sous un jour ouvré.",
     "portfolio": "Nos réalisations récentes : repas de la semaine, dîners et événements préparés pour nos clients.",
     "search": "Recherche dans les services et les réalisations."
@@ -1337,6 +1462,32 @@
     "firstNamePlaceholder": "Marie"
   },
   "zonesPage": {
+    "faq": {
+      "kicker": "Questions fréquentes",
+      "title": "Vos questions sur les zones d'intervention",
+      "items": [
+        {
+          "question": "Ma commune n'est pas dans la liste, puis-je quand même réserver ?",
+          "answer": "Très probablement : les communes citées ne sont que des exemples. Du moment que vous habitez dans la zone d'intervention autour de Montpellier, nous pouvons venir. Un doute ? Dites-nous où vous êtes, nous vous confirmons sous un jour ouvré."
+        },
+        {
+          "question": "Le déplacement est-il facturé ?",
+          "answer": "Il est inclus à Montpellier et dans la première couronne. Il fait l'objet d'un petit supplément pour les communes à 15 à 30 minutes, et d'un supplément plus important ou d'un minimum de commande au-delà. Il figure toujours dans votre devis."
+        },
+        {
+          "question": "Quels sont les délais pour réserver ?",
+          "answer": "En général sous une semaine à Montpellier et en première couronne, sous une à deux semaines pour les communes plus éloignées, et à convenir ensemble au-delà, selon notre planning. Plus vous demandez tôt, plus le choix de dates est large."
+        },
+        {
+          "question": "Intervenez-vous à Sète, Lunel ou au Pic Saint-Loup ?",
+          "answer": "Oui, sur demande. Ces communes sont en zone 3 : le déplacement fait l'objet d'un supplément plus important ou d'un minimum de commande, souvent pour un abonnement hebdomadaire ou un événement. Écrivez-nous, nous étudions chaque demande."
+        },
+        {
+          "question": "Les trois services sont-ils disponibles partout ?",
+          "answer": "Oui en zones 1 et 2. En zone 3, le batch cooking est proposé en abonnement hebdomadaire, le chef privé pour des événements et les cours de cuisine sur demande."
+        }
+      ]
+    },
     "seo": {
       "title": "Zones d'intervention à Montpellier et alentours",
       "description": "Batch cooking, chef privé et cours de cuisine à domicile à Montpellier, Castelnau-le-Lez, Lattes, Juvignac et dans tout le secteur : communes desservies, délais et déplacements."
@@ -1496,6 +1647,28 @@
     }
   },
   "recipesPage": {
+    "faq": {
+      "kicker": "Questions fréquentes",
+      "title": "Vos questions sur les recettes",
+      "items": [
+        {
+          "question": "Peut-on choisir les recettes ?",
+          "answer": "Oui. Choisissez parmi nos recettes classiques avec la formule Essentiel, ajoutez les recettes Signature de la cheffe avec la formule Signature, ou demandez un menu élaboré sur mesure avec la formule Sur mesure. La page [Recettes](/recettes) présente les saveurs, les ingrédients clés et les allergènes de chaque plat. Une recette ne vous tente pas ? Dites-le avant la session : nous faisons notre possible pour l'adapter."
+        },
+        {
+          "question": "Quelle différence entre les recettes classiques, Signature et sur mesure ?",
+          "answer": "Les recettes classiques sont les plats réconfortants du quotidien (formule Essentiel). Les recettes Signature sont des plats de cheffe plus travaillés (formule Signature). Avec la formule Sur mesure, nous composons un menu selon vos envies et contraintes."
+        },
+        {
+          "question": "Comment trouver une recette adaptée à mon régime ou à mes allergies ?",
+          "answer": "Utilisez les filtres de cette page : type de plat, régime, allergènes et formule. Chaque recette indique ses allergènes, ses saveurs et ses ingrédients clés. Ces informations sont indicatives : dites-nous vos allergies, chaque recette peut être adaptée avant la session."
+        },
+        {
+          "question": "Combien de temps se conservent les plats ?",
+          "answer": "En général 2 à 4 jours au réfrigérateur, ou plus longtemps au congélateur pour la plupart des recettes. La fiche de chaque recette précise sa durée de conservation, son mode de réchauffage, et si elle se congèle."
+        }
+      ]
+    },
     "filters": { "type": "Type de plat", "diet": "Régime", "allergen": "Allergènes", "all": "Toutes", "pack": "Formule" },
     "count": "{n} recette(s) affichée(s)",
     "reset": "Réinitialiser les filtres",
@@ -1514,15 +1687,31 @@
       {
         "id": "avant",
         "kicker": "Avant la réservation",
-        "title": "Zone, délais et tarifs",
+        "title": "Services, zone, délais et tarifs",
         "items": [
           {
-            "question": "Dans quelles zones intervenez-vous ?",
-            "answer": "Nous intervenons à Montpellier et dans sa première couronne (Castelnau-le-Lez, Lattes, Juvignac, Saint-Jean-de-Védas et autres), déplacement inclus. Les communes à 15 à 30 minutes, comme Vendargues, Mauguio ou Palavas-les-Flots, sont desservies avec un petit supplément de déplacement. Plus loin (Sète, Lunel, Pic Saint-Loup, Cap d'Agde), c'est sur demande. Retrouvez la carte sur la page Zones d'intervention."
+            "question": "Qu'est-ce que le batch cooking à domicile ?",
+            "answer": "Le [batch cooking à domicile](/services/batch-cooking) consiste à faire préparer chez vous, en une seule session, 3 à 5 dîners faits maison. Votre cheffe cuisine dans votre propre cuisine avec des produits de saison, puis range les plats au réfrigérateur, prêts à être réchauffés pendant la semaine."
           },
           {
-            "question": "Le déplacement est-il facturé ?",
-            "answer": "Il est inclus à Montpellier et dans la première couronne. Il fait l'objet d'un petit supplément pour les communes à 15 à 30 minutes, et d'un supplément plus important ou d'un minimum de commande au-delà. Il figure toujours dans votre devis."
+            "question": "Quels services proposez-vous ?",
+            "answer": "Trois services à domicile, autour de Montpellier : le [batch cooking](/services/batch-cooking) pour vos dîners de la semaine, le [chef privé](/services/chef-prive) pour un dîner entre proches ou une fête, et le [cours de cuisine](/services/cours-de-cuisine) pour apprendre chez vous, seul, en couple ou entre amis."
+          },
+          {
+            "question": "Le batch cooking convient-il à une personne seule ou à un couple ?",
+            "answer": "Oui. Les portions sont adaptées à votre foyer, sans gaspillage : une personne, un couple ou une famille. Vous choisissez 3, 4 ou 5 dîners par semaine selon vos besoins."
+          },
+          {
+            "question": "Proposez-vous des repas pour les jeunes parents ?",
+            "answer": "Oui. Des plats faits maison, nourrissants et simples à réchauffer, pendant que vous vous occupez du bébé. Précisez votre situation dans votre demande : le menu est adapté à vos besoins et à vos éventuelles allergies."
+          },
+          {
+            "question": "Quels types de plats cuisinez-vous ?",
+            "answer": "Des plats faits maison, équilibrés, de saison et adaptés à toute la famille, enfants compris : des classiques réconfortants aux plats Signature plus travaillés. Nous tenons compte des régimes (végétarien, sans lactose, sans gluten…). Découvrez nos [recettes](/recettes)."
+          },
+          {
+            "question": "Dans quelles zones intervenez-vous ?",
+            "answer": "Nous intervenons à Montpellier et dans sa première couronne (Castelnau-le-Lez, Lattes, Juvignac, Saint-Jean-de-Védas et autres), déplacement inclus. Les communes à 15 à 30 minutes, comme Vendargues, Mauguio ou Palavas-les-Flots, sont desservies avec un petit supplément de déplacement. Plus loin (Sète, Lunel, Pic Saint-Loup, Cap d'Agde), c'est sur demande. Retrouvez la carte sur la page [Zones d'intervention](/zones)."
           },
           {
             "question": "Quels sont les délais pour réserver ?",
@@ -1530,11 +1719,11 @@
           },
           {
             "question": "Combien coûte le service ?",
-            "answer": "Le batch cooking à domicile démarre à 49,50 € par passage après crédit d'impôt (99 € avant crédit), selon le nombre de dîners et la durée. Un dîner privé démarre à 35 € par personne, et un cours de cuisine à 45 € par personne. Le détail de chaque tarif figure sur la page Tarifs."
+            "answer": "Le batch cooking à domicile démarre à 49,50 € par passage après crédit d'impôt (99 € avant crédit), selon le nombre de dîners et la durée. Un dîner privé démarre à 35 € par personne, et un cours de cuisine à 45 € par personne. Le détail de chaque tarif figure sur la page [Tarifs](/tarifs)."
           },
           {
             "question": "Quel engagement faut-il prendre ?",
-            "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine."
+            "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine. Il n'y a jamais de renouvellement automatique : à la fin de votre mois, vous décidez de la suite."
           },
           {
             "question": "Comment réserver ?",
@@ -1549,27 +1738,35 @@
         "items": [
           {
             "question": "Comment se déroule une session de batch cooking ?",
-            "answer": "Votre cheffe arrive chez vous, cuisine 3 à 5 dîners en une session, puis les range au réfrigérateur avant de repartir. Comptez en moyenne trois à quatre heures, selon le nombre de personnes à nourrir."
+            "answer": "Dans votre demande de devis, vous nous indiquez vos goûts, vos allergies, la date et votre commune. Nous composons le menu avec vous, puis vous faites les courses à partir de la liste. Le jour J, la cheffe arrive à l'heure convenue, cuisine 3 à 5 dîners en une session, les répartit dans des contenants, range la cuisine et repart. Comptez en moyenne trois à quatre heures, selon le nombre de personnes à nourrir."
+          },
+          {
+            "question": "Dois-je être présent(e) pendant la session ?",
+            "answer": "Pas pendant toute la session : une personne majeure doit simplement être présente à l'arrivée et au départ de la cheffe. Lors de la première session, prévoyez 10 à 15 minutes pour lui faire découvrir votre cuisine et lui rappeler allergies et préférences."
+          },
+          {
+            "question": "Que dois-je préparer avant la session ?",
+            "answer": "Quatre choses suffisent : une cuisine équipée (four, plaques de cuisson, réfrigérateur), un plan de travail dégagé et un lave-vaisselle vide, tous les ingrédients de la liste, et des contenants de conservation en nombre suffisant. La cheffe s'occupe du reste !"
           },
           {
             "question": "De quoi ai-je besoin dans ma cuisine ?",
-            "answer": "Une cuisine équipée, avec four, plaques de cuisson et réfrigérateur. Pour un dîner privé, le chef apporte ses ustensiles et vous prévoyez la vaisselle pour le service. Pour un cours de cuisine, il apporte le matériel spécifique."
+            "answer": "Une cuisine équipée, avec four, plaques de cuisson et réfrigérateur. En batch cooking, la cheffe cuisine avec votre équipement : ustensiles, plaques, four et contenants de conservation. Pour un dîner privé, le chef apporte ses ustensiles et vous prévoyez la vaisselle pour le service. Pour un cours de cuisine, il apporte le matériel spécifique."
           },
           {
             "question": "Qui fait les courses ?",
-            "answer": "En batch cooking, les courses sont à votre charge : vous les faites à partir du menu validé ensemble, et la cheffe cuisine avec vos ingrédients. Pour un dîner privé, le chef fait les courses, incluses dans le tarif. Pour un cours de cuisine, il apporte tous les ingrédients."
+            "answer": "En batch cooking, les courses sont à votre charge : vous les faites à partir du menu validé ensemble, et la cheffe cuisine avec vos ingrédients. Pour un dîner avec chef privé, le chef fait les courses, incluses dans le tarif. Pour un cours de cuisine, il apporte tous les ingrédients."
           },
           {
             "question": "Peut-on tenir compte des allergies et des régimes ?",
-            "answer": "Oui. Le menu est personnalisé selon vos goûts, vos habitudes et vos besoins alimentaires : sans gluten, sans lactose, végétarien ou toute autre préférence. Signalez vos allergies dès votre demande de devis ; chaque recette indique aussi les allergènes qu'elle contient."
+            "answer": "Oui, et c'est essentiel. Signalez les allergies et intolérances de votre foyer dès votre demande de devis : sans gluten, sans lactose, végétarien ou toute autre préférence, le menu est adapté, et chaque recette indique ses allergènes. Rappelez-les à la cheffe au début de chaque session et ne laissez aucun produit allergène à portée dans la cuisine. Les plats étant préparés chez vous, avec vos ustensiles, nous ne pouvons pas garantir l'absence totale de traces d'allergènes."
           },
           {
             "question": "Peut-on choisir les recettes ?",
-            "answer": "Oui. Choisissez parmi nos recettes classiques avec la formule Essentiel, ajoutez les recettes Signature de la cheffe avec la formule Signature, ou demandez un menu élaboré sur mesure avec la formule Sur mesure. La page Recettes présente les saveurs, les ingrédients clés et les allergènes de chaque plat."
+            "answer": "Oui. Choisissez parmi nos recettes classiques avec la formule Essentiel, ajoutez les recettes Signature de la cheffe avec la formule Signature, ou demandez un menu élaboré sur mesure avec la formule Sur mesure. La page [Recettes](/recettes) présente les saveurs, les ingrédients clés et les allergènes de chaque plat. Une recette ne vous tente pas ? Dites-le avant la session : nous faisons notre possible pour l'adapter."
           },
           {
             "question": "La cuisine est-elle rangée après la prestation ?",
-            "answer": "Oui. Pour un dîner privé, la cuisine est rangée et nettoyée après le dîner. Pour un cours, elle est rangée à la fin de la séance."
+            "answer": "Oui. Pour le batch cooking, la cheffe nettoie le plan de travail et fait la vaisselle des ustensiles utilisés avant de partir. Pour un dîner privé, la cuisine est rangée et nettoyée après le dîner. Pour un cours, elle est rangée à la fin de la séance."
           }
         ]
       },
@@ -1580,19 +1777,39 @@
         "items": [
           {
             "question": "Comment les repas sont-ils conservés ?",
-            "answer": "Les dîners sont conditionnés et conservés au réfrigérateur ou au congélateur, prêts à être réchauffés au moment souhaité. Chaque recette indique sa durée de conservation, en général 2 à 4 jours au frais."
+            "answer": "Les dîners sont conditionnés et conservés au réfrigérateur ou au congélateur, prêts à être réchauffés au moment souhaité. Chaque recette indique sa durée de conservation, en général 2 à 4 jours au frais (entre 0 et 4 °C)."
+          },
+          {
+            "question": "Comment sont conditionnés les repas ?",
+            "answer": "La cheffe répartit les plats dans des contenants, idéalement en verre (le plastique convient aussi). Prévoyez-en en nombre suffisant : nous vous précisons la quantité avec le menu. À la fin de la session, il ne vous reste qu'à les ranger au réfrigérateur ou au congélateur."
           },
           {
             "question": "Comment réchauffer les plats ?",
-            "answer": "Les plats sont prêts à réchauffer : au four, à la poêle, à la casserole ou au micro-ondes selon le plat. Le mode de réchauffage conseillé figure sur la fiche de chaque recette."
+            "answer": "Les plats sont cuisinés et prêts à réchauffer : au four, à la poêle, à la casserole ou au micro-ondes selon le plat. Le mode de réchauffage conseillé figure sur la fiche de chaque recette ; certaines demandent un petit assemblage au moment du repas, c'est alors indiqué."
           },
           {
             "question": "Peut-on congeler les plats ?",
-            "answer": "La plupart des plats se congèlent très bien, ce qui permet de prévoir plus que la semaine. Quelques recettes, comme le poisson, sont à consommer rapidement : la fiche de chaque recette le précise."
+            "answer": "La plupart des plats se congèlent très bien, ce qui permet de prévoir plus que la semaine : congelez dès refroidissement, le jour même. Quelques recettes, comme le poisson, sont à consommer rapidement : la fiche de chaque recette le précise. Décongelez au réfrigérateur et ne recongelez jamais un plat décongelé."
           },
           {
             "question": "Comment annuler ou reporter une réservation ?",
-            "answer": "Contactez-nous au moins 48 heures à l'avance pour reporter ou annuler une session de batch cooking ou un cours sans frais. Pour un dîner privé, la date peut être reportée sans frais plus de 7 jours avant ; l'acompte est conservé en cas d'annulation moins de 7 jours avant la date."
+            "answer": "Contactez-nous au moins 48 heures à l'avance pour reporter ou annuler une session de batch cooking ou un cours sans frais. Moins de 48 heures avant, la session peut être facturée selon les conditions de votre devis. Pour un dîner privé, la date peut être reportée sans frais plus de 7 jours avant ; l'acompte est conservé en cas d'annulation moins de 7 jours avant la date. Situation exceptionnelle (hospitalisation, deuil…) ? Contactez-nous : nous étudions chaque cas."
+          },
+          {
+            "question": "Que se passe-t-il si je suis absent(e) le jour de la session ?",
+            "answer": "Si la cheffe ne peut pas accéder à votre logement, ou si personne ne s'est manifesté 30 minutes après l'heure prévue, la session est considérée comme annulée à moins de 48 h et peut être facturée selon les conditions de votre devis. Un imprévu ? Prévenez-nous au moins 48 h à l'avance pour annuler gratuitement."
+          },
+          {
+            "question": "Que se passe-t-il si la cheffe est indisponible ?",
+            "answer": "Nous vous prévenons au plus vite et vous proposons un autre créneau ou une autre cheffe, sans frais. Si aucune solution ne vous convient, la session est annulée et n'est pas facturée."
+          },
+          {
+            "question": "Puis-je faire une pause pendant les vacances ?",
+            "answer": "Oui. Avec la formule 1 semaine, vous réservez quand vous le souhaitez. Avec la formule 1 mois, prévenez-nous au moins 48 heures à l'avance pour reporter un passage sans frais : vous ne payez que les sessions réalisées."
+          },
+          {
+            "question": "Puis-je changer de formule ?",
+            "answer": "Oui. Dites-nous ce que vous souhaitez ajuster (nombre de dîners, formule Essentiel, Signature ou Sur mesure) : nous adaptons le menu et le devis pour la session suivante."
           }
         ]
       },
@@ -1603,23 +1820,37 @@
         "items": [
           {
             "question": "Comment fonctionne le crédit d'impôt de 50 % ?",
-            "answer": "Le service est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate : l'avantage est appliqué dès le paiement. Sous réserve d'éligibilité."
+            "answer": "Le batch cooking à domicile est éligible au crédit d'impôt pour les services à la personne, avec avance immédiate : l'avantage est appliqué dès le paiement, sous réserve d'éligibilité. Une attestation fiscale annuelle vous est remise. Le coût des ingrédients, à votre charge, n'y ouvre pas droit."
           },
           {
             "question": "Les prix affichés tiennent-ils compte du crédit d'impôt ?",
-            "answer": "Oui, pour le batch cooking : le prix affiché est celui après crédit d'impôt de 50 %, avec le prix avant crédit indiqué à côté. Votre devis, gratuit et sans engagement, précise tout."
+            "answer": "Oui, pour le batch cooking : le prix affiché est celui après crédit d'impôt de 50 %, avec le prix avant crédit indiqué à côté. Les prix du chef privé et des cours de cuisine sont des prix à payer, sans déduction. Votre devis, gratuit et sans engagement, précise tout."
+          },
+          {
+            "question": "Comment profiter de l'avance immédiate ?",
+            "answer": "Avec l'avance immédiate de l'URSSAF, vous ne payez que 50 % du prix : le crédit d'impôt est déduit tout de suite, au lieu d'attendre l'année suivante. Il faut être résident fiscal en France, avoir déjà fait au moins une déclaration de revenus et être à jour de ses déclarations et paiements d'impôts. Vous activez ensuite votre compte sur particulier.urssaf.fr et, après chaque session, vous validez la demande de paiement sous 48 h (sans réponse, elle est validée automatiquement). Nous vous guidons à chaque étape."
           },
           {
             "question": "Faut-il verser un acompte ?",
             "answer": "Pour un dîner privé, un acompte de 30 % confirme la date et le solde est réglé le soir de la prestation. Pour les autres services, les modalités de paiement figurent dans votre devis."
           },
           {
+            "question": "Le devis est-il gratuit ?",
+            "answer": "Oui, le devis est gratuit et sans engagement. Il précise le menu, le déplacement selon votre zone, le prix et, pour le batch cooking, le prix avant et après crédit d'impôt."
+          },
+          {
             "question": "Peut-on offrir une prestation ?",
-            "answer": "Oui, pour un cours de cuisine : demandez un bon cadeau, au montant de votre choix ou pour un cours précis. Il est envoyé par email et valable 12 mois."
+            "answer": "Oui, pour un cours de cuisine : demandez un bon cadeau, au montant de votre choix ou pour un cours précis. Il est envoyé par email et valable 12 mois. Avant d'offrir, vérifiez que la personne habite dans une zone où nous intervenons."
           }
         ]
       }
     ]
+  },
+  "signature": {
+    "kicker": "Plats signature",
+    "title": "Les plats signature de la cheffe",
+    "intro": "Des plats plus travaillés, imaginés par la cheffe et cuisinés chez vous, pour vos dîners avec chef privé à Montpellier comme pour vos semaines de batch cooking.",
+    "cta": "Découvrir les plats signature"
   },
   "inspirations": {
     "kicker": "Inspirations",
@@ -1706,6 +1937,44 @@
     }
   },
   "tarifsPage": {
+    "faq": {
+      "kicker": "Questions fréquentes",
+      "title": "Vos questions sur les tarifs et le paiement",
+      "items": [
+        {
+          "question": "Qu'est-ce qui est compris dans le prix ?",
+          "answer": "Pour le batch cooking : la conception du menu, l'organisation de la session, l'intervention de la cheffe chez vous et le déplacement en zone 1 ; les ingrédients restent à votre charge. Pour un dîner privé : courses, préparation, service et rangement. Pour un cours : ingrédients, matériel spécifique, recettes et repas dégusté."
+        },
+        {
+          "question": "Les prix affichés tiennent-ils compte du crédit d'impôt ?",
+          "answer": "Oui, pour le batch cooking : le prix affiché est celui après crédit d'impôt de 50 %, avec le prix avant crédit indiqué à côté. Les prix du chef privé et des cours de cuisine sont des prix à payer, sans déduction. Votre devis, gratuit et sans engagement, précise tout."
+        },
+        {
+          "question": "Comment profiter de l'avance immédiate ?",
+          "answer": "Avec l'avance immédiate de l'URSSAF, vous ne payez que 50 % du prix : le crédit d'impôt est déduit tout de suite, au lieu d'attendre l'année suivante. Il faut être résident fiscal en France, avoir déjà fait au moins une déclaration de revenus et être à jour de ses déclarations et paiements d'impôts. Vous activez ensuite votre compte sur particulier.urssaf.fr et, après chaque session, vous validez la demande de paiement sous 48 h (sans réponse, elle est validée automatiquement). Nous vous guidons à chaque étape."
+        },
+        {
+          "question": "Qui fait les courses ?",
+          "answer": "En batch cooking, les courses sont à votre charge : vous les faites à partir du menu validé ensemble, et la cheffe cuisine avec vos ingrédients. Pour un dîner avec chef privé, le chef fait les courses, incluses dans le tarif. Pour un cours de cuisine, il apporte tous les ingrédients."
+        },
+        {
+          "question": "Le déplacement est-il facturé ?",
+          "answer": "Il est inclus à Montpellier et dans la première couronne. Il fait l'objet d'un petit supplément pour les communes à 15 à 30 minutes, et d'un supplément plus important ou d'un minimum de commande au-delà. Il figure toujours dans votre devis."
+        },
+        {
+          "question": "Faut-il verser un acompte ?",
+          "answer": "Pour un dîner privé, un acompte de 30 % confirme la date et le solde est réglé le soir de la prestation. Pour les autres services, les modalités de paiement figurent dans votre devis."
+        },
+        {
+          "question": "Quel engagement faut-il prendre ?",
+          "answer": "Aucun pour 1 semaine (1 passage). Pour 1 mois, vous vous engagez sur 4 passages, à un tarif plus avantageux par semaine, sans renouvellement automatique."
+        },
+        {
+          "question": "Le devis est-il gratuit ?",
+          "answer": "Oui, le devis est gratuit et sans engagement. Il précise le menu, le déplacement selon votre zone, le prix et, pour le batch cooking, le prix avant et après crédit d'impôt."
+        }
+      ]
+    },
     "picker": {
       "kicker": "Vos tarifs",
       "title": "Pour quel service souhaitez-vous voir les tarifs ?",

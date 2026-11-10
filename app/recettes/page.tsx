@@ -5,7 +5,9 @@ import { PageHead } from '@/components/layout/page-head'
 import { RecipeBrowser, type RecipeCard } from '@/components/blocks/recipe-browser'
 import { isRecipePack, recipes } from '@/lib/recipes'
 import { ArrowIcon } from '@/components/ui/icon'
+import { FaqSection } from '@/components/sections/faq-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
+import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 import styles from './page.module.css'
@@ -29,6 +31,7 @@ export default async function RecipesPage({
   const p = await getTranslations('pages')
   const ev = await getTranslations('home.events')
   const r = await getTranslations('recipesPage')
+  const faqItems = r.raw('faq.items') as { question: string; answer: string }[]
   const cards: RecipeCard[] = recipes.map((x, i) => ({
     ...x,
     image: media.events[i % media.events.length],
@@ -40,12 +43,14 @@ export default async function RecipesPage({
         title={TITLE}
         description={DESCRIPTION}
         crumbs={[{ label: TITLE }]}
+        extra={[faqPage(faqItems)]}
       />
       <PageHead
         title={TITLE}
         crumbs={[{ label: p('home'), href: '/' }, { label: TITLE }]}
         navLabel={p('navLabel')}
         background={media.heads.recipes}
+        description={p('heads.recipes')}
       />
       <section data-section="recipes" className={styles.section}>
         <div className={styles.inner}>
@@ -79,6 +84,13 @@ export default async function RecipesPage({
           </div>
         </div>
       </section>
+      <FaqSection
+        name="recettes-faq"
+        tone="beige"
+        kicker={r('faq.kicker')}
+        title={r('faq.title')}
+        items={faqItems}
+      />
     </main>
   )
 }

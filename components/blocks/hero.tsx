@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { MapPin } from 'lucide-react'
+import { CalendarDays, MapPin } from 'lucide-react'
 import { LeadTrigger } from '@/components/features/lead/lead-trigger'
 import { ArrowIcon } from '@/components/ui/icon'
 import { RevealObserver } from '@/components/ui/reveal-observer'
@@ -75,7 +75,7 @@ export function Hero({
             />
           )}
           <h1 className={styles.title}>
-            <em className={styles.accent}>{accent}</em> 
+            <span className={styles.accent}>{accent}</span> 
             {headline}
           </h1>
           {zone && (
@@ -114,6 +114,7 @@ export function Hero({
           )}
           <div className={styles.actions}>
             <PrimaryTag href={primary.href} lead={primary.lead} className={styles.primary}>
+              <CalendarDays aria-hidden size={20} strokeWidth={2} />
               {primary.label}
               <ArrowIcon className={styles.arrow} />
             </PrimaryTag>

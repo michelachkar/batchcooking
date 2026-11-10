@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { CalendarDays } from 'lucide-react'
 import { LeadTrigger } from '@/components/features/lead/lead-trigger'
 import { rich } from '@/components/ui/rich-text'
 import { StepCards, type StepCard } from '@/components/blocks/step-cards'
@@ -67,6 +68,7 @@ export function StoryBlock({
           data-d="5"
           className={clsx(styles.button, styles.buttonSecondary)}
         >
+          <CalendarDays aria-hidden size={20} strokeWidth={2} />
           {secondaryButton.label}
           <svg
             viewBox="0 0 24 24"

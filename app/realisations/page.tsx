@@ -43,6 +43,7 @@ export default async function PortfolioPage() {
         crumbs={[{ label: p('home'), href: '/' }, { label: p('portfolio.crumb') }]}
         navLabel={p('navLabel')}
         background={media.heads.portfolio}
+        description={p('heads.portfolio')}
       />
       <Section name="realisations">
         <SectionHeading kicker={r('kicker')} title={r('title')} intro={r('intro')} />

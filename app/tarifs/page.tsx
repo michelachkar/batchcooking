@@ -7,7 +7,9 @@ import { euro, fromPrice, PACKS } from '@/lib/lead/pricing'
 import { TarifCategory } from '@/components/blocks/tarifs-category'
 import { PackageCards, type Package } from '@/components/blocks/package-cards'
 import { ZoneServices } from '@/components/blocks/zone-services'
+import { FaqSection } from '@/components/sections/faq-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
+import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 
@@ -34,6 +36,7 @@ export default async function PricingPage() {
   const p = await getTranslations('pages')
   const t = await getTranslations('tarifsPage')
   const z = await getTranslations('zonesPage')
+  const faqItems = t.raw('faq.items') as { question: string; answer: string }[]
 
   // Batch cooking (page /services/batch-cooking)
   const pk = await getTranslations('batchPage.packages')
@@ -60,12 +63,14 @@ export default async function PricingPage() {
         title={p('pricing.title')}
         description={(await getTranslations('seo'))('pricing')}
         crumbs={[{ label: p('pricing.crumb') }]}
+        extra={[faqPage(faqItems)]}
       />
       <PageHead
         title={p('pricing.title')}
         crumbs={[{ label: p('home'), href: '/' }, { label: p('pricing.crumb') }]}
         navLabel={p('navLabel')}
         background={media.heads.pricing}
+        description={p('heads.pricing')}
       />
       <TarifsPicker
         kicker={t('picker.kicker')}
@@ -182,6 +187,13 @@ export default async function PricingPage() {
         travelLabel={z('services.travelLabel')}
         delayLabel={z('services.delayLabel')}
         zones={z.raw('services.zones') as Parameters<typeof ZoneServices>[0]['zones']}
+      />
+      <FaqSection
+        name="tarifs-faq"
+        tone="beige"
+        kicker={t('faq.kicker')}
+        title={t('faq.title')}
+        items={faqItems}
       />
     </main>
   )

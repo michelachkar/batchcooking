@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/layout/page-head'
 import { ChefSection } from '@/components/sections/chef-section'
-import { ReviewsSection } from '@/components/sections/reviews-section'
+import { SignatureDishesSection } from '@/components/sections/signature-dishes-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
@@ -33,9 +33,10 @@ export default async function AboutPage() {
         crumbs={[{ label: p('home'), href: '/' }, { label: p('about.crumb') }]}
         navLabel={p('navLabel')}
         background={media.heads.page}
+        description={p('heads.about')}
       />
       <ChefSection />
-      <ReviewsSection />
+      <SignatureDishesSection />
     </main>
   )
 }

@@ -38,10 +38,18 @@ export async function SiteHeader() {
       <div className={styles.desktop}>
         <div className={styles.topbar}>
           <div className={styles.topbarInner}>
-            <p className={styles.announce}>
+            <div className={styles.announce}>
               <Leaf size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
-              {t('header.announce')}
-            </p>
+              <ul className={styles.announceList}>
+                {(t.raw('header.announce') as { label: string; href: string }[]).map((a) => (
+                  <li key={a.href}>
+                    <Link href={a.href} className={styles.announceLink}>
+                      {a.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <ul className={styles.topList}>
               <li className={styles.topItem}>
                 <MapPin size={12} fill="currentColor" className={styles.topIcon} aria-hidden />

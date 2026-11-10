@@ -33,6 +33,7 @@ export default async function ServicesPage() {
         crumbs={[{ label: p('home'), href: '/' }, { label: p('services.crumb') }]}
         navLabel={p('navLabel')}
         background={media.heads.services}
+        description={p('heads.services')}
       />
       <ExperiencesSection />
       <ServicesCompare

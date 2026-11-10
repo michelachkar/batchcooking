@@ -67,6 +67,7 @@ export default async function BatchCookingPage() {
         ]}
         navLabel={p('navLabel')}
         background={media.heads.service}
+        description={p('heads.batch')}
         cta={{ label: b('intro.primary'), href: quote, lead: true }}
       />
       <AboutSection showLearnMore={false} extra="pricing" />

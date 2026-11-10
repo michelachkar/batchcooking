@@ -239,15 +239,19 @@
 .title {
   margin-bottom: 22px;
   font-family: var(--font-display);
-  font-size: clamp(26px, 3.6vw, 52px);
+  font-size: 35px;
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.02em;
   color: var(--color-surface-dark);
 
+  /* Même taille que le H1 du hero (hero.module.css). */
   @media (width < 1025px) {
-    font-size: 34px;
-    line-height: 35px;
+    font-size: 40px;
+  }
+
+  @media (width < 768px) {
+    font-size: 28px;
   }
 }
 

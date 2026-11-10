@@ -6,7 +6,9 @@ import { ZoneCallout } from '@/components/blocks/zone-callout'
 import { ZoneServices } from '@/components/blocks/zone-services'
 import { ZonesCta } from '@/components/blocks/zones-cta'
 import { ZonesMap } from '@/components/blocks/zones-map'
+import { FaqSection } from '@/components/sections/faq-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
+import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 import type { ZoneId } from '@/lib/zones'
@@ -20,6 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ZonesPage() {
   const p = await getTranslations('pages')
   const z = await getTranslations('zonesPage')
+  const faqItems = z.raw('faq.items') as { question: string; answer: string }[]
   const zoneLabels = z.raw('zoneLabels') as Record<ZoneId, string>
   return (
     <main id="contenu">
@@ -31,12 +34,14 @@ export default async function ZonesPage() {
         title={z('seo.title')}
         description={z('seo.description')}
         crumbs={[{ label: p('zones.crumb') }]}
+        extra={[faqPage(faqItems)]}
       />
       <PageHead
         title={p('zones.title')}
         crumbs={[{ label: p('home'), href: '/' }, { label: p('zones.crumb') }]}
         navLabel={p('navLabel')}
         background={media.heads.services}
+        description={p('heads.zones')}
       />
       <ZonesMap
         text={{
@@ -65,6 +70,13 @@ export default async function ZonesPage() {
         travelLabel={z('services.travelLabel')}
         delayLabel={z('services.delayLabel')}
         zones={z.raw('services.zones') as Parameters<typeof ZoneServices>[0]['zones']}
+      />
+      <FaqSection
+        name="zones-faq"
+        tone="beige"
+        kicker={z('faq.kicker')}
+        title={z('faq.title')}
+        items={faqItems}
       />
       <ZonesCta
         kicker={z('cta.kicker')}

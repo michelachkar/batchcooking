@@ -70,6 +70,29 @@
   color: var(--color-cream);
 }
 
+.announceList {
+  display: flex;
+  align-items: center;
+
+  /* Séparateur « · » entre les liens, hors du texte des liens. */
+  & li + li::before {
+    content: '·';
+    margin-inline: 0.5rem;
+  }
+}
+
+.announceLink {
+  transition: color 300ms ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-white);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
 .topList {
   display: flex;
   align-items: center;

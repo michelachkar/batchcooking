@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { ChevronRight, X } from 'lucide-react'
+import { CalendarDays, ChevronRight, X } from 'lucide-react'
 import { useLead } from '@/components/features/lead/lead-provider'
 import { euro, priceAfter, priceBefore } from '@/lib/lead/pricing'
 import styles from './credit-note.module.css'
@@ -128,6 +128,7 @@ export function CreditDialog({ value, dialog }: { value: string; dialog: CreditD
             open({})
           }}
         >
+          <CalendarDays aria-hidden size={20} strokeWidth={2} />
           {dialog.button}
         </button>
       </div>

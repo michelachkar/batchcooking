@@ -9,6 +9,8 @@ type PageHeadProps = {
   /** Fil d'Ariane : tous les niveaux sauf le dernier portent un lien ; le dernier est la page courante. */
   crumbs: { label: string; href?: string }[]
   navLabel: string
+  /** Court texte sous le titre (SEO). */
+  description?: string
   /** Photo d'arrière-plan (facultative) : le bandeau reste sombre sans elle. */
   background?: { src: string; unoptimized?: boolean }
   /** Marge de 10 px de chaque côté en mobile (réalisations). */
@@ -20,7 +22,16 @@ type PageHeadProps = {
 }
 
 // Bandeau de titre des pages intérieures : photo voilée de vert, pastille de fil d'Ariane et titre.
-export function PageHead({ title, crumbs, navLabel, background, inset, bare, cta }: PageHeadProps) {
+export function PageHead({
+  title,
+  crumbs,
+  navLabel,
+  description,
+  background,
+  inset,
+  bare,
+  cta,
+}: PageHeadProps) {
   return (
     <section data-section="head" className={clsx(styles.root, inset && styles.inset)}>
       {background && (
@@ -63,6 +74,7 @@ export function PageHead({ title, crumbs, navLabel, background, inset, bare, cta
               </ol>
             </nav>
             <h1 className={styles.title}>{title}</h1>
+            {description && <p className={styles.description}>{description}</p>}
             {cta && (
               <div className={styles.cta}>
                 <CtaButton href={cta.href} label={cta.label} lead={cta.lead} light />

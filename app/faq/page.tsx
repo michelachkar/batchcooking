@@ -42,6 +42,7 @@ export default async function FaqPage() {
         crumbs={[{ label: p('home'), href: '/' }, { label: p('faq.crumb') }]}
         navLabel={p('navLabel')}
         background={media.heads.faq}
+        description={p('heads.faq')}
       />
       <FaqThemes
         label={f('themesLabel')}
