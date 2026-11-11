@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from './realisation-card.module.css'
 
 export type RealisationCardData = {
@@ -20,13 +21,16 @@ export type RealisationCardData = {
   image: { src: string; width: number; height: number; alt: string; unoptimized?: boolean }
 }
 
-// Vignette photo d'une réalisation : image pleine, 3 tags maximum (service en premier) et titre en surimpression (pas de lien).
+// Vignette photo d'une réalisation : image pleine, 3 tags maximum (service en premier) et titre en surimpression (lien vers la fiche si `linked`).
 export function RealisationCard({
   r,
   tags = r.tags ?? [],
+  linked = false,
 }: {
   r: RealisationCardData
   tags?: string[]
+  /** Rend toute la carte cliquable vers la fiche (lien étiré sur le titre). */
+  linked?: boolean
 }) {
   return (
     <li className={styles.card}>
@@ -48,7 +52,15 @@ export function RealisationCard({
             </li>
           ))}
         </ul>
-        <h3 className={styles.title}>{r.title}</h3>
+        <h3 className={styles.title}>
+          {linked ? (
+            <Link href={r.href} className={styles.link}>
+              {r.title}
+            </Link>
+          ) : (
+            r.title
+          )}
+        </h3>
       </div>
     </li>
   )

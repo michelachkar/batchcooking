@@ -134,7 +134,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           <SectionHeading kicker={r('related.kicker')} title={r('related.title')} />
           <ul className={styles.related}>
             {related.map((e) => (
-              <RealisationCard key={e.slug} r={toRealisationCard(e, services)} />
+              <RealisationCard key={e.slug} r={toRealisationCard(e, services)} linked />
             ))}
           </ul>
         </Section>

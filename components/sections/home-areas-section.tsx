@@ -14,7 +14,7 @@ const ZONES: ZoneId[] = ['z1', 'z2', 'z3']
 export async function HomeAreasSection() {
   const a = await getTranslations('home.areas')
   return (
-    <Section name="home-areas" tone="beige">
+    <Section name="home-areas" tone="white">
       <div className={styles.head}>
         <SectionHeading kicker={a('kicker')} title={a('title')} intro={undefined} />
         <p className={styles.intro}>{rich(a('intro'))}</p>

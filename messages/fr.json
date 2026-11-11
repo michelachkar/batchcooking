@@ -1957,6 +1957,10 @@
   "inspirations": {
     "kicker": "Inspirations",
     "cta": "Voir toutes les réalisations",
+    "generic": {
+      "title": "Nos réalisations : de quoi vous inspirer",
+      "intro": "Semaines de batch cooking, dîners privés et cours de cuisine à Montpellier et alentours : quelques photos de ce que nous avons préparé chez nos clients."
+    },
     "batch": {
       "title": "Batch cooking : des idées de semaines réussies",
       "intro": "Familles, couples, sportifs : découvrez comment nos clients organisent leurs repas de la semaine avec le batch cooking à domicile à Montpellier."
@@ -1973,7 +1977,16 @@
   "realisationsPage": {
     "kicker": "Nos réalisations",
     "title": "Ce que nous avons cuisiné chez nos clients",
-    "intro": "Batch cooking, dîners privés et cours de cuisine à Montpellier et alentours : filtrez par service et ouvrez une fiche pour voir le contexte, le menu, les photos et l'avis du client.",
+    "intro": "Batch cooking, dîners privés et cours de cuisine à Montpellier et alentours : parcourez nos plus belles photos, touchez-en une pour l'agrandir et retrouvez le projet qui vous inspire.",
+    "lightbox": {
+      "open": "Agrandir la photo",
+      "close": "Fermer",
+      "prev": "Photo précédente",
+      "next": "Photo suivante",
+      "viewProject": "Voir la réalisation",
+      "counter": "{n} / {total}",
+      "dialog": "Diaporama des réalisations"
+    },
     "filter": "Filtrer par service",
     "all": "Toutes",
     "empty": "Aucune réalisation ne correspond à ces filtres. Écrivez-nous : nous composons aussi des projets sur mesure.",

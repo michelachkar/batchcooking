@@ -4,6 +4,7 @@ import { ZonesSection } from '@/components/sections/zones-section'
 import { EventsSection } from '@/components/sections/events-section'
 import { ReviewsSection } from '@/components/sections/reviews-section'
 import { HomeFaqSection } from '@/components/sections/home-faq-section'
+import { RealisationsPreviewSection } from '@/components/sections/realisations-preview-section'
 import { HomeAreasSection } from '@/components/sections/home-areas-section'
 import { Hero } from '@/components/blocks/hero'
 import type { CreditDialogTexts, CreditNoteTexts } from '@/components/blocks/credit-note'
@@ -57,6 +58,7 @@ export async function Landing() {
       <ExperiencesSection />
       <ReviewsSection />
       <HomeFaqSection />
+      <RealisationsPreviewSection tone="beige" />
       <HomeAreasSection />
     </>
   )

@@ -51,9 +51,11 @@ export async function SiteHeader() {
               </ul>
             </div>
             <ul className={styles.topList}>
-              <li className={styles.topItem}>
-                <MapPin size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
-                {site.area}
+              <li>
+                <Link href="/zones" className={styles.topLink}>
+                  <MapPin size={12} fill="currentColor" className={styles.topIcon} aria-hidden />
+                  {site.area}
+                </Link>
               </li>
               <li>
                 <a href={site.phoneHref} className={styles.topLink}>

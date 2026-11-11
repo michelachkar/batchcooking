@@ -22,9 +22,9 @@
 
 .card {
   padding: 1.5rem;
+  border: 1px solid var(--color-sand);
   border-radius: 18px;
-  background-color: var(--color-white);
-  box-shadow: 0 10px 30px var(--color-ink-08);
+  background-color: rgba(240, 235, 227, 1);
 }
 
 .cardTitle {
@@ -60,7 +60,7 @@
   display: inline-block;
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-pill);
-  background-color: var(--color-ivory);
+  background-color: var(--color-white);
   border: 1px solid var(--color-sand);
   font-size: 0.875rem;
   color: var(--color-ink);

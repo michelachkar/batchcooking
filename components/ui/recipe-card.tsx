@@ -8,6 +8,7 @@ import {
   Sparkles,
   ShieldAlert,
   Snowflake,
+  UtensilsCrossed,
   type LucideIcon,
 } from 'lucide-react'
 import {
@@ -19,6 +20,7 @@ import {
   ingredientPrice,
   type Recipe,
 } from '@/lib/recipes'
+import { RecipeMore } from './recipe-more'
 import styles from './recipe-card.module.css'
 
 export type RecipeCardData = Recipe & { image: { src: string; unoptimized?: boolean } }
@@ -91,38 +93,43 @@ export function RecipeCard({
             </li>
           ))}
         </ul>
-        <dl className={styles.facts}>
-          <Fact icon={ShieldAlert} label={RECIPE_LABELS.allergens}>
-            {r.allergens.length > 0
-              ? r.allergens
-                  .map((a) => ALLERGENS[a].toLowerCase())
-                  .join(', ')
-                  .replace(/^./, (c) => c.toUpperCase())
-              : RECIPE_LABELS.allergenNone}
-          </Fact>
-          <Fact icon={Globe} label={RECIPE_LABELS.origin}>
-            {r.origin}
-          </Fact>
-          <Fact icon={Refrigerator} label={RECIPE_LABELS.storage}>
-            {r.fridgeDays} jours au réfrigérateur
-          </Fact>
-          <Fact icon={Snowflake} label={RECIPE_LABELS.freezing}>
-            {r.freezable ? RECIPE_LABELS.freezable : RECIPE_LABELS.notFreezable}
-          </Fact>
-          <Fact icon={CookingPot} label={RECIPE_LABELS.reheat}>
-            {r.reheat}
-          </Fact>
-          <Fact icon={Euro} label={RECIPE_LABELS.ingredients}>
-            <span
-              role="img"
-              aria-label={RECIPE_LABELS.priceLevel.replace('{n}', String(r.cost))}
-              className={styles.price}
-            >
-              <span className={styles.priceOn}>{ingredientPrice(r.cost)}</span>
-              <span className={styles.priceOff}>{'€'.repeat(4 - r.cost)}</span>
-            </span>
-          </Fact>
-        </dl>
+        <RecipeMore more="Voir plus de détails" less="Voir moins">
+          <dl className={styles.facts}>
+            <Fact icon={UtensilsCrossed} label={RECIPE_LABELS.mainIngredients}>
+              {r.ingredients.join(', ')}
+            </Fact>
+            <Fact icon={Euro} label={RECIPE_LABELS.ingredients}>
+              <span
+                role="img"
+                aria-label={RECIPE_LABELS.priceLevel.replace('{n}', String(r.cost))}
+                className={styles.price}
+              >
+                <span className={styles.priceOn}>{ingredientPrice(r.cost)}</span>
+                <span className={styles.priceOff}>{'€'.repeat(4 - r.cost)}</span>
+              </span>
+            </Fact>
+            <Fact icon={Globe} label={RECIPE_LABELS.origin}>
+              {r.origin}
+            </Fact>
+            <Fact icon={ShieldAlert} label={RECIPE_LABELS.allergens}>
+              {r.allergens.length > 0
+                ? r.allergens
+                    .map((a) => ALLERGENS[a].toLowerCase())
+                    .join(', ')
+                    .replace(/^./, (c) => c.toUpperCase())
+                : RECIPE_LABELS.allergenNone}
+            </Fact>
+            <Fact icon={Refrigerator} label={RECIPE_LABELS.storage}>
+              {r.fridgeDays} jours au réfrigérateur
+            </Fact>
+            <Fact icon={Snowflake} label={RECIPE_LABELS.freezing}>
+              {r.freezable ? RECIPE_LABELS.freezable : RECIPE_LABELS.notFreezable}
+            </Fact>
+            <Fact icon={CookingPot} label={RECIPE_LABELS.reheat}>
+              {r.reheat}
+            </Fact>
+          </dl>
+        </RecipeMore>
       </div>
     </li>
   )

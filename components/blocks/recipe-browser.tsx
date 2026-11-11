@@ -3,6 +3,7 @@
 import { FilterMenu } from '@/components/ui/filter-menu'
 import { useMemo, useState } from 'react'
 import styles from './recipe-browser.module.css'
+import { RecipeMoreGroup } from '@/components/ui/recipe-more'
 import { RecipeCard, type RecipeCardData } from '@/components/ui/recipe-card'
 import {
   ALLERGENS,
@@ -180,11 +181,13 @@ export function RecipeBrowser({
       {shown.length === 0 ? (
         <p className={styles.empty}>{text.empty}</p>
       ) : (
-        <ul className={styles.list}>
-          {shown.map((r) => (
-            <RecipeCard key={r.title} recipe={r} as="h2" />
-          ))}
-        </ul>
+        <RecipeMoreGroup>
+          <ul className={styles.list}>
+            {shown.map((r) => (
+              <RecipeCard key={r.title} recipe={r} as="h2" />
+            ))}
+          </ul>
+        </RecipeMoreGroup>
       )}
     </div>
   )

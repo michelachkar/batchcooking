@@ -3,6 +3,7 @@ import { Section } from '@/components/ui/section'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { ArrowScroller } from '@/components/ui/arrow-scroller'
 import { recipes } from '@/lib/recipes'
+import { RecipeMoreGroup } from '@/components/ui/recipe-more'
 import { RecipeCard } from '@/components/ui/recipe-card'
 import { media } from '@/lib/media'
 import own from './recipes-preview-section.module.css'
@@ -31,11 +32,13 @@ export function RecipesPreviewSection({
   return (
     <Section name="recipes" tone={tone}>
       <SectionHeading kicker={kicker} title={title} intro={intro} />
-      <ArrowScroller label={title} prev={arrows.prev} next={arrows.next}>
-        {dishes.map((d) => (
-          <RecipeCard key={d.title} recipe={d} />
-        ))}
-      </ArrowScroller>
+      <RecipeMoreGroup>
+        <ArrowScroller label={title} prev={arrows.prev} next={arrows.next}>
+          {dishes.map((d) => (
+            <RecipeCard key={d.title} recipe={d} />
+          ))}
+        </ArrowScroller>
+      </RecipeMoreGroup>
       <div className={own.more}>
         <CtaButton href={cta.href} label={cta.label} />
       </div>

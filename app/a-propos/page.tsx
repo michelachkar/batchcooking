@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/layout/page-head'
 import { ChefSection } from '@/components/sections/chef-section'
+import { RealisationsPreviewSection } from '@/components/sections/realisations-preview-section'
 import { RecipesPreviewSection } from '@/components/sections/recipes-preview-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { media } from '@/lib/media'
@@ -45,6 +46,7 @@ export default async function AboutPage() {
         cta={{ label: r('cta'), href: '/recettes' }}
         arrows={{ prev: r('prev'), next: r('next') }}
       />
+      <RealisationsPreviewSection tone="white" offset={5} />
     </main>
   )
 }

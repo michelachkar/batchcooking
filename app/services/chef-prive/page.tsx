@@ -9,7 +9,7 @@ import { PracticalInfo } from '@/components/blocks/practical-info'
 import { FaqSection } from '@/components/sections/faq-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage, serviceNode } from '@/lib/jsonld'
-import { ServiceInspirationsSection } from '@/components/sections/service-inspirations-section'
+import { RealisationsPreviewSection } from '@/components/sections/realisations-preview-section'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
 import styles from './page.module.css'
@@ -97,7 +97,7 @@ export default async function ChefPrivePage() {
         items={c.raw('packages.items') as Package[]}
         cta={{ label: c('packages.button'), href: quote }}
       />
-      <ServiceInspirationsSection service="chef" />
+      <RealisationsPreviewSection service="chef" />
       <ServiceIntro
         kicker={c('intro.kicker')}
         title={c('intro.title')}
