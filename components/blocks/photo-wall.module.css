@@ -278,6 +278,19 @@
   font-weight: 600;
 }
 
+.captionExcerpt {
+  max-width: 40rem;
+  margin-top: 0.25rem;
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.captionFacts {
+  font-size: 13px;
+  color: rgb(255 255 255 / 0.6);
+}
+
 .counter {
   font-size: 14px;
   font-variant-numeric: tabular-nums;
@@ -288,12 +301,19 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.25rem;
+  padding: 0.75rem 1.5rem;
   border-radius: calc(infinity * 1px);
-  background-color: var(--color-white);
-  font-size: 14px;
+  background-color: var(--color-forest);
+  font-size: 15px;
   font-weight: 700;
-  color: var(--color-charcoal);
+  color: var(--color-white);
+  transition: background-color 0.2s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-forest-dark);
+    }
+  }
 
   svg {
     width: 1rem;

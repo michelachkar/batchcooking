@@ -18,6 +18,9 @@ export type WallPhoto = {
   service: string
   serviceLabel: string
   location?: string
+  excerpt?: string
+  guests?: string
+  duration?: string
 }
 
 type Labels = {
@@ -195,6 +198,14 @@ export function PhotoWall({
                   {current.location ? ` · ${current.location}` : ''}
                 </span>
                 <span className={styles.captionTitle}>{current.title}</span>
+                {current.excerpt && (
+                  <span className={styles.captionExcerpt}>{current.excerpt}</span>
+                )}
+                {(current.guests || current.duration) && (
+                  <span className={styles.captionFacts}>
+                    {[current.guests, current.duration].filter(Boolean).join(' · ')}
+                  </span>
+                )}
               </div>
               <span className={styles.counter}>
                 {labels.counter

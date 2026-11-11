@@ -1978,6 +1978,13 @@
     "kicker": "Nos réalisations",
     "title": "Ce que nous avons cuisiné chez nos clients",
     "intro": "Batch cooking, dîners privés et cours de cuisine à Montpellier et alentours : parcourez nos plus belles photos, touchez-en une pour l'agrandir et retrouvez le projet qui vous inspire.",
+    "featured": {
+      "title": "Réalisations à la une",
+      "wall": "Toutes les photos"
+    },
+    "index": {
+      "title": "Toutes les réalisations"
+    },
     "lightbox": {
       "open": "Agrandir la photo",
       "close": "Fermer",
