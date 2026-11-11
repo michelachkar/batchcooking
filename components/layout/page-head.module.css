@@ -6,7 +6,7 @@
   min-height: 0;
   overflow: hidden;
   padding-inline: 4rem;
-  background-color: var(--color-forest-dark);
+  background-color: var(--color-cream);
   line-height: 1.5;
 
   @media (width < 1025px) {
@@ -150,7 +150,7 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   text-wrap: balance;
-  color: var(--color-white);
+  color: var(--color-ink);
 
   @media (width < 1025px) {
     font-size: 38px;
@@ -166,7 +166,7 @@
   margin-top: 0.5rem;
   font-size: 17px;
   line-height: 1.6;
-  color: rgb(255 255 255 / 0.88);
+  color: var(--color-ink-88);
 
   @media (width < 768px) {
     font-size: 15px;
@@ -196,22 +196,22 @@
   padding: 0;
   border: 0;
   background: none;
-  color: var(--color-white);
+  color: var(--color-forest);
   font: inherit;
   font-weight: 700;
   text-decoration-line: underline;
-  text-decoration-color: rgb(255 255 255 / 0.5);
+  text-decoration-color: color-mix(in oklab, var(--color-forest) 40%, transparent);
   text-underline-offset: 2px;
   cursor: pointer;
 
   @media (hover: hover) {
     &:hover {
-      text-decoration-color: var(--color-white);
+      text-decoration-color: var(--color-forest);
     }
   }
 
   &:focus-visible {
-    outline: 2px solid var(--color-white);
+    outline: 2px solid var(--color-forest);
     outline-offset: 3px;
   }
 }
@@ -223,27 +223,30 @@
   vertical-align: -0.125em;
 }
 
-/* Aplat de marque : motif de la cuisine (carottes, feuilles…) en filigrane clair, qui s'estompe vers la gauche. */
+/* Même fond que la demande rapide : crème + motif d'aliments en filigrane. */
 .root::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background-color: rgb(255 255 255 / 0.1);
-  mask-image: url('/assets/patterns/food.svg');
-  mask-size: 420px;
-  mask-repeat: repeat;
+  background-image: url('/assets/patterns/food.svg');
+  background-size: 420px 420px;
+  opacity: 0.1;
+
+  @media (width < 768px) {
+    background-size: 320px 320px;
+  }
 }
 
-/* Filet clair en bas, qui s'estompe vers la droite. */
+/* Filet terracotta en bas, qui s'estompe vers la droite. */
 .root::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(90deg, rgb(255 255 255 / 0.35), transparent 70%) bottom left / 100% 1px
+  background: linear-gradient(90deg, rgba(176, 74, 42, 0.45), transparent 70%) bottom left / 100% 1px
     no-repeat;
 }
 

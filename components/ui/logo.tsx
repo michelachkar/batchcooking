@@ -28,7 +28,7 @@ function Mark() {
   )
 }
 
-// Logo : marque, nom et, si demandé, la signature. Le fichier autonome est dans public/assets/logo/table-et-tribu.svg.
+// Logo : marque, nom (affiché avec « & », écrit « et » dans le texte du site) et, si demandé, la signature. Le fichier autonome est dans public/assets/logo/table-et-tribu.svg.
 export function Logo({ className, tagline }: { className?: string; tagline?: string }) {
   return (
     <Link
@@ -41,7 +41,7 @@ export function Logo({ className, tagline }: { className?: string; tagline?: str
         <span className={styles.name}>
           {site.name.split(' et ').map((part, i) => (
             <span key={i}>
-              {i > 0 && <span className={styles.amp}> et </span>}
+              {i > 0 && <span className={styles.amp}>&amp;</span>}
               {part}
             </span>
           ))}
