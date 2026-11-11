@@ -68,7 +68,7 @@ export function RealisationsGallery({
   const reset = () => {
     setService(null)
     setTags([])
-    setVisible(pageSize)
+    setVisible(pageSize) 
   }
   // Un changement de filtre repart de la première page.
   const pickService = (id: string | null) => {
