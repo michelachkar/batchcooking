@@ -266,7 +266,7 @@
     "about": {
       "label": "LE BATCH COOKING À DOMICILE",
       "title": "Le batch cooking : comment ça marche ?",
-      "intro": "En une seule séance chez vous, à Montpellier ou dans les environs, la cheffe prépare 3 à 5 dîners pour la semaine. Vous choisissez le menu, elle s'occupe du reste.",
+      "intro": "En une séance chez vous, la cheffe prépare 3 à 5 dîners pour la semaine. Vous choisissez le menu.",
       "badgeValue": "−50 %",
       "badgeText": "de crédit d'impôt, tout de suite : Vous ne payez que la moitié. Profitez-en !",
       "badgeAccent": "1",
@@ -395,7 +395,7 @@
       "kicker": "Recettes Délicieuses",
       "title": "Les recettes maison de la",
       "highlight": "cheffe",
-      "description": "Des recettes savoureuses, originales et créatives, imaginées par une cheffe passionnée. Des plats maison faciles à conserver pour le batch cooking, et des plats signatures raffinés pour vos dîners avec chef privé à domicile.",
+      "description": "Des plats maison pour votre batch cooking et des plats signature pour vos dîners avec chef privé.",
       "prev": "Recette précédente",
       "next": "Recette suivante",
       "navigation": "Carrousel de recettes",
@@ -486,7 +486,7 @@
     "recipes": {
       "kicker": "Les recettes",
       "title": "Tous vos repas de la semaine, au menu de votre cheffe",
-      "intro": "Des plats maison, de saison, prêts à réchauffer : choisissez parmi les recettes de la cheffe, ou demandez un menu sur mesure.",
+      "intro": "Des plats maison, de saison, prêts à réchauffer, ou un menu sur mesure.",
       "cta": "Voir toutes les recettes",
       "prev": "Recettes précédentes",
       "next": "Recettes suivantes"
@@ -524,7 +524,7 @@
     "packages": {
       "kicker": "Nos formules",
       "title": "Choisissez votre formule",
-      "intro": "Trois formules : choisissez le nombre de dîners (3, 4 ou 5) et la durée, 1 semaine sans engagement ou 1 mois pour un meilleur tarif.",
+      "intro": "Choisissez 3, 4 ou 5 dîners : 1 semaine sans engagement, ou 1 mois pour un meilleur tarif.",
       "note": "Prix après crédit d'impôt de 50 %, sous réserve d'éligibilité. Le devis, gratuit et sans engagement, précise tout.",
       "open": "Voir le détail",
       "close": "Fermer",
@@ -743,7 +743,7 @@
     "packages": {
       "kicker": "Formules",
       "title": "Choisissez votre formule",
-      "intro": "Trois formules pour tous vos repas, avec tout ce qu'il faut savoir pour vous décider. Chacune est adaptée à vos invités, à vos goûts et à vos allergies.",
+      "intro": "Trois formules adaptées à vos invités, à vos goûts et à vos allergies.",
       "labels": {
         "duration": "Durée du service",
         "group": "Invités",
@@ -1031,7 +1031,7 @@
     "ideas": {
       "kicker": "Sélection de cours",
       "title": "Choisissez votre cours",
-      "intro": "Trois cours clés en main, avec toutes les informations pour vous décider. Chacun peut être adapté à votre groupe, à vos goûts et à vos allergies.",
+      "intro": "Trois cours clés en main, adaptables à votre groupe, à vos goûts et à vos allergies.",
       "labels": {
         "duration": "Durée",
         "group": "Participants",
@@ -1265,7 +1265,7 @@
     "kicker": "Contact",
     "title": "Parlons de",
     "highlight": "votre menu",
-    "description": "Une question, une idée de menu, une demande de devis : écrivez-nous ou appelez-nous, nous revenons vers vous avec une réponse claire.",
+    "description": "Une question, un menu, un devis : écrivez-nous ou appelez-nous, nous revenons vers vous.",
     "reassure": ["Sans engagement", "Réponse sous un jour ouvré", "Devis gratuit"],
     "infoTitle": "Nous joindre",
     "hoursLabel": "Horaires",
@@ -1328,7 +1328,7 @@
     "zone": {
       "kicker": "Zone d'intervention",
       "title": "Nous venons chez vous, autour de Montpellier",
-      "intro": "Montpellier et sa première couronne, puis jusqu'à 30 minutes alentour. Votre commune n'apparaît pas sur la carte ? Écrivez-nous : nous étudions chaque demande.",
+      "intro": "Montpellier, sa première couronne, puis jusqu'à 30 minutes alentour. Votre commune manque ? Écrivez-nous.",
       "button": "Voir toutes les communes"
     }
   },
@@ -1524,13 +1524,13 @@
     },
     "callout": {
       "title": "Votre ville ou village n'est pas cité ? Pas de souci.",
-      "text": "Les communes ci-dessous ne sont que des exemples. Du moment que vous habitez dans la zone d'intervention, autour de Montpellier, nous pouvons vous servir, même si votre commune n'apparaît pas dans la liste. Un doute ? Dites-nous où vous êtes, nous vous confirmons sous un jour ouvré.",
+      "text": "Les communes citées sont des exemples. Un doute ? Dites-nous où vous habitez.",
       "link": "Vérifier ma commune"
     },
     "cities": {
       "kicker": "Villes desservies",
       "title": "Votre ville, et les communes autour",
-      "intro": "Chaque ville principale regroupe des communes proches, à titre d'exemples : la liste n'est pas exhaustive. La pastille indique la zone de chaque commune.",
+      "intro": "Chaque ville regroupe des communes proches, citées à titre d'exemples. La pastille indique la zone.",
       "hubs": [
         {
           "title": "Montpellier",
@@ -1611,7 +1611,7 @@
     "services": {
       "kicker": "Services, délais et déplacements",
       "title": "Ce qui change selon votre zone",
-      "intro": "Le déplacement dépend de la distance depuis Montpellier. Il est toujours indiqué dans votre devis, gratuit et sans engagement.",
+      "intro": "Le déplacement dépend de la distance depuis Montpellier. Il figure toujours dans votre devis.",
       "travelLabel": "Déplacement",
       "delayLabel": "Délai de réservation",
       "zones": [
@@ -1657,7 +1657,7 @@
     "cta": {
       "kicker": "Votre commune",
       "title": "Votre commune n'est pas listée ?",
-      "text": "Si vous êtes dans la zone, nous pouvons intervenir chez vous. Dites-nous où vous habitez : nous vous répondons sous un jour ouvré avec le déplacement et les disponibilités.",
+      "text": "Vous êtes dans la zone ? Dites-nous où vous habitez : réponse sous un jour ouvré, déplacement compris.",
       "button": "Demander un devis"
     }
   },
@@ -1962,7 +1962,7 @@
   "signature": {
     "kicker": "Les recettes",
     "title": "Les recettes de la cheffe",
-    "intro": "Des plats maison du quotidien et des plats signature plus travaillés, imaginés par la cheffe et cuisinés chez vous, pour vos dîners avec chef privé à Montpellier comme pour vos semaines de batch cooking.",
+    "intro": "Plats du quotidien et plats signature, imaginés par la cheffe pour votre batch cooking et vos dîners.",
     "cta": "Voir toutes les recettes",
     "prev": "Recettes précédentes",
     "next": "Recettes suivantes"
@@ -1972,25 +1972,25 @@
     "cta": "Voir toutes les réalisations",
     "generic": {
       "title": "Nos réalisations : de quoi vous inspirer",
-      "intro": "Semaines de batch cooking, dîners privés et cours de cuisine à Montpellier et alentours : quelques photos de ce que nous avons préparé chez nos clients."
+      "intro": "Batch cooking, dîners privés et cours de cuisine : ce que nous avons préparé chez nos clients."
     },
     "batch": {
       "title": "Batch cooking : des idées de semaines réussies",
-      "intro": "Familles, couples, sportifs : découvrez comment nos clients organisent leurs repas de la semaine avec le batch cooking à domicile à Montpellier."
+      "intro": "Familles, couples, sportifs : des semaines de batch cooking à domicile à Montpellier."
     },
     "chef": {
       "title": "Chef privé : des dîners dont on se souvient",
-      "intro": "Anniversaires, buffets de fête, déjeuners d'équipe : quelques exemples de tables imaginées avec notre chef privé à domicile à Montpellier et alentours."
+      "intro": "Anniversaires, buffets, déjeuners d'équipe : des tables imaginées avec notre chef privé à Montpellier."
     },
     "cours": {
       "title": "Cours de cuisine : des ateliers qui donnent envie",
-      "intro": "En solo, en couple, entre amis ou avec les enfants : des cours de cuisine à domicile à Montpellier pour apprendre et déguster ensemble."
+      "intro": "En solo, en couple, entre amis ou avec les enfants : des cours de cuisine à domicile à Montpellier."
     }
   },
   "realisationsPage": {
     "kicker": "Nos réalisations",
     "title": "Ce que nous avons cuisiné chez nos clients",
-    "intro": "Semaines de batch cooking, dîners privés, cours de cuisine : voici ce que nous avons préparé chez nos clients à Montpellier et alentours. Ouvrez une réalisation pour en découvrir le menu et le déroulé, ou parcourez les photos pour trouver l'idée qui vous ressemble.",
+    "intro": "Batch cooking, dîners privés et cours de cuisine : ce que nous avons préparé chez nos clients à Montpellier.",
     "featured": {
       "title": "Réalisations à la une",
       "wall": "Toutes les photos"
@@ -2029,7 +2029,7 @@
     },
     "detailCta": {
       "title": "Vous avez un projet similaire ?",
-      "text": "Parlez-nous de votre date, de vos convives et de vos envies : nous vous répondons sous un jour ouvré, avec un devis gratuit et sans engagement.",
+      "text": "Une date, des convives, des envies ? Nous répondons sous un jour ouvré, devis gratuit et sans engagement.",
       "button": "Demander mon devis"
     },
     "context": {
