@@ -21,7 +21,7 @@
     "about": "La Cheffe",
     "services": "Services",
     "serviceBatch": "Batch cooking",
-    "serviceChef": "Chef privé à domicile",
+    "serviceChef": "Chef privé",
     "serviceCours": "Cours de cuisine",
     "zones": "Zones d'intervention",
     "portfolio": "Réalisations",
@@ -49,17 +49,17 @@
     },
     "serviceBatch": {
       "tag": "Pour la semaine",
-      "text": "Votre cheffe cuisine chez vous 3 à 5 dîners faits maison, prêts à réchauffer. Idéal pour les familles actives.",
+      "text": "3 à 5 dîners faits maison, prêts à réchauffer, pour les familles actives.",
       "alt": "Plats de batch cooking faits maison, en barquettes"
     },
     "serviceChef": {
       "tag": "Pour recevoir",
-      "text": "Un dîner d'exception à domicile : menu sur mesure, courses, service et cuisine rangée. Anniversaires et repas entre amis.",
+      "text": "Un dîner sur mesure chez vous : courses, service et cuisine rangée.",
       "alt": "Cheffe à domicile dressant un plat"
     },
     "serviceCours": {
       "tag": "Pour apprendre",
-      "text": "Des ateliers de cuisine à la maison, en solo, en famille ou entre amis, pour cuisiner et déguster ensemble.",
+      "text": "Des ateliers de cuisine à la maison, en solo, en famille ou entre amis.",
       "alt": "Atelier de cuisine en famille à domicile"
     }
   },
@@ -203,7 +203,7 @@
       "cards": [
         {
           "title": "Batch cooking",
-          "text": "Votre cheffe prépare chez vous 3 à 5 dîners par passage : menu à choisir parmi plus de 40 recettes, plats prêts à réchauffer.",
+          "text": "3 à 5 dîners maison prêts à réchauffer, parmi plus de 40 recettes.",
           "meta": "Chaque semaine",
           "tag": "−50 % de crédit d'impôt",
           "icon": "fridge",
@@ -211,16 +211,16 @@
           "alt": "Chef préparant plusieurs plats dans une cuisine à domicile et les rangeant dans des boîtes de conservation"
         },
         {
-          "title": "Chef privé à domicile",
-          "text": "Dîners entre proches, anniversaires et occasions spéciales : un menu sur mesure, cuisiné et servi chez vous.",
+          "title": "Chef privé",
+          "text": "Dîners et occasions spéciales : un menu sur mesure, cuisiné chez vous.",
           "meta": "Dîners & événements",
           "icon": "chef-hat",
           "linkText": "Découvrir le chef privé",
           "alt": "Chef privé dressant une assiette gastronomique devant des invités attablés à la maison"
         },
         {
-          "title": "Cours de cuisine à domicile",
-          "text": "Apprenez à cuisiner dans votre propre cuisine, avec vos ustensiles, vos produits et un chef qui s'adapte à votre niveau.",
+          "title": "Cours de cuisine",
+          "text": "Apprenez à cuisiner chez vous, avec un chef qui s'adapte à votre niveau.",
           "meta": "Seul ou en groupe",
           "icon": "utensils",
           "linkText": "Découvrir les cours",
@@ -1168,9 +1168,9 @@
     "intro": "Choisissez votre service : nous vous posons ensuite quelques questions pour préparer votre devis.",
     "close": "Fermer",
     "services": [
-      { "id": "batch", "title": "Batch cooking à domicile", "text": "Plusieurs dîners préparés en une session, cuisinés chez vous." },
-      { "id": "chef", "title": "Chef privé à domicile", "text": "Un dîner sur mesure, cuisiné et servi chez vous." },
-      { "id": "cours", "title": "Cours de cuisine à domicile", "text": "Un cours pour apprendre, seul, à deux ou en groupe." }
+      { "id": "batch", "title": "Batch cooking", "text": "Plusieurs dîners préparés en une session, cuisinés chez vous." },
+      { "id": "chef", "title": "Chef privé", "text": "Un dîner sur mesure, cuisiné et servi chez vous." },
+      { "id": "cours", "title": "Cours de cuisine", "text": "Un cours pour apprendre, seul, à deux ou en groupe." }
     ]
   },
   "pages": {
