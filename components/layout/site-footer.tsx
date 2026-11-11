@@ -18,6 +18,7 @@ const servicesLinks = [
 ] as const
 const companyLinks = [
   ['zones', '/zones'],
+  ['inspirations', '/inspirations'],
   ['portfolio', '/realisations'],
   ['faq', '/faq'],
   ['contact', '/contact'],

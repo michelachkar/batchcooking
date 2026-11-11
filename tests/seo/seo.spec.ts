@@ -29,7 +29,7 @@ test('sitemap : adresses absolues, dates réelles, pages principales présentes'
     expect(Number.isNaN(Date.parse(e.lastmod)), `lastmod de ${e.loc}`).toBe(false)
   }
   const paths = entries.map((e) => pathOf(e.loc))
-  for (const p of ['/', '/services', '/tarifs', '/faq', '/contact', '/realisations']) {
+  for (const p of ['/', '/services', '/tarifs', '/faq', '/contact', '/realisations', '/inspirations']) {
     expect(paths, p).toContain(p)
   }
 })

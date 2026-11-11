@@ -24,6 +24,7 @@
     "serviceChef": "Chef privé",
     "serviceCours": "Cours de cuisine",
     "zones": "Zones d'intervention",
+    "inspirations": "Inspirations",
     "portfolio": "Réalisations",
     "pricing": "Tarifs",
     "recipes": "Recettes",
@@ -70,7 +71,7 @@
     "text": "Dites-nous la date, le nombre de convives et vos envies. Pour un batch cooking à domicile, un dîner avec chef privé ou un cours de cuisine à Montpellier et alentours, nous vous répondons sous un jour ouvré.",
     "ctaPrimary": "Réservez votre chef",
     "ctaCall": "Appeler le {phone}",
-    "about": "Une cuisine saine, de saison et locale, inspirée des saveurs du monde, pour vous faire gagner du temps et retrouver le plaisir de la table. Cheffe à domicile à Montpellier et alentours, je propose du batch cooking, des dîners avec chef privé et des cours de cuisine, avec des produits frais et des recettes maison, pour vos repas de la semaine comme pour vos dîners entre amis.",
+    "about": "Une cuisine saine, de saison et locale, inspirée des saveurs du monde. Cheffe à domicile à Montpellier et alentours, je propose du batch cooking, des dîners avec chef privé et des cours de cuisine.",
     "services": "Services",
     "company": "Entreprise",
     "visit": "Contact",
@@ -83,6 +84,7 @@
     },
     "companyLinks": {
       "zones": "Zones d'intervention",
+      "inspirations": "Inspirations",
       "portfolio": "Réalisations",
       "faq": "FAQ",
       "contact": "Contact"
@@ -1182,6 +1184,7 @@
       "faq": "Tarifs, crédit d'impôt, allergies, annulation : toutes les réponses.",
       "pricing": "Batch cooking, chef privé et cours de cuisine : choisissez votre formule.",
       "portfolio": "Ce que nous avons préparé chez nos clients à Montpellier et alentours.",
+      "inspirations": "Idées de tables, de menus et d'ambiances pour votre tribu : de quoi nourrir votre prochain repas.",
       "recipes": "Plats maison et plats signature, avec régimes et allergènes indiqués.",
       "chef": "Un chef privé cuisine chez vous : menu sur mesure, courses et service.",
       "batch": "3 à 5 dîners faits maison chez vous, avec **50\u00a0% de crédit d'impôt**.",
@@ -1195,6 +1198,7 @@
       "faq": "Tarifs, crédit d'impôt, allergies, courses, matériel, annulation : toutes les réponses sur le batch cooking, le chef privé et les cours de cuisine à domicile à Montpellier et alentours.",
       "pricing": "Les tarifs de votre cheffe à domicile à Montpellier : batch cooking à la semaine ou au mois, chef privé et cours de cuisine. Choisissez votre formule et découvrez le prix, avec 50 % de crédit d'impôt sur le batch cooking.",
       "portfolio": "Dîners d'anniversaire, buffets de fête, batch cooking en famille, cours de cuisine entre amis : parcourez les réalisations de la cheffe chez ses clients à Montpellier et alentours.",
+      "inspirations": "Parcourez la galerie de la cheffe : tables dressées, plats, buffets et ambiances de repas en famille ou entre amis à Montpellier et alentours, pour trouver l'idée de votre prochain repas.",
       "recipes": "Plats maison, faciles à conserver et à réchauffer, et plats signature plus raffinés : parcourez les recettes de la cheffe pour votre batch cooking ou votre dîner avec chef privé à Montpellier, avec régimes et allergènes indiqués.",
       "chef": "Un chef privé vient cuisiner chez vous à Montpellier : menu sur mesure, courses, service à table et cuisine rangée. Pour un dîner entre amis, un anniversaire, un repas d'affaires ou un séjour en villa.",
       "batch": "Votre cheffe prépare 3 à 5 dîners faits maison en une seule session dans votre cuisine, à Montpellier et alentours. Menu sur mesure, repas prêts à réchauffer et **50 % de crédit d'impôt**.",
@@ -1228,7 +1232,13 @@
     },
     "portfolio": {
       "title": "Réalisations",
+      "heading": "Les tribus que nous avons régalées",
       "crumb": "Réalisations"
+    },
+    "inspirations": {
+      "title": "Inspirations de repas et de tables",
+      "heading": "Inspirations pour votre tribu",
+      "crumb": "Inspirations"
     },
     "notFound": {
       "title": "404 - Page introuvable",
@@ -1340,13 +1350,14 @@
   },
   "seo": {
     "default": "Des repas faits maison, préparés à l'avance pour toute la semaine : batch cooking à domicile pour les familles, les couples et les actifs.",
-    "homeTitle": "Batch cooking à domicile à Montpellier | Table & Tribu",
+    "homeTitle": "Batch cooking à domicile à Montpellier | Table et Tribu",
     "services": "Batch cooking hebdomadaire, formule famille, événements : découvrez nos services et ce qu'ils incluent.",
     "pricing": "Tous nos tarifs à Montpellier : batch cooking à domicile, chef privé et cours de cuisine, avec le déplacement selon votre zone.",
     "about": "Rencontrez Chef Meemz : votre chef à domicile pour le batch cooking, les dîners privés et les cours de cuisine à Montpellier.",
     "faq": "Toutes les réponses sur le batch cooking, le chef privé et les cours de cuisine à domicile à Montpellier : déroulé, courses, allergies, zones, tarifs, paiement et crédit d'impôt de 50 % sur le batch cooking.",
     "contact": "Parlez-nous de votre semaine : dites-nous la date, le nombre de convives et vos envies, nous répondons sous un jour ouvré.",
     "portfolio": "Nos réalisations récentes : repas de la semaine, dîners et événements préparés pour nos clients.",
+    "inspirations": "Galerie d'inspiration : tables, plats et ambiances de repas en famille ou entre amis, à Montpellier et alentours.",
     "search": "Recherche dans les services et les réalisations."
   },
   "search": {
@@ -1987,6 +1998,20 @@
       "intro": "En solo, en couple, entre amis ou avec les enfants : des cours de cuisine à domicile à Montpellier."
     }
   },
+  "inspirationsPage": {
+    "kicker": "Inspirations",
+    "title": "Des idées pour réunir votre tribu autour de la table",
+    "intro": "Tables dressées, plats, buffets et ambiances : parcourez la galerie et filtrez par service. Chaque photo renvoie vers la réalisation dont elle est issue.",
+    "lightbox": {
+      "dialog": "Diaporama des inspirations"
+    },
+    "cta": {
+      "kicker": "Votre tribu",
+      "title": "Une idée vous plaît ? Faisons-la chez vous.",
+      "text": "Dites-nous la date, le nombre de convives et votre commune : nous vous répondons sous un jour ouvré.",
+      "button": "Demander un devis"
+    }
+  },
   "realisationsPage": {
     "kicker": "Nos réalisations",
     "title": "Ce que nous avons cuisiné chez nos clients",
@@ -2009,6 +2034,10 @@
     },
     "filter": "Filtrer par service",
     "all": "Toutes",
+    "more": "Voir plus de réalisations",
+    "progress": "{shown} réalisations affichées sur {total}",
+    "inspirationLead": "Envie d'idées avant de vous lancer ?",
+    "inspirationLink": "Parcourez nos inspirations",
     "empty": "Aucune réalisation ne correspond à ces filtres. Écrivez-nous : nous composons aussi des projets sur mesure.",
     "count": "{n} réalisation(s) affichée(s)",
     "reset": "Réinitialiser les filtres",

@@ -21,14 +21,17 @@ export function ProjectCard({
   cta,
   compact = false,
   as: Heading = 'h3',
+  hidden = false,
 }: {
   project: ProjectCardData
   cta: string
   compact?: boolean
   as?: 'h2' | 'h3' | 'h4'
+  /** Garde la carte dans le HTML sans l'afficher (liste paginée). */
+  hidden?: boolean
 }) {
   return (
-    <li className={compact ? styles.compact : styles.card}>
+    <li className={compact ? styles.compact : styles.card} hidden={hidden}>
       <div className={styles.media}>
         <Image
           src={p.image.src}

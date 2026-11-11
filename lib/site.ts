@@ -1,6 +1,6 @@
-// Valeurs provisoires : nom, coordonnées et zone seront remplacés quand la marque sera décidée.
+// Nom de marque définitif. Coordonnées et zone encore provisoires.
 export const site = {
-  name: 'Table&Tribu',
+  name: 'Table et Tribu',
   phone: '01 23 45 67 89',
   phoneHref: 'tel:+33123456789',
   email: 'contact@tabletribu.com',

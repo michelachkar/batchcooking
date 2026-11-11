@@ -44,5 +44,6 @@ export const media = {
     page: undefined,
     notFound: undefined,
     portfolio: undefined,
+    inspirations: undefined,
   },
 }

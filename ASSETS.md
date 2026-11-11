@@ -4,7 +4,7 @@ Cocher chaque ligne une fois le fichier déposé.
 
 ## Décisions
 - [x] Langue principale : français. Anglais plus tard : structure évolutive (routage `/[locale]` prévu, textes hors des composants, hreflang et x-default activés au moment de l'ajout)
-- [ ] Nom de marque : à décider (provisoire : « Table&Tribu », non définitif)
+- [x] Nom de marque : « Table et Tribu » (définitif)
 - [ ] Logo : à décider (placeholder texte en attendant)
 - [ ] Domaine : ______
 - [ ] Zone géographique desservie (LocalBusiness) : ______

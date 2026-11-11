@@ -39,9 +39,9 @@ export function Logo({ className, tagline }: { className?: string; tagline?: str
       <Mark />
       <span className={styles.text}>
         <span className={styles.name}>
-          {site.name.split('&').map((part, i) => (
+          {site.name.split(' et ').map((part, i) => (
             <span key={i}>
-              {i > 0 && <span className={styles.amp}>&amp;</span>}
+              {i > 0 && <span className={styles.amp}> et </span>}
               {part}
             </span>
           ))}

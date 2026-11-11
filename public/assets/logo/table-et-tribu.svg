@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 96" role="img" aria-label="Table&amp;Tribu : votre chef à domicile">
-  <title>Table&amp;Tribu : votre chef à domicile</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 96" role="img" aria-label="Table et Tribu : votre chef à domicile">
+  <title>Table et Tribu : votre chef à domicile</title>
   <g transform="translate(0 2)"><circle cx="46" cy="46" r="15" fill="#B04A2A"/><circle cx="46" cy="46" r="9.5" fill="none" stroke="#FAF7F2" stroke-width="1.6"/><circle cx="46.00" cy="19.00" r="5.2" fill="#B04A2A"/><circle cx="69.38" cy="32.50" r="5.2" fill="#B04A2A"/><circle cx="69.38" cy="59.50" r="5.2" fill="#B04A2A"/><circle cx="46.00" cy="73.00" r="5.2" fill="#B04A2A"/><circle cx="22.62" cy="59.50" r="5.2" fill="#B04A2A"/><circle cx="22.62" cy="32.50" r="5.2" fill="#B04A2A"/></g>
-  <text x="94" y="56" font-family="Outfit, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="600" letter-spacing="-0.8" fill="#2F2B26">Table<tspan fill="#B04A2A" font-weight="500">&amp;</tspan>Tribu</text>
-  <text x="211" y="82" text-anchor="middle" font-family="Outfit, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="2" fill="#625C50">VOTRE CHEF À DOMICILE</text>
+  <text x="94" y="56" font-family="Outfit, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif" font-size="40" font-weight="600" letter-spacing="-0.8" fill="#2F2B26">Table<tspan fill="#B04A2A" font-weight="500"> et </tspan>Tribu</text>
+  <text x="221" y="82" text-anchor="middle" font-family="Outfit, 'Avenir Next', 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="500" letter-spacing="2" fill="#625C50">VOTRE CHEF À DOMICILE</text>
 </svg>

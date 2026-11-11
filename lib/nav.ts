@@ -26,6 +26,7 @@ export const nav: readonly NavItem[] = [
       { key: 'recipeSignature', mega: true, href: '/recettes?formule=signature' },
     ],
   },
+  { key: 'inspirations', href: '/inspirations' },
   { key: 'portfolio', href: '/realisations' },
   { key: 'faq', href: '/faq' },
 ]

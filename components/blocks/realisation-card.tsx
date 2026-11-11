@@ -26,14 +26,17 @@ export function RealisationCard({
   r,
   tags = r.tags ?? [],
   linked = false,
+  hidden = false,
 }: {
   r: RealisationCardData
   tags?: string[]
   /** Rend toute la carte cliquable vers la fiche (lien étiré sur le titre). */
   linked?: boolean
+  /** Garde la fiche dans le HTML sans l'afficher (liste paginée). */
+  hidden?: boolean
 }) {
   return (
-    <li className={styles.card}>
+    <li className={styles.card} hidden={hidden}>
       <Image
         src={r.image.src}
         alt={r.image.alt}
