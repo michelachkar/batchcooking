@@ -77,6 +77,7 @@ export default async function PortfolioPage() {
         navLabel={p('navLabel')}
         background={media.heads.portfolio}
         description={p('heads.portfolio')}
+        shortDescription={p('headsShort.portfolio')}
       />
       <Section name="realisations">
         <SectionHeading kicker={r('kicker')} title={r('title')} intro={r('intro')} />

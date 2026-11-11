@@ -1174,6 +1174,19 @@
     ]
   },
   "pages": {
+    "headsShort": {
+      "about": "Découvrez Chef Meemz, cheffe à domicile à Montpellier, et sa cuisine de saison.",
+      "zones": "Votre cheffe se déplace jusqu'à 30 km autour de Montpellier.",
+      "services": "Batch cooking, chef privé et cours de cuisine à domicile à Montpellier.",
+      "contact": "Parlez-nous de votre projet : nous vous répondons sous un jour ouvré.",
+      "faq": "Tarifs, crédit d'impôt, allergies, annulation : toutes les réponses.",
+      "pricing": "Batch cooking, chef privé et cours de cuisine : choisissez votre formule.",
+      "portfolio": "Ce que nous avons préparé chez nos clients à Montpellier et alentours.",
+      "recipes": "Plats maison et plats signature, avec régimes et allergènes indiqués.",
+      "chef": "Un chef privé cuisine chez vous : menu sur mesure, courses et service.",
+      "batch": "3 à 5 dîners faits maison chez vous, avec **50\u00a0% de crédit d'impôt**.",
+      "cours": "Un cours de cuisine chez vous, avec les ingrédients, puis dégustation."
+    },
     "heads": {
       "about": "Rencontrez Chef Meemz, cheffe à domicile à Montpellier et alentours : son parcours, sa cuisine de saison et sa manière de travailler chez vous, en batch cooking, en chef privé ou en cours de cuisine.",
       "zones": "Votre cheffe se déplace à Montpellier et dans un rayon d'environ 30 km : première couronne, déplacement inclus, puis communes plus éloignées sur demande. Vérifiez si votre commune est desservie.",

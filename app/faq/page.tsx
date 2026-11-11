@@ -52,6 +52,7 @@ export default async function FaqPage() {
         navLabel={p('navLabel')}
         background={media.heads.faq}
         description={p('heads.faq')}
+        shortDescription={p('headsShort.faq')}
       />
       <FaqThemes
         label={f('themesLabel')}

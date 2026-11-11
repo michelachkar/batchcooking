@@ -17,6 +17,8 @@ type PageHeadProps = {
   navLabel: string
   /** Court texte sous le titre (SEO). */
   description?: string
+  /** Version courte (2 lignes au plus) affichée à la place de `description` sur mobile. */
+  shortDescription?: string
   /** Photo d'arrière-plan (facultative) : le bandeau reste sombre sans elle. */
   background?: { src: string; unoptimized?: boolean }
   /** Marge de 10 px de chaque côté en mobile (réalisations). */
@@ -35,12 +37,27 @@ export function PageHead({
   crumbs,
   navLabel,
   description,
+  shortDescription,
   background,
   inset,
   bare,
   cta,
   credit,
 }: PageHeadProps) {
+  // Le passage en **gras** devient le lien du crédit d'impôt quand `credit` est fourni.
+  const withCredit = (text: string) =>
+    credit
+      ? text.split(/\*\*(.+?)\*\*/).map((part, i) =>
+          i % 2 ? (
+            <CreditTrigger key={i} className={styles.creditLink}>
+              {part}
+              <ChevronRight aria-hidden className={styles.creditIcon} />
+            </CreditTrigger>
+          ) : (
+            part
+          ),
+        )
+      : text
   return (
     <section data-section="head" className={clsx(styles.root, inset && styles.inset)}>
       {background && (
@@ -84,19 +101,13 @@ export function PageHead({
             </nav>
             <h1 className={styles.title}>{title}</h1>
             {description && (
-              <p className={styles.description}>
-                {credit
-                  ? description.split(/\*\*(.+?)\*\*/).map((part, i) =>
-                      i % 2 ? (
-                        <CreditTrigger key={i} className={styles.creditLink}>
-                          {part}
-                          <ChevronRight aria-hidden className={styles.creditIcon} />
-                        </CreditTrigger>
-                      ) : (
-                        part
-                      ),
-                    )
-                  : description}
+              <p className={clsx(styles.description, shortDescription && styles.descriptionFull)}>
+                {withCredit(description)}
+              </p>
+            )}
+            {description && shortDescription && (
+              <p className={clsx(styles.description, styles.descriptionShort)}>
+                {withCredit(shortDescription)}
               </p>
             )}
             {credit && <CreditDialog value={credit.value} dialog={credit.dialog} />}

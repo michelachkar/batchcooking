@@ -34,6 +34,7 @@ export default async function ServicesPage() {
         navLabel={p('navLabel')}
         background={media.heads.services}
         description={p('heads.services')}
+        shortDescription={p('headsShort.services')}
       />
       <ExperiencesSection />
       <ServicesCompare

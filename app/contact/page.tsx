@@ -41,6 +41,7 @@ export default async function ContactPage() {
         navLabel={p('navLabel')}
         background={media.heads.contact}
         description={p('heads.contact')}
+        shortDescription={p('headsShort.contact')}
       />
       <ContactSection />
       <ZonesMap

@@ -52,6 +52,7 @@ export default async function RecipesPage({
         navLabel={p('navLabel')}
         background={media.heads.recipes}
         description={p('heads.recipes')}
+        shortDescription={p('headsShort.recipes')}
       />
       <section data-section="recipes" className={styles.section}>
         <div className={styles.inner}>

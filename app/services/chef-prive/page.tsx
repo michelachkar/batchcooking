@@ -60,6 +60,7 @@ export default async function ChefPrivePage() {
         navLabel={p('navLabel')}
         background={media.heads.service}
         description={p('heads.chef')}
+        shortDescription={p('headsShort.chef')}
         cta={{ label: c('intro.primary'), href: quote }}
       />
       <ProcessSection

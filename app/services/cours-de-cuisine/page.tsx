@@ -62,6 +62,7 @@ export default async function CoursDeCuisinePage() {
         navLabel={p('navLabel')}
         background={media.heads.service}
         description={p('heads.cours')}
+        shortDescription={p('headsShort.cours')}
         cta={{ label: c('intro.primary'), href: book }}
       />
       <ServiceIntro

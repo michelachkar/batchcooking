@@ -42,6 +42,7 @@ export default async function ZonesPage() {
         navLabel={p('navLabel')}
         background={media.heads.services}
         description={p('heads.zones')}
+        shortDescription={p('headsShort.zones')}
       />
       <ZonesMap
         text={{

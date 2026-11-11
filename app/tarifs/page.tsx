@@ -71,6 +71,7 @@ export default async function PricingPage() {
         navLabel={p('navLabel')}
         background={media.heads.pricing}
         description={p('heads.pricing')}
+        shortDescription={p('headsShort.pricing')}
       />
       <TarifsPicker
         kicker={t('picker.kicker')}

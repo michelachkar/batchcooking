@@ -36,6 +36,7 @@ export default async function AboutPage() {
         navLabel={p('navLabel')}
         background={media.heads.page}
         description={p('heads.about')}
+        shortDescription={p('headsShort.about')}
       />
       <ChefSection />
       <RecipesPreviewSection

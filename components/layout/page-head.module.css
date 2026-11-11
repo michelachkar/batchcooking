@@ -178,6 +178,19 @@
   }
 }
 
+/* Mobile : le texte court (deux lignes au plus) remplace le texte complet. */
+.descriptionFull {
+  @media (width < 768px) {
+    display: none;
+  }
+}
+
+.descriptionShort {
+  @media (width >= 768px) {
+    display: none;
+  }
+}
+
 .cta {
   margin-top: 2rem;
 }

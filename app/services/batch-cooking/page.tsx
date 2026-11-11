@@ -70,6 +70,7 @@ export default async function BatchCookingPage() {
         navLabel={p('navLabel')}
         background={media.heads.service}
         description={p('heads.batch')}
+        shortDescription={p('headsShort.batch')}
         cta={{ label: b('intro.primary'), href: quote, lead: true }}
         credit={{
           value: (hero.raw('creditNote') as CreditNoteTexts).value,
