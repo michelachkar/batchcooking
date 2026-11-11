@@ -158,7 +158,7 @@ export default async function PricingPage() {
         cta={{ label: chef('packages.button'), href: '/services/chef-prive#devis' }}
       />
       <TarifCategory
-        id="beige"
+        id="cours"
         icon="cours"
         tone="beige"
         label={t('categories.label')}

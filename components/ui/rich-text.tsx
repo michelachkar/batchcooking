@@ -10,6 +10,9 @@ type RichOptions = {
   newTab?: string
 }
 
+/** Typographie française : espace insécable avant « : ; ? ! % € ° » et après « « ». */
+export const typo = (s: string) => s.replace(/ (?=[:;?!%€°»])/g, '\u00a0').replace(/« /g, '«\u00a0')
+
 export function rich(s: string, options?: RichOptions): React.ReactNode[] {
   return s.split(TOKEN).map((part, i) => {
     if (part.startsWith('**')) {
@@ -23,7 +26,7 @@ export function rich(s: string, options?: RichOptions): React.ReactNode[] {
             <span className={styles.quote}>&nbsp;»</span>
           </span>
         )
-      return <strong key={i}>{text}</strong>
+      return <strong key={i}>{rich(text, options)}</strong>
     }
     const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(part)
     if (link && options?.newTab)
@@ -40,6 +43,6 @@ export function rich(s: string, options?: RichOptions): React.ReactNode[] {
           {rich(link[1])}
         </Link>
       )
-    return part
+    return typo(part)
   })
 }

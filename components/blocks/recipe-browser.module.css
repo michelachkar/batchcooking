@@ -223,10 +223,3 @@
   height: 1rem;
   color: var(--color-forest);
 }
-
-.disclaimer {
-  margin-top: 2rem;
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--color-ink-88);
-}

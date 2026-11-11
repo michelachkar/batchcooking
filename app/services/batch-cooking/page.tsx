@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
+import type { CreditDialogTexts, CreditNoteTexts } from '@/components/blocks/credit-note'
 import { PageHead } from '@/components/layout/page-head'
-import { ServiceIntro } from '@/components/blocks/service-intro'
+import { RecipesPreviewSection } from '@/components/sections/recipes-preview-section'
 import { IconSection } from '@/components/blocks/icon-section'
 import { AudienceSection } from '@/components/sections/audience-section'
 import { FaqSection } from '@/components/sections/faq-section'
@@ -34,6 +35,7 @@ export default async function BatchCookingPage() {
   const faqItems = b.raw('faq.items') as { question: string; answer: string }[]
   const quote = '/contact#inquiry'
   const q = await getTranslations('home.inquiry')
+  const hero = await getTranslations('home.hero')
   const pk = await getTranslations('batchPage.packages')
   const leadPacks = (await getTranslations('lead')).raw('packs') as {
     id: string
@@ -69,6 +71,10 @@ export default async function BatchCookingPage() {
         background={media.heads.service}
         description={p('heads.batch')}
         cta={{ label: b('intro.primary'), href: quote, lead: true }}
+        credit={{
+          value: (hero.raw('creditNote') as CreditNoteTexts).value,
+          dialog: hero.raw('creditDialog') as CreditDialogTexts,
+        }}
       />
       <AboutSection showLearnMore={false} extra="pricing" />
       <MealPlanInquiry
@@ -110,14 +116,13 @@ export default async function BatchCookingPage() {
         cardCta={pk('plan')}
       />
       <ServiceInspirationsSection service="batch" />
-      <ServiceIntro
-        kicker={b('intro.kicker')}
-        title={b('intro.title')}
-        paragraphs={b.raw('intro.paragraphs') as string[]}
-        highlights={b.raw('intro.highlights') as string[]}
-        primary={{ label: b('intro.primary'), href: quote }}
-        secondary={{ label: b('intro.secondary'), href: '#tarifs' }}
-        image={{ src: '/assets/hero/chef.jpg', alt: b('intro.imageAlt') }}
+      <RecipesPreviewSection
+        tone="white"
+        kicker={b('recipes.kicker')}
+        title={b('recipes.title')}
+        intro={b('recipes.intro')}
+        cta={{ label: b('recipes.cta'), href: '/recettes' }}
+        arrows={{ prev: b('recipes.prev'), next: b('recipes.next') }}
       />
       <AudienceSection
         tone="beige"

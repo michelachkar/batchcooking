@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/layout/page-head'
-import { RecipeBrowser, type RecipeCard } from '@/components/blocks/recipe-browser'
+import { RecipeBrowser } from '@/components/blocks/recipe-browser'
+import type { RecipeCardData } from '@/components/ui/recipe-card'
 import { isRecipePack, recipes } from '@/lib/recipes'
 import { ArrowIcon } from '@/components/ui/icon'
 import { FaqSection } from '@/components/sections/faq-section'
@@ -32,7 +33,7 @@ export default async function RecipesPage({
   const ev = await getTranslations('home.events')
   const r = await getTranslations('recipesPage')
   const faqItems = r.raw('faq.items') as { question: string; answer: string }[]
-  const cards: RecipeCard[] = recipes.map((x, i) => ({
+  const cards: RecipeCardData[] = recipes.map((x, i) => ({
     ...x,
     image: media.events[i % media.events.length],
   }))
@@ -69,9 +70,7 @@ export default async function RecipesPage({
               reset: r('reset'),
               allergenFree: r.raw('allergenFree') as string,
               allergenNone: r('allergenNone'),
-              disclaimer: r('disclaimer'),
               spice: r('spice'),
-              cost: r('cost'),
               budget: r('budget'),
               pack: r('filters.pack'),
             }}

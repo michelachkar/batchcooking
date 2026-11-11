@@ -6,6 +6,7 @@ import { FaqAccordion, type FaqItem } from '@/components/ui/faq-accordion'
 import { FaqThemes } from '@/components/blocks/faq-themes'
 import { SectionHeading } from '@/components/ui/section-heading'
 import { Section } from '@/components/ui/section'
+import { CtaButton } from '@/components/blocks/cta-button'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { faqPage } from '@/lib/jsonld'
 import { media } from '@/lib/media'
@@ -17,13 +18,21 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ title: p('faq.title'), description: s('faq'), path: '/faq' })
 }
 
-type Section = { id: string; kicker: string; title: string; items: FaqItem[] }
+type Theme = {
+  id: string
+  kicker: string
+  tab: string
+  title: string
+  items: FaqItem[]
+  href?: string
+  cta?: string
+}
 
-// FAQ classée par thème : une section par thème (titre comme sur les autres pages), accordéon de la FAQ.
+// FAQ classée par service : une section par service (puis le paiement), accordéon de la FAQ.
 export default async function FaqPage() {
   const p = await getTranslations('pages')
   const f = await getTranslations('faqPage')
-  const sections = f.raw('sections') as Section[]
+  const sections = f.raw('sections') as Theme[]
   const tones = ['white', 'beige'] as const
   return (
     <main id="contenu">
@@ -47,7 +56,7 @@ export default async function FaqPage() {
       <FaqThemes
         label={f('themesLabel')}
         intro={f('intro')}
-        themes={sections.map((s) => ({ id: s.id, label: s.kicker }))}
+        themes={sections.map((s) => ({ id: s.id, label: s.tab, count: s.items.length }))}
       />
       {sections.map((s, i) => (
         <div key={s.id} id={s.id} className={styles.section}>
@@ -56,6 +65,11 @@ export default async function FaqPage() {
             <div className={styles.accordion} data-reveal="up">
               <FaqAccordion items={s.items} name={`faq-${s.id}`} openFirst={i === 0} />
             </div>
+            {s.href && s.cta ? (
+              <div className={styles.more}>
+                <CtaButton href={s.href} label={s.cta} />
+              </div>
+            ) : null}
           </Section>
         </div>
       ))}

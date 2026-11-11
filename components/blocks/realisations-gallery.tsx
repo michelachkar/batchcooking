@@ -69,21 +69,7 @@ export function RealisationsGallery({ items, services, labels }: RealisationsGal
             </button>
           ))}
         </div>
-        {allTags.length > 0 && (
-          <div role="group" aria-label={labels.tags} className={styles.group}>
-            {allTags.map((t) => (
-              <button
-                key={t}
-                type="button"
-                aria-pressed={tags.includes(t)}
-                onClick={() => setTags(toggle(tags, t))}
-                className={clsx(styles.pill, styles.tagPill)}
-              >
-                # {t}
-              </button>
-            ))}
-          </div>
-        )}
+
       </div>
 
       <p aria-live="polite" className={styles.count}>

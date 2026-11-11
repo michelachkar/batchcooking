@@ -182,6 +182,39 @@
   margin-top: 2rem;
 }
 
+/* « 50 % de crédit d'impôt » : lien qui ouvre le modal explicatif. */
+.creditLink {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-forest);
+  font: inherit;
+  font-weight: 700;
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in oklab, var(--color-forest) 40%, transparent);
+  text-underline-offset: 2px;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover {
+      text-decoration-color: var(--color-forest);
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 3px;
+  }
+}
+
+.creditIcon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.125em;
+}
+
 /* Bandeau : voile terracotta en haut à droite. */
 .root::before {
   content: '';

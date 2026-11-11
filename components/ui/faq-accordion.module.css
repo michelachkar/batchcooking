@@ -1,9 +1,23 @@
 .item {
+  margin-bottom: 0.875rem;
   border: 1px solid var(--color-sand);
+  border-radius: 18px;
   background-color: var(--color-white);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 
-  &:not(:first-child) {
-    border-top-width: 0;
+  @media (hover: hover) {
+    &:hover {
+      border-color: var(--color-sand-border);
+    }
+  }
+
+  &[open] {
+    border-color: color-mix(in oklab, var(--color-forest) 35%, var(--color-sand));
+    box-shadow:
+      inset 4px 0 0 var(--color-forest),
+      0 12px 28px -18px rgb(85 80 68 / 0.35);
   }
 }
 
@@ -11,34 +25,60 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 25px;
+  gap: 1.25rem;
+  padding: 22px 25px;
   cursor: pointer;
   list-style-type: none;
   font-family: var(--font-display);
-  font-size: 16px;
-  line-height: 19.5px;
-  font-weight: 700;
-  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 600;
   color: var(--color-ink);
+  border-radius: 18px;
 
   &::-webkit-details-marker {
     display: none;
   }
 
+  &:focus-visible {
+    outline: 2px solid var(--color-forest);
+    outline-offset: 2px;
+  }
+
   .item[open] & {
-    color: var(--color-body);
+    color: var(--color-forest-dark);
+  }
+
+  @media (width < 768px) {
+    padding: 18px 18px;
+    font-size: 16.5px;
+  }
+}
+
+/* Pastille du « + » / « − ». */
+.toggle {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--color-cream);
+  color: var(--color-forest);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+
+  .item[open] & {
+    background-color: var(--color-forest);
+    color: var(--color-white);
   }
 }
 
 .icon {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1rem;
+  width: 0.875rem;
+  height: 0.875rem;
   fill: currentcolor;
-
-  .item[open] & {
-    color: var(--color-forest);
-  }
 }
 
 /* Barre verticale du « + » : masquée quand la question est ouverte (il reste le « − »). */
@@ -49,16 +89,63 @@
 }
 
 .answer {
-  border-color: var(--color-sand);
-  border-top-width: 1px;
-  padding: 25px;
-  line-height: 27px;
+  padding: 0 25px 12px 25px;
+  font-size: 16.5px;
+  line-height: 1.7;
   color: var(--color-body);
+
+  @media (width < 768px) {
+    padding: 0 18px 8px;
+    font-size: 16px;
+  }
 }
 
 .answerText {
+  max-width: 46rem;
   margin: 0;
   margin-bottom: 1rem;
+}
+
+/* Une ligne par service : pastille + texte. */
+.service {
+  display: grid;
+  grid-template-columns: 11.5rem 1fr;
+  align-items: baseline;
+  gap: 0.25rem 1.25rem;
+  padding-block: 0.875rem;
+  border-top: 1px dashed var(--color-sand-border);
+
+  &:last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (width < 768px) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+}
+
+.serviceLabel {
+  justify-self: start;
+  padding: 0.25rem 0.875rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-cream);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--color-forest-dark);
+
+  a {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: color-mix(in oklab, currentcolor 35%, transparent);
+    text-underline-offset: 3px;
+  }
+}
+
+.serviceText {
+  max-width: 40rem;
 }
 
 /* L'accordéon glisse en 400 ms. */

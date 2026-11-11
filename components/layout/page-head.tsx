@@ -1,7 +1,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
+import { ChevronRight } from 'lucide-react'
 import { CtaButton } from '@/components/blocks/cta-button'
+import {
+  CreditDialog,
+  CreditTrigger,
+  type CreditDialogTexts,
+} from '@/components/blocks/credit-note'
 import styles from './page-head.module.css'
 
 type PageHeadProps = {
@@ -19,6 +25,8 @@ type PageHeadProps = {
   bare?: boolean
   /** Bouton d'appel à l'action sous le titre ; `lead` ouvre le modal de rappel (href sert de repli sans JavaScript). */
   cta?: { label: string; href: string; lead?: boolean }
+  /** Le passage en **gras** de `description` devient un lien qui ouvre le modal du crédit d'impôt. */
+  credit?: { value: string; dialog: CreditDialogTexts }
 }
 
 // Bandeau de titre des pages intérieures : photo voilée de vert, pastille de fil d'Ariane et titre.
@@ -31,6 +39,7 @@ export function PageHead({
   inset,
   bare,
   cta,
+  credit,
 }: PageHeadProps) {
   return (
     <section data-section="head" className={clsx(styles.root, inset && styles.inset)}>
@@ -74,7 +83,23 @@ export function PageHead({
               </ol>
             </nav>
             <h1 className={styles.title}>{title}</h1>
-            {description && <p className={styles.description}>{description}</p>}
+            {description && (
+              <p className={styles.description}>
+                {credit
+                  ? description.split(/\*\*(.+?)\*\*/).map((part, i) =>
+                      i % 2 ? (
+                        <CreditTrigger key={i} className={styles.creditLink}>
+                          {part}
+                          <ChevronRight aria-hidden className={styles.creditIcon} />
+                        </CreditTrigger>
+                      ) : (
+                        part
+                      ),
+                    )
+                  : description}
+              </p>
+            )}
+            {credit && <CreditDialog value={credit.value} dialog={credit.dialog} />}
             {cta && (
               <div className={styles.cta}>
                 <CtaButton href={cta.href} label={cta.label} lead={cta.lead} light />

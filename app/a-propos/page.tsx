@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from '@/lib/i18n'
 import { PageHead } from '@/components/layout/page-head'
 import { ChefSection } from '@/components/sections/chef-section'
-import { SignatureDishesSection } from '@/components/sections/signature-dishes-section'
+import { RecipesPreviewSection } from '@/components/sections/recipes-preview-section'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { media } from '@/lib/media'
 import { pageMetadata } from '@/lib/seo'
@@ -17,6 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function AboutPage() {
   const p = await getTranslations('pages')
   const s = await getTranslations('seo')
+  const r = await getTranslations('signature')
   return (
     <main id="contenu">
       <noscript>
@@ -36,7 +37,14 @@ export default async function AboutPage() {
         description={p('heads.about')}
       />
       <ChefSection />
-      <SignatureDishesSection />
+      <RecipesPreviewSection
+        tone="beige"
+        kicker={r('kicker')}
+        title={r('title')}
+        intro={r('intro')}
+        cta={{ label: r('cta'), href: '/recettes' }}
+        arrows={{ prev: r('prev'), next: r('next') }}
+      />
     </main>
   )
 }

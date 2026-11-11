@@ -73,9 +73,12 @@ export function webPage(o: {
   }
 }
 
-/** Texte brut d'un message : retire **gras** et [texte](lien). */
+/** Texte brut d'un message : retire **gras** et [texte](lien), aplatit les retours à la ligne. */
 const plain = (s: string) =>
-  s.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/\*\*(.+?)\*\*/g, '$1')
+  s
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\n/g, ' ')
 
 export function faqPage(items: { question: string; answer: string }[]): Node | null {
   if (items.length === 0) return null
