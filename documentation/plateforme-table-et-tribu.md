@@ -794,7 +794,7 @@ Les choix d'architecture, les données et les contrats. Destinée à qui écrit 
 
 ### 7.1 Choix par défaut
 - **Python 3.12+**, **Django LTS courant** (5.2 LTS à la date de rédaction ; vérifier s'il existe une LTS plus récente), **PostgreSQL**.
-- **API** : Django REST Framework + `drf-spectacular` (schéma OpenAPI) pour la lecture publique et les webhooks.
+- **API** : Django REST Framework + `drf-spectacular` (schéma OpenAPI) pour la **lecture par la construction du site** (authentifiée par `BUILD_API_TOKEN`, voir section 8), la route serveur à serveur de la carte cadeau et les webhooks. **Aucune route n'est ouverte sans authentification**, et **aucun JavaScript de navigateur n'appelle cette API** : elle n'est consommée que de serveur à serveur.
 - **Page de choix du menu** : page servie par **Django** (gabarit et CSS aux couleurs du site), détaillée en **B14**.
 - **Administration de la cheffe et édition du contenu (le « CMS », voir glossaire)** : **administration Django avec le thème Unfold** (aux couleurs du site), plus **4 pages sur mesure** — `A-Dossier`, `A-Suivi`, `A-Publier`, `A-Devis` (voir le glossaire) — construites en templates Django et HTMX (B04b, B04c, B09, B11, B12). **Pas d'API d'administration** : la cheffe n'utilise que l'administration, qui s'appuie sur les sessions Django.
 - **Tâches asynchrones** : **Procrastinate** (file adossée à Postgres, pas de Redis).
