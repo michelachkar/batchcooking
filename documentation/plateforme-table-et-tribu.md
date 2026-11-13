@@ -218,18 +218,6 @@ Deux registres : **« Ce que vous faites »** donne le geste concret, et dit **�
 | **22. Garder l'œil ouvert** | **Rien tant que rien ne casse.** Vous réagissez aux alertes, qui sont rares et toujours actionnables. | — | **E-mail échoué, intégration en échec**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'échec après toutes les reprises automatiques<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès l'abandon des reprises<br>&nbsp;&nbsp;↳ *S'arrête quand* : le renvoi réussit, ou la ligne est classée |
 | **Hébergement de l'administration** | Vous tranchez où héberger l'outil et qui peut l'atteindre (étape **M1.9**). Rien d'autre ne dépend de vous ici. | — | — |
 
-*Lecture des deux dernières colonnes. « — » signifie qu'il n'y a rien, et c'est une information : une étape sans relance ne vous demande rien d'autre que le geste décrit. Les délais sont des valeurs par défaut, modifiables dans l'administration. Les outils et leurs coûts sont en 2.7, et le plan par paliers (3.1) donne l'ordre réel de mise en service.*
-
-**L'hébergement de l'administration** est le seul poste qui n'est ni gratuit ni sans entretien, et la **décision reste ouverte** (M1.9) : elle dépend du niveau d'exposition souhaité pour l'administration et la page de choix.
-
-
-**Ce que le modèle coûte en outils** : presque rien. Le CRM, l'envoi d'e-mails, l'anti-spam, la surveillance et la chaîne de publication tiennent dans des offres gratuites. Les deux seuls postes réels sont les **commissions Stripe**, proportionnelles et limitées aux acomptes et aux cartes cadeaux, et l'**hébergement de l'administration**, encore à arbitrer.
-
-**Où se situe le plafond** : la cheffe garde environ **dix minutes de travail administratif par passage**, essentiellement la proposition de menu, la relecture des allergies et la facturation. C'est indolore à cinq clients, c'est une demi-journée par semaine à trente. Au-delà de ce seuil, deux leviers existent et sont déjà prévus par la structure des données : ouvrir un espace client pour que le choix du menu se fasse sans intervention, et brancher l'outil de facturation par son interface de programmation pour supprimer la ressaisie.
-
-**Le point de vigilance commercial** : il n'y a **aucune reconduction automatique**. Chaque mois est revendu, ce qui impose une relance de renouvellement à la fin de chaque engagement — le système la déclenche, mais la vente reste à faire.
-
-
 ### 2.4 Ce que vous modifiez vous-même, et ce qui demande un développeur
 
 C'est la question la plus concrète du projet, et la réponse tient en une ligne : **tout ce qui change avec votre activité est à vous, tout ce qui fait fonctionner les pages reste dans le code.**
