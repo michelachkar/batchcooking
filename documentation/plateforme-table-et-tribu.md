@@ -284,45 +284,35 @@ Six étapes, qui ne servent qu'à la vente : une fois le dossier créé, le deal
 
 **Les relances, étape par étape**
 
-**Avant le dossier** — HubSpot seul, et toujours une tâche pour vous.
+Une ligne par situation, **dans l'ordre des étapes du process**. La colonne « Qui agit » dit aussi à qui l'envoi s'adresse : *tâche HubSpot* et *page À faire* sont des rappels **pour vous**, `Django → client` est un e-mail **au client**.
 
 | Étape | Situation | Déclencheur | Qui agit | Quand | Quand ça s'arrête |
 | --- | --- | --- | --- | --- | --- |
-| **2 → 3** | Demande reçue, pas encore rappelée | Le site crée le deal | Vous, tâche HubSpot | Échéance à **24 h** | Vous cochez la tâche après l'appel, ou le deal passe à « Perdu » |
-| **4** | Demande qualifiée, devis pas encore envoyé | Le deal passe à « Qualifié ». **La vue, elle, n'attend aucun geste** | Vous, tâche HubSpot **et** vue du pipeline | Tâche à **48 h** ; la vue liste en continu tout deal resté avant « Devis envoyé » depuis **plus de 3 jours** | Le deal passe à « Devis envoyé » (posé par l'administration) ou à « Perdu » |
-| **6** | Devis envoyé sans réponse | Le deal passe à « Devis envoyé » | Vous, tâche HubSpot | **J+7** puis **J+14** ; à **J+30** le devis est expiré, à relancer ou à clôturer | Le deal passe à « Dossier créé » ou à « Perdu » |
-| **7** | Accord reçu, questionnaire non rempli | Le deal passe à « Gagné ». **Si vous ne le marquez pas, ce rappel n'existe pas** | Vous, tâche HubSpot | **J+3** | Le questionnaire est reçu |
-| **7 → 8** | Deal « Gagné » sans dossier Django | Le deal passe à « Gagné », **si vous l'avez marqué** — sinon l'étape 8 suffit | Vous, tâche HubSpot et vue du pipeline | Dès « Gagné » | Le deal passe à « Dossier créé » |
-
-**Après le dossier** — e-mails automatiques de Django **au client**.
-
-| Étape | Situation | Déclencheur | Qui agit | Quand | Quand ça s'arrête |
-| --- | --- | --- | --- | --- | --- |
-| **11** | Proposition de menu sans réponse | L'envoi du lien de choix | Django (**2 e-mails**), puis vous | **J+2** après l'envoi, puis **24 h avant la date limite** ; à la date limite, alerte pour vous | Le menu est validé — par le client, ou par vous d'un clic |
-| **14** | Rappel de passage | La date du passage | Django (e-mail) | **24 h avant** | Le passage est réalisé ou annulé |
-| **16** | Acompte du chef privé impayé | L'envoi du lien d'acompte | Django (e-mail), puis vous | **J+3** et **J+7** ; **J+10** alerte pour vous (libérer la date ?) | L'acompte est payé ou la réservation annulée |
-| **18** | Carte cadeau proche de l'expiration | La date de validité | Django (e-mail) | **30 jours avant** | La carte est utilisée ou expirée |
+| **2 → 3** | Demande reçue, pas encore rappelée | Le site crée le deal | Vous — tâche HubSpot | Échéance à **24 h** | Vous cochez la tâche après l'appel, ou le deal passe à « Perdu » |
+| **4** | Demande qualifiée, devis pas encore envoyé | Le deal passe à « Qualifié ». **La vue, elle, n'attend aucun geste** | Vous — tâche HubSpot et vue du pipeline | Tâche à **48 h** ; la vue liste en continu tout deal resté avant « Devis envoyé » depuis **plus de 3 jours** | Le deal passe à « Devis envoyé » (posé par l'administration) ou à « Perdu » |
+| **6** | Devis envoyé sans réponse | Le deal passe à « Devis envoyé » | Vous — tâche HubSpot | **J+7** puis **J+14** ; à **J+30** le devis est expiré, à relancer ou à clôturer | Le deal passe à « Dossier créé » ou à « Perdu » |
+| **7** | Accord reçu, questionnaire non rempli | Le deal passe à « Gagné ». **Si vous ne le marquez pas, ce rappel n'existe pas** | Vous — tâche HubSpot | **J+3** | Le questionnaire est reçu |
+| **7 → 8** | Deal « Gagné » sans dossier Django | Le deal passe à « Gagné », **si vous l'avez marqué** — sinon l'étape 8 suffit | Vous — tâche HubSpot et vue du pipeline | Dès « Gagné » | Le deal passe à « Dossier créé » |
+| **8** | Engagement sans pièce ; client sans engagement | La création du dossier | Vous — page À faire | Dès la création | Une pièce est jointe, **ou** une note de source écrite (un devis n'est jamais obligatoire) |
+| **9** | Passage sans date | La création de l'engagement | Vous — page À faire | Dès la création ; **en retard à J+3** | La date est saisie |
+| **9** | Compte URSSAF non confirmé | La date du premier passage | Vous — page À faire | **7 jours avant** | Le compte est confirmé |
+| **10** | Menu à proposer | La date du passage | Vous — page À faire | **7 jours avant** ; **en retard 4 jours avant** | La proposition part au client |
+| **11** | Proposition de menu sans réponse | L'envoi du lien de choix | `Django → client` (**2 e-mails**), puis vous | **J+2** après l'envoi, puis **24 h avant la date limite** ; à la date limite, alerte pour vous | Le menu est validé — par le client, ou par vous d'un clic |
+| **12** | Menu validé à relire (allergies) | La validation du menu | Vous — page À faire | Dès la validation ; **en retard 48 h avant le passage** | Le menu est marqué « relu » |
+| **13** | Report ou annulation demandé | Vous enregistrez la demande du client (e-mail, téléphone) | Vous — page À faire | Dès l'enregistrement | Le passage est reporté ou annulé |
+| **14** | Rappel de passage | La date du passage | `Django → client` | **24 h avant** | Le passage est réalisé ou annulé |
+| **14** | Passage réalisé non clôturé | La date du passage dépassée | Vous — page À faire | **Le lendemain** | Le passage est clôturé |
+| **15** | Facture à émettre | Le passage marqué réalisé | Vous — page À faire | **Le lendemain** du passage | La facture est saisie |
+| **16** | Acompte du chef privé impayé | L'envoi du lien d'acompte | `Django → client`, puis vous | **J+3** et **J+7** ; **J+10** alerte pour vous (libérer la date ?) | L'acompte est payé ou la réservation annulée |
+| **16** | Facture émise non payée | L'échéance saisie sur la facture | Vous — page À faire (l'outil de facturation ou HubSpot relance le client) | Échéance **+ 3 jours**, puis **+ 10 jours** | La facture est payée |
+| **16** | Demande URSSAF non validée, refusée ou expirée | L'envoi de la demande d'avance | Vous — page À faire (l'URSSAF prévient déjà le client) | Non validée à **72 h** ; refus ou expiration : **tout de suite** | La demande est payée ou clôturée |
+| **17** | Attestation fiscale envoyée ? | Le 1er janvier | Vous — page À faire | **Une fois**, en janvier | La vérification est faite |
+| **18** | Carte cadeau proche de l'expiration | La date de validité | `Django → client` | **30 jours avant** | La carte est utilisée ou expirée |
 | **18** | Commande de carte cadeau non payée | La commande créée sans paiement | Django, **sans relance** | Annulée seule après **48 h**, affichée en information | Payée ou annulée |
-| **19** | Demande d'avis | Le dernier passage réalisé | Django (e-mail) | **J+2**, puis **une** relance à **J+7** | L'avis est reçu, ou les deux envois sont faits |
-
-**Après le dossier** — vos actions, c'est-à-dire la page « À faire » (A-Suivi).
-
-| Étape | Situation | Déclencheur | Qui agit | Quand | Quand ça s'arrête |
-| --- | --- | --- | --- | --- | --- |
-| **8** | Engagement sans pièce ; client sans engagement | La création du dossier | Vous | Dès la création | Une pièce est jointe, **ou** une note de source écrite (un devis n'est jamais obligatoire) |
-| **9** | Passage sans date | La création de l'engagement | Vous | Dès la création ; **en retard à J+3** | La date est saisie |
-| **9** | Compte URSSAF non confirmé | La date du premier passage | Vous | **7 jours avant** | Le compte est confirmé |
-| **10** | Menu à proposer | La date du passage | Vous | **7 jours avant** ; **en retard 4 jours avant** | La proposition part au client |
-| **12** | Menu validé à relire (allergies) | La validation du menu | Vous | Dès la validation ; **en retard 48 h avant le passage** | Le menu est marqué « relu » |
-| **13** | Report ou annulation demandé | Vous enregistrez la demande du client (e-mail, téléphone) | Vous | Dès l'enregistrement | Le passage est reporté ou annulé |
-| **14** | Passage réalisé non clôturé | La date du passage dépassée | Vous | **Le lendemain** | Le passage est clôturé |
-| **15** | Facture à émettre | Le passage marqué réalisé | Vous | **Le lendemain** du passage | La facture est saisie |
-| **16** | Facture émise non payée | L'échéance saisie sur la facture | Vous (l'outil de facturation ou HubSpot relance le client) | Échéance **+ 3 jours**, puis **+ 10 jours** | La facture est payée |
-| **16** | Demande URSSAF non validée, refusée ou expirée | L'envoi de la demande d'avance | Vous (l'URSSAF prévient déjà le client) | Non validée à **72 h** ; refus ou expiration : **tout de suite** | La demande est payée ou clôturée |
-| **17** | Attestation fiscale envoyée ? | Le 1er janvier | Vous | **Une fois**, en janvier | La vérification est faite |
-| **20** | Renouvellement à proposer | Le dernier passage réalisé de l'engagement | Vous | Dès ce passage ; l'e-mail mentionne le solde de points et l'offre de renouvellement s'il y en a une | Un nouvel engagement est créé, ou le refus est noté (le suivi du devis repasse alors à HubSpot) |
-| **21** | Demande d'export ou de suppression de données | Votre saisie de la demande (`DataRequest`) | Vous | Rappel à **J+20** ; **en retard à J+30** | La demande est traitée |
-| **22** | E-mail échoué, intégration en échec | L'échec après toutes les reprises automatiques | Vous | Dès l'abandon des reprises | Le renvoi réussit, ou la ligne est classée |
+| **19** | Demande d'avis | Le dernier passage réalisé | `Django → client` | **J+2**, puis **une** relance à **J+7** | L'avis est reçu, ou les deux envois sont faits |
+| **20** | Renouvellement à proposer | Le dernier passage réalisé de l'engagement | Vous — page À faire | Dès ce passage ; l'e-mail mentionne le solde de points et l'offre de renouvellement s'il y en a une | Un nouvel engagement est créé, ou le refus est noté (le suivi du devis repasse alors à HubSpot) |
+| **21** | Demande d'export ou de suppression de données | Votre saisie de la demande (`DataRequest`) | Vous — page À faire | Rappel à **J+20** ; **en retard à J+30** | La demande est traitée |
+| **22** | E-mail échoué, intégration en échec | L'échec après toutes les reprises automatiques | Vous — page À faire | Dès l'abandon des reprises | Le renvoi réussit, ou la ligne est classée |
 
 ### 2.8 Les outils et ce qu'ils coûtent
 
