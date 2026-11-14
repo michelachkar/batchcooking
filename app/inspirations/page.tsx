@@ -5,7 +5,7 @@ import { SectionHeading } from '@/components/ui/section-heading'
 import { Section } from '@/components/ui/section'
 import { PhotoWall, type WallPhoto } from '@/components/blocks/photo-wall'
 import { ZonesCta } from '@/components/blocks/zones-cta'
-import { getProjects } from '@/lib/content/projects'
+import { getInspirations } from '@/lib/content/inspirations'
 import { media } from '@/lib/media'
 import { PageJsonLd } from '@/components/seo/page-json-ld'
 import { pageMetadata } from '@/lib/seo'
@@ -20,27 +20,24 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-// Galerie d'inspiration : uniquement des photos, filtrables par service, chacune renvoyant vers sa réalisation.
+// Galerie d'inspiration : photos indépendantes des réalisations (`content/inspirations`), filtrables par service, avec un lien optionnel.
 export default async function InspirationsPage() {
   const p = await getTranslations('pages')
   const s = await getTranslations('seo')
   const r = await getTranslations('realisationsPage')
   const i = await getTranslations('inspirationsPage')
   const services = r.raw('services') as Record<string, string>
-  // Toutes les photos de toutes les réalisations (la photo de couverture si le projet n'a pas de galerie).
-  const photos: WallPhoto[] = getProjects().flatMap((e) =>
-    (e.data.gallery.length > 0 ? e.data.gallery : [e.data.image]).map((img) => ({
-      ...img,
-      title: e.data.title,
-      href: `/realisations/${e.slug}`,
-      service: e.data.service,
-      serviceLabel: services[e.data.service],
-      location: e.data.location,
-      excerpt: e.data.excerpt,
-      guests: e.data.guests,
-      duration: e.data.duration,
-    })),
-  )
+  const photos: WallPhoto[] = getInspirations().map((e) => ({
+    ...e.data.image,
+    title: e.data.title,
+    href: e.data.href,
+    service: e.data.service,
+    serviceLabel: services[e.data.service],
+    location: e.data.location,
+    excerpt: e.data.excerpt,
+    guests: e.data.guests,
+    duration: e.data.duration,
+  }))
   return (
     <main id="contenu">
       <noscript>

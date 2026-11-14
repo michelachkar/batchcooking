@@ -56,3 +56,24 @@ export const pageSchema = z.object({
   updated: z.coerce.date(),
 })
 export type PageData = z.infer<typeof pageSchema>
+
+// Photo de la galerie d'inspiration : indépendante des réalisations (un lien vers une réalisation reste possible).
+export const inspirationSchema = z.object({
+  title: z.string().min(1),
+  /** Rang dans la galerie (0 = premier). */
+  order: z.number().int().default(0),
+  image: image,
+  service: z.enum(['batch', 'chef', 'cours']),
+  excerpt: z.string().optional(),
+  /** Commune ou lieu. */
+  location: z.string().optional(),
+  occasion: z.string().optional(),
+  tags: z.array(z.string()).default([]),
+  guests: z.string().optional(),
+  duration: z.string().optional(),
+  /** Adresse interne du bouton du diaporama (ex. `/realisations/mon-projet`) ; sans lien, le bouton est masqué. */
+  href: z.string().regex(/^\//, 'Adresse interne : doit commencer par /').optional(),
+  /** Mettre à `false` pour masquer la photo sans supprimer le fichier. */
+  published: z.boolean().default(true),
+})
+export type Inspiration = z.infer<typeof inspirationSchema>

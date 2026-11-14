@@ -12,9 +12,9 @@ export type WallPhoto = {
   height: number
   alt: string
   unoptimized?: boolean
-  /** Réalisation d'où vient la photo. */
   title: string
-  href: string
+  /** Lien du diaporama (réalisation, page de service...) ; sans lien, le bouton est masqué. */
+  href?: string
   service: string
   serviceLabel: string
   location?: string
@@ -106,7 +106,7 @@ export function PhotoWall({
         <ul className={styles.wall}>
           {shown.map((p, i) => (
             <li
-              key={`${p.href}-${i}`}
+              key={`${p.src}-${i}`}
               className={`${styles.tile} ${i % 7 === 0 ? styles.big : p.height > p.width ? styles.tall : ''}`}
             >
               <button
@@ -212,10 +212,12 @@ export function PhotoWall({
                   .replace('{n}', String((index ?? 0) + 1))
                   .replace('{total}', String(shown.length))}
               </span>
-              <Link href={current.href} className={styles.project}>
-                {labels.viewProject}
-                <ArrowRight aria-hidden />
-              </Link>
+              {current.href && (
+                <Link href={current.href} className={styles.project}>
+                  {labels.viewProject}
+                  <ArrowRight aria-hidden />
+                </Link>
+              )}
             </div>
           </div>
         )}
