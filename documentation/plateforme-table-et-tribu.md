@@ -1,26 +1,36 @@
 # Table et Tribu : plateforme Django et site — document unique
 
-> **Ce document est la seule référence du projet.** Il décrit le métier, le process, l'architecture, les données, puis **les Pull Requests à confier une par une à Claude** : chaque PR contient ses fonctionnalités détaillées, ses règles métier (décisions déjà prises) et ses critères de contrôle. Les mentions « **[À VÉRIFIER]** » signalent un fait externe (tarif, loi, limite d'un outil) que personne ne doit supposer.
+> **Ce document est la seule référence du projet.** Il décrit le métier (Partie I, validée), puis **ce qu'il faut préparer** (chapitre 2), **le plan de livraison et les Pull Requests à confier une par une à Claude** (chapitre 3), l'architecture et les données : chaque PR contient ses fonctionnalités détaillées, ses règles métier (décisions déjà prises) et ses critères de contrôle. Les mentions « **[À VÉRIFIER]** » signalent un fait externe (tarif, loi, limite d'un outil) que personne ne doit supposer.
 
 **Table des matières**
 
 - **[Avant-propos](#avant-propos)**
-  - [1. Utiliser ce document](#1-utiliser-ce-document)
-    - [1.1 Deux dépôts](#11-deux-dépôts)
-    - [1.2 Demande type à Claude (à copier pour chaque PR)](#12-demande-type-à-claude-à-copier-pour-chaque-pr)
-    - [1.3 Consignes permanentes pour Claude](#13-consignes-permanentes-pour-claude)
-    - [1.4 Règles de revue et conventions](#14-règles-de-revue-et-conventions)
+  - [Utiliser ce document](#utiliser-ce-document)
+    - [Deux dépôts](#deux-dépôts)
+    - [Demande type à Claude (à copier pour chaque PR)](#demande-type-à-claude-à-copier-pour-chaque-pr)
+    - [Consignes permanentes pour Claude](#consignes-permanentes-pour-claude)
+    - [Règles de revue et conventions](#règles-de-revue-et-conventions)
 - **[Partie I — Le métier](#partie-i--le-métier)**
-  - [2. Contexte et process](#2-contexte-et-process)
-    - [2.1 Activité](#21-activité)
-    - [2.2 Principes retenus](#22-principes-retenus)
-    - [2.3 Le process de bout en bout](#23-le-process-de-bout-en-bout)
-    - [2.4 Ce que vous modifiez vous-même, et ce qui demande un développeur](#24-ce-que-vous-modifiez-vous-même-et-ce-qui-demande-un-développeur)
-    - [2.5 Hors périmètre](#25-hors-périmètre)
-    - [2.6 Fragilités à surveiller](#26-fragilités-à-surveiller)
-    - [2.7 Les outils et ce qu'ils coûtent](#27-les-outils-et-ce-quils-coûtent)
+  - [1. Activité, règles et process](#1-activité-règles-et-process)
+    - [1.1 Activité](#11-activité)
+    - [1.2 Principes retenus](#12-principes-retenus)
+    - [1.3 Le process de bout en bout](#13-le-process-de-bout-en-bout)
+    - [1.4 Les e-mails automatiques au client](#14-les-e-mails-automatiques-au-client)
+    - [1.5 Votre routine du matin](#15-votre-routine-du-matin)
+    - [1.6 Le tableau de bord, les vues et les filtres](#16-le-tableau-de-bord-les-vues-et-les-filtres)
+    - [1.7 Les indicateurs d'affaires](#17-les-indicateurs-daffaires)
+    - [1.8 Hors périmètre](#18-hors-périmètre)
+    - [1.9 Fragilités à surveiller](#19-fragilités-à-surveiller)
+    - [1.10 Les outils et ce qu'ils coûtent](#110-les-outils-et-ce-quils-coûtent)
 - **[Partie II — Le plan de livraison](#partie-ii--le-plan-de-livraison)**
-  - [3. Plan de livraison et Pull Requests](#3-plan-de-livraison-et-pull-requests)
+  - [2. Prérequis : comptes, décisions et réglages avant les PR](#2-prérequis--comptes-décisions-et-réglages-avant-les-pr)
+    - [Au démarrage du projet](#au-démarrage-du-projet)
+    - [Avant le palier 0 : les demandes du site arrivent par e-mail](#avant-le-palier-0--les-demandes-du-site-arrivent-par-e-mail)
+    - [Avant le palier 1 : l'outil est en ligne](#avant-le-palier-1--loutil-est-en-ligne)
+    - [Avant les paliers 2 à 4 : contenu, prospects, devis, publication](#avant-les-paliers-2-à-4--contenu-prospects-devis-publication)
+    - [Avant les paliers 5 à 10 : dossiers, facturation, paiement](#avant-les-paliers-5-à-10--dossiers-facturation-paiement)
+    - [Avant le palier 12 : la production](#avant-le-palier-12--la-production)
+  - [3. Paliers et Pull Requests](#3-paliers-et-pull-requests)
     - [3.1 Plan de livraison par paliers](#31-plan-de-livraison-par-paliers)
     - [3.2 Pull Requests du backend (`chefmeemz-backend`)](#32-pull-requests-du-backend-chefmeemz-backend)
       - [B00. Squelette du projet et intégration continue](#b00-squelette-du-projet-et-intégration-continue)
@@ -29,109 +39,106 @@
       - [B02. Infrastructure transversale : tâches, e-mails, fichiers, intégrations factices](#b02-infrastructure-transversale--tâches-e-mails-fichiers-intégrations-factices)
       - [B03. Contenu du site (CMS) : modèles et administration](#b03-contenu-du-site-cms--modèles-et-administration)
       - [B04. Tarifs, packs, offres commerciales et marqueurs de prix](#b04-tarifs-packs-offres-commerciales-et-marqueurs-de-prix)
-      - [B04b. Aide à la rédaction des devis (un modèle par service)](#b04b-aide-à-la-rédaction-des-devis-un-modèle-par-service)
-      - [B04c. Générer le devis dans Google Docs](#b04c-générer-le-devis-dans-google-docs)
-      - [B05. API de lecture pour le site (construction)](#b05-api-de-lecture-pour-le-site-construction)
-      - [B06. Import des contenus existants du site](#b06-import-des-contenus-existants-du-site)
-      - [B06b. Blocs vendeurs des pages dans le CMS](#b06b-blocs-vendeurs-des-pages-dans-le-cms)
-      - [B07. Déploiement de l'environnement de test](#b07-déploiement-de-lenvironnement-de-test)
-      - [B08. Catalogue de recettes et ingrédients](#b08-catalogue-de-recettes-et-ingrédients)
-      - [B09. Publication du site depuis l'administration](#b09-publication-du-site-depuis-ladministration)
-      - [B10. Clients, engagements, passages et réservations](#b10-clients-engagements-passages-et-réservations)
-      - [B11. Créer un client et un engagement depuis un devis accepté (page A-Dossier), notes HubSpot](#b11-créer-un-client-et-un-engagement-depuis-un-devis-accepté-page-a-dossier-notes-hubspot)
-      - [B12. Suivi et relances : tableau « à faire » et flux iCal](#b12-suivi-et-relances--tableau--à-faire--et-flux-ical)
-      - [B13. Menus par passage : proposition, validation et listes d'ingrédients](#b13-menus-par-passage--proposition-validation-et-listes-dingrédients)
-      - [B14. Page de choix du menu (lien à usage unique)](#b14-page-de-choix-du-menu-lien-à-usage-unique)
-      - [B15. Facturation par passage et suivi URSSAF (saisie manuelle)](#b15-facturation-par-passage-et-suivi-urssaf-saisie-manuelle)
-      - [B16. Paiements Stripe : acompte du chef privé](#b16-paiements-stripe--acompte-du-chef-privé)
-      - [B17. Cartes cadeaux](#b17-cartes-cadeaux)
-      - [B18. Avis des clients](#b18-avis-des-clients)
-      - [B19. RGPD, conservation et exports](#b19-rgpd-conservation-et-exports)
-      - [B20. Durcissement et préparation de la production](#b20-durcissement-et-préparation-de-la-production)
-      - [B20b. Déploiement de la production et retour arrière](#b20b-déploiement-de-la-production-et-retour-arrière)
-      - [B21. Programme de fidélité par points](#b21-programme-de-fidélité-par-points)
+      - [B05. CRM : contacts, deals et pipeline](#b05-crm--contacts-deals-et-pipeline)
+      - [B06. Vue Pipeline et filtres](#b06-vue-pipeline-et-filtres)
+      - [B07. Devis internes : éditeur, versions et PDF](#b07-devis-internes--éditeur-versions-et-pdf)
+      - [B08. Lien d'acceptation du devis (facultatif)](#b08-lien-dacceptation-du-devis-facultatif)
+      - [B09. API de lecture pour le site (construction)](#b09-api-de-lecture-pour-le-site-construction)
+      - [B10. Import des contenus existants du site](#b10-import-des-contenus-existants-du-site)
+      - [B11. Blocs vendeurs des pages dans le CMS](#b11-blocs-vendeurs-des-pages-dans-le-cms)
+      - [B12. Déploiement de l'environnement de test](#b12-déploiement-de-lenvironnement-de-test)
+      - [B13. Catalogue de recettes et ingrédients](#b13-catalogue-de-recettes-et-ingrédients)
+      - [B14. Publication du site depuis l'administration](#b14-publication-du-site-depuis-ladministration)
+      - [B15. Clients, engagements, passages et réservations](#b15-clients-engagements-passages-et-réservations)
+      - [B16. Créer un client et un engagement depuis un deal gagné (page A-Dossier)](#b16-créer-un-client-et-un-engagement-depuis-un-deal-gagné-page-a-dossier)
+      - [B17. Suivi : tableau de bord, vues, filtres et flux iCal](#b17-suivi--tableau-de-bord-vues-filtres-et-flux-ical)
+      - [B18. Menus par passage : choix par le client, validation et listes d'ingrédients](#b18-menus-par-passage--choix-par-le-client-validation-et-listes-dingrédients)
+      - [B19. Page de choix du menu (lien à usage unique)](#b19-page-de-choix-du-menu-lien-à-usage-unique)
+      - [B20. Facturation par passage et suivi URSSAF (saisie manuelle)](#b20-facturation-par-passage-et-suivi-urssaf-saisie-manuelle)
+      - [B21. Paiements Stripe : acompte du chef privé](#b21-paiements-stripe--acompte-du-chef-privé)
+      - [B22. Avis des clients](#b22-avis-des-clients)
+      - [B23. RGPD, conservation et exports](#b23-rgpd-conservation-et-exports)
+      - [B24. Durcissement et préparation de la production](#b24-durcissement-et-préparation-de-la-production)
+      - [B25. Déploiement de la production et retour arrière](#b25-déploiement-de-la-production-et-retour-arrière)
     - [3.3 Pull Requests du site (`chefmeemz`)](#33-pull-requests-du-site-chefmeemz)
-      - [S00. Envoyer les demandes du site vers HubSpot](#s00-envoyer-les-demandes-du-site-vers-hubspot)
+      - [S00. Recevoir les demandes du site par e-mail](#s00-recevoir-les-demandes-du-site-par-e-mail)
       - [S00b. Skills de l'agent : Next.js, React, référencement et accessibilité](#s00b-skills-de-lagent--nextjs-react-référencement-et-accessibilité)
-      - [S01. Lire le contenu depuis l'API au moment de la construction](#s01-lire-le-contenu-depuis-lapi-au-moment-de-la-construction)
-      - [S02. Déclenchement de la publication et déploiement](#s02-déclenchement-de-la-publication-et-déploiement)
-      - [S03. Carte cadeau : page publique d'achat](#s03-carte-cadeau--page-publique-dachat)
+      - [S01. Envoyer les demandes du site vers l'administration](#s01-envoyer-les-demandes-du-site-vers-ladministration)
+      - [S02. Lire le contenu depuis l'API au moment de la construction](#s02-lire-le-contenu-depuis-lapi-au-moment-de-la-construction)
+      - [S03. Déclenchement de la publication et déploiement](#s03-déclenchement-de-la-publication-et-déploiement)
       - [S04. Site : durcissement](#s04-site--durcissement)
-  - [4. Étapes manuelles : comptes, secrets, décisions](#4-étapes-manuelles--comptes-secrets-décisions)
-    - [M0. Avant la première PR](#m0-avant-la-première-pr)
-    - [M1. Avant la PR indiquée](#m1-avant-la-pr-indiquée)
-  - [5. Décisions ouvertes et points à vérifier](#5-décisions-ouvertes-et-points-à-vérifier)
-    - [5.1 Décisions à prendre](#51-décisions-à-prendre)
-    - [5.2 Points à vérifier](#52-points-à-vérifier)
-  - [6. Checklist avant la mise en production](#6-checklist-avant-la-mise-en-production)
+  - [4. Décisions ouvertes et points à vérifier](#4-décisions-ouvertes-et-points-à-vérifier)
+    - [4.1 Décisions à prendre](#41-décisions-à-prendre)
+    - [4.2 Points à vérifier](#42-points-à-vérifier)
+  - [5. Checklist avant la mise en production](#5-checklist-avant-la-mise-en-production)
 - **[Partie III — La technique](#partie-iii--la-technique)**
-  - [7. Stack et conventions](#7-stack-et-conventions)
-    - [7.1 Choix par défaut](#71-choix-par-défaut)
-    - [7.2 Conventions de code](#72-conventions-de-code)
-    - [7.3 Apps](#73-apps)
-    - [7.4 Interdits (à tester)](#74-interdits-à-tester)
-    - [7.5 Bonnes pratiques officielles de Django et DRF](#75-bonnes-pratiques-officielles-de-django-et-drf)
-  - [8. Authentification et permissions](#8-authentification-et-permissions)
-  - [9. Modèle de données](#9-modèle-de-données)
-    - [9.1 `content` (CMS)](#91-content-cms)
-    - [9.2 `catalog`](#92-catalog)
-    - [9.3 `pricing`](#93-pricing)
-    - [9.4 Pièces du devis (sur l'engagement et la réservation)](#94-pièces-du-devis-sur-lengagement-et-la-réservation)
-    - [9.5 `clients`](#95-clients)
-    - [9.6 `engagements`](#96-engagements)
-    - [9.7 `planning`](#97-planning)
-    - [9.8 `billing`](#98-billing)
-    - [9.9 `payments`](#99-payments)
-    - [9.10 `giftcards`](#910-giftcards)
-    - [9.11 `reviews`, `notifications`, `core`, `integrations`](#911-reviews-notifications-core-integrations)
-    - [9.12 `staffdesk` (suivi et relances)](#912-staffdesk-suivi-et-relances)
-    - [9.13 `loyalty` (points de fidélité)](#913-loyalty-points-de-fidélité)
-  - [10. API et contrat avec le site Next.js](#10-api-et-contrat-avec-le-site-nextjs)
-    - [10.1 Routes de lecture (pour la construction du site)](#101-routes-de-lecture-pour-la-construction-du-site)
-    - [10.2 Routes serveur à serveur (appelées par le site)](#102-routes-serveur-à-serveur-appelées-par-le-site)
-    - [10.2b Page de choix du menu (servie par Django)](#102b-page-de-choix-du-menu-servie-par-django)
-    - [10.2c Pas d'API pour l'administration](#102c-pas-dapi-pour-ladministration)
-    - [10.3 Webhooks entrants](#103-webhooks-entrants)
-    - [10.4 Sortants](#104-sortants)
-    - [10.5 Changements attendus côté site](#105-changements-attendus-côté-site)
-  - [11. Environnements, configuration et exigences transversales](#11-environnements-configuration-et-exigences-transversales)
-    - [11.1 Configuration (variables d'environnement)](#111-configuration-variables-denvironnement)
-    - [11.2 Environnements et domaines](#112-environnements-et-domaines)
-    - [11.3 Exigences non fonctionnelles](#113-exigences-non-fonctionnelles)
-    - [11.4 Données de démonstration et tests](#114-données-de-démonstration-et-tests)
+  - [6. Stack et conventions](#6-stack-et-conventions)
+    - [6.1 Choix par défaut](#61-choix-par-défaut)
+    - [6.2 Conventions de code](#62-conventions-de-code)
+    - [6.3 Apps](#63-apps)
+    - [6.4 Interdits (à tester)](#64-interdits-à-tester)
+    - [6.5 Bonnes pratiques officielles de Django et DRF](#65-bonnes-pratiques-officielles-de-django-et-drf)
+  - [7. Authentification et permissions](#7-authentification-et-permissions)
+  - [8. Modèle de données](#8-modèle-de-données)
+    - [8.1 `content` (CMS)](#81-content-cms)
+    - [8.2 `catalog`](#82-catalog)
+    - [8.3 `pricing`](#83-pricing)
+    - [8.4 Pièces du devis (sur l'engagement et la réservation)](#84-pièces-du-devis-sur-lengagement-et-la-réservation)
+    - [8.5 `crm` (contacts, deals, pipeline)](#85-crm-contacts-deals-pipeline)
+    - [8.6 `clients`](#86-clients)
+    - [8.7 `engagements`](#87-engagements)
+    - [8.8 `planning`](#88-planning)
+    - [8.9 `billing`](#89-billing)
+    - [8.10 `payments`](#810-payments)
+    - [8.11 `reviews`, `notifications`, `core`, `integrations`](#811-reviews-notifications-core-integrations)
+    - [8.12 `staffdesk` (tableau de bord et relances aux clients)](#812-staffdesk-tableau-de-bord-et-relances-aux-clients)
+  - [9. API et contrat avec le site Next.js](#9-api-et-contrat-avec-le-site-nextjs)
+    - [9.1 Routes de lecture (pour la construction du site)](#91-routes-de-lecture-pour-la-construction-du-site)
+    - [9.2 Routes serveur à serveur (appelées par le site)](#92-routes-serveur-à-serveur-appelées-par-le-site)
+    - [9.3 Page de choix du menu (servie par Django)](#93-page-de-choix-du-menu-servie-par-django)
+    - [9.4 Pas d'API pour l'administration](#94-pas-dapi-pour-ladministration)
+    - [9.5 Webhooks entrants](#95-webhooks-entrants)
+    - [9.6 Sortants](#96-sortants)
+    - [9.7 Changements attendus côté site](#97-changements-attendus-côté-site)
+  - [10. Environnements, configuration et exigences transversales](#10-environnements-configuration-et-exigences-transversales)
+    - [10.1 Configuration (variables d'environnement)](#101-configuration-variables-denvironnement)
+    - [10.2 Environnements et domaines](#102-environnements-et-domaines)
+    - [10.3 Exigences non fonctionnelles](#103-exigences-non-fonctionnelles)
+    - [10.4 Données de démonstration et tests](#104-données-de-démonstration-et-tests)
 - **[Partie IV — Annexe](#partie-iv--annexe)**
-  - [12. Glossaire](#12-glossaire)
-    - [12.1 Termes du métier](#121-termes-du-métier)
-    - [12.2 Sigles et termes techniques](#122-sigles-et-termes-techniques)
+  - [11. Glossaire](#11-glossaire)
+    - [11.1 Termes du métier](#111-termes-du-métier)
+    - [11.2 Sigles et termes techniques](#112-sigles-et-termes-techniques)
 
 # Avant-propos
 
 Comment lire ce document et comment confier une Pull Request à Claude.
 
 
-## 1. Utiliser ce document
+## Utiliser ce document
 
-### 1.1 Deux dépôts
+### Deux dépôts
 - **`chefmeemz-backend`** (Django, à créer ; PR préfixées **B**) : l'administration de la cheffe, la logique métier, l'API.
-- **`chefmeemz`** (le site Next.js existant ; PR préfixées **S**) : le site public (entièrement statique) et la page de carte cadeau.
+- **`chefmeemz`** (le site Next.js existant ; PR préfixées **S**) : le site public, entièrement statique.
 
-### 1.2 Demande type à Claude (à copier pour chaque PR)
-> Implémente la PR **Bxx** décrite dans `docs/PROJECT.md`. **Commence par lister les skills de `.claude/skills/` et charge tous ceux qui concernent cette PR** — au minimum `django-drf` et `revue-projet`, plus `donnees-sensibles` dès qu'un client, un e-mail, un journal ou une intégration est touché, et `tests` avant d'écrire les tests. Lis ensuite la PR, les sections qu'elle cite, la section 7.4 (interdits) et `docs/DECISIONS.md`. Crée la branche indiquée, fais des commits atomiques, écris les tests demandés, puis ouvre la PR avec le gabarit du dépôt. **Reste dans le périmètre** : ne fais rien de ce qui figure dans « Hors périmètre ». Si une règle manque, applique le choix le plus simple et note-le dans `docs/DECISIONS.md`. Ne me demande pas de valider un détail mineur ; arrête-toi seulement s'il manque un secret, un compte ou une décision marquée **BLOQUANT**.
+### Demande type à Claude (à copier pour chaque PR)
+> Implémente la PR **Bxx** décrite dans `docs/PROJECT.md`. **Commence par lister les skills de `.claude/skills/` et charge tous ceux qui concernent cette PR** — au minimum `django-drf` et `revue-projet`, plus `donnees-sensibles` dès qu'un client, un e-mail, un journal ou une intégration est touché, et `tests` avant d'écrire les tests. Lis ensuite la PR, les sections qu'elle cite, la section 6.4 (interdits) et `docs/DECISIONS.md`. Crée la branche indiquée, fais des commits atomiques, écris les tests demandés, puis ouvre la PR avec le gabarit du dépôt. **Reste dans le périmètre** : ne fais rien de ce qui figure dans « Hors périmètre ». Si une règle manque, applique le choix le plus simple et note-le dans `docs/DECISIONS.md`. Ne me demande pas de valider un détail mineur ; arrête-toi seulement s'il manque un secret, un compte ou une décision marquée **BLOQUANT**.
 
 Pour une PR du site, remplacez `Bxx` par `Sxx`, travaillez dans `chefmeemz`, chargez les skills du site (`nextjs` et `react` toujours, `seo` et `accessibilite` dès qu'une page change) et lisez d'abord `AGENTS.md` et la documentation de `node_modules/next/dist/docs/` (cette version de Next.js a des changements incompatibles : `middleware.ts` s'appelle `proxy.ts`). Claude doit avoir accès aux **deux dépôts** côte à côte.
 
-**Deux exceptions, et une seule fois chacune** : B00b et S00b *créent* les skills, elles ne peuvent pas les charger. Pour ces deux PR, la demande type s'applique sans la première phrase, et la lecture de la section 7.5 (bonnes pratiques) remplace celle des skills — c'est d'ailleurs la matière qu'elles ont à transformer en skills.
+**Deux exceptions, et une seule fois chacune** : B00b et S00b *créent* les skills, elles ne peuvent pas les charger. Pour ces deux PR, la demande type s'applique sans la première phrase, et la lecture de la section 6.5 (bonnes pratiques) remplace celle des skills — c'est d'ailleurs la matière qu'elles ont à transformer en skills.
 
-### 1.3 Consignes permanentes pour Claude
+### Consignes permanentes pour Claude
 1. **Ne rien inventer** : si une règle manque, choisir le plus simple, le noter dans `docs/DECISIONS.md` avec la date, et continuer.
 2. **Lire avant d'écrire** dans le site : `lib/content/schemas.ts`, `lib/recipes.ts`, `lib/lead/pricing.ts`, `lib/zones.ts`, `lib/site.ts`, `messages/fr.json`, `content/**/*.mdx`.
 3. **Les skills du dépôt font foi** (`.claude/skills/`, livrés par B00b et S00b) : ils se chargent tout seuls et portent la liste de contrôle opérationnelle. Ce document garde les principes et les décisions ; le skill garde la règle d'écriture.
 4. Texte visible en **français** ; code, modèles et champs en **anglais**.
 5. **Ce que toute PR livre, en plus de ses fonctionnalités** : les tests nommés dans ses « Critères » ; une **implémentation factice** pour chaque intégration externe qu'elle introduit ; les migrations correspondantes ; et la mise à jour de `README.md`, `docs/DECISIONS.md` et `docs/API.md` (généré par `drf-spectacular`). Ces livrables ne sont plus répétés PR par PR.
+6. **Flexibilité d'abord** (1.2) : ne jamais placer un élément de confort sur le chemin critique ; tout calcul est une suggestion modifiable (avec trace) ; toute intégration a un mode dégradé ; tout automatisme se désactive.
 
-### 1.4 Règles de revue et conventions
+### Règles de revue et conventions
 - **CI verte**, description de PR conforme au gabarit (contexte métier, changements, comment tester, risques, captures de l'administration), migrations lisibles et réversibles, aucun secret.
-- **Interdits** (7.4) toujours testés. La liste de contrôle de la revue est le skill **`revue-projet`**, pas cette section : elle n'est écrite qu'une fois, là où elle se charge au moment d'écrire comme au moment de relire. La section 7.5 garde les principes et les sources officielles.
+- **Interdits** (6.4) toujours testés. La liste de contrôle de la revue est le skill **`revue-projet`**, pas cette section : elle n'est écrite qu'une fois, là où elle se charge au moment d'écrire comme au moment de relire. La section 6.5 garde les principes et les sources officielles.
 - Deux vérifications que la revue garde en propre, parce qu'elles portent sur la PR entière et non sur une ligne de code : **aucun nouvel avertissement à `check --deploy`** (la CI de B00 l'exécute, la revue constate qu'on ne l'a pas contournée), et la question qui prime sur toutes les autres — **cette PR enregistre-t-elle quelque chose qu'elle ne devrait pas ?**
 - **Pas de fonctionnalité hors périmètre** ; tout écart est justifié. Vous testez **dans l'administration** ce que la PR annonce (« Vous contrôlez »), pas seulement les tests automatiques.
 - **Branches** `feat/bxx-nom-court`, commits atomiques, fusion en un seul commit (*squash*) après votre accord. **Fini** = critères remplis, tests verts, documentation à jour, bandeau d'environnement visible.
@@ -141,733 +148,1164 @@ Pour une PR du site, remplacez `Bxx` par `Sxx`, travaillez dans `chefmeemz`, cha
 Ce que fait l'entreprise, comment elle vend, comment elle sert. **Une lectrice ou un lecteur non technique peut s'arrêter à la fin de la partie II.**
 
 
-## 2. Contexte et process
+## 1. Activité, règles et process
 
-### 2.1 Activité
-**Table et Tribu**, cheffe à domicile à Montpellier et alentours, trois services : **batch cooking** (3 à 5 dîners par semaine préparés chez le client en un passage ; packs *Essentiel*, *Signature*, *Sur mesure*), **chef privé** (dîner pour des convives, prix à la personne, acompte de 30 %), **cours de cuisine** (à domicile, prix à la personne). Le site Next.js 16 est statique sur Cloudflare (dépôt `chefmeemz`) ; son contenu est aujourd'hui dans des fichiers (`content/`, `messages/fr.json`, `lib/*.ts`). Utilisateurs : la cheffe (un compte au départ), ses clients (qui valident leur menu par un lien reçu par e-mail, sans compte), les visiteurs (achat de carte cadeau), le système de build du site.
+### 1.1 Activité
+**Table et Tribu**, cheffe à domicile à Montpellier et alentours, trois services : **batch cooking** (3 à 5 dîners par semaine préparés chez le client en un passage ; packs *Essentiel*, *Signature*, *Sur mesure*), **chef privé** (dîner pour des convives, prix à la personne, acompte de 30 %), **cours de cuisine** (à domicile, prix à la personne). Le site Next.js 16 est statique sur Cloudflare (dépôt `chefmeemz`) ; son contenu est aujourd'hui dans des fichiers (`content/`, `messages/fr.json`, `lib/*.ts`). Utilisateurs : la cheffe (un compte au départ), ses clients (qui valident leur menu par un lien reçu par e-mail, sans compte), les visiteurs (qui demandent un devis), le système de build du site.
 
-### 2.2 Principes retenus
+### 1.2 Principes retenus
 **Qui détient quoi**
-- **HubSpot Free** : toute la fiche du client : identité, téléphone, adresse, échanges, e-mails, appels, notes, tâches, pipeline, devis envoyés, **allergies, goûts et réponses au questionnaire**. Avant la confirmation, seule source : **Django ne contient aucun prospect**.
-- **Django** (après la création du dossier) : seulement ce qui sert à l'exécution : e-mail (identifiant du client et adresse d'envoi), prénom, nom, identifiant HubSpot (lien), engagements (avec **portions par passage**), passages, plans de repas, listes d'ingrédients, pièces du devis, suivi de facturation, cartes cadeaux.
-- **Identité** : HubSpot fait foi ; un changement d'e-mail se fait dans HubSpot **et** dans Django (action « Mettre à jour l'e-mail ») ; le client ne modifie pas son identité.
-- **Allergies et régimes** : dans HubSpot uniquement, jamais dans Django. Les recettes affichent leurs allergènes ; le client choisit sous sa responsabilité et le confirme à chaque validation ; la cheffe relit chaque menu. Un filtre automatique pourra venir plus tard (PR dédiée).
-- **Outil de facturation** : factures, avoirs, attestation fiscale. **Stripe** : paiements. **Cartes cadeaux** : acheteur, destinataire et solde dans Django.
+- **Django (CRM et exécution)** : tout le suivi commercial et l'exécution, **une seule fiche par personne**. Les **prospects** : contact (identité, téléphone, adresse, notes), deal et pipeline, **devis rattachés au deal**, historique des étapes. Puis, une fois le deal gagné, le **client** : engagements (avec **portions par passage**), passages, plans de repas, listes d'ingrédients, pièces du devis, suivi de facturation. Vos échanges (e-mails, appels) restent dans votre messagerie : Django garde seulement vos **notes** par contact et par deal, et ne lit jamais votre boîte.
+- **Données personnelles et durée** : un prospect perdu ou resté sans suite n'est pas conservé indéfiniment (règle de conservation, B23).
+- **Identité** : la fiche du contact fait foi, **une seule modification** à faire (y compris un changement d'e-mail, qui change l'adresse d'envoi) ; le client ne modifie pas son identité.
+- **Allergies et régimes** : **jamais dans Django** (ni champ, ni note). Vous les recueillez au téléphone pendant la qualification, avec le consentement explicite de la personne, et vous les gardez **hors de l'outil**, dans votre propre support privé (carnet ou note protégée). Les recettes affichent leurs allergènes ; le client choisit sous sa responsabilité et le confirme à chaque validation ; vous relisez chaque menu avec votre note. Un filtre automatique pourra venir plus tard (PR dédiée).
+- **Outil de facturation** : factures, avoirs, attestation fiscale. **Stripe** : paiements (acompte du chef privé).
+
+**Philosophie : flexible, jamais sur le chemin critique**
+- **Tout est facultatif, sauf ce que la loi ou la sécurité exigent.** Un devis, un lien d'acceptation, une pièce jointe, un motif (hors remise et deal perdu) ne sont jamais des prérequis pour avancer.
+- **Le chemin critique reste court** : demande → deal → dossier → passages → menu → réalisé → facturé. Tout ce qui est confort (éditeur de devis, lien d'acceptation, envoi automatique du lien de choix, relances, flux iCal) peut être désactivé ou tomber en panne sans bloquer ce chemin.
+- **Tout se corrige à la main** (étape, statut, date, prix, dossier), avec une trace. Le système propose et calcule ; il n'impose jamais : un calcul est une suggestion que vous pouvez modifier.
+- **Les automatismes sont des options**, désactivables globalement, par type ou par client. **Une intégration externe n'est jamais bloquante** : en cas de panne, un mode dégradé permet de continuer à la main.
 
 **Architecture**
-- **Administration et gestion du contenu = administration Django (thème Unfold)** avec 4 pages sur mesure : **A-Dossier** (créer un client et un engagement), **A-Suivi** (le tableau « à faire »), **A-Publier** (mettre le site en ligne), **A-Devis** (calculer et générer un devis). Pas d'API d'administration.
-- **Next.js porte** : le site public, **entièrement statique**, et la page de **carte cadeau**. Le site lit Django **au moment de sa construction** ; aucune page publique n'appelle Django à l'exécution. **Il n'y a pas d'espace client avec comptes** : le client valide son menu depuis une **page de choix servie par Django**, atteinte par un lien à usage unique reçu par e-mail.
-- **Menus par passage** : pour chaque passage, la cheffe prépare une **proposition** de recettes, le client l'ajuste et la valide par son lien ; un **PDF unique** reprend ensuite le menu retenu et la liste d'ingrédients (B13).
+- **Administration et gestion du contenu = administration Django (thème Unfold)** avec 3 pages sur mesure : **A-Dossier** (créer un client et un engagement), **A-Publier** (mettre le site en ligne), **A-Devis** (créer, modifier et finaliser un devis). Pas d'API d'administration.
+- **Next.js porte** : le site public, **entièrement statique**. Le site lit Django **au moment de sa construction** ; aucune page publique n'appelle Django à l'exécution. **Il n'y a pas d'espace client avec comptes** : le client valide son menu depuis une **page de choix servie par Django**, atteinte par un lien à usage unique reçu par e-mail.
+- **Menus par passage** : le client choisit **lui-même** ses recettes depuis un **lien de choix** reçu par e-mail (liste de recettes prédéfinie qu'il garde ou modifie, date limite par défaut 2 jours avant le passage) ; un **PDF unique** reprend ensuite le menu retenu et la liste d'ingrédients (B18).
+- **Suivi par vues et filtres** : pas de page « à faire ». Une vue **Clients** (statut Actif / Inactif, passages créés sur passages prévus) et une vue **Semaines** (statut de chaque passage) portent des filtres ; un **tableau de bord** d'accueil compte ce qui demande votre attention et renvoie vers elles (B17). **Django n'envoie aucune notification à la cheffe.**
 - **Calendrier** : les dates des passages sont dans Django (elles pilotent menus, rappels et facturation) ; un **flux iCal en lecture seule** les affiche dans Google Agenda. Pas de page calendrier.
 - **Prix dynamiques** (administration, jamais dans le code) : grille de référence 39,50 € après crédit d'impôt pour 3 dîners au mois (la FAQ « 49,50 € » est obsolète) ; elle préremplit le prix d'un engagement, modifiable avec un motif.
-- **Trois environnements** : local, test (`test.tabletribu.com`), production (`tabletribu.com`). **Outils gratuits d'abord** (liste et coûts : section 2.7). À décider : hébergement de Django, outil de facturation, informations légales (section 5).
+- **Trois environnements** : local, test (`test.tabletribu.com`), production (`tabletribu.com`). **Outils gratuits d'abord** (liste et coûts : section 1.10). À décider : hébergement de Django, outil de facturation, informations légales (section 4).
 
 **Règles métier**
-- **Engagement** : 1 semaine (1 passage), 1 mois (4 passages) ou sur mesure. **Pas de reconduction automatique** : un renouvellement est un nouvel engagement (pack éventuellement différent) sur le même client ; **un devis n'est jamais un prérequis** pour créer un engagement, les pièces du devis sont facultatives, avec e-mail et rappel en fin de période.
-- **Facturation au passage réalisé**, jamais le mois d'avance ; prix figés dans l'engagement. Pas de pause, de résiliation ni de préavis ; **report ou annulation sans frais au moins 48 h avant**. Changement de pack ou de formule en cours : non proposé (exception manuelle journalisée).
+- **Engagement** : 1 semaine (1 passage), 1 mois (4 passages) ou sur mesure. **Pas de reconduction automatique** : un renouvellement est un nouvel engagement (pack éventuellement différent) sur le même client ; **un devis n'est jamais un prérequis** pour créer un engagement, les pièces du devis sont facultatives ; la fin d'un engagement est signalée par le compteur « Engagements bientôt terminés ».
+- **Facturation au passage réalisé**, jamais le mois d'avance ; prix figés dans l'engagement. Pas de pause, de résiliation ni de préavis ; **report ou annulation : la cheffe fixe elle-même ce qui est dû, aucune règle de montant automatique**. Changement de pack ou de formule en cours : non proposé (exception manuelle journalisée).
 - **Chef privé et cours** : réservations sur devis, sans pack ; acompte de 30 % pour le chef privé. **Batch cooking** : avance immédiate URSSAF (le client valide sous 48 h, l'URSSAF règle 50 %).
 - **Offres commerciales** : les prestations se vendent aussi par moment de vie (Post-partum, senior, anniversaire, renouvellement…). Une offre est un **habillage du devis** — un nom, un paragraphe, parfois une remise — par-dessus un service existant ; elle ne change ni les passages, ni les menus, ni la facturation. La cheffe les crée elle-même dans l'administration, et l'offre reste attachée à l'engagement vendu.
-- **Numérotation** : le devis porte une **référence unique** (`DEV-AAAA-NNN`, proposée par la page A-Devis), refusée en double par Django ; les **factures** ont la numérotation continue de l'outil de facturation.
+- **Numérotation** : le devis porte une **référence unique** (`DEV-AAAA-NNN`, attribuée à la première finalisation par l'éditeur de devis), refusée en double par Django ; les **factures** ont la numérotation continue de l'outil de facturation.
 
-### 2.3 Le process de bout en bout
+### 1.3 Le process de bout en bout
 
-**En une phrase** : un visiteur du site devient un contact, le contact devient un devis, le devis accepté devient un engagement de plusieurs passages, et chaque passage réalisé devient une facture dont l'URSSAF règle la moitié sous quelques jours.
+**Le cycle d'une semaine** (batch cooking ; le chef privé et les cours de cuisine n'en ont pas pour l'instant)
 
-Deux registres : **« Ce que vous faites »** donne le geste concret, et dit **« rien »** quand le système s'en charge sans vous ; **« Ce qui se passe, et pourquoi »** explique l'intérêt économique de l'étape.
+| Statut | Ce que ça veut dire | Ce qui le fait passer au suivant |
+| --- | --- | --- |
+| **À dater** | passage créé, sans date | vous saisissez la date |
+| **Planifiée** | date fixée, le client n'a pas encore son lien | vous cliquez « Envoyer le lien de choix » |
+| **Menu envoyé** | le client ajuste la liste prédéfinie | il valide, ou vous validez d'un clic à la date limite |
+| **Menu prêt** | recettes validées | vous cuisinez et marquez le passage réalisé |
+| **Réalisée** | passage fait | vous saisissez la facture |
+| **Facturée** | facture émise | la facture est marquée payée |
+| **Clôturée** | payée, tout est bon | — |
 
-**Comment lire les deux dernières colonnes** : chaque élément est un **titre en gras**, suivi de ses champs en retrait (`↳`) ; quand une étape en porte plusieurs, ils sont **numérotés**. « — » veut dire qu'il n'y a rien, et c'est une information.
+**Annulée** n'est pas une étape du cycle : c'est l'état d'un passage annulé (étape 12), hors cycle, qui ne compte plus dans les passages créés. Tout statut se corrige à la main, avec une trace.
 
-**Les deux mécanismes qui s'y rattachent y figurent aussi**, parce qu'on se les demande toujours à propos d'une étape précise : l'**étape du pipeline HubSpot** que l'étape pose, et les **relances** qu'elle déclenche. Chaque relance dit ce qui l'**arme**, **qui** agit, **quand**, et **à quelle condition elle s'arrête** — une relance sans condition d'arrêt écrite finit par crier au loup.
+**Les étapes du process**
 
-**Principes**
-- **Un seul propriétaire par relance.** HubSpot relance tout ce qui précède la création du dossier, Django tout ce qui suit. **Le relais est « Dossier créé »**, posé par l'administration elle-même (B11).
-- **Avant le dossier, la voix est la vôtre** : Django ne connaît aucun prospect (interdit 1, section 7.4) et ne peut donc écrire ni à son adresse ni en son nom. Les relances d'avant-dossier sont des **tâches HubSpot pour vous**, jamais des e-mails automatiques. **Après le dossier**, Django prend les envois répétitifs au client.
-- **Aucun doublon avec les outils externes** : l'URSSAF et l'outil de facturation envoient déjà leurs rappels ; Django enregistre le statut et vous alerte.
-- **Un registre unique** (`FollowUp`, section 9.12) : une situation = une ligne, jamais deux ; elle se **clôt seule** dès que la situation est résolue. **Au plus un e-mail par client et par jour**, jamais entre 21 h et 8 h.
-- **Vos rappels à vous** : un **résumé quotidien** envoyé seulement les jours où il y a quelque chose, et trois **alertes immédiates** pour ce qui ne peut pas attendre. Tout s'active et se coupe dans l'administration (B12).
-- **Mêmes statuts partout** : *à venir*, *à traiter*, *en attente du client*, *résolu*, *annulé* — plus **en retard**, qui n'est pas un statut mais une échéance dépassée, affichée en rouge. Les délais ci-dessous sont des valeurs par défaut, modifiables dans l'administration.
+| Étape | Ce que vous faites | Étape du pipeline |
+| --- | --- | --- |
+| **Phase A — Attirer** | || 
+| **1. Faire vivre le site** | Quand un prix, une recette, une photo ou un texte change, vous le modifiez dans l'administration Django : le contenu, les prix et les recettes ne sont plus dans le code.<br>Puis vous ouvrez la **page A-Publier** et vous cliquez **Publier** : le site se reconstruit tout seul et affiche les changements quelques minutes plus tard.<br>Vous ne touchez à aucun fichier et vous n'appelez personne. | — |
+| **2. Recevoir une demande** | **Rien à faire pour déclencher l'étape** : le visiteur remplit le formulaire du site, un **contact** et un **deal « Nouveau »** sont créés dans Django avec le détail de la demande. Le site vous envoie aussi, **à chaque demande, un e-mail avec son contenu complet** (filet de sécurité si Django est indisponible : vous créez alors le prospect à la main).<br>Votre geste : chaque jour, vous ouvrez la vue **Pipeline** et vous **rappelez vite** les demandes de la colonne Nouveau (filtre « À rappeler »). C'est l'étape dont le retard se paie directement en affaires perdues.<br>De temps en temps, vérifiez que l'e-mail du site vous arrive toujours. | **Nouveau**<br>&nbsp;&nbsp;↳ *Posée par* : **le site** (S01)<br>&nbsp;&nbsp;↳ *Déclencheur* : le visiteur envoie le formulaire |
+| **3. Qualifier** | Vous appelez la personne et vous notez dans la **fiche du contact et du deal** tout ce que vous apprenez : zone, nombre de convives, budget, contraintes, compte URSSAF.<br>Les **allergies et les régimes** ne se notent **pas** dans l'outil : vous les consignez dans votre support privé, avec le consentement explicite de la personne ; pour un **sur mesure**, vous remplissez aussi le questionnaire à ce moment-là (sans les allergies).<br>Vous déplacez le deal à **Qualifié**. | **Qualifié**<br>&nbsp;&nbsp;↳ *Posée par* : **vous**<br>&nbsp;&nbsp;↳ *Déclencheur* : votre appel de qualification |
+| **Phase B — Convertir** | || 
+| **4. Établir le devis** | Depuis la fiche du deal, vous cliquez **« Faire un devis »** : l'éditeur **A-Devis** s'ouvre avec le service, le nom et la commune repris, et des lignes **proposées** par la grille.<br>Vous modifiez tout ce que vous voulez (lignes, textes, remise avec motif, totaux eux-mêmes avec un motif), vous relisez, puis vous cliquez **« Finaliser »** : le devis reçoit son numéro unique `DEV-AAAA-NNN` et son PDF, rattachés au deal. Une modification ultérieure crée une nouvelle version.<br>Un devis fait ailleurs s'**importe en PDF**. Le devis n'est jamais obligatoire pour la suite. | — |
+| **5. Envoyer le devis** | Vous envoyez le PDF depuis votre messagerie (`contact@`), avec la phrase d'acceptation prévue (« En répondant "bon pour accord"… »). **Option** : vous ajoutez un **lien d'acceptation** (B08) que le client peut cliquer à la place de répondre.<br>Vous déplacez le deal à **Devis envoyé**.<br>Aucun rappel n'est posé : vous suivez vos devis chaque jour dans la vue Pipeline (filtre « Devis sans réponse », section 1.5). | **Devis envoyé**<br>&nbsp;&nbsp;↳ *Posée par* : **vous**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'envoi du devis au client |
+| **6. Obtenir l'accord** | Vous attendez le « bon pour accord » **par e-mail**, ou le clic sur le lien d'acceptation (signalé sur la fiche du deal) ; ni SMS, ni oral.<br>**C'est toujours vous qui passez le deal à Gagné**, le clic ne le fait pas à votre place :, puis vous ouvrez le dossier (étape 7).<br>Si le client refuse ou disparaît, vous passez le deal à **Perdu** avec un motif, à tout moment : un devis expiré n'est pas forcément un devis perdu, c'est votre jugement. | **1. Gagné**<br>&nbsp;&nbsp;↳ *Posée par* : **vous**<br>&nbsp;&nbsp;↳ *Déclencheur* : le « bon pour accord » reçu<br><br>**2. Perdu**<br>&nbsp;&nbsp;↳ *Posée par* : **vous**<br>&nbsp;&nbsp;↳ *Déclencheur* : votre jugement, à tout moment — fin du cycle |
+| **Phase C — Servir** | || 
+| **7. Ouvrir le dossier** | Depuis le deal **Gagné**, vous cliquez **« Ouvrir le dossier »** : la **page A-Dossier**, **une seule page** avec quatre blocs :<br>(1) **le client** : prénom, nom, e-mail, téléphone et adresse viennent déjà du contact, vous les vérifiez ; pour un renouvellement, vous choisissez le client existant ;<br>(2) **la prestation vendue** : pack, formule, nombre de passages, portions, date de début, prix (prérempli depuis la grille, avec motif si vous le modifiez) ;<br>(3) **les pièces**, toutes facultatives et repliées : le devis du deal (déjà rattaché), l'e-mail d'accord ;<br>(4) **le récapitulatif**, qui se met à jour en direct, avec la case « envoyer l'e-mail de bienvenue ».<br>Vous cliquez **Créer**. Le client devient **Actif**, ses passages sont créés **À dater**, et le dossier est lié au deal. | — |
+| **8. Planifier les passages** | Vous convenez les dates avec le client au téléphone.<br>Vous saisissez ensuite **toutes les dates d'un seul coup** avec l'aide à la saisie récurrente (« tous les mardis à 18 h pendant 4 semaines »), quitte à corriger une date après coup.<br>La vue Clients affiche **passages créés / passages du package** (2/4) : tant que ce n'est pas complet, le client reste dans le compteur « Clients à planifier » du tableau de bord.<br>**Avant le premier passage d'un client en batch cooking**, vous vérifiez son inscription à l'avance immédiate sur votre espace URSSAF et vous cochez « compte URSSAF prêt » (filtre « Compte URSSAF non prêt » de la vue Clients). | — |
+| **9. Envoyer le lien de choix** | Sur la fiche d'un passage **Planifiée**, vous cliquez **« Envoyer le lien de choix »** : le système prépare une **liste de recettes prédéfinie** (qui évite les recettes des deux derniers passages), envoie l'e-mail au client, et le passage passe à **Menu envoyé**.<br>Vous pouvez aussi copier le lien (SMS, WhatsApp) ou en envoyer plusieurs d'un coup depuis la vue Semaines.<br>La **date limite** de choix est par défaut **2 jours avant le passage**, modifiable passage par passage.<br>**Option d'envoi automatique** (désactivée par défaut) : si vous l'activez, le lien part tout seul **7 jours avant chaque passage Planifiée**, avec la même liste prédéfinie. Vous gardez le contrôle : l'option se règle globalement ou client par client, et vous pouvez toujours envoyer un lien à la main avant. | — |
+| **10. Faire choisir le menu** | **Rien** : le client ouvre son lien, voit la liste prédéfinie avec les allergènes, remplace les recettes qu'il ne veut pas et valide. Le passage passe à **Menu prêt**.<br>S'il n'a pas répondu à la date limite, vous **validez la liste prédéfinie d'un clic** (ou vous la retouchez avant).<br>S'il répond « d'accord » par e-mail plutôt que par le lien, vous cliquez « Validé par le client » et vous joignez son e-mail. | — |
+| **11. Produire la liste d'ingrédients** | **Rien pour la liste** : elle se calcule seule, recette par recette, mise à l'échelle des portions, et part au client dans un PDF avec le menu retenu. Votre propre fiche de préparation est produite à part.<br>Votre **seul geste de sécurité, obligatoire** : vous relisez le menu validé avec **votre note d'allergies du client** (hors de l'outil), et vous le marquez **« relu »**.<br>Si un allergène pose problème, vous **rouvrez le menu** : le client rechoisit par un nouveau lien. | — |
+| **12. Gérer un imprévu** | Le client vous prévient par e-mail ou par téléphone ; vous agissez dans l'administration.<br>**Reporter** : vous changez la date ; le statut, le lien et le menu déjà validé sont conservés.<br>**Annuler** : le passage passe à **Annulée** avec un motif ; il ne compte plus dans les passages créés, et vous pouvez le replanifier.<br>**Vous fixez vous-même ce qui est dû** : aucune règle de montant n'est appliquée automatiquement. Le client reçoit la confirmation par e-mail. | — |
+| **13. Réaliser le passage** | Vous faites les courses et vous cuisinez chez le client avec votre fiche de préparation et la liste d'ingrédients.<br>Le soir même ou le lendemain, vous marquez le passage **Réalisée** dans l'administration. | — |
+| **Phase D — Encaisser** | || 
+| **14. Facturer le passage** | Le passage marqué **Réalisée** apparaît dans le compteur « Semaines à facturer » du tableau de bord.<br>Vous émettez la facture dans votre **outil de facturation**, puis vous saisissez son **numéro**, son statut et son échéance dans l'administration : le passage passe à **Facturée**. Django ne numérote jamais les factures lui-même. | — |
+| **15. Être payée** | Quand le paiement est reçu, vous marquez la facture payée : le passage passe à **Clôturée**. Rien d'autre pour le moment.<br>Tant que ce n'est pas fait, le passage reste dans le compteur « Factures à suivre ».<br>En batch cooking, la demande d'avance immédiate URSSAF se suit dans l'écran de facturation (B20) ; elle ne change pas cette règle. | — |
+| **16. Envoyer l'attestation fiscale** | **Rien** : l'outil de facturation l'envoie. En janvier, pensez à vérifier que c'est bien parti. | — |
+| **Phase E — Fidéliser et piloter** | || 
+| **17. Recueillir les avis** | La demande d'avis part seule après le dernier passage.<br>Quand un client répond, vous saisissez son avis dans l'administration, avec son autorisation de publier son prénom et son texte.<br>Vous le **validez**, et il paraît à la prochaine publication du site. | — |
+| **18. Proposer un renouvellement** | Le compteur **« Engagements bientôt terminés »** du tableau de bord vous prévient **avant** la fin : dès que le dernier passage d'un engagement tombe dans les 10 jours et que le client n'a pas de suite. C'est le moment d'en parler, souvent chez le client lors de l'avant-dernier passage.<br>Depuis la vue Clients (filtre « Fin d'engagement proche »), vous voyez le client, la date de son dernier passage et l'**offre de renouvellement** disponible.<br>Vous avez deux actions sur sa fiche : **« Créer un deal de renouvellement »** (un deal « Nouveau » est créé sur son contact, sans ressaisie) ou **« Pas de renouvellement »** avec un motif court, qui le sort du compteur.<br>Un renouvellement repart pour un cycle de vente complet : devis, accord, **Gagné**, puis un nouvel engagement sur le même client à l'étape 7. Le client quitte le compteur dès que ce nouvel engagement est créé. | **Nouveau**<br>&nbsp;&nbsp;↳ *Posée par* : **le bouton « Créer un deal de renouvellement »** (B17), ou **vous**<br>&nbsp;&nbsp;↳ *Déclencheur* : votre décision de proposer la suite |
+| **19. Ne rien oublier** | Chaque matin, vous suivez votre **routine** : vue Pipeline, puis tableau de bord, puis vues filtrées (section 1.5). **Ce sont les seules habitudes que le système vous demande de prendre** : la routine du matin et, une fois par mois, vos indicateurs (section 1.7). | — |
+| **20. Garder l'œil ouvert** | **Rien tant que rien ne casse.** Sentry et UptimeRobot (outils externes, B24) vous préviennent en cas de panne ; Django ne vous envoie rien. | — |
+| **Hébergement de l'administration** | Vous tranchez où héberger l'outil et qui peut l'atteindre (étape **M5**). Rien d'autre ne dépend de vous ici. | — |
 
-| Étape | Ce que vous faites | Pipeline HubSpot | Relances |
+**Chef privé et cours de cuisine** suivent les étapes 1 à 7 et 13 à 17, **sans** cycle de statuts de semaine ni lien de choix pour l'instant (étapes 8 à 11 : batch cooking seulement). Pour le chef privé, la réservation est **confirmée à la réception de l'acompte de 30 %** (lien Stripe envoyé à la main par e-mail, B21, aucune relance automatique). Des fonctions seront ajoutées plus tard.
+
+**Une demande RGPD** (export ou suppression de données) se saisit dans l'administration (B23) : délai de 30 jours, échéance affichée dans la liste des demandes, sans notification.
+
+### 1.4 Les e-mails automatiques au client
+
+Django n'écrit **qu'à vos clients**, jamais à un prospect ni à vous. Chaque e-mail ci-dessous part tout seul, s'arrête tout seul, et se règle dans l'administration (B17).
+
+**Règles communes**
+- **Au plus une relance par client et par jour** (suivi du menu, rappel de passage, avis), jamais entre **21 h et 8 h**. Les e-mails **du service** (lien de choix, liste d'ingrédients, confirmations) ne sont pas concernés.
+- **Une situation = une ligne** dans le registre `FollowUp` (section 8.12) : jamais deux e-mails pour la même situation, et la ligne se **clôt seule** dès que la situation est résolue.
+- **Trois niveaux de coupure** : globale (frein d'urgence, avec bandeau permanent), par type d'e-mail, par client. Les e-mails **du service** (lien de choix, liste d'ingrédients) ne se coupent pas : les couper casserait la prestation.
+- **Aucun doublon avec les outils externes** : l'URSSAF et l'outil de facturation envoient déjà leurs rappels de paiement.
+- Les délais ci-dessous sont des **valeurs par défaut**, modifiables dans l'administration.
+
+| E-mail | Quand il part | Quand il s'arrête | Étape | PR |
+| --- | --- | --- | --- | --- |
+| **E-mail de bienvenue / de nouvel engagement** | à la création du dossier, **si la case est cochée** | — (un seul envoi) | 7 | B16 |
+| **Lien de choix du menu** (e-mail du service) | quand vous cliquez « Envoyer le lien de choix », ou **7 jours avant le passage si l'envoi automatique est activé** | — (un seul envoi ; un nouvel envoi crée un nouveau lien) | 9 | B18, B19 |
+| **Suivi du menu non rempli** | **3 e-mails au plus, un tous les 2 jours** à partir de l'envoi du lien (J+2, J+4, J+6) | le menu est rempli et validé (par le client, ou par vous d'un clic), le passage est annulé ou a eu lieu, ou les 3 envois sont faits | 10 | B18 |
+| **Menu validé et liste d'ingrédients** (e-mail du service) | à la validation du menu | — (un seul envoi) | 11 | B18 |
+| **Rappel de passage** | **24 h avant** la date du passage | le passage est réalisé ou annulé | 13 | B18 |
+| **Confirmation de report ou d'annulation** | dès que vous enregistrez l'action | — (un seul envoi) | 12 | B15 |
+| **Demande d'avis** | **J+2** après le dernier passage, puis **une** relance à **J+7** | l'avis est reçu, ou les deux envois sont faits | 17 | B22 |
+
+### 1.5 Votre routine du matin
+
+**Environ dix minutes, dans cet ordre.** Django ne vous envoie aucune notification (seules les demandes du site vous parviennent par e-mail, étape 2) : tout ce qui demande votre attention se lit dans la vue Pipeline et sur le tableau de bord.
+
+**1. Votre pipeline (prospects)**, vue Pipeline de l'administration (section 1.6)
+
+| Colonne | Ce que vous regardez | Ce que vous faites |
+| --- | --- | --- |
+| **Nouveau** | le nombre de demandes arrivées depuis la veille, et la **plus ancienne** : au-delà de 24 h, c'est la priorité | vous rappelez, puis vous déplacez le deal à Qualifié (étape 3) ; filtre « À rappeler » |
+| **Qualifié** | les deals qualifiés **sans devis envoyé** : plus un deal y reste, plus il risque de refroidir | vous cliquez « Faire un devis » (étape 4) ; filtre « Qualifié sans devis » |
+| **Devis envoyé** | la **date d'envoi** de chaque devis, surtout ceux sans réponse depuis plus d'une semaine, et ceux qui approchent de leur validité de 30 jours | vous relancez par e-mail ou par téléphone, ou vous passez le deal à Perdu ; filtre « Devis sans réponse » |
+| **Gagné** | tout deal « Gagné » **sans dossier** (filtre « Gagné sans dossier ») | vous cliquez « Ouvrir le dossier » (étape 7) |
+| **Perdu** | rien de quotidien ; de temps en temps, le motif de perte | — |
+
+Vous consultez aussi l'**e-mail de notification du site** pour toute nouvelle demande reçue dans la nuit. Ce sont des repères de lecture : aucun délai n'est imposé par le système.
+
+**2. Le tableau de bord Django (clients)**
+
+Six compteurs ; chacun est un lien vers la liste filtrée.
+
+| Compteur | Vous cliquez, vous voyez | Ce que vous faites |
+| --- | --- | --- |
+| **Clients à planifier** | vue Clients, filtre « À planifier », avec créés / prévus (2/4) | vous appelez le client pour convenir des dates, puis vous créez les passages (étape 8) |
+| **Liens de choix à envoyer** | vue Clients, filtre « Lien à envoyer » | vous envoyez les liens, un par un ou en lot (étape 9) |
+| **Mes semaines à préparer** | vue Semaines, filtre « Menu prêt » avec la période « 7 prochains jours », avec l'indication « relu » ou non | vous relisez les allergies avec votre note d'allergies et vous marquez « relu » ; vous faites les courses (étapes 11 et 13) |
+| **Semaines à facturer** | vue Semaines, filtre « Réalisée » | vous émettez la facture dans votre outil et vous saisissez son numéro (étape 14) |
+| **Factures à suivre** | vue Semaines, filtre « Facturée » | vous vérifiez le paiement et vous marquez la facture payée : le passage passe à Clôturée (étape 15) |
+| **Engagements bientôt terminés** | vue Clients, filtre « Fin d'engagement proche », avec la date du dernier passage et l'offre disponible | vous proposez la suite ; vous cliquez « Créer un deal de renouvellement » ou « Pas de renouvellement » (étape 18) |
+
+Ce que mesure chaque compteur est défini en section 1.6.
+
+**3. Un coup d'œil dans la vue Semaines**
+- Filtre **Menu envoyé** : les menus que le client n'a pas encore rempli, surtout ceux dont la date limite approche ou est dépassée, et ceux qui ont déjà reçu leurs **3 e-mails** de suivi sans réponse : vous l'appelez, ou vous validez la liste prédéfinie d'un clic.
+- Filtre **« Seulement les en retard »** : en particulier les passages **dont la date est dépassée** sans être marqués Réalisée, que vous marquez réalisés ou annulés.
+- Les passages de la journée et de la semaine, dans votre **Google Agenda** (flux iCal en lecture seule).
+
+**4. Plus rarement**
+- Avant le premier passage d'un nouveau client en batch cooking : vue Clients, filtre **Compte URSSAF non prêt**, pour vérifier son inscription sur votre espace URSSAF et cocher la case.
+- Liste des **demandes de données RGPD** : l'échéance de 30 jours s'y affiche, en rouge une fois dépassée.
+- **En janvier** : vérifier que l'attestation fiscale est bien partie (étape 16).
+- Après toute modification de contenu : cliquer **Publier** (étape 1).
+
+**5. Une fois par mois, vos indicateurs (environ cinq minutes)**
+
+Le premier jour du mois, vous regardez la santé du commerce, pas seulement les tâches. Cinq chiffres (détail et définitions : section 1.7) :
+- **Dans Django**, la page **Indicateurs** : le **nombre de demandes** du mois et le **taux de conversion** (demande → devis envoyé → accord), puis **clients actifs**, **chiffre d'affaires facturé** et **taux de renouvellement**, comparés aux mois précédents.
+
+Ce que vous cherchez : un mois où les demandes baissent (l'acquisition faiblit), où la conversion baisse (le devis ou le suivi pose problème), où les renouvellements baissent (la fidélisation faiblit), ou où le chiffre d'affaires ne suit pas les clients actifs (la marge ou la facturation pose problème).
+
+### 1.6 Le tableau de bord, les vues et les filtres
+
+Cette section décrit ce que vous voyez à l'écran. Les maquettes sont **indicatives** : elles fixent le contenu et le comportement, pas le dessin exact (le thème Unfold décide de l'habillage). Tout est livré par B15 (fiches et statuts) et B17 (tableau de bord, vues et filtres).
+
+**Principes communs**
+- **Le tableau de bord est la page d'accueil** de l'administration. Chaque compteur est un lien : un clic ouvre la liste déjà filtrée.
+- **Trois listes, trois regards** : la vue **Pipeline** répond à « quels prospects ? » (une ligne par deal), la vue **Clients** à « qui ? » (une ligne par client), la vue **Semaines** à « quel passage ? » (une ligne par passage, avec son client).
+- **Les filtres sont au-dessus du tableau**, en une barre horizontale de menus, se combinent entre eux, et affichent leur **compteur**. Le filtre actif est rappelé au-dessus de la liste, avec un bouton pour l'effacer.
+- **Les listes de filtres de cette section sont des propositions de départ, pas un cahier des charges.** Au moment d'implémenter B06 et B17, Claude **vous montre la liste proposée et vous demande** lesquels garder, ajouter ou retirer, avant de les construire. Les filtres s'ajoutent ensuite sans développement lourd.
+- **Le chiffre d'un compteur du tableau de bord est toujours égal au nombre de lignes de la liste qu'il ouvre.** Si ce n'est pas le cas, c'est un défaut.
+- **En retard** s'affiche en **rouge**, jamais par la couleur seule (une icône et le mot « en retard » l'accompagnent).
+- Tout se corrige à la main : un statut, une date, une date limite, avec une trace dans le journal d'audit.
+
+#### Le tableau de bord
+
+```
+┌──────────────────────────────────────────────────────────────────────┐
+│  Bonjour — tableau de bord                                           │
+│  ⚠ 2 relances désactivées  ·  Envois automatiques : actifs           │
+├──────────────────────────────────────────────────────────────────────┤
+│  ┌───────────────┐ ┌───────────────┐ ┌───────────────┐               │
+│  │ Clients à     │ │ Liens de      │ │ Mes semaines  │               │
+│  │ planifier     │ │ choix à       │ │ à préparer    │               │
+│  │      3   →    │ │ envoyer       │ │      4   →    │               │
+│  │               │ │      2   →    │ │ dont 1 non    │               │
+│  │               │ │               │ │ relue         │               │
+│  └───────────────┘ └───────────────┘ └───────────────┘               │
+│  ┌───────────────┐ ┌───────────────┐ ┌───────────────┐               │
+│  │ Semaines à    │ │ Factures à    │ │ Engagements   │               │
+│  │ facturer      │ │ suivre        │ │ bientôt       │               │
+│  │      5   →    │ │      3   →    │ │ terminés      │               │
+│  │               │ │               │ │      2   →    │               │
+│  └───────────────┘ └───────────────┘ └───────────────┘               │
+├──────────────────────────────────────────────────────────────────────┤
+│  Ce mois : 12 clients actifs · 3 840 € facturés · renouvellement 67 %│
+│                                              Voir les indicateurs →  │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+| Compteur | Ce qu'il compte | Lien vers |
+| --- | --- | --- |
+| **Clients à planifier** | clients **Actifs** dont les passages créés sont moins nombreux que ceux du package | vue Clients, filtre « À planifier » |
+| **Liens de choix à envoyer** | clients ayant un passage **Planifiée** sans lien envoyé dont la date tombe dans les 7 prochains jours (ou déjà passée) | vue Clients, filtre « Lien à envoyer » |
+| **Mes semaines à préparer** | passages à **Menu prêt** dont la date tombe dans les 7 prochains jours (ou déjà passée) ; sous le chiffre, combien ne sont pas encore **relus** | vue Semaines, filtre « Menu prêt » + période « 7 prochains jours » |
+| **Semaines à facturer** | passages **Réalisée**, sans facture | vue Semaines, filtre « Réalisée » |
+| **Factures à suivre** | passages **Facturée**, sans paiement reçu | vue Semaines, filtre « Facturée » |
+| **Engagements bientôt terminés** | engagements dont **tous les passages sont datés** et dont le **dernier passage non annulé** tombe dans les 10 prochains jours (ou est déjà passé), sans nouvel engagement à venir ni « Pas de renouvellement » | vue Clients, filtre « Fin d'engagement proche » |
+
+Sous les compteurs, **trois chiffres du mois** (clients actifs, chiffre d'affaires facturé, taux de renouvellement) renvoient à la page **Indicateurs** (section 1.7). Le bandeau du haut rappelle l'état des **envois automatiques** : « N relances désactivées » et la suspension globale si elle est active. Un compteur à zéro reste affiché, en grisé.
+
+#### Le CRM : le concept
+
+Le CRM est un **petit outil de suivi commercial pour une seule personne** : il garde la trace de chaque personne, de chaque demande et de chaque devis, depuis le premier contact jusqu'à l'ouverture du dossier. Il ne remplace ni votre messagerie, ni votre téléphone : il garde ce qu'ils ne retiennent pas.
+
+```
+ Demande du site ─┐
+ Saisie à la main ─┴─► CONTACT ────1 : n────► DEAL ────1 : n────► DEVIS
+                    (la personne)          (l'affaire)         (versions, PDF)
+                          ▲                      │                    │
+                          │                      │ Gagné              └─ lien d'acceptation (option)
+                          │                      ▼
+                          │               CLIENT + DOSSIER ──► engagements ──► passages
+                          │                      │
+                          └──── renouvellement : un nouveau deal sur le même contact
+```
+
+**Quatre objets, quatre questions**
+
+| Objet | Question à laquelle il répond | Ce qu'il porte |
+| --- | --- | --- |
+| **Contact** | Qui est cette personne ? | prénom, nom, e-mail, téléphone, adresse, source, notes |
+| **Deal** | Quelle affaire est en cours avec elle ? | service, étape, montant estimé, détail de la demande, motif de perte, historique des étapes |
+| **Devis** | Qu'est-ce que je lui ai proposé ? | versions, lignes, totaux, PDF, acceptation éventuelle |
+| **Client et dossier** | Qu'est-ce que je lui ai vendu et où en est-on ? | engagements, passages, menus, facturation (le reste de la plateforme) |
+
+**Le cycle de vie d'une personne** : *prospect* (un contact avec un deal ouvert) → *client* (un deal Gagné et un dossier ouvert) → *client inactif* (plus de passages à venir) → *renouvellement* (un nouveau deal, sur le même contact, qui repart d'« Nouveau »). Un deal Perdu laisse le contact intact : il pourra avoir un autre deal plus tard.
+
+**Les règles du concept**
+- **Un contact, plusieurs deals** : une même personne peut demander un batch cooking, puis un chef privé, puis renouveler.
+- **Vous seule déplacez le deal** : cinq étapes (Nouveau, Qualifié, Devis envoyé, Gagné, Perdu), aucune ne change toute seule, chaque changement est historisé et se corrige à la main.
+- **Rien ne vous relance** : le CRM n'envoie rien, ne crée aucune tâche. Il vous montre ce qui attend, par des filtres (« À rappeler », « Devis sans réponse »…).
+- **Rien n'est obligatoire pour avancer** (1.2) : un deal peut passer à Gagné sans devis dans l'outil, un dossier se crée sans pièce.
+- **Aucune allergie ni donnée de santé** dans le CRM (1.2).
+- **Volontairement simple** : pas de lecture de votre messagerie, pas de score, pas de séquence d'e-mails ; vos échanges restent dans votre boîte, seules vos notes entrent dans la fiche.
+
+#### La vue Pipeline (prospects)
+
+Une ligne par **deal**, en deux présentations : **colonnes** (Nouveau, Qualifié, Devis envoyé, Gagné, Perdu, avec glisser-déposer pour changer d'étape) ou **liste**. Un clic ouvre la **fiche du deal** : coordonnées du contact, détail de la demande, notes datées, **devis** rattachés (référence, lien du document, PDF envoyé), historique des étapes. Deux boutons : **« Faire un devis »** (A-Devis prérempli) et, sur un deal Gagné, **« Ouvrir le dossier »** (A-Dossier). Un deal passé à Perdu demande un **motif**.
+
+- **Colonnes de la liste** : contact, service, étape, **âge dans l'étape**, commune ou zone, montant estimé, date du dernier devis, source, date de création.
+- **Tri** : par âge dans l'étape (le plus ancien d'abord, par défaut), par date de création, par montant.
+- **Recherche** : par nom, e-mail, téléphone ou texte des notes.
+
+| Filtre | Ce qu'il garde |
+| --- | --- |
+| **Étape** | une ou plusieurs étapes (par défaut : tout sauf Perdu) |
+| **Service** | batch cooking, chef privé ou cours |
+| **À rappeler** | deals « Nouveau » depuis plus de 24 h (`lead_callback_hours`) |
+| **Qualifié sans devis** | deals Qualifié sans aucun devis émis |
+| **Devis sans réponse** | deals « Devis envoyé » depuis plus de 7 jours (`quote_waiting_days`) |
+| **Gagné sans dossier** | deals Gagné dont le dossier n'est pas créé |
+| **Source** | site, bouche-à-oreille, autre |
+| **Zone ou commune** | zone 1, 2 ou 3 ; commune |
+| **Période** | date de création : ce mois-ci, le mois précédent, plage libre |
+| **Montant** | tranche de montant estimé |
+| **Offre** | offre commerciale associée |
+| **Motif de perte** | pour les deals Perdu |
+| **Renouvellement** | deals de renouvellement, ou nouveaux clients seulement |
+
+Les filtres se combinent et affichent leur compteur ; une combinaison s'**enregistre comme vue nommée** (« Chef privé de Montpellier », « Devis à relancer »). **Aucun compteur n'est ajouté au tableau de bord** : la vue Pipeline est la première étape de votre routine (1.5).
+
+#### La vue Clients
+
+```
+┌─ Clients ────────────────────────────────────────────────────────────┐
+│ 🔍 Rechercher par nom ou e-mail                                      │
+├──────────────┬───────────────────────────────────────────────────────┤
+│ FILTRES      │ Client        Statut  Engagement     Passages  Suivant│
+│              │ ───────────────────────────────────────────────────── │
+│ Statut       │ M. Martin     Actif   Mois · Signat.  2 / 4    mar 12 │
+│  ○ Tous      │ Mme Durand    Actif   Semaine         1 / 1    jeu 14 │
+│  ● Actif     │ Mme Petit     Actif   Mois · Essent.  4 / 4    mar 19 │
+│  ○ Inactif   │ M. Bernard    Inactif —               —        —      │
+│              │                                                       │
+│ À traiter    │                                                       │
+│  ☐ À planifier (3)                                                   │
+│  ☐ Lien à envoyer (2)                                                │
+│  ☐ Compte URSSAF non prêt (1)                                        │
+│  ☐ Fin d'engagement proche (2)                                       │
+│              │                                                       │
+│ Une semaine  │                                                       │
+│ en statut…   │                                                       │
+│  ☐ À dater (3)   ☐ Planifiée (2)  ☐ Menu envoyé (4)                  │
+│  ☐ Menu prêt (4) ☐ Réalisée (5)   ☐ Facturée (3)  ☐ Clôturée (12)   │
+└──────────────┴───────────────────────────────────────────────────────┘
+```
+
+- **Colonnes** : nom, statut (**Actif** ou **Inactif**, calculé), engagement (formule et pack), **passages créés / passages du package** (2/4), date du prochain passage. Un clic sur la ligne ouvre la fiche client.
+- **Tri** : par nom, par prochain passage, par passages manquants.
+- **Recherche** : par nom ou par e-mail.
+
+| Filtre | Ce qu'il garde |
+| --- | --- |
+| **Statut : Actif / Inactif** | les clients Actifs (un engagement avec des passages non clôturés) ou Inactifs |
+| **À planifier** | clients Actifs dont les passages créés (hors annulés) sont moins nombreux que ceux du package |
+| **Lien à envoyer** | clients ayant un passage **Planifiée** sans lien envoyé dont la date tombe dans les 7 prochains jours (ou déjà passée) |
+| **Fin d'engagement proche** | clients dont l'engagement se termine : dernier passage non annulé dans les 10 prochains jours (ou passé), tous passages datés, sans suite. Ajoute les colonnes **date du dernier passage** et **offre de renouvellement disponible**, et les actions **« Créer un deal de renouvellement »** et **« Pas de renouvellement »** |
+| **Compte URSSAF non prêt** | clients Actifs en batch cooking dont la case « compte URSSAF prêt » n'est pas cochée : à vérifier avant leur premier passage (avance immédiate). **Aucun compteur sur le tableau de bord**, aucune notification : c'est un filtre à consulter |
+| **Une semaine en statut X** | clients ayant **au moins une** semaine dans ce statut : À dater, Planifiée, Menu envoyé, Menu prêt, Réalisée, Facturée, Clôturée |
+
+#### La vue Semaines
+
+```
+┌─ Semaines ───────────────────────────────────────────────────────────┐
+│ 🔍 Client…        Du [____] au [____]      ☐ Seulement les en retard │
+├──────────────┬───────────────────────────────────────────────────────┤
+│ FILTRES      │ ☐ Date     Client       Service  Statut      Menu Fact│
+│              │ ───────────────────────────────────────────────────── │
+│ Statut       │ ☐ mar 12   M. Martin    Batch    Menu prêt   relu  —  │
+│  ☐ À dater   │ ☐ mar 12   Mme Petit    Batch    Menu prêt   ⚠ non  — │
+│  ☐ Planifiée │ ☐ jeu 14   Mme Durand   Batch    Menu envoyé limite  — │
+│  ☐ Menu env. │                         ⚠ en retard : limite dépassée  │
+│  ☐ Menu prêt │ ☐ lun 04   M. Bernard   Batch    Réalisée    —    à  │
+│  ☐ Réalisée  │                                                 émettre│
+│  ☐ Facturée  │                                                       │
+│  ☐ Clôturée  │ Actions sur la sélection :                            │
+│  ☐ Annulée   │  [Envoyer le lien de choix] [Reporter] [Annuler]      │
+│              │  [Marquer réalisée]                                   │
+│ Période      │                                                       │
+│  ○ 7 prochains jours                                                 │
+│  ○ Cette sem.│                                                       │
+│  ○ Ce mois   │                                                       │
+└──────────────┴───────────────────────────────────────────────────────┘
+```
+
+- **Colonnes** : date et heure du passage, client, service, **statut**, état du menu (liste prédéfinie, date limite, validé, **relu** ou non), état de la facture (à émettre, numéro, payée). Un clic sur la ligne ouvre la fiche du passage.
+- **Tri** : par date (défaut, le plus proche d'abord), par client, par statut.
+- **Actions groupées** sur les lignes cochées : envoyer le lien de choix, reporter, annuler avec motif, marquer réalisée.
+
+| Filtre | Ce qu'il garde |
+| --- | --- |
+| **Statut** (un par statut du cycle, plus **Annulée**) | les passages dans ce statut ; plusieurs statuts se combinent |
+| **Période** : **7 prochains jours**, cette semaine, ce mois, dates libres | les passages dont la date tombe dans la période |
+| **Client** | les passages d'un client (recherche par nom) |
+| **Seulement les en retard** | voir ci-dessous |
+
+**Ce qui est « en retard »** (rouge, avec icône et mot) :
+- un passage **Menu envoyé** dont la **date limite** est dépassée ;
+- un passage **Menu prêt** pas encore **relu** à moins de 48 h de la date ;
+- un passage dont la **date est passée** sans être marqué Réalisée ou Annulée ;
+- une **facture** dont l'échéance est dépassée sans paiement.
+
+#### La fiche d'un passage
+
+```
+┌─ Passage 2 sur 4 — M. Martin — mardi 12 à 18 h ──────────────────────┐
+│ Statut : Menu prêt ▾   (modifiable à la main, avec trace d'audit)    │
+│ Date limite de choix : 10 · [modifier]     Menu : relu ☐             │
+│ Recettes : …  · liste d'ingrédients (PDF) · fiche de préparation     │
+│ Facture : à émettre                                                   │
+│ [Envoyer le lien de choix] [Reporter] [Annuler] [Marquer réalisée]   │
+│ Historique : dates, statuts, e-mails envoyés                         │
+└──────────────────────────────────────────────────────────────────────┘
+```
+
+Le menu déroulant du statut permet de **corriger à la main** n'importe quel statut : c'est ce qui garde le système flexible quand un cas sort du cycle prévu.
+
+### 1.7 Les indicateurs d'affaires
+
+Le tableau de bord (section 1.6) montre des **tâches** ; ces cinq chiffres montrent la **santé du commerce**. Sans eux, vous ne saurez pas quel levier tirer : plus de demandes, un meilleur suivi des devis, une meilleure fidélisation, ou une meilleure facturation. Ils se regardent **une fois par mois** (section 1.5, point 5), jamais au quotidien, et **ne déclenchent aucune notification**.
+
+**Une seule source** : tout se calcule dans Django, à la demande, à partir des deals, des historiques d'étapes, des factures et des engagements.
+
+| Indicateur | Source | Définition | Comment le lire |
 | --- | --- | --- | --- |
-| **Phase A — Attirer** | |||
-| **1. Faire vivre le site** | Vous modifiez vos contenus, vos prix ou vos recettes dans l'administration, puis vous cliquez sur **Publier** (page A-Publier). Vous ne touchez à aucun fichier et vous n'appelez personne. | — | — |
-| **2. Recevoir une demande** | **Rien** : c'est le visiteur qui remplit le formulaire. Vérifiez seulement, de temps en temps, que les notifications vous arrivent toujours. | **Nouveau**<br>&nbsp;&nbsp;↳ *Posée par* : **le site** (S00)<br>&nbsp;&nbsp;↳ *Déclencheur* : le visiteur envoie le formulaire<br>&nbsp;&nbsp;↳ *Clôt* : le passage à « Qualifié », « Devis envoyé » ou « Perdu » | — |
-| **3. Être prévenue** | Vous lisez l'e-mail de notification et **vous rappelez vite**. C'est la seule étape dont le retard se paie directement en affaires perdues. | — | **Demande reçue, pas encore rappelée**<br>&nbsp;&nbsp;↳ *Déclencheur* : le site crée le deal (étape 2)<br>&nbsp;&nbsp;↳ *Qui* : Vous — tâche HubSpot<br>&nbsp;&nbsp;↳ *Quand* : échéance à **24 h**<br>&nbsp;&nbsp;↳ *S'arrête quand* : vous cochez la tâche après l'appel, ou le deal passe à « Perdu » |
-| **4. Qualifier** | Vous appelez et vous notez dans la fiche HubSpot ce que vous apprenez : zone, convives, budget, contraintes. Tout dans la fiche, jamais dans un carnet à part. | **Qualifié**<br>&nbsp;&nbsp;↳ *Posée par* : **vous** — facultatif<br>&nbsp;&nbsp;↳ *Déclencheur* : votre appel de qualification<br>&nbsp;&nbsp;↳ *Clôt* : le passage à « Devis envoyé » ou « Perdu ». L'oublier ne supprime pas la relance du devis : la vue du pipeline rattrape le deal à 3 jours | **Demande qualifiée, devis pas encore envoyé**<br>&nbsp;&nbsp;↳ *Déclencheur* : le deal passe à « Qualifié » — **la vue, elle, n'attend aucun geste**<br>&nbsp;&nbsp;↳ *Qui* : Vous — tâche HubSpot et vue du pipeline<br>&nbsp;&nbsp;↳ *Quand* : tâche à **48 h** ; la vue liste en continu tout deal resté avant « Devis envoyé » depuis **plus de 3 jours**<br>&nbsp;&nbsp;↳ *S'arrête quand* : le deal passe à « Devis envoyé » ou à « Perdu » |
-| **Phase B — Convertir** | |||
-| **5. Établir le devis** | Vous ouvrez la **page A-Devis**, choisissez le service, saisissez la prestation et le nom du client, vous **relisez les totaux**, vous cliquez « Générer le devis », puis vous retouchez le document dans Google Docs. Trois à quatre minutes. | **Devis envoyé**<br>&nbsp;&nbsp;↳ *Posée par* : **l'administration** (B04c)<br>&nbsp;&nbsp;↳ *Déclencheur* : le bouton « Générer le devis »<br>&nbsp;&nbsp;↳ *Clôt* : le passage à « Dossier créé » ou « Perdu » | — |
-| **6. Envoyer le devis** | Vous exportez le document en PDF et vous l'envoyez depuis HubSpot. **Aucun rappel à poser** : les relances se créent seules (2.3). | — | **Devis envoyé sans réponse**<br>&nbsp;&nbsp;↳ *Déclencheur* : le deal passe à « Devis envoyé »<br>&nbsp;&nbsp;↳ *Qui* : Vous — tâche HubSpot<br>&nbsp;&nbsp;↳ *Quand* : **J+7** puis **J+14** ; à **J+30** le devis est expiré<br>&nbsp;&nbsp;↳ *S'arrête quand* : le deal passe à « Dossier créé » ou à « Perdu » |
-| **7. Obtenir l'accord** | Vous attendez le « bon pour accord » par e-mail, puis vous envoyez le questionnaire et vous reportez les réponses dans la fiche HubSpot — allergies et goûts compris. | **1. Gagné**<br>&nbsp;&nbsp;↳ *Posée par* : **personne** — étape **absorbée**<br>&nbsp;&nbsp;↳ *Déclencheur* : **aucun** — créer le dossier prouve l'accord ; la marquer reste possible et n'ajoute qu'une tâche de rappel<br>&nbsp;&nbsp;↳ *Clôt* : sans objet<br><br>**2. Perdu**<br>&nbsp;&nbsp;↳ *Posée par* : **vous**<br>&nbsp;&nbsp;↳ *Déclencheur* : votre jugement, à tout moment — un devis expiré à J+30 n'est pas un devis perdu<br>&nbsp;&nbsp;↳ *Clôt* : **rien** — fin du cycle | **1. Accord reçu, questionnaire non rempli**<br>&nbsp;&nbsp;↳ *Déclencheur* : le deal passe à « Gagné » — **si vous ne le marquez pas, ce rappel n'existe pas**<br>&nbsp;&nbsp;↳ *Qui* : Vous — tâche HubSpot<br>&nbsp;&nbsp;↳ *Quand* : **J+3**<br>&nbsp;&nbsp;↳ *S'arrête quand* : le questionnaire est reçu<br><br>**2. Deal « Gagné » sans dossier Django**<br>&nbsp;&nbsp;↳ *Déclencheur* : le deal passe à « Gagné », si vous l'avez marqué — sinon l'étape 8 suffit<br>&nbsp;&nbsp;↳ *Qui* : Vous — tâche HubSpot et vue du pipeline<br>&nbsp;&nbsp;↳ *Quand* : dès « Gagné »<br>&nbsp;&nbsp;↳ *S'arrête quand* : le deal passe à « Dossier créé » |
-| **8. Ouvrir le dossier** | Vous ouvrez la **page A-Dossier** et vous saisissez le client, l'engagement vendu, la référence du devis, le PDF et l'e-mail d'accord. **Vous ne touchez plus à HubSpot** : l'administration s'en charge, et vous demande seulement quel deal si le client en a plusieurs. | **Dossier créé**<br>&nbsp;&nbsp;↳ *Posée par* : **l'administration** (B11)<br>&nbsp;&nbsp;↳ *Déclencheur* : le bouton « Créer le dossier »<br>&nbsp;&nbsp;↳ *Clôt* : **rien — dernière étape**. HubSpot arrête ses relances, Django prend les siennes | **Engagement sans pièce ; client sans engagement**<br>&nbsp;&nbsp;↳ *Déclencheur* : la création du dossier<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès la création<br>&nbsp;&nbsp;↳ *S'arrête quand* : une pièce est jointe, **ou** une note de source écrite — un devis n'est jamais obligatoire |
-| **Phase C — Servir** | |||
-| **9. Planifier les passages** | Vous convenez les dates au téléphone, puis vous les saisissez **d'un seul coup** dans la liste des passages sans date (« tous les mardis à 18 h pendant 4 semaines »), quitte à en corriger une ensuite. | — | **1. Passage sans date**<br>&nbsp;&nbsp;↳ *Déclencheur* : la création de l'engagement<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès la création ; **en retard à J+3**<br>&nbsp;&nbsp;↳ *S'arrête quand* : la date est saisie<br><br>**2. Compte URSSAF non confirmé**<br>&nbsp;&nbsp;↳ *Déclencheur* : la date du premier passage<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : **7 jours avant**<br>&nbsp;&nbsp;↳ *S'arrête quand* : le compte est confirmé |
-| **10. Proposer le menu** | La page A-Suivi vous le rappelle 7 jours avant. Vous ouvrez la proposition **déjà pré-remplie**, vous remplacez les recettes qui ne vous vont pas, vous envoyez. | — | **Menu à proposer**<br>&nbsp;&nbsp;↳ *Déclencheur* : la date du passage<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : **7 jours avant** ; **en retard 4 jours avant**<br>&nbsp;&nbsp;↳ *S'arrête quand* : la proposition part au client |
-| **11. Faire valider le menu** | **Rien** : le client ajuste et valide par son lien, puis vous validez d'un clic s'il n'a pas répondu à la date limite. | — | **Proposition de menu sans réponse**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'envoi du lien de choix<br>&nbsp;&nbsp;↳ *Qui* : `Django → client` (**2 e-mails**), puis vous<br>&nbsp;&nbsp;↳ *Quand* : **J+2** après l'envoi, puis **24 h avant la date limite** ; à la date limite, alerte pour vous<br>&nbsp;&nbsp;↳ *S'arrête quand* : le menu est validé — par le client, ou par vous d'un clic |
-| **12. Produire la liste d'ingrédients** | **Rien pour la liste**, elle se calcule seule. Mais vous relisez le menu validé avec la note d'allergies du client et vous le marquez **« relu »** : c'est votre seul geste de sécurité, et il est obligatoire. | — | **Menu validé à relire (allergies)**<br>&nbsp;&nbsp;↳ *Déclencheur* : la validation du menu<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès la validation ; **en retard 48 h avant le passage**<br>&nbsp;&nbsp;↳ *S'arrête quand* : le menu est marqué « relu » |
-| **13. Gérer un imprévu** | Le client vous prévient par e-mail ou par téléphone ; **vous** reportez ou annulez le passage dans l'administration. La règle des 48 h s'applique toute seule au montant. | — | **Report ou annulation demandé**<br>&nbsp;&nbsp;↳ *Déclencheur* : vous enregistrez la demande du client (e-mail, téléphone)<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès l'enregistrement<br>&nbsp;&nbsp;↳ *S'arrête quand* : le passage est reporté ou annulé |
-| **14. Réaliser le passage** | Vous cuisinez chez le client, puis vous marquez le passage **réalisé** dans l'administration, le soir même ou le lendemain. | — | **1. Rappel de passage**<br>&nbsp;&nbsp;↳ *Déclencheur* : la date du passage<br>&nbsp;&nbsp;↳ *Qui* : `Django → client`<br>&nbsp;&nbsp;↳ *Quand* : **24 h avant**<br>&nbsp;&nbsp;↳ *S'arrête quand* : le passage est réalisé ou annulé<br><br>**2. Passage réalisé non clôturé**<br>&nbsp;&nbsp;↳ *Déclencheur* : la date du passage dépassée<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : **le lendemain**<br>&nbsp;&nbsp;↳ *S'arrête quand* : le passage est clôturé |
-| **Phase D — Encaisser** | |||
-| **15. Facturer le passage** | Vous marquez le passage **réalisé**. Le lendemain, une ligne « facture à émettre » vous attend : vous émettez la facture dans votre outil, puis vous saisissez son numéro et son statut. | — | **Facture à émettre**<br>&nbsp;&nbsp;↳ *Déclencheur* : le passage marqué réalisé<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : **le lendemain** du passage<br>&nbsp;&nbsp;↳ *S'arrête quand* : la facture est saisie |
-| **16. Être payée** | Pour le batch cooking, vous envoyez la demande d'avance immédiate et vous saisissez son statut. Si le client ne la valide pas sous 72 h, **vous êtes alertée** et vous l'appelez. | — | **1. Acompte du chef privé impayé**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'envoi du lien d'acompte<br>&nbsp;&nbsp;↳ *Qui* : `Django → client`, puis vous<br>&nbsp;&nbsp;↳ *Quand* : **J+3** et **J+7** ; **J+10** alerte pour vous (libérer la date ?)<br>&nbsp;&nbsp;↳ *S'arrête quand* : l'acompte est payé ou la réservation annulée<br><br>**2. Facture émise non payée**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'échéance saisie sur la facture<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire ; l'outil de facturation ou HubSpot relance le client<br>&nbsp;&nbsp;↳ *Quand* : échéance **+ 3 jours**, puis **+ 10 jours**<br>&nbsp;&nbsp;↳ *S'arrête quand* : la facture est payée<br><br>**3. Demande URSSAF non validée, refusée ou expirée**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'envoi de la demande d'avance<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire ; l'URSSAF prévient déjà le client<br>&nbsp;&nbsp;↳ *Quand* : non validée à **72 h** ; refus ou expiration **tout de suite**<br>&nbsp;&nbsp;↳ *S'arrête quand* : la demande est payée ou clôturée |
-| **17. Envoyer l'attestation fiscale** | **Rien** : l'outil de facturation l'envoie. En janvier, un rappel vous demande simplement de vérifier que c'est bien parti. | — | **Attestation fiscale envoyée ?**<br>&nbsp;&nbsp;↳ *Déclencheur* : le 1er janvier<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : **une fois**, en janvier<br>&nbsp;&nbsp;↳ *S'arrête quand* : la vérification est faite |
-| **18. Vendre des cartes cadeaux** | **Rien à la vente**, tout se passe sur le site. Quand une carte est utilisée, vous saisissez son code au moment de créer l'engagement (page A-Dossier). | — | **1. Carte cadeau proche de l'expiration**<br>&nbsp;&nbsp;↳ *Déclencheur* : la date de validité<br>&nbsp;&nbsp;↳ *Qui* : `Django → client`<br>&nbsp;&nbsp;↳ *Quand* : **30 jours avant**<br>&nbsp;&nbsp;↳ *S'arrête quand* : la carte est utilisée ou expirée<br><br>**2. Commande de carte cadeau non payée**<br>&nbsp;&nbsp;↳ *Déclencheur* : la commande créée sans paiement<br>&nbsp;&nbsp;↳ *Qui* : Django, **sans relance**<br>&nbsp;&nbsp;↳ *Quand* : annulée seule après **48 h**, affichée en information<br>&nbsp;&nbsp;↳ *S'arrête quand* : payée ou annulée |
-| **Phase E — Fidéliser et piloter** | |||
-| **19. Recueillir les avis** | La demande part seule. Quand un client répond, vous saisissez son avis, vous le validez, et il paraît à la prochaine publication. | — | **Demande d'avis**<br>&nbsp;&nbsp;↳ *Déclencheur* : le dernier passage réalisé<br>&nbsp;&nbsp;↳ *Qui* : `Django → client`<br>&nbsp;&nbsp;↳ *Quand* : **J+2**, puis **une** relance à **J+7**<br>&nbsp;&nbsp;↳ *S'arrête quand* : l'avis est reçu, ou les deux envois sont faits |
-| **20. Proposer un renouvellement** | Au dernier passage d'un engagement, une ligne vous le signale. Vous proposez la suite — même pack ou non — en mentionnant le solde de points du client et l'offre de renouvellement s'il y en a une. | **Nouveau**<br>&nbsp;&nbsp;↳ *Posée par* : **vous**, si vous rouvrez un deal<br>&nbsp;&nbsp;↳ *Déclencheur* : votre proposition de renouvellement — un renouvellement repart pour un cycle de vente complet<br>&nbsp;&nbsp;↳ *Clôt* : le passage à « Devis envoyé » ou « Perdu » | **Renouvellement à proposer**<br>&nbsp;&nbsp;↳ *Déclencheur* : le dernier passage réalisé de l'engagement<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès ce passage ; l'e-mail mentionne le solde de points et l'offre de renouvellement s'il y en a une<br>&nbsp;&nbsp;↳ *S'arrête quand* : un nouvel engagement est créé, ou le refus est noté — le suivi du devis repasse alors à HubSpot |
-| **21. Ne rien oublier** | Vous ouvrez la **page A-Suivi** chaque matin, ou vous lisez le résumé quotidien, et vous traitez ce qui est en rouge. **C'est la seule habitude que le système vous demande de prendre.** | — | **Demande d'export ou de suppression de données**<br>&nbsp;&nbsp;↳ *Déclencheur* : votre saisie de la demande (`DataRequest`)<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : rappel à **J+20** ; **en retard à J+30**<br>&nbsp;&nbsp;↳ *S'arrête quand* : la demande est traitée |
-| **22. Garder l'œil ouvert** | **Rien tant que rien ne casse.** Vous réagissez aux alertes, qui sont rares et toujours actionnables. | — | **E-mail échoué, intégration en échec**<br>&nbsp;&nbsp;↳ *Déclencheur* : l'échec après toutes les reprises automatiques<br>&nbsp;&nbsp;↳ *Qui* : Vous — page À faire<br>&nbsp;&nbsp;↳ *Quand* : dès l'abandon des reprises<br>&nbsp;&nbsp;↳ *S'arrête quand* : le renvoi réussit, ou la ligne est classée |
-| **Hébergement de l'administration** | Vous tranchez où héberger l'outil et qui peut l'atteindre (étape **M1.9**). Rien d'autre ne dépend de vous ici. | — | — |
+| **Nombre de demandes** | Django | deals créés dans le mois à l'étape « Nouveau » (site ou saisie manuelle), **hors** deals de renouvellement (nommés « Renouvellement — … ») | si ce nombre baisse, c'est l'acquisition qui faiblit (site, bouche-à-oreille, offres) |
+| **Taux de conversion** | Django | pour les demandes **créées dans le mois** : la part passée à « Devis envoyé » (demande → devis), la part des devis envoyés passée à « Gagné » (devis → accord), et la part des demandes devenues « Gagné » (demande → accord) | demande → devis qui baisse : vous qualifiez ou chiffrez trop lentement ; devis → accord qui baisse : le devis ou le suivi pose problème |
+| **Clients actifs** | Django | nombre de clients **Actifs** à la fin du mois, avec les nouveaux du mois et ceux devenus Inactifs | c'est la taille de votre activité récurrente ; votre capacité à cuisiner reste le plafond : surveillez l'écart entre clients actifs et passages que vous pouvez assurer |
+| **Chiffre d'affaires facturé** | Django | somme des montants des **factures saisies dans le mois** (par date d'émission), avec la part **déjà encaissée** | s'il ne suit pas les clients actifs, des passages ne sont pas facturés, ou les prix sont trop bas |
+| **Taux de renouvellement** | Django | parmi les engagements dont le **dernier passage a eu lieu dans le mois** : la part des clients qui ont un **nouvel engagement dans les 30 jours**, avec le nombre de « Pas de renouvellement » et leurs motifs | s'il baisse, c'est la fidélisation : regardez les motifs de refus |
 
-### 2.4 Ce que vous modifiez vous-même, et ce qui demande un développeur
+**Précautions de lecture**
+- **Les chiffres d'un mois récent sont provisoires** : un devis envoyé le 28 peut être accepté le 10 du mois suivant, et un renouvellement arrive parfois après la fin du mois.
+- Le **chiffre d'affaires** est le montant saisi sur les factures. Ce qui compte comme chiffre d'affaires avec l'avance immédiate (part URSSAF, crédit d'impôt) est à valider avec le comptable (M10, **[À VÉRIFIER]**).
+- Aucun de ces chiffres ne remplace votre comptabilité.
 
-C'est la question la plus concrète du projet, et la réponse tient en une ligne : **tout ce qui change avec votre activité est à vous, tout ce qui fait fonctionner les pages reste dans le code.**
+**Où ils se lisent**
+- **Dans Django**, la page **Indicateurs** (B17), atteinte depuis les trois chiffres affichés sous les compteurs du tableau de bord : un **sélecteur de mois**, un **tableau des six derniers mois** (demandes et conversion, clients actifs, chiffre d'affaires facturé et encaissé, renouvellements, refus avec motifs), et, en cliquant un chiffre, la **liste des clients ou des deals** concernés. Un export CSV est disponible. Les chiffres sont **calculés à la demande** à partir des données existantes (historique des statuts, factures, engagements) : aucune table de plus.
+- Pas de tableau de bord externe : les cinq chiffres sont tous sur la page Indicateurs.
 
-| Vous le modifiez seule, dans l'administration | Livré par |
-| --- | --- |
-| Réalisations et leurs galeries, inspirations, avis | B03 |
-| **FAQ** : 70 questions, placées sur les pages de votre choix | B03, B06 |
-| Pages légales (CGV, confidentialité, mentions), **versionnées** | B03 |
-| Coordonnées, réseaux sociaux, horaires, identité légale | B03 |
-| Zones, communes et frais de déplacement | B03 |
-| **Blocs vendeurs des pages** : accroches, titres, paragraphes, listes d'arguments, titres et descriptions de référencement | **B06b** |
-| Prix, packs, offres commerciales | B04 |
-| Recettes et ingrédients | B08 |
-| Textes des e-mails envoyés à vos clients | B02 |
+### 1.8 Hors périmètre
+Pas de CRM externe : le **CRM est dans Django et reste volontairement simple** (contacts, deals, notes, devis, filtres ; pas de lecture de votre messagerie, pas de tâches ni de relances automatiques, pas de score, pas de formulaire ou de séquence d'e-mails, pas de multi-utilisateur au-delà de `owner` et `assistant`) ; **devis internes simples** (éditeur, versions, PDF, B07) mais **pas de signature électronique qualifiée** : l'acceptation est un e-mail ou un lien d'acceptation facultatif (B08), et l'envoi du devis se fait depuis votre messagerie ; **pas de page calendrier** (flux iCal seulement) ; **pas d'espace client avec comptes** (ni connexion, ni mot de passe, ni historique consultable par le client : il reçoit ses documents par e-mail et valide son menu par un lien à usage unique) ; **pas de profil alimentaire structuré** ni de filtre automatique par allergie (les allergies restent hors de l'outil, 1.2) ; pas de création de factures conformes (outil externe, Django déclenche et suit) ; **pas de cartes cadeaux ni de programme de fidélité pour l'instant** ; **pas de notification à la cheffe** (e-mail, SMS ou autre) : un tableau de bord à ouvrir ; **pas de cycle de statuts de semaine pour le chef privé et les cours** pour l'instant ; **une seule cheffe** (aucune affectation d'un passage à une personne) ; pas de SMS ni WhatsApp envoyés par Django (vous pouvez copier un lien pour l'envoyer vous-même) ; pas de comptabilité, de stocks ni de commandes fournisseurs ; pas d'application mobile native.
 
-| Il faut un développeur (ou une demande à Claude) | Pourquoi |
-| --- | --- |
-| **Libellés et mécanismes d'interface** : boutons, onglets, filtres, compteurs, unités, messages de formulaire — environ 1 230 textes courts | Ils commandent le comportement des composants : une faute de frappe casse une page |
-| **Navigation et pied de page** | Les liens dépendent des pages existantes |
-| **Structure et habillage** : mise en page, couleurs, polices, ordre des blocs, et **créer une page** | C'est du code, pas du contenu |
-| **Images hors contenu** : logo, favicon, visuels d'illustration | Elles font partie de l'habillage |
-| **Formulaires** : champs et questions | Chaque champ a un traitement derrière lui |
+### 1.9 Fragilités à surveiller
+- **Étapes manuelles** (envoyer, changer l'étape du deal, créer le dossier, dater les passages, marquer « réalisé ») : le tableau de bord et les vues filtrées (1.5, B17) les rendent visibles. **Un deal « Gagné » sans dossier** ne déclenche rien : il se retrouve par le filtre « Gagné sans dossier » de la vue Pipeline.
+- **Double saisie** : une faute de frappe dans l'e-mail empêche le client de recevoir ses liens de choix, un prix peut s'écarter du devis. Atténué par les coordonnées reprises du contact, le prix prérempli, la référence unique, le devis rattaché au deal et à l'engagement et l'e-mail de bienvenue qui révèle une adresse fausse.
+- **Allergies** : aucune barrière automatique ; la sécurité repose sur l'affichage des allergènes, la confirmation du client et la relecture de la cheffe. **Quand la cheffe valide la liste prédéfinie à la place du client, il n'y a pas de confirmation de sa part** : la relecture « relu » est alors la seule protection, et elle ne bloque rien si elle est oubliée. Clause de responsabilité des CGV à faire valider **[À VÉRIFIER]**.
+- **Avance immédiate URSSAF** : le client doit avoir activé son compte sur particulier.urssaf.fr avant le premier passage ; rien ne le vérifie automatiquement (avertissement dans B20).
+- **Routine quotidienne** : Django ne vous envoie aucune notification (hors demandes du site), donc rien ne vous prévient si vous sautez votre routine (maladie, congés) : une demande « Nouveau » peut attendre, un lien de choix ne pas partir. L'envoi automatique du lien (étape 9) et les e-mails aux clients continuent, mais pas le suivi des prospects.
+- **Offres gratuites** : limites susceptibles de changer (Brevo, Sentry).
+- **RGPD** : suppression à répéter dans Django (contacts, deals), outil de facturation, Brevo et Stripe, et dans **votre support privé d'allergies** ; les allergies sont des données de santé, recueillies avec consentement explicite et jamais saisies dans l'outil (1.2). Les prospects perdus ne se conservent pas indéfiniment (B23).
+- **Délivrabilité** : liens de choix du menu classés en spam si SPF, DKIM et DMARC ne sont pas configurés. Procédure en **M4** ; un domaine neuf reste suspect pour Gmail et Outlook, donc envoyer peu de volume les premiers jours.
+- **FAQ et CGV** : la FAQ dit qu'on peut « changer de formule » et annule à 48 h ; les CGV (article sur l'annulation) proposent encore 15 et 7 jours, alors que le système n'applique plus aucune règle de montant automatique. À aligner avant la production.
 
-**Trois limites de l'outil**, assumées pour qu'il reste simple : **pas d'aperçu avant publication** (vous publiez, puis vous regardez le site), **pas de publication programmée**, **une seule langue**. Le texte s'écrit en Markdown avec aperçu, pas dans un éditeur visuel.
-
-**Cette frontière n'est pas figée.** Faire passer un bloc de plus du code vers l'administration est une opération de **données**, pas de code, depuis B06b : l'API superpose vos textes au fichier du site, donc ajouter un bloc revient à déclarer une clé de plus. La règle retenue est de ne migrer que ce qui change réellement souvent — une page « à propos » réécrite une fois par an ne justifie pas d'être gérée dans l'administration.
-
-### 2.5 Hors périmètre
-Pas de CRM (leads, pipeline, échanges, tâches : HubSpot) ni de capture de lead (le formulaire du site crée le contact dans HubSpot via son serveur, sans passer par Django) ; **pas de devis rédigé par Django** : l'administration calcule les montants et prépare un Google Docs prérempli (B04c), mais le document est écrit, retouché et envoyé par la cheffe ; Django ne produit ni PDF de devis, ni signature électronique, ni table de devis ; **pas de page calendrier** (flux iCal seulement) ; **pas d'espace client avec comptes** (ni connexion, ni mot de passe, ni historique consultable par le client : il reçoit ses documents par e-mail et valide son menu par un lien à usage unique) ; **pas de profil alimentaire ni de donnée de santé de client** dans Django ni de filtre automatique par allergie ; pas de création de factures conformes (outil externe, Django déclenche et suit) ; pas de SMS ni WhatsApp ; pas de comptabilité, de stocks ni de commandes fournisseurs ; pas d'application mobile native.
-
-### 2.6 Fragilités à surveiller
-- **Étapes manuelles** (envoyer, saisir l'étape HubSpot, créer le dossier, dater les passages, marquer « réalisé ») : le suivi et les relances (2.3, B12) les rappellent. **Un accord resté dans HubSpot sans dossier Django n'est pas visible de Django** : à surveiller dans HubSpot (deals « Gagné » sans dossier).
-- **Double saisie** : une faute de frappe dans l'e-mail empêche le client de recevoir ses liens de choix, un prix peut s'écarter du devis. Atténué par le prix prérempli, la référence unique, le PDF du devis joint à l'engagement et l'e-mail de bienvenue qui révèle une adresse fausse.
-- **Allergies** : aucune barrière automatique ; la sécurité repose sur l'affichage des allergènes, la confirmation du client et la relecture de la cheffe. Clause de responsabilité des CGV à faire valider **[À VÉRIFIER]**.
-- **Avance immédiate URSSAF** : le client doit avoir activé son compte sur particulier.urssaf.fr avant le premier passage ; rien ne le vérifie automatiquement (avertissement dans B15).
-- **Offres gratuites** : limites susceptibles de changer (HubSpot a déjà retiré les devis du plan gratuit).
-- **RGPD** : suppression à répéter dans HubSpot, Django, outil de facturation, Brevo et Stripe ; les allergies (données de santé) restent dans HubSpot avec consentement explicite.
-- **Délivrabilité** : liens de choix du menu classés en spam si SPF, DKIM et DMARC ne sont pas configurés.
-- **FAQ et CGV** : la FAQ dit qu'on peut « changer de formule » et annule à 48 h ; les CGV (article sur l'annulation) proposent encore 15 et 7 jours. À aligner avant la production.
-
-### 2.7 Les outils et ce qu'ils coûtent
+### 1.10 Les outils et ce qu'ils coûtent
 
 **Le principe : gratuit d'abord.** Tous les outils de cette liste sont pris dans leur offre gratuite, sauf deux lignes — les commissions de Stripe, qui ne se paient que sur un encaissement, et l'hébergement de l'administration, seul poste à la fois payant et non tranché.
 
 | Outil | Coût | À quoi il sert | Étapes |
 | --- | --- | --- | --- |
-| **HubSpot Free** | gratuit | Le CRM : contacts, échanges, devis envoyés, pipeline, relances d'avant-dossier, **allergies et questionnaire** | 2, 3, 4, 6, 7, 20, 21 |
-| **Brevo** | gratuit, 300 e-mails par jour **[À VÉRIFIER]** | Tous les e-mails envoyés à vos clients | 3, 10, 12, 17, 18, 19, 20 |
+| **Administration Django** | gratuit (le logiciel) | Votre outil de travail : prospects et pipeline, devis, contenu, clients, engagements, passages, menus, facturation, suivi | 1 à 19 |
+| **Brevo** | gratuit, 300 e-mails par jour **[À VÉRIFIER]** | Tous les e-mails envoyés à vos clients | 7, 9 à 13, 17 |
 | **Cloudflare** | déjà en place | Hébergement du site figé, et **Turnstile** contre les robots du formulaire | 1, 2 |
 | **GitHub Actions** | gratuit | Construit et publie le site quand vous cliquez sur « Publier » | 1 |
-| **Google Docs et Drive** | gratuit | Les devis, créés dans **votre** Drive et retouchables à la main | 5 |
-| **Stripe** | 1,5 % + 0,25 € par carte ; 0,35 € par prélèvement **[À VÉRIFIER]** | Acompte du chef privé et achat de cartes cadeaux. **Aucun abonnement** : vous ne payez que sur un encaissement | 16, 18 |
-| **URSSAF (avance immédiate)** | gratuit | Règle 50 % du passage après validation du client sous 48 h | 16 |
-| **Outil de facturation** | **à choisir (M1.15)** | Factures, avoirs, attestation fiscale annuelle, numérotation continue | 15, 17 |
-| **Google Agenda** | gratuit | Voir vos passages dans votre agenda, par un **flux en lecture seule** produit par l'administration ; et vos rendez-vous de qualification | 4, 9 |
-| **WeasyPrint** | gratuit (bibliothèque) | Les PDF : listes d'ingrédients, cartes cadeaux | 12, 18 |
-| **Sentry** | gratuit | Vous prévient quand quelque chose casse | 22 |
-| **UptimeRobot** | gratuit **[À VÉRIFIER]** | Vous prévient quand le site ne répond plus | 22 |
-| **Administration Django** | gratuit (le logiciel) | Votre outil de travail : contenu, clients, engagements, passages, menus, devis, facturation, suivi | 1, 8 à 15, 18, 20, 21 |
-| **Hébergement de l'administration** | **à décider (M1.9)** | Faire tourner l'administration et la page de choix. **Le seul poste à la fois payant et non tranché**, et celui dont dépendent tous les paliers testables | — |
+| **Stripe** | 1,5 % + 0,25 € par carte ; 0,35 € par prélèvement **[À VÉRIFIER]** | Acompte du chef privé. **Aucun abonnement** : vous ne payez que sur un encaissement | 7 (chef privé) |
+| **URSSAF (avance immédiate)** | gratuit | Règle 50 % du passage après validation du client sous 48 h | 15 |
+| **Outil de facturation** | **à choisir (M14)** | Factures, avoirs, attestation fiscale annuelle, numérotation continue | 14, 16 |
+| **Google Agenda** | gratuit | Voir vos passages dans votre agenda, par un **flux en lecture seule** produit par l'administration ; et vos rendez-vous de qualification | 3, 8 |
+| **WeasyPrint** | gratuit (bibliothèque) | Les PDF : devis, listes d'ingrédients | 4, 11 |
+| **Sentry** | gratuit | Vous prévient quand quelque chose casse | 20 |
+| **UptimeRobot** | gratuit **[À VÉRIFIER]** | Vous prévient quand le site ne répond plus | 20 |
+| **Hébergement de l'administration** | **à décider (M5)** | Faire tourner l'administration et la page de choix. **Le seul poste à la fois payant et non tranché**, et celui dont dépendent tous les paliers testables | — |
 
-**Ce qui n'est pas gratuit mais n'est pas un abonnement** : les commissions Stripe se prélèvent sur un paiement reçu, donc un mois sans vente ne coûte rien. **Ce qui pourrait le devenir** : les offres gratuites de HubSpot, Brevo et Sentry ont des limites (propriétés, e-mails par jour, événements) marquées **[À VÉRIFIER]** et susceptibles de changer ; les atteindre déclencherait un abonnement, pas une panne.
+**Ce qui n'est pas gratuit mais n'est pas un abonnement** : les commissions Stripe se prélèvent sur un paiement reçu, donc un mois sans vente ne coûte rien. **Ce qui pourrait le devenir** : les offres gratuites de Brevo et Sentry ont des limites (e-mails par jour, événements) marquées **[À VÉRIFIER]** et susceptibles de changer ; les atteindre déclencherait un abonnement, pas une panne.
 
 # Partie II — Le plan de livraison
 
 Ce qu'on construit, dans quel ordre, et ce que vous pourrez essayer à chaque étape. C'est la partie à ouvrir au quotidien.
 
+## 2. Prérequis : comptes, décisions et réglages avant les PR
 
-## 3. Plan de livraison et Pull Requests
+Tout ce que vous mettez en place **vous-même**, avant la PR qui en dépend. Chaque prérequis dit **quand** il est nécessaire (palier, section 3.1) et **quelle PR** il débloque. Les décisions encore ouvertes sont marquées **DÉCISION**.
 
-Chaque PR est conçue pour être confiée **seule** à Claude, puis contrôlée par vous. Elle contient son objectif métier, ses **fonctionnalités et règles** (les décisions déjà prises), ses critères et la façon de la vérifier. Les modèles sont décrits en section 9, l'API en section 10 ; « M0.x / M1.x » renvoie aux étapes manuelles de la section 4.
+### Au démarrage du projet
+- **M1 Dépôt et règles GitHub** (avant **B00**) : créer le dépôt privé `chefmeemz-backend` (branche `main`, **sans** README ni `.gitignore`, la PR B00 les apporte), le cloner à côté de `chefmeemz`. Protéger `main` : pull request et une approbation obligatoires, vérifications de la CI obligatoires, branche à jour, historique linéaire, *force push* interdit. Activer Dependabot alerts et secret scanning. Créer les environnements `test` et `production` (approbation de votre part avant tout déploiement en production).
+- **M2 Poste et accès de Claude** (avant **B00**) : Docker Desktop, Python 3.12 ou plus, `uv`, Git, `make`. Ouvrir la session de Claude avec `chefmeemz-backend` comme dossier de travail et `chefmeemz` en dossier supplémentaire. Copier ce document dans `chefmeemz-backend/docs/PROJECT.md` et créer `docs/DECISIONS.md` (B00 vérifie leur présence).
+
+### Avant le palier 0 : les demandes du site arrivent par e-mail
+- **M3 Cloudflare Turnstile** (avant **S00**) : créer un widget pour `tabletribu.com` et `test.tabletribu.com` ; noter la clé de site (publique) et la clé secrète (côté serveur).
+- **M4 Brevo et domaine d'envoi** (avant **S00** pour l'e-mail de demande, **B02** pour les tests, **B18** pour l'envoi réel aux clients) : créer le compte et une clé d'API par environnement ; adresse d'expédition `contact@tabletribu.com` (jamais une adresse gmail.com). **[À VÉRIFIER]** : limites de l'offre gratuite. **Authentifier le domaine** :
+  1. Dans Brevo, « Expéditeurs, domaines et IP dédiées » : ajouter `tabletribu.com` (ou un sous-domaine d'envoi comme `mail.tabletribu.com`, qui protège la réputation du domaine principal) ; Brevo affiche les enregistrements à créer, **à recopier tels quels**.
+  2. Chez le gestionnaire de DNS : le code de vérification Brevo (TXT), le ou les enregistrements **DKIM** de Brevo (CNAME ou TXT), le **SPF** (TXT, de la forme `v=spf1 include:spf.brevo.com ~all` ; **un seul SPF par domaine** : s'il en existe un, y ajouter l'`include`), le **DMARC** (TXT sur `_dmarc.tabletribu.com`, par exemple `v=DMARC1; p=none; rua=mailto:contact@tabletribu.com`, à durcir quand les rapports sont propres).
+  3. Si Cloudflare gère le DNS, laisser les CNAME de Brevo en **« DNS seulement »** (nuage gris).
+  4. Valider dans Brevo, puis s'envoyer un e-mail de test : dans Gmail, « Afficher l'original » doit montrer **SPF, DKIM et DMARC : PASS** (mail-tester.com donne aussi une note). Limiter le volume les premiers jours.
+
+### Avant le palier 1 : l'outil est en ligne
+- **M5 Hébergement de Django** (avant **B12**) : **DÉCISION, la seule bloquante.** Un hébergeur de conteneurs, une base PostgreSQL gérée avec sauvegardes, un stockage, des noms de domaine (hypothèse `api.test.tabletribu.com` et `api.tabletribu.com`) et un certificat TLS. Tenir compte de l'exposition : la page de choix du menu est joignable publiquement par son lien signé ; l'administration reste derrière 2FA et préfixe non évident. **Si cela passe par Teads : #ask-devx (chemin approuvé) et #ask-security.** Aucune PR avant B12 n'en dépend.
+- **M6 DNS du backend** (avant **B12**) : créer les enregistrements des domaines du backend selon M5 ; vérifier ceux de `test.tabletribu.com` (déjà dans `wrangler.jsonc`).
+- **M7 Stockage de fichiers** (avant **B02**) : **DÉCISION** : fournisseur compatible S3 hébergé dans l'UE. Par environnement, un espace **public** (images du site, CORS) et un espace **privé** (devis, preuves, PDF), avec des clés à portée limitée. Tant que ce n'est pas fait, B02 et B03 utilisent le stockage local.
+- **M8 Votre compte** (après **B01**) : créer votre compte, activer le 2FA avec une application TOTP, conserver les codes de secours.
+
+### Avant les paliers 2 à 4 : contenu, prospects, devis, publication
+- **M9 Arbitrer les treize questions à double réponse** (pendant **B11**, après l'import) : la FAQ existe en 118 exemplaires pour 70 questions, treize ont une réponse différente selon la page. L'import garde celle de la page FAQ et vous remet la liste des variantes écartées : vous relisez ces treize entrées et gardez la formulation voulue (une question peut être dédoublée si une variante vous manque).
+- **M10 Comptable** (avant **B07**, **B16**, **B20**, **B21**) : valider par écrit les mentions du devis, la TVA, l'éligibilité au crédit d'impôt par ligne (déplacement, options, plats sur mesure), la valeur d'un accord par e-mail, et ce qui compte comme chiffre d'affaires avec l'avance immédiate (section 1.7).
+- **M13 Allergies et RGPD** (avant **B05**, et avant toute collecte réelle) : les allergies sont des données de santé que **vous gardez hors de l'outil**. À faire : (1) choisir votre **support privé** (carnet rangé, ou note protégée par mot de passe, jamais dans un tableur partagé ni dans un e-mail) ; (2) **consentement explicite** (texte précis, retirable), recueilli pendant la qualification, avec le questionnaire facultatif du sur mesure (adresse, foyer, goûts, compte URSSAF) ; (3) **registre des traitements**, prospects compris, avec leur durée de conservation (3 ans après le dernier échange, à valider) et celle de votre support privé ; (4) **politique de confidentialité** mise à jour (finalités, durées, hébergeur de Django comme sous-traitant) ; (5) **clause de responsabilité** des CGV (le client choisit ses recettes après lecture des allergènes ; la cheffe valide à sa place) à faire valider **[À VÉRIFIER]**.
+- **M11 Jeton de publication** (avant **B14**) : jeton GitHub à portée minimale pour déclencher un workflow du dépôt `chefmeemz` (`repository_dispatch`), enregistré comme secret du backend. **[À VÉRIFIER]** : les droits exacts requis.
+- **M12 Déploiement Cloudflare** (avant **S03**) : vérifier votre offre Workers (temps de calcul par requête), créer un jeton d'API de déploiement et enregistrer les secrets du dépôt `chefmeemz`.
+
+### Avant les paliers 5 à 10 : dossiers, facturation, paiement
+- **M14 Outil de facturation** (avant **B20**) : **DÉCISION** : gère-t-il l'avance immédiate URSSAF, a-t-il une interface de programmation ? Tant que ce n'est pas décidé, B20 livre la saisie manuelle.
+- **M15 Espace prestataire URSSAF** (avant **B20**) : vérifier que votre compte prestataire est ouvert pour l'avance immédiate et savoir y inscrire un client et suivre ses demandes (section 1.3, étape 8). **[À VÉRIFIER]**.
+- **M16 Stripe** (avant **B21**) : créer le compte, rester en **mode test**, noter les clés, enregistrer plus tard l'adresse du webhook par environnement ; activer le prélèvement SEPA et personnaliser la page de paiement avant la production.
+
+### Avant le palier 12 : la production
+- **M17 Supervision** (avant **B24**, optionnel plus tôt) : projet Sentry en région UE par environnement (noter les DSN) et sonde UptimeRobot **[À VÉRIFIER]**.
+- **M18 Informations légales** (avant la production) : **DÉCISION.** Raison sociale, forme juridique, SIRET, adresse, numéro de déclaration de services à la personne, assurance, médiateur de la consommation, à saisir dans l'administration (`LegalIdentity`) ; tant qu'elles manquent, un bandeau d'avertissement s'affiche.
+- **M19 FAQ et CGV alignées** (avant la production) : aligner les textes sur les règles réelles (annulation et report laissés à votre décision, changement de formule, délais).
+
+## 3. Paliers et Pull Requests
+
+Chaque PR est conçue pour être confiée **seule** à Claude, puis contrôlée par vous : objectif métier, **fonctionnalités et règles** (décisions déjà prises), critères et contrôle. Les modèles sont en section 8, l'API en section 9, les prérequis (« M1 à M19 ») au chapitre 2.
 
 ### 3.1 Plan de livraison par paliers
 
-**Le principe** : chaque palier se termine par **quelque chose que vous pouvez essayer vous-même**, dans votre navigateur. Vous ne passez au suivant qu'une fois le précédent en ligne et validé par vous. C'est ce qui évite d'accumuler des mois de travail invisible avant de découvrir un malentendu.
+**Le principe** : chaque palier se termine par **quelque chose que vous pouvez essayer vous-même**, dans votre navigateur. Vous ne passez au suivant qu'une fois le précédent en ligne et validé. Les prérequis de chaque palier sont dans le chapitre 2 ; ils se font **avant** la première PR du palier.
 
-**Deux règles de lecture** :
+**Trois règles de lecture**
 - Le **palier 0 est indépendant de tout le reste** et part directement en production : il arrête une perte d'argent qui a lieu aujourd'hui.
-- Tous les autres **s'accumulent sur l'environnement de test** et ne basculent en production qu'au palier 12. Pas de double fonctionnement de l'ancien et du nouveau site : la bascule se fait après validation de S01.
+- Tous les autres **s'accumulent sur l'environnement de test** et ne basculent en production qu'au palier 12, après validation de S02 (pas de double fonctionnement de l'ancien et du nouveau site).
+- **Le seul verrou** est la décision d'hébergement (**M5**, palier 1). Tant qu'elle n'est pas prise, le développement continue en local mais vous ne pouvez rien essayer vous-même : c'est la première décision à prendre.
 
-**Le seul vrai verrou** est dans le palier 1 : la décision d'hébergement (**M1.9**). Tant qu'elle n'est pas prise, le travail continue sur la machine du développeur, mais **vous ne pouvez rien essayer vous-même**. C'est la décision à prendre en premier.
+**Comment lire les étapes.** Chaque palier est découpé en **étapes numérotées** (palier.étape), classées dans l'ordre de réalisation. Une étape est soit un **prérequis** que vous faites vous-même (« Vous », M1 à M19, chapitre 2), soit une **tranche de PR** confiée à Claude (« Claude »). Une PR de taille « grande » se confie **en tranches** : chaque tranche reprend une partie des « Fonctionnalités et règles » de la PR, se contrôle seule, et la suivante ne démarre qu'une fois la précédente validée. Une PR « petite » ou « moyenne » reste en une seule étape. Rien n'interdit de confier une PR d'un bloc si vous préférez.
 
-| Palier | PR | Étapes manuelles avant | Ce que vous validez vous-même à la fin |
+**Palier 0 — Les demandes arrivent, l'agent connaît vos règles** (indépendant, directement en production)
+
+| N° | Étape | Qui | Vous validez |
 | --- | --- | --- | --- |
-| **0. Les demandes n'arrivent plus dans le vide, et l'agent connaît vos règles** | S00, S00b | M1.2, M1.4, M1.5 | Vous envoyez une demande depuis le site : le contact et sa note sont dans HubSpot, vous recevez la notification et l'accusé de réception. Vous faussez le jeton HubSpot et vous recevez quand même la notification. Puis vous demandez à l'agent une petite modification et vous vérifiez qu'il cite la bonne documentation avant d'écrire. |
-| **1. L'outil est en ligne et il est à vous** | B00, B00b, B01, B02, B07 | M0.1 à M0.6, **M1.9**, M1.3, M1.10, M1.12 | Vous ouvrez l'administration **depuis votre navigateur**, vous vous connectez avec le code de votre téléphone, vous ratez cinq connexions et le compte se bloque, vous envoyez un e-mail de test et vous relisez le journal d'audit. |
-| **2. Votre contenu est dans l'outil** | B03, B04, B06, B06b | puis M1.20 | Vous retrouvez vos 9 réalisations, vos 70 questions de FAQ, vos avis, vos zones, vos prix, vos offres commerciales et les **textes vendeurs de vos pages** ; vous modifiez une accroche et vous relisez son historique. Le site public n'a pas encore changé : c'est normal, il change au palier 4. |
-| **3. Vous faites vos devis** | B04b, B04c | M1.14, M1.18, puis M1.19 | Vous générez un devis de chaque service dans votre Drive, vous le retouchez dans Google Docs, vous l'exportez en PDF. Vous faussez le jeton Google et vous récupérez quand même le texte à coller. |
-| **4. Vous publiez votre site vous-même** | B05, B09, S01, S02 | M1.7, M1.8 | Vous changez un prix dans l'administration, vous cliquez sur **Publier**, et le site de test affiche le nouveau prix quelques minutes plus tard. Vous comparez deux ou trois pages clés avec l'ancien site. |
-| **5. Vous ouvrez un dossier client** | B10, B11 | M1.1, M1.5, M1.17 | Vous créez un client et un engagement d'un mois depuis la page A-Dossier, devis et accord en pièces jointes ; les quatre passages apparaissent et vous les datez d'un coup. Vous annulez un passage à 47 h puis à 49 h et vous vérifiez la facturation. |
-| **6. Vous ne ratez plus rien** | B12 | — | Vous laissez un passage sans date : il apparaît en rouge dans A-Suivi. Vous recevez le résumé quotidien, vous reportez une ligne, vous coupez une relance et vous vérifiez qu'elle revient dans vos actions. Vous vous abonnez au flux dans Google Agenda. |
-| **7. Vos recettes sont dans l'outil** | B08 | — | Vous importez vos 5 recettes, vous saisissez les quantités, les allergènes se calculent seuls, et une recette dont une quantité manque refuse de devenir « disponible ». |
-| **8. Le cycle du menu tourne** | B13, B14 | — | Le cycle complet sur votre propre adresse : vous préparez une proposition, vous l'envoyez, vous recevez le lien sur votre téléphone, vous changez un plat, vous validez, vous ouvrez le PDF et vous vérifiez les quantités à la main. Vous rouvrez le lien : il ne permet plus de modifier. |
-| **9. Vous facturez et vous suivez l'URSSAF** | B15 | M1.14, M1.15 | Vous clôturez un passage : la ligne « facture à émettre » apparaît le lendemain. Vous saisissez le numéro et le statut, puis vous suivez la demande d'avance immédiate jusqu'à « payée ». |
-| **10. Vous encaissez en ligne** | B16, B17, S03 | M1.6, M1.14 | Vous payez un acompte avec une carte de test et la date passe à « confirmée ». Vous achetez une carte cadeau sur le site, vous recevez le PDF, et vous en utilisez une partie sur un engagement. |
-| **11. Avis et conformité** | B18, B19 | M1.14, M1.17 | Vous saisissez un avis et vous le publiez : il paraît à la publication suivante. Vous exportez puis vous anonymisez un client de test et vous vérifiez qu'il ne reste rien d'identifiable. |
-| **12. Vous ouvrez aux vrais clients** | B20, B20b, S04 | M1.11, M1.13, M1.16, **M1.9** (production) | La checklist de la section 6 : sauvegarde réellement restaurée, Stripe en mode réel, administration joignable uniquement sous son préfixe et avec double authentification. Et vous faites **un vrai retour arrière** sur l'environnement de test avant d'ouvrir. |
-| **13. Vous fidélisez** | B21 | M1.14 | Quatre passages clôturés donnent 40 points ; vous les convertissez en carte cadeau et vous l'utilisez sur l'engagement suivant. |
+| 0.1 | **M3** : widget Cloudflare Turnstile | Vous | les deux clés (site et secrète) sont notées |
+| 0.2 | **M4** : compte Brevo et domaine d'envoi authentifié | Vous | un e-mail de test montre SPF, DKIM et DMARC « PASS » |
+| 0.3 | **S00b** : skills de l'agent pour le site | Claude | l'agent cite la bonne documentation avant d'écrire |
+| 0.4 | **S00** (1/2) : e-mail à la cheffe et accusé de réception | Claude | une demande du site vous arrive par e-mail avec tout son contenu, le visiteur reçoit son accusé |
+| 0.5 | **S00** (2/2) : Turnstile, champ piège, limitation de débit, alerte d'échec | Claude | un jeton faux est refusé ; avec une clé Brevo faussée, l'alerte part |
 
-**Ce qui peut se faire dans le désordre** : le palier 3 (devis) ne dépend pas du palier 4 (publication) — si vos devis vous coûtent plus de temps que votre site, faites-le d'abord. Les paliers 5 (dossier client) et 7 (recettes) sont indépendants l'un de l'autre. Tout le reste suit l'ordre du tableau, chaque palier s'appuyant sur le précédent.
+**Palier 1 — L'outil est en ligne et il est à vous**
 
-**Si vous devez vous arrêter en route**, les deux points d'arrêt confortables sont la fin du **palier 4** (vous gérez votre site seule, ce qui est déjà un gain net) et la fin du **palier 8** (vous gérez tout le cycle de la prestation ; il ne manque que l'argent).
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 1.1 | **M1** : dépôt `chefmeemz-backend`, protection de `main`, environnements GitHub | Vous | une PR de test ne peut pas être fusionnée sans CI ni approbation |
+| 1.2 | **M2** : poste de travail et accès de Claude aux deux dépôts | Vous | `docker`, `uv` et `make` répondent ; Claude voit les deux dépôts |
+| 1.3 | **B00** : squelette Django, CI | Claude | `make dev` démarre, `/healthz` répond, la CI est verte |
+| 1.4 | **B00b** : skills de l'agent pour le backend | Claude | l'agent refuse d'ajouter une allergie à une fiche client |
+| 1.5 | **B01** (1/2) : comptes, 2FA, blocage après 5 échecs | Claude | vous vous connectez avec le code de votre téléphone, cinq échecs bloquent le compte |
+| 1.6 | **M8** : votre compte et vos codes de secours | Vous | vous êtes `owner` avec le 2FA actif |
+| 1.7 | **B01** (2/2) : thème Unfold, bandeau d'environnement, journal d'audit | Claude | l'administration est à vos couleurs, une action écrit une ligne d'audit |
+| 1.8 | **M7** : stockage de fichiers (DÉCISION) | Vous | deux espaces (public, privé) et leurs clés par environnement |
+| 1.9 | **B02** (1/3) : tâches planifiées (Procrastinate) | Claude | une tâche échouée est reprogrammée puis visible |
+| 1.10 | **B02** (2/3) : e-mails (`Mailer`, gabarits, journal) | Claude | un e-mail de test part vers une adresse autorisée et pas vers une autre |
+| 1.11 | **B02** (3/3) : fichiers et intégrations factices | Claude | un fichier valide est accepté, un faux refusé ; les clients factices sont utilisés en test |
+| 1.12 | **M5** : hébergement de Django (DÉCISION, la seule bloquante) et **M6** : DNS | Vous | hébergeur, base avec sauvegardes, domaines et TLS décidés |
+| 1.13 | **B12** : déploiement de l'environnement de test | Claude | vous ouvrez l'administration depuis votre navigateur, sous son préfixe |
+| 1.14 | Restauration d'une sauvegarde (contrôle de B12) | Vous et Claude | une sauvegarde est réellement restaurée sur le test |
+
+**Palier 2 — Votre contenu est dans l'outil** (le site public ne change qu'au palier 4)
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 2.1 | **B03** (1/2) : réalisations, inspirations, avis, publier et dépublier, historique | Claude | vous créez une réalisation avec galerie, vous lisez son historique |
+| 2.2 | **B03** (2/2) : FAQ à emplacements multiples, pages légales versionnées, coordonnées, identité légale, zones | Claude | une FAQ de trois entrées, une page légale en deux versions |
+| 2.3 | **B04** (1/2) : grille de prix, packs, zones, service de calcul | Claude | les prix sont identiques à ceux du site pour toutes les combinaisons |
+| 2.4 | **B04** (2/2) : offres commerciales et marqueurs de prix | Claude | une offre expire du formulaire à sa date de fin ; un marqueur inconnu échoue |
+| 2.5 | **B09** : API de lecture pour le site | Claude | `curl` avec le jeton rend le contenu publié, jamais un brouillon |
+| 2.6 | **B10** : import des contenus existants | Claude | vos 9 réalisations, 70 questions, avis et zones sont dans l'administration |
+| 2.7 | **M9** : arbitrer les treize questions à double réponse | Vous | les treize variantes sont relues et tranchées |
+| 2.8 | **B11** : blocs vendeurs des pages | Claude | vous modifiez l'accroche d'une page et le titre SEO de l'accueil |
+
+**Palier 3 — Vous suivez vos prospects et faites vos devis** (demande le palier 1 : S01 appelle Django)
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 3.1 | **M13** : support privé des allergies, consentement, registre des traitements, politique de confidentialité | Vous | les cinq points de M13 sont faits avant la première saisie réelle |
+| 3.2 | **B05** (1/3) : contact, deal, cinq étapes, historique des étapes | Claude | vous créez un contact et un deal à la main et le faites avancer ; Perdu exige un motif |
+| 3.3 | **B05** (2/3) : notes, doublons par e-mail, avertissement « aucune allergie » | Claude | le même e-mail deux fois ne crée qu'un contact |
+| 3.4 | **B05** (3/3) : route d'intake `POST /api/v1/leads` | Claude | sans jeton, 401 ; rejouer une demande ne crée rien de plus |
+| 3.5 | **S01** : le site envoie les demandes à Django | Claude | une demande du site de test arrive dans « Nouveau » ; Django coupé, l'e-mail arrive quand même |
+| 3.6 | **B06** (1/3) : pipeline en colonnes avec déplacement (glisser-déposer et menu) | Claude | vous déplacez un deal des deux façons, l'historique est identique |
+| 3.7 | **B06** (2/3) : liste, tri, recherche | Claude | vous retrouvez un deal par nom, e-mail ou téléphone |
+| 3.8 | **B06** (3/3) : filtres au-dessus du tableau et vues enregistrées | Claude | Claude vous montre la liste proposée, vous la validez ; vous enregistrez une vue |
+| 3.9 | **M10** : réponses du comptable (mentions, TVA, crédit d'impôt par ligne) | Vous | les réponses sont écrites |
+| 3.10 | **B07** (1/3) : éditeur de devis (lignes, textes, offre, totaux proposés) | Claude | un devis de chaque service ; les totaux sont justes, un total forcé exige un motif |
+| 3.11 | **B07** (2/3) : finaliser (numéro, PDF) et versions | Claude | une version 2 garde le numéro ; la version 1 n'est plus modifiable |
+| 3.12 | **B07** (3/3) : import de PDF, blocs de texte réutilisables | Claude | un PDF fait ailleurs se rattache au deal ; vous réutilisez un bloc |
+| 3.13 | **B08** (facultative) : lien d'acceptation | Claude | un lien cliqué s'affiche sur le deal sans le déplacer |
+
+**Palier 4 — Vous publiez votre site vous-même**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 4.1 | **M11** : jeton GitHub de publication | Vous | le jeton est enregistré comme secret du backend |
+| 4.2 | **M12** : Cloudflare (offre, jeton de déploiement) | Vous | les secrets du dépôt `chefmeemz` sont en place |
+| 4.3 | **S02** : le site lit le contenu depuis l'API à la construction | Claude | le site construit en local est identique à l'ancien |
+| 4.4 | **B14** : bouton Publier (A-Publier) | Claude | cinq clics rapprochés = un seul appel ; un échec est affiché |
+| 4.5 | **S03** : déclenchement de la publication et déploiement | Claude | vous changez un prix, vous publiez, le site de test l'affiche quelques minutes plus tard |
+
+**Palier 5 — Vous ouvrez un dossier client**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 5.1 | **B15** (1/3) : client, engagement, passages créés « À dater » | Claude | vous créez un engagement d'un mois : 4 passages, le client est Actif |
+| 5.2 | **B15** (2/3) : statuts, corrections manuelles, saisie récurrente des dates | Claude | « tous les mardis à 18 h pendant 4 semaines » date les 4 passages |
+| 5.3 | **B15** (3/3) : report, annulation, réservations chef privé et cours | Claude | un passage annulé ne compte plus ; une réservation s'enregistre |
+| 5.4 | **B16** (1/2) : page A-Dossier depuis un deal Gagné | Claude | « Ouvrir le dossier » reprend les coordonnées du contact et crée client, engagement, passages |
+| 5.5 | **B16** (2/2) : pièces facultatives, e-mail de bienvenue | Claude | le dossier se crée sans aucun devis ; l'e-mail part si la case est cochée |
+
+**Palier 6 — Votre tableau de bord**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 6.1 | **B17** (1/6) : tableau de bord et ses six compteurs | Claude | « Clients à planifier » passe de 2/4 à 4/4 et le compteur tombe à zéro |
+| 6.2 | **B17** (2/6) : vue Clients et ses filtres (à confirmer avec vous) | Claude | vous validez la liste de filtres, puis chacun renvoie les bons clients |
+| 6.3 | **B17** (3/6) : vue Semaines et ses filtres (à confirmer avec vous) | Claude | un « en retard » s'affiche en rouge avec son icône ; actions groupées |
+| 6.4 | **B17** (4/6) : renouvellement (créer un deal, « Pas de renouvellement ») | Claude | un client en fin d'engagement entre dans le compteur ; le bouton crée un deal « Nouveau » une seule fois |
+| 6.5 | **B17** (5/6) : page Indicateurs | Claude | demandes, conversion, clients actifs et renouvellement se recalculent depuis l'historique |
+| 6.6 | **B17** (6/6) : flux iCal et registre des e-mails aux clients (coupures) | Claude | vous vous abonnez dans Google Agenda ; vous coupez les relances d'un client |
+
+**Palier 7 — Vos recettes sont dans l'outil**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 7.1 | **B13** (1/2) : ingrédients, allergènes, recettes sans quantités | Claude | l'allergène d'un ingrédient apparaît sur la recette |
+| 7.2 | **B13** (2/2) : quantités, activation « disponible », import des 5 recettes | Claude | une recette sans quantité refuse de devenir « disponible » |
+
+**Palier 8 — Le cycle du menu tourne** (la routine de la Partie I devient utilisable, hors facturation)
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 8.1 | **B18** (1/3) : plan de repas, liste prédéfinie, envoi du lien de choix | Claude | « Envoyer le lien de choix » passe le passage à « Menu envoyé » |
+| 8.2 | **B19** : page de choix du menu (lien à usage unique) | Claude | vous choisissez vos recettes sur votre téléphone ; un lien rouvert ne permet plus de modifier |
+| 8.3 | **B18** (2/3) : validation, liste d'ingrédients, PDF, case « relu » | Claude | le passage passe à « Menu prêt » ; le PDF est vérifié à la main |
+| 8.4 | **B18** (3/3) : e-mails de suivi, rappel de passage, envoi automatique du lien | Claude | les relances s'arrêtent à la validation ; l'envoi automatique se coupe d'un clic |
+
+**Palier 9 — Vous facturez et suivez l'URSSAF** (la routine complète est en service)
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 9.1 | **M14** : outil de facturation (DÉCISION) et **M15** : espace prestataire URSSAF | Vous | l'outil est choisi (ou la saisie manuelle est assumée), votre compte URSSAF est prêt |
+| 9.2 | **B20** (1/2) : facture par passage (numéro, statut, échéance) | Claude | un passage « Réalisée » entre dans « Semaines à facturer » puis passe à « Facturée » |
+| 9.3 | **B20** (2/2) : suivi de l'avance immédiate URSSAF, « Clôturée » | Claude | la demande se suit jusqu'à « payée » et le passage passe à « Clôturée » |
+
+**Palier 10 — Vous encaissez l'acompte du chef privé**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 10.1 | **M16** : compte Stripe en mode test | Vous | les clés de test sont notées |
+| 10.2 | **B21** : acompte du chef privé | Claude | un acompte payé avec une carte de test confirme la date |
+
+**Palier 11 — Avis et conformité**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 11.1 | **B22** : avis des clients | Claude | un avis saisi et validé paraît à la publication suivante |
+| 11.2 | **B23** (1/2) : export et anonymisation | Claude | un client de test exporté puis anonymisé ne laisse rien d'identifiable |
+| 11.3 | **B23** (2/2) : durées de conservation, purge des prospects périmés | Claude | l'action de purge produit son rapport avant d'effacer |
+
+**Palier 12 — Vous ouvrez aux vrais clients**
+
+| N° | Étape | Qui | Vous validez |
+| --- | --- | --- | --- |
+| 12.1 | **M17** : supervision (Sentry, sonde de disponibilité) | Vous | une alerte de test arrive |
+| 12.2 | **M18** : informations légales et **M19** : FAQ et CGV alignées | Vous | `LegalIdentity` est complète, les textes de la FAQ et des CGV concordent |
+| 12.3 | **B24** : durcissement et go / no-go | Claude | la checklist du chapitre 5 passe ligne par ligne |
+| 12.4 | **B25** : déploiement de la production et retour arrière | Claude | un déploiement attend votre approbation ; un retour arrière réel est fait sur le test |
+| 12.5 | **S04** : durcissement du site | Claude | les contrôles de sécurité et d'accessibilité du site passent |
+| 12.6 | Bascule du site vers la production | Vous et Claude | backend vérifié (`/healthz`, administration), puis site basculé |
+
+**Dépendances à connaître**
+- Le palier 6 ne dépend ni des recettes ni de la facturation : les compteurs concernés s'allument au fil des paliers 8 et 9.
+- La page Indicateurs (chiffre d'affaires, encaissé) est vide avant B20.
+- Les paliers 3 (prospects et devis) et 4 (publication) sont **indépendants** : commencez par celui qui vous coûte le plus de temps. Les paliers 5-6 (dossiers, tableau de bord) et 7 (recettes) sont aussi indépendants entre eux ; le reste suit l'ordre du tableau. Le palier 3 demande le palier 1 (S01 appelle Django).
+- **Points d'arrêt confortables** : fin du palier 3 (vous suivez prospects et devis sans outil externe), fin du palier 4 (vous gérez votre site seule), fin du palier 6 (vous suivez vos dossiers, la facturation reste dans votre outil) et fin du palier 9 (tout le cycle de la prestation, sauf l'acompte en ligne).
 
 ### 3.2 Pull Requests du backend (`chefmeemz-backend`)
 
 #### B00. Squelette du projet et intégration continue
-- **Branche** : `feat/b00-bootstrap` · **Taille** : moyenne · **Dépend de** : M0.1 à M0.6 · **Débloque** : **toutes les PR du backend**.
-- **Objectif** : Avant d'écrire la moindre règle métier, on crée le dépôt `chefmeemz-backend` et son filet de sécurité. Concrètement : un projet Django vide qui démarre en une commande avec une base PostgreSQL locale, et une intégration continue (GitHub Actions) qui refuse automatiquement tout code qui casse les tests, la sécurité ou les migrations. Pour vous, c'est ce qui permet de relire les PR suivantes en confiance : chacune arrive déjà vérifiée par la machine et vous ne contrôlez que le métier. Aucune fonctionnalité visible ici : on pose les fondations pour que les PR suivantes ne se marchent pas dessus.
+- **Branche** : `feat/b00-bootstrap` · **Taille** : moyenne · **Débloque** : **toutes les PR du backend** · **Prérequis** : M1 à M2.
+- **Objectif** : créer le dépôt `chefmeemz-backend` et son filet de sécurité : un projet Django vide qui démarre en une commande avec PostgreSQL, et une CI qui refuse tout code qui casse les tests, la sécurité ou les migrations. Aucune fonctionnalité visible.
 - **Fonctionnalités et règles**
-  - Stack de la section 7.1 : Python 3.12+, Django LTS (**version à confirmer sur le site officiel de Django**), PostgreSQL, DRF, `uv`. Layout `config/settings/{base,dev,test,prod}.py` et `apps/<domaine>/`. Langue `fr-fr`, fuseau `Europe/Paris`, devise EUR.
-  - **Socle conforme à la section 7.5** : réglages DRF (permission par défaut `IsAuthenticated`, authentification explicite, pagination, limitation de débit, gestionnaire d'erreurs) et réglages de sécurité de production.
-  - Maintenance par vous, sans date cible imposée.
-  - **Ce que contient le dépôt** : `README.md`, `Makefile` (`make dev`, `test`, `lint`, `migrate`), `Dockerfile` et `docker-compose.yml` (Django + PostgreSQL), `.env.example` sans secret (liste de la section 11), `.gitignore`, gabarit de PR et `CODEOWNERS`, `/healthz`, `docs/DECISIONS.md`.
-  - **Intégration continue (GitHub Actions)** : `ruff` (règles `DJ` et `S`), `mypy` (`django-stubs`, `djangorestframework-stubs`), `pytest`, `makemigrations --check`, `check --deploy` en réglages de production, `pip-audit`, `spectacular --validate --fail-on-warn`, détection de secrets. **Un test échoue si une vue n'a pas de permission explicite.**
-- **Critères** : `make dev` démarre l'application et la base ; `make test` passe ; la CI est verte ; `/healthz` répond 200 ; aucun secret dans le dépôt.
-- **Vous contrôlez** : cloner, `cp .env.example .env`, `make dev`, ouvrir `/healthz`, lire la CI, ouvrir une PR de test pour voir le gabarit. **Risque** : versions de Django et Python figées ici (à noter dans `DECISIONS.md`).
+  - Stack de la section 6.1 : Python 3.12+, Django LTS (**version à confirmer sur le site officiel de Django**), PostgreSQL, DRF, `uv`. Layout `config/settings/{base,dev,test,prod}.py` et `apps/<domaine>/`. Langue `fr-fr`, fuseau `Europe/Paris`, devise EUR.
+  - Socle conforme à la section 6.5 : réglages DRF (permission par défaut `IsAuthenticated`, authentification explicite, pagination, limitation de débit, gestionnaire d'erreurs) et réglages de sécurité de production.
+  - Le dépôt contient : `README.md`, `Makefile` (`make dev`, `test`, `lint`, `migrate`), `Dockerfile` et `docker-compose.yml` (Django + PostgreSQL), `.env.example` sans secret (liste de la section 10), `.gitignore`, gabarit de PR, `CODEOWNERS`, `/healthz`, `docs/DECISIONS.md`.
+  - CI (GitHub Actions) : `ruff` (règles `DJ` et `S`), `mypy` (`django-stubs`, `djangorestframework-stubs`), `pytest`, `makemigrations --check`, `check --deploy` en réglages de production, `pip-audit`, `spectacular --validate --fail-on-warn`, détection de secrets.
+  - **Un test échoue si une vue n'a pas de permission explicite.**
+  - Maintenance des versions par vous, sans date cible.
+- **Critères** : `make dev` démarre l'application et la base ; `make test` passe ; la CI est verte ; `/healthz` répond 200 ; aucun secret dans le dépôt ; une vue sans permission explicite fait échouer le test.
+- **Vous contrôlez** : cloner, `cp .env.example .env`, `make dev`, ouvrir `/healthz`, lire la CI, ouvrir une PR de test pour voir le gabarit. Versions de Django et Python figées ici, à noter dans `DECISIONS.md`.
 
 #### B00b. Skills de l'agent : Django, DRF, données sensibles et e-mails
-- **Branche** : `feat/b00b-agent-skills` · **Taille** : moyenne · **Dépend de** : B00 · **Débloque** : **toutes les PR du backend**, qui s'écrivent avec ces règles.
-- **Objectif** : Même raison que pour le site, avec un enjeu supplémentaire. Ce projet a des **interdits dont la violation ne se voit pas** : une allergie enregistrée dans une note interne, un e-mail de client dans un message d'erreur envoyé à Sentry, un prospect créé en base avant la signature. Rien ne plante, les tests passent, et le problème est juridique. Un skill qui se charge dès qu'on touche aux données d'un client est **le meilleur rempart disponible**, parce qu'il agit au moment où le code s'écrit et non en revue.
-- **Fonctionnalités et règles** : quatre skills dans `.claude/skills/<nom>/SKILL.md`.
-  - **`django-drf`** — la liste de contrôle opérationnelle issue des recommandations officielles : réglages de production et de sécurité, ORM et gabarits (pas de SQL brut, `mark_safe` interdit sauf contenu de confiance), fichiers téléversés traités comme non fiables, `request.get_host()`, migrations réversibles ; côté DRF, permission explicite sur **chaque** vue, authentification déclarée par groupe de routes, pagination et limitation de débit, `has_object_permission` qui ne s'applique ni aux listes ni aux créations, sérialiseurs aux champs listés, logique métier dans `services.py`, `assertNumQueries` contre les requêtes N+1. **Ce skill devient la référence opérationnelle** : la section 7.5 garde les principes et les sources officielles, et pointe vers lui — une règle qui vit dans deux fichiers finit par diverger, et celle qui se charge au moment d'écrire doit gagner.
-  - **`donnees-sensibles`** — se déclenche dès qu'une tâche touche à un client, un e-mail, un journal ou une intégration, et reprend les interdits de la section 7.4 : **aucune allergie, aucun régime, aucune donnée de santé** dans Django (ni champ, ni note interne, ni journal, ni PDF, ni Stripe) ; **aucun prospect** en base avant la création manuelle du dossier ; aucun numéro de carte ; aucun secret dans les journaux, les messages d'erreur ou les fixtures ; aucune donnée personnelle dans Sentry ni dans une URL ; les factures ne sont pas numérotées par Django. Chaque interdit s'accompagne du test qui le vérifie.
-  - **`emails`** — **vouvoiement**, signature de la cheffe, expéditeur et réponse sur l'adresse du domaine, **aucun envoi marketing**, pas de copie cachée, pas de SMS ni WhatsApp ; en environnement de test, envoi **uniquement vers des adresses autorisées** ; `EmailLog` sans le corps du message ; tout gabarit modifiable dans l'administration, avec aperçu et envoi de test.
-  - **`tests`** — la doctrine de test, qui manquait au plan : elle existait en morceaux (une couverture en 11.3, des « Critères » par PR) mais jamais comme une règle d'écriture.
-    - **La forme de la pyramide ici** : la logique métier vit dans `services.py` et se teste **sans HTTP** — c'est là que doit porter l'essentiel ; la couche API se teste avec `APIClient` ; et **trois parcours seulement** méritent un test de bout en bout, ceux de B11 (ouverture d'un dossier), B13 (cycle du menu) et B17 (carte cadeau).
-    - **Ce qu'on ne simule jamais** : la base (un vrai PostgreSQL en intégration continue), l'arithmétique monétaire, et la frontière des 48 h. **Ce qu'on simule toujours** : HubSpot, Stripe, Brevo, GitHub et Google Docs, par leurs interfaces `Protocol` et leur implémentation factice.
-    - **Les cinq familles de test propres à ce projet**, à écrire sans qu'on ait à les redemander : **idempotence** (rejouer une tâche deux fois ne double rien), **concurrence** (débit d'une carte cadeau, conversion de points, attribution d'un numéro de devis), **bornes** (47 h 59 contre 48 h 00), **isolation** (un jeton n'atteint jamais le plan d'un autre), **nombre de requêtes** (`assertNumQueries`).
-    - **Les interdits de 7.4 sont des tests de non-régression**, pas des intentions. Fabriques `factory-boy` par modèle ; **aucune donnée réelle de client** dans une fixture. La couverture de 11.3 est un **plancher**, pas un objectif : 85 % de lignes couvertes sans test de concurrence ne vaut rien.
-  - **`revue-projet`** — la version backend de la liste de contrôle, en complément de `/code-review` : interdits, bonnes pratiques, migrations lisibles et réversibles, et la question qui compte en premier — *cette PR enregistre-t-elle quelque chose qu'elle ne devrait pas ?*
-- **Critères** : chaque skill se déclenche sur les tâches visées ; le skill `donnees-sensibles` cite, pour chaque interdit, le test qui le couvre ; aucun skill ne contient de secret, de prix ni de délai figé ; la section 7.5 ne duplique plus la liste opérationnelle.
-- **Vous contrôlez** : demander à l'agent d'ajouter un champ à la fiche client et vérifier qu'il refuse d'y mettre une allergie en citant la règle, sans que vous ayez eu à la rappeler.
+- **Branche** : `feat/b00b-agent-skills` · **Taille** : moyenne · **Dépend de** : B00 · **Débloque** : **toutes les PR du backend**.
+- **Objectif** : les interdits du projet se violent sans que rien ne plante (allergie dans une note, e-mail client dans Sentry, prospect conservé sans limite). Des skills qui se chargent au moment d'écrire le code sont le meilleur rempart, avant la revue.
+- **Fonctionnalités et règles** : cinq skills dans `.claude/skills/<nom>/SKILL.md` (lecture de la section 6.5 à la place du chargement de skills, cf. Avant-propos).
+  - **`django-drf`** : liste de contrôle opérationnelle issue des recommandations officielles. Django : réglages de production et de sécurité, ORM et gabarits (pas de SQL brut, `mark_safe` interdit sauf contenu de confiance), fichiers téléversés non fiables, `request.get_host()`, migrations réversibles. DRF : permission explicite sur **chaque** vue, authentification par groupe de routes, pagination et limitation de débit, `has_object_permission` qui ne couvre ni listes ni créations, sérialiseurs aux champs listés, logique métier dans `services.py`, `assertNumQueries` contre les N+1. **Référence opérationnelle unique** : la section 6.5 garde les principes et les sources, et pointe vers lui.
+  - **`donnees-sensibles`** : se déclenche dès qu'une tâche touche un client, un e-mail, un journal ou une intégration ; reprend les interdits de la section 6.4 (aucune allergie, régime ou donnée de santé dans Django, ni champ, ni note, ni journal, ni PDF, ni Stripe ; prospects conservés pour une durée limitée ; aucun numéro de carte ; aucun secret dans journaux, erreurs ou fixtures ; aucune donnée personnelle dans Sentry ni dans une URL ; factures non numérotées par Django). Chaque interdit cite le test qui le vérifie.
+  - **`emails`** : vouvoiement, signature de la cheffe, expéditeur et réponse sur l'adresse du domaine, aucun envoi marketing, pas de copie cachée, pas de SMS ni WhatsApp ; en test, envoi uniquement vers des adresses autorisées ; `EmailLog` sans le corps ; gabarits modifiables en administration avec aperçu et envoi de test ; relances soumises aux règles communes de 1.4 (une par client et par jour, jamais entre 21 h et 8 h, une ligne `FollowUp` par situation, trois niveaux de coupure).
+  - **`tests`** : doctrine de test.
+    - Pyramide : la logique vit dans `services.py` et se teste **sans HTTP** ; l'API se teste avec `APIClient` ; **trois parcours seulement** de bout en bout (B16 ouverture d'un dossier, B18 cycle du menu, B20 facturation).
+    - Jamais simulés : la base (vrai PostgreSQL en CI) et l'arithmétique monétaire. Toujours simulés : Stripe, Brevo, GitHub, via leur `Protocol` et leur implémentation factice.
+    - Cinq familles à écrire sans qu'on les redemande : **idempotence** (rejouer une tâche ne double rien), **concurrence** (numéro de devis, double soumission d'un dossier), **bornes** (frontières de dates : date limite de choix, créneaux d'envoi 8 h-21 h, seuil de 10 jours), **isolation** (un jeton n'atteint jamais le plan d'un autre), **nombre de requêtes**.
+    - Les interdits de 6.4 sont des tests de non-régression ; fabriques `factory-boy` par modèle ; aucune donnée réelle de client dans une fixture ; la couverture de 10.3 est un plancher, pas un objectif.
+  - **`revue-projet`** : liste de contrôle de revue backend, en complément de `/code-review` : interdits, bonnes pratiques, migrations lisibles et réversibles, et d'abord *cette PR enregistre-t-elle quelque chose qu'elle ne devrait pas ?*
+- **Critères** : chaque skill se déclenche sur les tâches visées ; `donnees-sensibles` cite le test de chaque interdit ; aucun skill ne contient de secret, de prix ni de délai figé ; la section 6.5 ne duplique plus la liste opérationnelle.
+- **Vous contrôlez** : demander à l'agent d'ajouter un champ à la fiche client et vérifier qu'il refuse d'y mettre une allergie en citant la règle.
 
 #### B01. Authentification de l'équipe, thème Unfold et journal d'audit
-- **Branche** : `feat/b01-staff-admin` · **Taille** : moyenne · **Dépend de** : B00 · **Débloque** : B02, B04b, B10.
-- **Objectif** : Aujourd'hui rien n'est géré dans un outil : tout est dans des fichiers et dans votre tête. Cette PR crée la porte d'entrée de votre futur administration : une administration web à vos couleurs, accessible uniquement par vous (et plus tard une assistante), protégée par un mot de passe et un code d'authentification sur votre téléphone. Elle garde aussi une trace de chaque modification (qui, quoi, quand), utile en cas d'erreur de saisie ou de litige avec un client. Vos données de clients et de prix vivront ici : l'accès doit être verrouillé avant d'y mettre quoi que ce soit.
+- **Branche** : `feat/b01-staff-admin` · **Taille** : moyenne · **Dépend de** : B00 · **Débloque** : B02, B07, B15 · **Prérequis** : M8 (après la PR).
+- **Objectif** : verrouiller l'accès à l'administration avant d'y mettre des données, et tracer chaque modification (qui, quoi, quand).
 - **Fonctionnalités et règles**
-  - Modèle `StaffUser` (extension de `AbstractUser`, créé dès le début). Connexion par mot de passe + **2FA TOTP obligatoire en production** (pas de clé matérielle ; QR code à l'enrôlement et codes de secours imprimables), `django-axes` (verrouillage après 5 échecs), session de 8 h avec expiration d'inactivité de 30 min, cookies `Secure` et `HttpOnly`.
-  - Deux groupes : `owner` (tout) et `assistant` (lecture et saisie, ni suppression ni export RGPD). **Un seul compte `owner` au départ** ; l'assistant est prévu mais non créé.
+  - `StaffUser` (extension de `AbstractUser`, créé dès le début). Connexion mot de passe + **2FA TOTP obligatoire en production** (pas de clé matérielle ; QR code à l'enrôlement, codes de secours imprimables), `django-axes` (blocage après 5 échecs), session de 8 h avec inactivité de 30 min, cookies `Secure` et `HttpOnly`.
+  - Groupes `owner` (tout) et `assistant` (lecture et saisie, ni suppression ni export RGPD). **Un seul compte `owner` au départ** ; l'assistant est prévu, non créé. Commande `create_owner`.
   - Administration **Unfold** aux couleurs du site (`styles/tokens.css`, `public/assets/logo/table-et-tribu.svg`), **bandeau d'environnement** (local, test, production), menu latéral par domaine, utilisable sur téléphone, sous `ADMIN_URL_PREFIX` (préfixe non évident). Pas de restriction par IP par défaut ; si l'hébergement passe par Teads : #ask-devx (chemin approuvé) et #ask-security.
-  - `AuditEvent` (qui, quoi, quand, objet, avant/après) avec un utilitaire d'écriture ; `django-simple-history` sur les modèles sensibles et le contenu. Une commande `create_owner` crée le premier compte.
-- **Critères** : impossible d'accéder à l'administration sans 2FA en configuration de production ; 5 échecs bloquent temporairement ; un `assistant` ne supprime rien ; une action écrit une ligne d'audit ; le bandeau affiche l'environnement.
-- **Vous contrôlez** : créer le compte, activer le 2FA, rater 5 connexions, voir une ligne d'audit. **Après** : M1.12.
+  - `AuditEvent` (qui, quoi, quand, objet, avant/après) avec utilitaire d'écriture ; `django-simple-history` sur les modèles sensibles et le contenu.
+- **Critères** : pas d'accès à l'administration sans 2FA en configuration de production ; 5 échecs bloquent temporairement ; un `assistant` ne supprime rien ; une action écrit une ligne d'audit ; le bandeau affiche l'environnement.
+- **Vous contrôlez** : créer le compte, activer le 2FA, rater 5 connexions, voir une ligne d'audit.
 
 #### B02. Infrastructure transversale : tâches, e-mails, fichiers, intégrations factices
-- **Branche** : `feat/b02-infra` · **Taille** : moyenne à grande · **Dépend de** : B01 · **Débloque** : B03, B04c, B07, B09, B11, B13, B18.
-- **Objectif** : Plusieurs fonctions ont besoin des mêmes briques : envoyer des e-mails (propositions de menu, rappels, listes d'ingrédients), lancer des tâches automatiques chaque nuit (ouvrir les menus de la semaine, relancer un client), ranger des fichiers (devis, PDF, photos) et parler à HubSpot, Stripe ou GitHub. Cette PR les installe une fois pour toutes, avec des versions factices pour tester sans rien envoyer à de vrais clients. Concrètement, vous pourrez modifier le texte d'un e-mail dans l'administration et envoyer un message de test ; et en préproduction, aucun e-mail ne partira jamais vers un vrai client.
+- **Branche** : `feat/b02-infra` · **Taille** : moyenne à grande · **Dépend de** : B01 · **Débloque** : B03, B05, B07, B12, B14, B16, B18, B22 · **Prérequis** : M4, M7 (pour un test réel).
+- **Objectif** : installer une fois les briques communes (tâches planifiées, e-mails, fichiers, intégrations) avec des versions factices, pour tester sans jamais écrire à un vrai client.
 - **Fonctionnalités et règles**
   - **Tâches** : Procrastinate (file adossée à PostgreSQL, pas de Redis) ; tâches idempotentes avec reprises exponentielles ; une tâche planifiée de démonstration.
-  - **E-mail** : interface `Mailer` (Brevo par l'API ; console en développement ; **en test, envoi uniquement vers des adresses autorisées**). `EmailTemplate` modifiable en administration (variables autorisées, aperçu avec données d'exemple, envoi de test) et `EmailLog` (sans le corps du message). **Vouvoiement**, signature de la cheffe, expéditeur et réponse `contact@tabletribu.com`, pas de copie cachée à la cheffe, **aucun envoi marketing**, pas de SMS ni WhatsApp. Tous les rappels automatiques des PR suivantes sont actifs par défaut.
+  - **E-mail** : interface `Mailer` (Brevo par l'API ; console en développement ; **en test, envoi uniquement vers des adresses autorisées**). `EmailTemplate` modifiable en administration (variables autorisées, aperçu avec données d'exemple, envoi de test) et `EmailLog` (sans le corps). Vouvoiement, signature de la cheffe, expéditeur et réponse `contact@tabletribu.com`, pas de copie cachée, **aucun envoi marketing**, pas de SMS ni WhatsApp. Django n'envoie aucun e-mail à la cheffe (1.4) ; seul le site la prévient d'une nouvelle demande (S00). Les e-mails automatiques des PR suivantes sont actifs par défaut.
   - **Fichiers** : stockage compatible S3 hébergé dans l'UE, deux espaces : **public** (images du site, via CDN) et **privé** (devis, preuves, PDF, liens signés de courte durée). Type vérifié par le **contenu**, la taille et l'extension, sans antivirus.
-  - **`HubSpotSettings`** (singleton, administration, champs vides au départ) : l'identifiant du **pipeline**, ceux des étapes **« Devis envoyé »** et **« Dossier créé »** que l'administration déplace elle-même (B04c, B11), et les adresses des **trois vues enregistrées** (« deals sans devis », « devis sans réponse », « deals Gagné sans dossier ») que la page A-Suivi affiche (B12). Ces identifiants sont **opaques** et changent si vous recréez un pipeline : ils n'ont rien à faire dans le code ni dans une variable d'environnement. Un bandeau signale tant qu'ils sont vides, et un déplacement d'étape demandé sans identifiant configuré **échoue proprement** au lieu d'écrire n'importe où.
-  - **Intégrations** : interfaces `HubSpotClient`, `StripeGateway`, `Mailer`, `InvoicingProvider`, `GitHubDispatcher` (et plus tard `GoogleDocsClient`, livré par B04c), chacune avec une implémentation **factice** utilisée en local et en test.
+  - **Intégrations** : interfaces `StripeGateway`, `Mailer`, `InvoicingProvider`, `GitHubDispatcher` chacune avec une implémentation **factice** utilisée en local et en test.
   - `/healthz` étendu (file de tâches, dernière exécution de la tâche planifiée).
 - **Critères** : une tâche échouée est reprogrammée puis visible ; un e-mail de test part vers une adresse autorisée et pas vers une autre ; un fichier dont le type réel ne correspond pas est refusé ; les clients factices sont utilisés par défaut en test.
-- **Vous contrôlez** : lancer le worker, déclencher la tâche, envoyer un e-mail de test, téléverser un fichier valide puis un faux. **Avant (test réel)** : M1.2, M1.3.
+- **Vous contrôlez** : lancer le worker, déclencher la tâche, envoyer un e-mail de test, téléverser un fichier valide puis un faux.
 
 #### B03. Contenu du site (CMS) : modèles et administration
-- **Branche** : `feat/b03-content` · **Taille** : grande · **Dépend de** : B02 · **Débloque** : B04, B05, B06, B06b, B08.
-- **Objectif** : Le contenu du site est aujourd'hui figé dans des fichiers que seul un développeur peut modifier : pour changer une photo de réalisation, corriger la FAQ ou ajouter un avis, il faut toucher au code. Cette PR met tout ce contenu dans l'administration : réalisations avec galerie, inspirations (indépendantes des réalisations), avis, FAQ, pages légales, coordonnées, zones et communes. Vous éditez en brouillon, et rien n'est visible tant que vous ne publiez pas (B09). C'est le premier gain concret : modifier votre site sans développeur.
-- **Fonctionnalités et règles** (modèles : section 9.1)
-  - **Brouillon par défaut** ; seul le contenu publié sort par l'API ; ordre au glisser-déposer ; historique des modifications ; actions publier et dépublier ; filtres publié/brouillon et service.
-  - **Images** : l'original est stocké (les variantes sont laissées à Next.js), 10 Mo au plus, `alt` obligatoire, dimensions extraites automatiquement. Lien interne : doit commencer par `/`.
-  - **FAQ** : une seule collection avec un champ d'**emplacement multiple**. Le site en compte **neuf** aujourd'hui — la page FAQ (5 rubriques) plus les blocs des pages accueil, batch cooking, chef privé, cours, tarifs, zones, recettes et contact — pour **70 questions distinctes recopiées en 118 exemplaires**. Une question éditée une fois se répercute donc partout où elle est placée. **Pages légales** : éditées dans Django, **versionnées**, anciennes versions conservées. Texte en **Markdown** (zone de texte avec aperçu, pas d'éditeur riche) ; **français uniquement**.
+- **Branche** : `feat/b03-content` · **Taille** : grande · **Dépend de** : B02 · **Débloque** : B04, B09, B10, B11, B13.
+- **Objectif** : sortir des fichiers le contenu éditable du site (réalisations, inspirations, avis, FAQ, pages légales, coordonnées, zones) pour le modifier sans développeur. Brouillon par défaut ; rien n'est visible avant la publication (B14).
+- **Fonctionnalités et règles** (modèles : section 8.1)
+  - **Brouillon par défaut** ; seul le contenu publié sort par l'API ; ordre au glisser-déposer ; historique ; actions publier et dépublier ; filtres publié/brouillon et service.
+  - **Images** : original stocké (variantes laissées à Next.js), 10 Mo au plus, `alt` obligatoire, dimensions extraites automatiquement. Lien interne : doit commencer par `/`.
+  - **FAQ** : une seule collection avec un champ d'**emplacement multiple** (neuf emplacements : page FAQ en 5 rubriques et blocs des pages accueil, batch cooking, chef privé, cours, tarifs, zones, recettes, contact). 70 questions distinctes sont aujourd'hui recopiées en 118 exemplaires ; une question éditée une fois se répercute partout.
+  - **Pages légales** : éditées dans Django, **versionnées**, anciennes versions conservées. Texte en **Markdown** (zone de texte avec aperçu, pas d'éditeur riche) ; français uniquement.
   - **`LegalIdentity`** (singleton, champs vides au départ, bandeau d'avertissement tant qu'elle est incomplète).
-  - **Périmètre exact — ce que vous modifiez vous-même et ce qui demande un développeur : section 2.4.** Cette PR en livre la première moitié (réalisations, inspirations, avis, FAQ, pages légales, coordonnées, identité légale, zones et communes) ; B04, B06b et B08 complètent, B02 livre les textes des e-mails.
+  - **Périmètre** : première moitié du contenu éditable (réalisations, inspirations, avis, FAQ, pages légales, coordonnées, identité légale, zones et communes) ; B04, B11 et B13 complètent ; les textes des e-mails viennent de B02.
 - **Critères** : pas d'image sans `alt` ; un brouillon n'est jamais publié ; l'ordre se modifie au glisser-déposer ; un `assistant` ne supprime pas ; chaque modification est tracée.
 - **Vous contrôlez** : créer un projet avec galerie, une inspiration, une FAQ de trois entrées, modifier les réglages, lire l'historique.
 
 #### B04. Tarifs, packs, offres commerciales et marqueurs de prix
-- **Branche** : `feat/b04-pricing` · **Taille** : moyenne · **Dépend de** : B03 · **Débloque** : B04b, B05, B06, B10, B11.
-- **Objectif** : Vos prix sont aujourd'hui écrits dans le code du site (39,50 € après crédit d'impôt pour 3 dîners au mois) et dans des textes de FAQ qui peuvent diverger (« 49,50 € »). Cette PR met la grille de prix dans l'administration : un tableau par pack, formule et nombre de dîners, le taux de crédit d'impôt, les prix à la personne du chef privé et des cours. Quand vous changez un prix, le site se met à jour partout à la prochaine publication, textes compris grâce aux marqueurs de prix. Un client déjà engagé garde le prix qu'il a accepté : seuls les nouveaux engagements prennent le nouveau. Cette grille préremplira aussi le prix quand vous créerez un engagement (B11).
-- **Les offres commerciales** : c'est l'autre moitié de cette PR. Votre métier ne se vend pas seulement par pack, il se vend par **moment de vie** — *Offre Post-partum*, *Offre Senior*, *Offre anniversaire*, *Offre de renouvellement*, et toutes celles que vous inventerez à Noël ou à la rentrée. Vous les créez **vous-même dans l'administration**, avec leur texte et leur éventuelle remise, sans développeur et sans attendre une mise en ligne. Deux bénéfices concrets : le devis se remplit d'un clic avec le bon texte et le bon prix, et **chaque engagement garde la trace de l'offre qui l'a vendu** — vous saurez dans un an laquelle rapporte.
-- **Fonctionnalités et règles** (modèles : section 9.3)
-  - **Données initiales** reprenant `PRICES` du code, et **test de parité** : les montants calculés sont comparés à ceux de `lib/lead/pricing.ts` pour toutes les combinaisons.
-  - **Administration** : la grille s'édite en tableau, les offres en liste ordonnable.
-  - **Grille de référence = `PRICES` du code** (39,50 € après crédit d'impôt pour 3 dîners au mois). Le prix d'un pack dépend **uniquement** du pack, de la formule et du nombre de dîners. Le sur mesure est toujours saisi à la main. Le site affiche le prix **après crédit avec le prix avant à côté**.
+- **Branche** : `feat/b04-pricing` · **Taille** : moyenne · **Dépend de** : B03 · **Débloque** : B05, B07, B09, B10, B15, B16.
+- **Objectif** : mettre la grille de prix et les offres commerciales dans l'administration (plus de prix dans le code ni dans des textes divergents), pour que le site se mette à jour partout à la publication suivante, et que la grille préremplisse le prix d'un engagement (B16). Un engagement existant garde son prix.
+- **Fonctionnalités et règles** (modèles : section 8.3)
+  - **Données initiales** reprenant `PRICES` du code, et **test de parité** avec `lib/lead/pricing.ts` pour toutes les combinaisons. Grille de référence : 39,50 € après crédit d'impôt pour 3 dîners au mois.
+  - **Administration** : grille en tableau, offres en liste ordonnable.
+  - Le prix d'un pack dépend **uniquement** du pack, de la formule et du nombre de dîners ; le sur mesure est toujours saisi à la main. Le site affiche le prix **après crédit avec le prix avant à côté**.
   - Packs : *Essentiel* = série Classiques ; *Signature* = Classiques + Signature ; *Sur mesure* = tout.
   - Chef privé et cours : prix **à la personne** (« à partir de 35 € » et « 45 € »), sans minimum de convives ; acompte du chef privé 30 %.
-  - **Zones** : déplacement par zone saisi en administration (zone 1 = 0, zone 2 supplément, zone 3 sur demande avec minimum de commande).
-  - Service de calcul `price_before`, `price_after`, `from_price` identique à `lib/lead/pricing.ts`. **Marqueurs de prix** dans le Markdown (liste en 9.3) remplacés par l'API ; un marqueur inconnu est une erreur.
-  - Le changement d'un prix **n'affecte jamais** les engagements existants (avertissement dans l'administration).
-  - **Offres commerciales** (`Offer`) : création libre en administration, avec un service visé, une phrase d'accroche, un paragraphe pour le devis, une **fenêtre de campagne** et, au choix, une remise en pourcentage, une remise fixe ou un prix forfaitaire. Une offre peut aussi **préremplir** le formulaire de devis (pack, formule, dîners, portions, convives) pour les prestations qu'elle vise.
-  - **Quatre offres livrées en exemple**, inactives, à vous d'ajuster les textes et les montants : *Post-partum*, *Senior*, *Anniversaire*, *Renouvellement*. Ce sont des points de départ, pas des règles.
-  - **Une offre ne contourne jamais les garde-fous** : le prix obtenu reste **figé dans l'engagement** à sa création, et une offre expirée n'apparaît plus dans le formulaire de devis — elle reste utilisable, mais avec un motif, et l'action est journalisée.
-  - **Une offre remplace le motif libre d'une remise.** Jusqu'ici, un prix différent de la grille exigeait un texte libre ; désormais, si la remise vient d'une offre, le motif est l'offre elle-même. C'est ce qui rend la remise **dénombrable** au lieu d'être une note que personne ne relira.
-- **Critères** : prix identiques à ceux du site pour toutes les combinaisons ; un marqueur inconnu échoue ; aucun flottant dans les calculs monétaires (centimes) ; une offre portant deux avantages tarifaires à la fois est refusée ; une remise d'offre donne exactement le même montant que la même remise saisie à la main.
-- **Vous contrôlez** : modifier un prix, vérifier le résultat ; essayer un marqueur inconnu ; créer une offre « Fête des mères » valable un mois et vérifier qu'elle disparaît du formulaire de devis après sa date de fin.
+  - **Zones** : déplacement saisi en administration (zone 1 = 0, zone 2 supplément, zone 3 sur demande avec minimum de commande).
+  - Service de calcul `price_before`, `price_after`, `from_price` identique à `lib/lead/pricing.ts`. **Marqueurs de prix** dans le Markdown (liste en 8.3) remplacés par l'API ; un marqueur inconnu est une erreur.
+  - Changer un prix **n'affecte jamais** les engagements existants (avertissement dans l'administration).
+  - **Offres commerciales** (`Offer`), créées par la cheffe : service visé, phrase d'accroche, paragraphe pour le devis, **fenêtre de campagne**, et au choix une remise en pourcentage, une remise fixe ou un prix forfaitaire. Une offre peut **préremplir** le formulaire de devis (pack, formule, dîners, portions, convives). Une offre est un habillage : elle ne change ni passages, ni menus, ni facturation, et reste attachée à l'engagement vendu.
+  - **Quatre offres livrées en exemple**, inactives, à ajuster : *Post-partum*, *Senior*, *Anniversaire*, *Renouvellement*.
+  - Une offre ne contourne jamais les garde-fous : le prix reste **figé dans l'engagement** à sa création ; une offre expirée disparaît du formulaire de devis, reste utilisable avec un motif, et l'action est journalisée.
+  - **Une offre remplace le motif libre d'une remise** : si la remise vient d'une offre, l'offre est le motif, ce qui rend la remise dénombrable.
+- **Critères** : prix identiques à ceux du site pour toutes les combinaisons ; un marqueur inconnu échoue ; aucun flottant dans les calculs monétaires (centimes) ; une offre à deux avantages tarifaires est refusée ; une remise d'offre donne le même montant que la même remise saisie à la main.
+- **Vous contrôlez** : modifier un prix et vérifier le résultat ; essayer un marqueur inconnu ; créer une offre « Fête des mères » valable un mois et vérifier qu'elle disparaît du formulaire de devis après sa date de fin.
 
-#### B04b. Aide à la rédaction des devis (un modèle par service)
-- **Branche** : `feat/b04b-quote-helper` · **Taille** : petite à moyenne · **Dépend de** : B01, B04 · **Débloque** : B04c.
-- **Objectif** : Le devis est l'acte commercial du métier, et il reste écrit à la main dans Google Docs — c'est le bon choix à ce volume. Mais **recalculer les prix à chaque fois est exactement l'endroit où les erreurs apparaissent**, et une erreur sur un devis coûte soit de la marge, soit une correction embarrassante devant le client. Cette PR ne génère pas encore le document (c'est **B04c**) : elle construit **les chiffres justes et le texte du devis**, pour chacun des trois services. Elle vous fait gagner le calcul, la recherche du prochain numéro et la vérification des conditions propres à chaque prestation.
-- **Pourquoi en deux PR** : B04b n'a besoin d'**aucun compte externe** et peut donc être livrée immédiatement ; B04c y ajoute la génération du Google Docs, qui demande un projet Google Cloud et une autorisation (M1.18). Ce découpage a un second intérêt : le texte à copier de B04b reste le **mode de secours** de B04c le jour où l'API Google est indisponible ou l'autorisation expirée. On n'est jamais bloqué pour faire un devis.
-- **Fonctionnalités et règles** : page d'administration **A-Devis**, avec trois modèles choisis en haut de l'écran.
-  - **Offre (facultatif)**, en premier champ : une liste des offres en cours pour ce service. La choisir **préremplit** les champs qu'elle définit et **applique son avantage tarifaire**, que l'écran affiche comme une ligne à part — « Offre Post-partum : −15 % » — pour que vous voyiez toujours le prix plein et la remise séparément. Vous pouvez tout modifier ensuite ; l'offre reste attachée au devis.
-  - **Batch cooking** : pack, formule (1 semaine, 1 mois, sur mesure), nombre de dîners, portions, commune (qui donne la zone et le déplacement). Sortie : lignes de prestation, **total avant crédit d'impôt, crédit, total après crédit**, mention du crédit d'impôt, règle d'annulation à 48 h.
-  - **Chef privé** : nombre de convives, prix par personne (prérempli), déplacement, options. Sortie : total, **acompte de 30 %**, règle d'annulation à 7 jours.
-  - **Cours de cuisine** : nombre de convives, prix par personne (prérempli), déplacement. Sortie : total, règle d'annulation à 48 h.
-  - **Lignes libres** ajoutables à chaque modèle : supplément, remise (motif obligatoire, **sauf si elle vient d'une offre** : l'offre est alors le motif), courses estimées, plat sur mesure. Chacune porte sa case « éligible au crédit d'impôt », par défaut décochée par prudence **[À VÉRIFIER]** avec le comptable (M1.14).
-  - **Sortie** : un bloc de texte **prêt à coller**, avec un bouton « copier », plus la **version des CGV en vigueur** et la **phrase d'acceptation**. Une vue tableau sert à relire les montants. B04c réutilise exactement ces valeurs pour remplir le document.
-  - **Numérotation** : l'écran attribue le premier numéro libre (`DEV-AAAA-NNN`) et **l'enregistre** dans un registre minimal (`IssuedQuote`, section 9.4). C'est la seule chose que cette PR écrit en base, et c'est nécessaire : sans elle, deux devis dont aucun n'est encore accepté recevraient le même numéro. **Cela remplace le registre manuel** de M1.1. Un trou dans la suite est sans conséquence pour des devis — contrairement aux factures, dont la numérotation continue est gérée par l'outil de facturation.
-  - **Ce qui n'est pas enregistré** : **aucune donnée du prospect**. Le nom, l'adresse et le détail de la prestation traversent le formulaire, servent à composer le texte, et ne sont jamais écrits en base. Le registre ne porte que la référence, le service et la date (interdit 1, section 7.4). Un client n'existe dans Django qu'au moment où le dossier est créé en page A-Dossier (B11).
-  - **Bandeau d'avertissement** tant que l'identité légale (`LegalIdentity`) est incomplète, puisque le devis doit la porter.
-- **Critères** : les montants sont **identiques** à ceux de la grille et à ceux du site pour toutes les combinaisons ; **le registre ne contient aucun nom, e-mail ni téléphone** (test sur les champs du modèle) ; deux devis générés coup sur coup n'ont jamais le même numéro, y compris en parallèle (test de concurrence) ; chaque modèle rappelle la règle d'annulation propre à son service ; une remise sans motif est refusée.
-- **Vous contrôlez** : produire un devis de chaque type, coller le texte dans un document, et vérifier les totaux à la main une fois pour chacun. **Avant** : **M1.14** (comptable, pour l'éligibilité des lignes au crédit d'impôt).
+#### B05. CRM : contacts, deals et pipeline
+- **Branche** : `feat/b05-crm` · **Taille** : grande · **Dépend de** : B02, B04 · **Débloque** : B06, B07, B15, B16, S01 · **Prérequis** : M13 (allergies et RGPD, avant toute saisie réelle).
+- **Objectif** : Gérer les prospects dans l'administration, sans outil externe : une fiche par personne (contact), une affaire par demande (deal) et tout ce qui s'y rattache (notes, devis, historique). Aucune relance, aucune tâche, aucune automatisation : la cheffe change l'étape elle-même.
+- **Fonctionnalités et règles** (modèles : 8.5)
+  - **Contact** : prénom, nom, e-mail (unique, en minuscules), téléphone, adresse, commune et zone, taille du foyer, source. Un contact devient **client** à la création de son premier dossier (B16). Un même contact peut avoir plusieurs deals (renouvellement, chef privé, cours).
+  - **Deal** : service, étape (Nouveau, Qualifié, Devis envoyé, Gagné, Perdu), montant estimé, offre éventuelle, détail de la demande (texte lisible), source, motif de perte (**obligatoire** pour Perdu). **Aucune étape ne change toute seule** (seul « Nouveau » est posé à l'arrivée d'une demande) ; chaque changement est historisé (qui, quand, de quelle étape à laquelle) et se corrige à la main.
+  - **Notes** datées sur le contact et sur le deal (appel de qualification, échanges importants) ; aucune lecture de votre messagerie.
+  - **Aucune donnée de santé** : ni champ, ni note. Les zones de notes affichent l'avertissement « aucune allergie ni donnée de santé ici » ; un test vérifie qu'aucun modèle ne porte ce type de champ.
+  - **Doublons** : un e-mail = un contact ; une seconde demande avec le même e-mail ajoute un deal « Nouveau » à la fiche existante, sans écraser ses coordonnées (la différence est notée).
+  - **Création manuelle** d'un contact et d'un deal (bouche-à-oreille, appel direct).
+  - **Route d'intake** `POST /api/v1/leads` (9.2) : jeton serveur à serveur, validation, idempotente par identifiant de demande ; crée le contact, le deal « Nouveau » et sa note de détail. Seul le site (S01) l'appelle.
+- **Critères** : une demande crée un contact et un deal « Nouveau » ; le même e-mail deux fois ne crée qu'un contact ; un deal ne passe pas à Perdu sans motif ; tout changement d'étape est historisé ; aucun modèle ne porte de champ de santé ; sans jeton, la route d'intake répond 401 ; rejouer le même identifiant de demande ne crée rien de plus.
+- **Vous contrôlez** : créer un contact et un deal à la main, les faire passer d'étape en étape, vérifier que l'avertissement « aucune allergie » s'affiche dans les notes.
 
-#### B04c. Générer le devis dans Google Docs
-- **Branche** : `feat/b04c-quote-docs` · **Taille** : moyenne · **Dépend de** : B02, B04b, **M1.18** · **Débloque** : B21.
-- **Objectif** : B04b vous donne les bons chiffres, mais il reste à ouvrir un document, le dupliquer, coller, renommer. Cette PR fait ce dernier pas : depuis la page A-Devis, un bouton **crée le devis dans votre Google Drive**, à partir de votre propre modèle, avec le numéro, l'identité du client, les lignes de prestation, les totaux avant et après crédit d'impôt, la date de validité et la version des CGV **déjà remplis**. Vous recevez un lien, vous ouvrez le document, et **vous l'éditez librement dans Google Docs** comme n'importe quel autre : ajouter une phrase, retoucher une formulation, adapter un détail. Le générateur fait la partie mécanique ; la rédaction reste la vôtre.
-- **Pourquoi cette forme-là et pas un PDF** : un PDF généré est figé — la moindre phrase à ajouter oblige à repasser par l'outil, ou à tout refaire à la main. Un Google Docs reste **modifiable, commentable, exportable en PDF** d'un clic, et s'archive dans votre Drive comme aujourd'hui. C'est ce qui rend le générateur acceptable alors que la version « PDF scellé » du plan précédent avait été abandonnée : **le document reste à vous**, l'outil ne fait que le préparer.
+#### B06. Vue Pipeline et filtres
+- **Branche** : `feat/b06-pipeline-view` · **Taille** : moyenne à grande · **Dépend de** : B05 · **Débloque** : B17.
+- **Objectif** : Suivre ses prospects d'un coup d'œil et retrouver n'importe quel deal en deux clics. C'est la première étape de la routine du matin (1.5).
+- **Fonctionnalités et règles** (contenu à l'écran : 1.6, « La vue Pipeline »)
+  - **Colonnes** par étape avec glisser-déposer (demande le motif pour Perdu) et **liste** triable ; fiche du deal avec notes, devis rattachés et historique ; boutons « Faire un devis » (ajouté par B07) et « Ouvrir le dossier » (deal Gagné, ajouté par B16).
+  - **Filtres** de 1.6, **au-dessus du tableau**, combinables ; **avant de les construire, montrer la liste proposée et demander à la cheffe** lesquels garder, ajouter ou retirer, avec compteur sur chacun ; **vues enregistrées** nommées. Seuils `lead_callback_hours` (24) et `quote_waiting_days` (7) dans `FollowUpSettings`.
+  - **Recherche** par nom, e-mail, téléphone et texte des notes.
+  - Un deal se déplace aussi par menu déroulant : le glisser-déposer n'est pas la seule voie (accessibilité, téléphone).
+- **Critères** : chaque filtre renvoie exactement les deals décrits en 1.6 (un test par filtre) ; filtres combinés = intersection ; un compteur égale le nombre de lignes de sa liste ; glisser-déposer et menu donnent le même historique ; nombre de requêtes constant quelle que soit la taille de la liste.
+- **Vous contrôlez** : créer une quinzaine de deals variés, appliquer chaque filtre, enregistrer une vue « Chef privé de Montpellier », déplacer un deal à Perdu avec et sans motif.
+
+#### B07. Devis internes : éditeur, versions et PDF
+- **Branche** : `feat/b07-quotes` · **Taille** : grande · **Dépend de** : B01, B02, B04, B05 · **Débloque** : B08 · **Prérequis** : M10 (comptable : mentions, TVA, éligibilité des lignes au crédit d'impôt).
+- **Objectif** : Créer, modifier et finaliser un devis depuis le deal, entièrement dans l'administration, sans service externe. **Hors chemin critique** (1.2) : un deal passe à Gagné et un dossier se crée (B16) sans aucun devis dans l'outil ; un devis fait ailleurs s'importe en PDF.
+- **Fonctionnalités et règles** (modèle : 8.4)
+  - **Page A-Devis**, ouverte depuis la fiche d'un deal (« Faire un devis ») ; le service, le nom et la commune sont repris du deal. Trois **modèles de départ** (batch cooking, chef privé, cours) précréent les lignes et les textes.
+  - **Lignes entièrement modifiables** : ajouter, supprimer, réordonner, changer libellé, quantité, prix et case « éligible au crédit d'impôt » (décochée par défaut **[À VÉRIFIER]**, M10). La grille et le service de calcul **proposent** des lignes et des totaux ; vous pouvez tout écraser.
+  - **Calculs** : total avant crédit d'impôt, crédit, total après crédit, acompte de 30 % (chef privé), mis à jour en direct. **Forcer un total** est possible, avec un motif, tracé dans l'audit : le calcul est une suggestion, jamais une contrainte.
+  - **Offre (facultative)** : la choisir préremplit ses champs et applique son avantage sur une ligne à part (« Offre Post-partum : −15 % ») ; tout reste modifiable, l'offre reste attachée au devis. Une **remise** exige un motif, **sauf si elle vient d'une offre** (l'offre est le motif).
+  - **Textes libres** en Markdown (introduction, conditions, remarques) et **blocs réutilisables** modifiables en administration (en-tête, mentions, conditions d'annulation du service : texte des CGV, à aligner : M19).
+  - **Brouillon puis version finalisée** : un brouillon se modifie librement et n'a pas de numéro. **« Finaliser »** attribue le numéro `DEV-AAAA-NNN` (le premier libre, jamais réattribué, un trou est sans conséquence), fige la version, génère le **PDF** (WeasyPrint, aux couleurs du site, version des CGV et phrase d'acceptation incluses) et le range sur le deal. Modifier ensuite crée une **nouvelle version** du même numéro ; les anciennes restent consultables.
+  - **Import** : un PDF fait ailleurs se rattache au deal (référence saisie ou numéro attribué), sans passer par l'éditeur.
+  - **Envoi** : vous téléchargez le PDF et l'envoyez depuis votre messagerie ; l'éditeur propose un **texte d'e-mail à copier**. Django n'envoie rien à un prospect (1.4). Passer le deal à « Devis envoyé » reste un geste de votre part.
+  - **Bandeau d'avertissement** tant que `LegalIdentity` est incomplète.
+  - Aucune donnée de santé dans un devis (6.4).
+- **Critères** : montants proposés identiques à la grille et au site pour toutes les combinaisons ; un total forcé sans motif est refusé et tracé ; une version finalisée n'est plus modifiable (une nouvelle version est créée) ; deux finalisations en parallèle n'ont jamais le même numéro (test de concurrence) ; le PDF porte numéro, version des CGV et mentions légales ; un PDF importé se rattache au deal ; **créer un dossier sans aucun devis reste possible** ; une remise sans motif est refusée.
+- **Vous contrôlez** : produire un devis de chaque type, modifier librement lignes et textes, finaliser, créer une version 2, vérifier les totaux à la main une fois par type, importer un PDF, ouvrir le dossier sans devis.
+
+#### B08. Lien d'acceptation du devis (facultatif)
+- **Branche** : `feat/b08-quote-acceptance` · **Taille** : petite · **Dépend de** : B07, B12 · **Débloque** : rien. **Facultative** : peut être livrée en dernier ou jamais ; rien ne dépend d'elle.
+- **Objectif** : Permettre au client d'accepter un devis d'un clic, en plus de l'e-mail « bon pour accord ». L'e-mail reste valable, et **l'acceptation ne déplace jamais le deal**.
 - **Fonctionnalités et règles**
-  - **Trois modèles dans votre Drive, créés depuis l'administration.** Un bouton « Créer les modèles » crée une fois pour toutes un dossier `Devis` et trois documents (batch cooking, chef privé, cours). **Vous les habillez ensuite dans Google Docs** : logo, polices, mise en page, parties fixes (identité, modalités, conditions d'annulation, CGV, phrase d'acceptation). Vous y laissez des **repères** de la forme `{{numero}}`, `{{client_nom}}`, `{{total_apres_credit}}`, `{{offre}}` (le paragraphe de l'offre, vide s'il n'y en a pas)… ; la page A-Devis affiche la liste des repères disponibles et signale ceux que le modèle n'utilise pas.
-  - **Contrainte à connaître** : l'autorisation demandée (`drive.file`, voir plus bas) ne donne accès **qu'aux fichiers créés par l'application**. Les modèles doivent donc être créés par le bouton — vous ne pouvez pas désigner un document que vous auriez fait vous-même. En pratique : vous collez votre mise en page actuelle dans le modèle créé, une fois.
-  - **Génération d'un devis** : la page A-Devis ajoute un bouton **« Générer le devis »**. L'enchaînement est : attribuer et réserver le numéro (`IssuedQuote`, en transaction) → **copier** le modèle du service dans le dossier `Devis` → le **renommer** `DEV-AAAA-NNN — Nom du client` → **remplacer les repères** par les valeurs calculées → rendre le lien. L'écran affiche le lien et un bouton pour ouvrir le document.
-  - **Interface technique** : `GoogleDocsClient` (7.2) avec une implémentation réelle et une **implémentation factice** utilisée en local et en test, comme les autres intégrations. Appels : Drive `files.copy` et `files.create` (dossier), Docs `documents.batchUpdate` avec des requêtes `replaceAllText`. Les identifiants du dossier et des trois modèles sont rangés dans un singleton d'administration, pas dans l'environnement.
-  - **Autorisation** : OAuth 2.0 sur **votre propre compte Google**, avec le seul périmètre **`drive.file`**, qui est **non sensible** chez Google et accepté par `documents.batchUpdate`. Conséquences voulues : les documents vous appartiennent et sont créés dans votre Drive ; l'application **ne peut pas lire le reste de votre Drive** ; et la mise en production de l'autorisation n'exige pas la procédure de validation des périmètres sensibles. Le jeton de rafraîchissement est un **secret d'environnement**, obtenu une fois par une **commande de première autorisation** (M1.18).
-  - **Jamais bloquant** : si l'appel échoue (API indisponible, autorisation révoquée ou expirée, quota), l'écran **retombe sur le texte à copier de B04b** avec un message clair, et une alerte part sans aucune donnée personnelle. Un numéro réservé dont le document n'a pas pu être créé reste réservé et marqué « échec » : **relancer la génération réutilise le même numéro** au lieu d'en consommer un autre.
-  - **Ce que Django ne fait pas** : il ne **relit jamais** le document, ne le modifie pas après coup, n'en garde pas de copie et ne suit pas son statut — le suivi du devis envoyé reste dans HubSpot (section 2.3). Le registre ne stocke que la référence, le service, la date, l'identifiant du document et son lien ; **aucun nom** (interdit 1, section 7.4).
-  - **Bandeau d'avertissement** tant que l'identité légale (`LegalIdentity`) est incomplète, et tant que les modèles n'ont pas été créés.
-- **Critères** : un devis généré ouvre un document **modifiable** dans votre Drive, portant le bon numéro et les bons montants ; **aucun repère non remplacé** ne subsiste (test de relecture du document produit) ; une génération en échec ne consomme pas de numéro et bascule sur le texte à copier ; aucune donnée personnelle dans les journaux ni dans l'alerte ; le client factice est utilisé par défaut en local et en test.
-  - **Le deal passe à « Devis envoyé » tout seul**, à la génération, selon la même règle d'absence d'ambiguïté qu'en B11 : la page cherche les deals du contact et ne déplace que s'il y en a **un seul** dans une étape antérieure ; sinon elle vous demande lequel, et vous pouvez refuser.
-    - **Un décalage assumé** : l'administration sait qu'un devis est **généré**, pas qu'il est **parti**, puisque c'est vous qui l'envoyez depuis HubSpot. Marquer « Devis envoyé » à la génération peut donc se tromper si vous générez un brouillon sans l'envoyer. Le coût de cette erreur est faible et ne sort pas de votre bureau : les relances de cette étape sont **vos tâches HubSpot**, pas des e-mails au client ; et vous ramenez le deal en arrière d'un clic. Le coût de l'erreur inverse — oublier l'étape et ne jamais être relancée sur un devis envoyé — est une vente perdue.
-    - **Contrainte imposée par l'interdit 1 (section 7.4)** : le registre des devis ne porte aucune donnée de prospect, donc **aucun identifiant de deal n'est enregistré**. L'identifiant ne sert qu'à l'appel et n'est jamais écrit en base — l'opération ne peut donc pas être rejouée plus tard. La décision de confidentialité coûte cette commodité, pas davantage.
-- **Vous contrôlez** : créer les modèles, habiller celui du batch cooking dans Google Docs, générer un devis, l'ouvrir, **y ajouter une phrase à la main**, l'exporter en PDF ; puis fausser volontairement le jeton et vérifier que la page vous rend quand même le texte à copier. **Avant** : **M1.18**, **M1.1**.
+  - Sur une version finalisée, le bouton **« Créer un lien d'acceptation »** produit une URL signée à **usage unique** (jeton aléatoire stocké haché), à coller dans votre e-mail. Pas de compte client.
+  - **Page publique** : référence, lignes, totaux, conditions, PDF téléchargeable, et un bouton **« J'accepte ce devis et les conditions générales de vente »** avec saisie du nom. Aucune coordonnée ni donnée de santé n'est exposée.
+  - **À l'acceptation** : date, heure, version et nom saisi sont enregistrés ; la fiche du deal affiche **« Accepté en ligne le … »**. Rien d'autre ne change : vous passez le deal à Gagné vous-même (1.3 étape 6). La valeur juridique de ce clic est à valider **[À VÉRIFIER]**.
+  - Le lien **expire** à la fin de la validité du devis ; une nouvelle version **invalide** le lien de l'ancienne ; un lien déjà utilisé affiche l'acceptation enregistrée.
+  - Panne ou lien désactivé : le circuit par e-mail continue de fonctionner (1.2).
+- **Critères** : un lien ne s'utilise qu'une fois ; un lien périmé ou d'une version remplacée refuse l'acceptation ; l'acceptation n'écrit rien d'autre que ses quatre champs ; le deal ne change pas d'étape ; la page n'expose aucune coordonnée.
+- **Vous contrôlez** : créer un lien, l'ouvrir sur téléphone, accepter, vérifier le badge sur le deal, rouvrir le lien, puis créer une version 2 et vérifier que l'ancien lien ne marche plus.
 
-#### B05. API de lecture pour le site (construction)
-- **Branche** : `feat/b05-read-api` · **Taille** : moyenne · **Dépend de** : B03, B04 · **Débloque** : B06, B06b, B09, S01.
-- **Objectif** : Pour que le site lise ses contenus dans Django sans rien changer pour le visiteur, il faut une porte de lecture. Cette PR expose les contenus publiés (réalisations, avis, FAQ, zones, tarifs, recettes) sous une forme exactement identique à ce que le site attend aujourd'hui. Le visiteur ne verra rien : le site reste statique et rapide, car il ne lit Django qu'au moment de sa construction, jamais quand quelqu'un ouvre une page. C'est la condition pour que vos modifications dans l'administration puissent un jour devenir des pages du site.
-- **Fonctionnalités et règles** : routes de la section 10.1, jeton `Bearer` en lecture seule (`BUILD_API_TOKEN`, comparaison en temps constant), clés en camelCase **identiques aux schémas Zod** du site, contenu **publié** seulement, `updatedAt` par objet, ETag, URL d'images absolues, marqueurs de prix déjà remplacés, schéma OpenAPI.
+
+#### B09. API de lecture pour le site (construction)
+- **Branche** : `feat/b09-read-api` · **Taille** : moyenne · **Dépend de** : B03, B04 · **Débloque** : B10, B11, B14, S02.
+- **Objectif** : Exposer les contenus publiés (réalisations, avis, FAQ, zones, tarifs, recettes) sous la forme exacte que le site attend, pour qu'il les lise à sa construction. Aucune page publique n'appelle Django à l'exécution (1.2).
+- **Fonctionnalités et règles** : routes de la section 9.1 ; jeton `Bearer` en lecture seule (`BUILD_API_TOKEN`, comparaison en temps constant) ; clés en camelCase **identiques aux schémas Zod** du site ; contenu **publié** seulement ; `updatedAt` par objet, ETag ; URL d'images absolues ; marqueurs de prix déjà remplacés ; schéma OpenAPI.
 - **Critères** : sans jeton, 401 ; un brouillon n'apparaît jamais ; chaque réponse correspond au schéma Zod ; ETag renvoie 304 si rien n'a changé.
 - **Vous contrôlez** : appeler les routes avec `curl` et le jeton local, publier puis dépublier un contenu.
 
-#### B06. Import des contenus existants du site
-- **Branche** : `feat/b06-imports` · **Taille** : moyenne · **Dépend de** : B03, B04, B05 · **Débloque** : B06b, S01.
-- **Objectif** : Votre site est déjà rempli : 9 réalisations, des inspirations, une FAQ, des avis, des pages légales, des zones, des prix, 5 recettes. Hors de question de tout ressaisir. Cette PR charge automatiquement ce contenu existant dans l'administration, puis vérifie que ce que Django sert est identique à ce que le site affiche aujourd'hui. Vous retrouvez votre site à l'identique, désormais modifiable depuis l'administration. L'import peut être relancé sans risque de doublon.
-- **Fonctionnalités et règles** : commandes de gestion idempotentes avec `--dry-run` et `--site-path` : `import_projects`, `import_inspirations`, `import_pages`, `import_faq`, `import_reviews`, `import_zones`, `import_pricing`, `import_site_settings` ; images copiées vers le stockage ; photos d'avis (associées par index aujourd'hui) devenues un champ.
-  - **Où se trouve réellement chaque contenu**, car ce n'est pas uniforme : réalisations, inspirations et pages légales dans `content/` ; prix, packs, zones, communes et recettes dans `lib/*.ts` ; **la FAQ dans `messages/fr.json`**, et non dans `content/faq/`, qui est **un dossier vide**. Un import qui chercherait la FAQ dans `content/` n'importerait rien.
-  - **`import_faq` lit neuf emplacements** : `faqPage.sections[].items[]` (52 entrées) et les blocs `faq.items[]` des pages accueil (10), batch cooking (14), chef privé (10), cours (10), tarifs (8), zones (5), recettes (5) et contact (4). Il **dédoublonne par question** : 118 exemplaires pour 70 questions distinctes, chaque question recevant la liste de ses emplacements.
-  - **Treize questions ont aujourd'hui des réponses différentes selon la page** (adaptations rédactionnelles : plus courtes sur l'accueil, propres au service sur les pages de service). Une collection unique n'en garde qu'une. L'import **ne tranche pas** : il écrit la version de la page FAQ, marque l'entrée « à relire » et produit un rapport des variantes écartées, que vous arbitrez à l'étape **M1.20**.
-- **Critères** : deux imports successifs donnent le même résultat ; `--dry-run` n'écrit rien ; la sortie de l'API est **identique** aux données d'origine pour chaque collection. **Chaque import crée au moins un objet, sinon il échoue** — sans cette règle, un import qui ne trouve pas sa source réussit et le contrôle de parité le confirme, puisque vide égale vide. Les comptes attendus sont vérifiés : 9 réalisations, 9 inspirations, 70 questions, 5 recettes, 3 zones. La FAQ cite encore « 49,50 € » : l'import la conserve, la correction par marqueurs est une décision de contenu ultérieure.
+#### B10. Import des contenus existants du site
+- **Branche** : `feat/b10-imports` · **Taille** : moyenne · **Dépend de** : B03, B04, B09 · **Débloque** : B11, S02 · **Prérequis** : M9 (arbitrage des variantes de FAQ, après l'import).
+- **Objectif** : Charger le contenu existant du site (9 réalisations, inspirations, FAQ, avis, pages légales, zones, prix, 5 recettes) dans l'administration sans ressaisie, et prouver que Django sert des données identiques à celles du site actuel. Import relançable sans doublon.
+- **Fonctionnalités et règles** : commandes idempotentes avec `--dry-run` et `--site-path` : `import_projects`, `import_inspirations`, `import_pages`, `import_faq`, `import_reviews`, `import_zones`, `import_pricing`, `import_site_settings` ; images copiées vers le stockage ; photos d'avis (associées par index aujourd'hui) devenues un champ.
+  - **Sources** : réalisations, inspirations, pages légales dans `content/` ; prix, packs, zones, communes, recettes dans `lib/*.ts` ; **FAQ dans `messages/fr.json`** (`content/faq/` est vide).
+  - **`import_faq`** lit neuf emplacements : `faqPage.sections[].items[]` (52) et les blocs `faq.items[]` de accueil (10), batch cooking (14), chef privé (10), cours (10), tarifs (8), zones (5), recettes (5), contact (4). Dédoublonnage par question : 118 exemplaires pour 70 questions, chacune avec la liste de ses emplacements.
+  - **Treize questions ont des réponses différentes selon la page** : l'import ne tranche pas ; il écrit la version de la page FAQ, marque l'entrée « à relire » et produit un rapport des variantes écartées, arbitré à l'étape M9.
+- **Critères** : deux imports successifs donnent le même résultat ; `--dry-run` n'écrit rien ; la sortie de l'API est identique aux données d'origine pour chaque collection ; **chaque import crée au moins un objet, sinon il échoue** (vide égale vide au contrôle de parité) ; comptes vérifiés : 9 réalisations, 9 inspirations, 70 questions, 5 recettes, 3 zones. La FAQ cite encore « 49,50 € » : l'import la conserve (correction par marqueurs = décision de contenu ultérieure).
 - **Vous contrôlez** : importer sur une base vide, parcourir l'administration, comparer quelques fiches avec le site.
 
-#### B06b. Blocs vendeurs des pages dans le CMS
-- **Branche** : `feat/b06b-page-blocks` · **Taille** : moyenne · **Dépend de** : B03, B05, B06 · **Débloque** : S01.
-- **Objectif** : Les pages qui vendent — accueil, batch cooking, chef privé, cours, tarifs, zones — contiennent **environ 9 000 mots de prose** qui restent dans le code après B03, alors que ce sont précisément les textes qu'on veut retoucher après un appel client qui apprend quelque chose. Cette PR les fait passer dans l'administration, **sans toucher aux libellés d'interface** qui, eux, commandent le comportement des composants.
-- **La décision qui rend la chose simple** : le site charge tous ses textes en **un seul point**, `lib/i18n.ts`. L'API ne renvoie donc pas des pages mais un **calque** : un objet de la même forme que `messages/fr.json`, limité aux clés éditées, que la construction **superpose** au fichier. Conséquences : aucun composant n'est modifié, les clés non migrées continuent de venir du fichier, le contrôle de parité est une égalité d'objets, et migrer un bloc de plus devient une opération de données, pas de code.
-- **Fonctionnalités et règles** (modèles : section 9.1)
-  - **`PageBlock`** : une ligne par couple page + section (par exemple `batchPage.audience`), avec `kicker`, `title`, `body` (Markdown), `seo_title` et `seo_description` pour les sections de référencement, plus `PageBlockItem` pour les listes d'arguments (`title`, `body`, `order`). Brouillon et publication comme le reste du contenu (B03), historique des modifications, aperçu du Markdown.
-  - **Ce qui est éditable, et la règle qui le définit** : les champs **rédactionnels** — `kicker`, `title`, `intro`, `body`, `note`, `description`, `excerpt` et les `items` des sections d'argumentaire — ainsi que les `seo.title` et `seo.description` de chaque page. **Ce qui ne l'est pas** : tout ce qui pilote un comportement — appels à l'action, bascules, ouvrir/fermer, précédent/suivant, filtres, compteurs, unités, états vides, messages de formulaire.
-  - **Garde-fou** : une clé ne peut être **créée** ni **renommée** depuis l'administration, seulement modifiée. Le calque ne contient que des clés déjà présentes dans `messages/fr.json`, sinon le composant qui les lirait n'existe pas. Un bloc vidé revient à la valeur du fichier plutôt que d'afficher du vide.
-  - **`import_page_blocks`** (idempotente, `--dry-run`, `--site-path`) charge la prose existante des pages à partir de `messages/fr.json` : **319 chaînes de prose**, en ignorant les 1 231 libellés.
-  - **Route** `GET /api/v1/content/page-texts` : le calque, `updatedAt`, ETag, contenu **publié** seulement, marqueurs de prix déjà remplacés (9.3).
-- **Critères** : le calque ne porte **aucune clé absente** de `messages/fr.json` (test) ; sans aucune édition, le fichier fusionné est **identique** au fichier d'origine (test d'égalité profonde) ; un bloc dépublié revient à la valeur du fichier ; aucun libellé d'interface n'est exposé ; `import_page_blocks` crée au moins un objet.
-- **Vous contrôlez** : modifier l'accroche de la page batch cooking et le titre de référencement de l'accueil, publier, et retrouver vos textes sur le site de test après la publication (palier 4).
+#### B11. Blocs vendeurs des pages dans le CMS
+- **Branche** : `feat/b11-page-blocks` · **Taille** : moyenne · **Dépend de** : B03, B09, B10 · **Débloque** : S02.
+- **Objectif** : Rendre éditables dans l'administration les ~9 000 mots de prose des pages qui vendent (accueil, batch cooking, chef privé, cours, tarifs, zones), sans toucher aux libellés d'interface qui commandent le comportement des composants.
+- **Principe** : le site charge tous ses textes via `lib/i18n.ts`. L'API renvoie un **calque** (objet de même forme que `messages/fr.json`, limité aux clés éditées) que la construction superpose au fichier : aucun composant modifié, clés non migrées inchangées, parité = égalité d'objets.
+- **Fonctionnalités et règles** (modèles : 8.1)
+  - **`PageBlock`** : une ligne par page + section (ex. `batchPage.audience`) avec `kicker`, `title`, `body` (Markdown), `seo_title`, `seo_description` ; `PageBlockItem` pour les listes d'arguments (`title`, `body`, `order`). Brouillon/publication (B03), historique, aperçu Markdown.
+  - **Éditable** : champs rédactionnels (`kicker`, `title`, `intro`, `body`, `note`, `description`, `excerpt`, `items` des argumentaires) et `seo.title` / `seo.description` de chaque page. **Non éditable** : tout ce qui pilote un comportement (appels à l'action, bascules, précédent/suivant, filtres, compteurs, unités, états vides, messages de formulaire).
+  - **Garde-fou** : une clé ne peut être ni créée ni renommée, seulement modifiée ; le calque ne contient que des clés de `messages/fr.json`. Un bloc vidé revient à la valeur du fichier.
+  - **`import_page_blocks`** (idempotente, `--dry-run`, `--site-path`) : **319 chaînes de prose**, en ignorant les 1 231 libellés.
+  - **Route** `GET /api/v1/content/page-texts` : calque, `updatedAt`, ETag, contenu publié seulement, marqueurs de prix remplacés (8.3).
+- **Critères** : aucune clé absente de `messages/fr.json` dans le calque ; sans édition, le fichier fusionné est identique à l'original (égalité profonde) ; un bloc dépublié revient à la valeur du fichier ; aucun libellé exposé ; `import_page_blocks` crée au moins un objet.
+- **Vous contrôlez** : modifier l'accroche de la page batch cooking et le titre SEO de l'accueil, publier, retrouver les textes sur le site de test (palier 4).
 
-#### B07. Déploiement de l'environnement de test
-- **Branche** : `feat/b07-deploy-test` · **Taille** : moyenne · **Dépend de** : B02, **décision M1.9** · **Débloque** : B20b, S01, S02.
-- **Objectif** : Jusqu'ici tout tourne sur l'ordinateur du développeur. Cette PR met le backend en ligne pour l'environnement de test, **pour que vous puissiez essayer l'administration depuis votre navigateur** au lieu d'attendre une démonstration. C'est elle qui rend tous les paliers suivants vérifiables par vous. Le site de test, lui, ne lira ces contenus qu'à partir de S01. Elle met aussi en place les sauvegardes quotidiennes de la base. Elle dépend d'une décision de votre part : où héberger Django et qui peut y accéder (si cela passe par Teads : #ask-devx et #ask-security). Tant que ce choix n'est pas fait, le développement continue en local.
-- **Fonctionnalités et règles** : `Dockerfile` de production, migrations contrôlées, `/healthz` comme test de santé, variables de la section 11, **sauvegardes quotidiennes** de la base (30 jours), journaux sans donnée personnelle, domaine de test (hypothèse `api.test.tabletribu.com`), TLS, administration sous `ADMIN_URL_PREFIX`, workflow de déploiement vers `test` sur `main` (environnement GitHub `test`). Fichiers **génériques** : aucune hypothèse sur l'hébergeur tant qu'il n'est pas choisi. Hébergement dans l'UE. La PR livre aussi `docs/DEPLOY.md` : procédure de déploiement, restauration d'une sauvegarde, rotation des secrets.
+#### B12. Déploiement de l'environnement de test
+- **Branche** : `feat/b12-deploy-test` · **Taille** : moyenne · **Dépend de** : B02, **décision M5** · **Débloque** : B08, B25, S01, S02, S03 · **Prérequis** : M5, M6, secrets de l'environnement `test`.
+- **Objectif** : Mettre le backend en ligne pour l'environnement de test, afin que la cheffe essaie l'administration depuis son navigateur, avec sauvegardes quotidiennes. **Bloquant** : attend la décision d'hébergement (M5, et si Teads : #ask-devx et #ask-security) ; sinon le développement continue en local.
+- **Fonctionnalités et règles** : `Dockerfile` de production ; migrations contrôlées ; `/healthz` ; variables de la section 10 ; **sauvegardes quotidiennes** (30 jours) ; journaux sans donnée personnelle ; domaine de test (hypothèse `api.test.tabletribu.com`), TLS ; administration sous `ADMIN_URL_PREFIX` ; déploiement vers `test` sur `main` (environnement GitHub `test`) ; hébergement dans l'UE ; fichiers génériques, sans hypothèse sur l'hébergeur. Livre `docs/DEPLOY.md` (déploiement, restauration, rotation des secrets).
 - **Critères** : le conteneur démarre avec les variables d'un environnement vierge ; `/healthz` répond ; l'administration n'est joignable que sous son préfixe ; un déploiement s'exécute depuis GitHub.
-- **Vous contrôlez** : ouvrir `/healthz` depuis votre navigateur, vous connecter à l'administration sous son préfixe, lancer un déploiement depuis GitHub, puis **demander une restauration de sauvegarde** — une sauvegarde jamais restaurée ne compte pas.
-- **Bloquant** : attend votre **décision d'hébergement** (M1.9) ; sinon le développement continue en local, mais vous ne pouvez rien essayer vous-même. **Avant** : M1.9, M1.10, secrets de l'environnement `test`.
+- **Vous contrôlez** : ouvrir `/healthz`, vous connecter à l'administration sous son préfixe, lancer un déploiement, puis **demander une restauration de sauvegarde** (une sauvegarde jamais restaurée ne compte pas).
 
-#### B08. Catalogue de recettes et ingrédients
-- **Branche** : `feat/b08-catalog` · **Taille** : grande · **Dépend de** : B03 · **Débloque** : B13.
-- **Objectif** : Pour que le client choisisse ses recettes et reçoive sa liste d'ingrédients, il faut un catalogue précis : chaque recette avec ses ingrédients, leurs quantités pour 4 personnes et leurs allergènes. Cette PR crée ce catalogue dans l'administration à partir de vos 5 recettes actuelles : vous complétez les quantités ingrédient par ingrédient, et le système calcule seul les allergènes de chaque recette. Une recette n'est proposée aux clients que lorsque ses quantités sont complètes, sinon la liste d'ingrédients serait fausse. Les quantités restent privées : seuls vous et la liste générée les utilisent, alors que les clients voient les ingrédients et les allergènes.
-- **Fonctionnalités et règles** (modèles : section 9.2)
-  - 14 allergènes UE, mêmes clés que `lib/recipes.ts`. **Allergènes d'une recette = union de ceux de ses ingrédients** + champ manuel pour les traces. Ils sont **affichés au client**, sur la recette et sur chaque ingrédient.
-  - **4 portions de référence** par recette, quantités proportionnelles. **Aucun ingrédient n'est exclu** des listes (sel, huile et base compris). Prix des ingrédients : on garde le niveau 1 à 4. Pas de gestion de substitutions (la cheffe adapte et le note). Saison **indicative** seulement.
-  - **Quantités saisies par la cheffe** ; une recette **ne peut pas être « disponible pour les clients »** tant qu'une quantité manque. Les quantités ne sortent **jamais** par l'API publique ni par la page de choix (9.2).
+#### B13. Catalogue de recettes et ingrédients
+- **Branche** : `feat/b13-catalog` · **Taille** : grande · **Dépend de** : B03 · **Débloque** : B18.
+- **Objectif** : Créer le catalogue (recettes, ingrédients, quantités pour 4 personnes, allergènes) qui alimente la liste de recettes prédéfinie du lien de choix (1.3 étape 9) et la liste d'ingrédients (étape 11), à partir des 5 recettes actuelles. Une recette n'est proposée aux clients que si ses quantités sont complètes.
+- **Fonctionnalités et règles** (modèles : 8.2)
+  - 14 allergènes UE, mêmes clés que `lib/recipes.ts`. **Allergènes d'une recette = union de ceux de ses ingrédients** + champ manuel pour les traces ; affichés au client sur la recette et chaque ingrédient.
+  - **4 portions de référence**, quantités proportionnelles ; **aucun ingrédient exclu** des listes (sel, huile, base compris) ; prix des ingrédients : niveau 1 à 4 ; pas de gestion de substitutions ; saison **indicative**.
+  - **Quantités saisies par la cheffe** ; une recette **ne peut pas être « disponible pour les clients »** tant qu'une quantité manque. Les quantités ne sortent **jamais** par l'API publique ni par la page de choix (8.2) ; les clients voient ingrédients et allergènes.
   - Administration : ingrédients en ligne, allergènes calculés en lecture seule, fusion de doublons, commande `import_recipes` depuis `lib/recipes.ts`.
 - **Critères** : l'allergène d'un ingrédient apparaît sur la recette ; l'API ne renvoie aucune quantité ; l'activation « disponible » est refusée s'il manque une quantité.
 - **Vous contrôlez** : importer les 5 recettes, ajouter leurs ingrédients, tenter d'activer sans quantité, lire l'API.
 
-#### B09. Publication du site depuis l'administration
-- **Branche** : `feat/b09-publish` · **Taille** : moyenne · **Dépend de** : B02, B05 · **Débloque** : S02.
-- **Objectif** : Une fois votre contenu modifié dans l'administration, il faut le mettre en ligne. Cette PR ajoute un bouton « Publier » qui reconstruit le site sans passer par un développeur. Vous voyez si la publication est en cours, réussie ou en échec, avec l'historique des publications. Si vous cliquez plusieurs fois de suite, rien ne se dédouble, et un échec laisse en ligne le site précédent.
-- **Fonctionnalités et règles** : page d'administration **A-Publier**. Bouton **Publier** : crée un `PublishRun`, **regroupe** les clics rapprochés (délai de 2 minutes, un seul appel), appelle `repository_dispatch` du dépôt `chefmeemz` (type `content-updated`, jeton à portée minimale), suit le statut via l'API GitHub (en attente, en cours, en ligne, échec, lien vers l'exécution), désactive le bouton pendant une construction, affiche l'historique et le nombre de modifications non publiées par collection ; action journalisée.
+#### B14. Publication du site depuis l'administration
+- **Branche** : `feat/b14-publish` · **Taille** : moyenne · **Dépend de** : B02, B09 · **Débloque** : S03 · **Prérequis** : M11 (pour le test réel).
+- **Objectif** : Un bouton « Publier » reconstruit le site sans développeur (1.3 étape 1), avec statut et historique ; aucun doublon en cas de clics répétés, et un échec laisse en ligne le site précédent.
+- **Fonctionnalités et règles** : page **A-Publier**. Bouton **Publier** : crée un `PublishRun`, **regroupe** les clics rapprochés (délai de 2 minutes, un seul appel), appelle `repository_dispatch` du dépôt `chefmeemz` (type `content-updated`, jeton à portée minimale), suit le statut via l'API GitHub (en attente, en cours, en ligne, échec, lien vers l'exécution), désactive le bouton pendant une construction, affiche l'historique et le nombre de modifications non publiées par collection ; action journalisée.
 - **Critères** : 5 clics en 10 secondes = un seul appel ; un échec de GitHub est affiché et reprogrammé.
-- **Vous contrôlez** : cliquer plusieurs fois, lire l'historique, simuler un échec. **Avant (test réel)** : M1.7.
+- **Vous contrôlez** : cliquer plusieurs fois, lire l'historique, simuler un échec.
 
-#### B10. Clients, engagements, passages et réservations
-- **Branche** : `feat/b10-clients-engagements` · **Taille** : grande · **Dépend de** : B01, B04 · **Débloque** : B11, B12, B13, B15, B16, B18, B19.
-- **Objectif** : C'est le cœur de votre suivi client. Cette PR crée dans l'administration la fiche du client (e-mail, prénom, nom, lien vers sa fiche HubSpot), ses engagements (une semaine, un mois de 4 passages, ou sur mesure), les passages avec leurs dates, et les réservations de chef privé et de cours. Elle applique vos règles : annulation sans frais jusqu'à 48 h avant et facturable ensuite, prix figés à l'acceptation, pas deux engagements en même temps pour un même client sauf exception. Une seule page de fiche client montre tout : engagements, passages, pièces du devis, factures et paiements.
-- **Fonctionnalités et règles** (modèles : sections 9.4 à 9.6)
-  - **Client** : prénom, nom, e-mail (en minuscules, **un e-mail = un client**, c'est l'adresse à laquelle partent les propositions de menu), identifiant HubSpot, statut, compte URSSAF prêt ; ni téléphone, ni adresse, ni profil alimentaire. La note interne affiche « aucune allergie ni donnée de santé ici ».
-  - **Fiche client** (une page) : identité, **bouton vers la fiche HubSpot**, engagements et passages, pièces du devis (téléchargement protégé), plans de repas et choix, factures et statut URSSAF (liens), paiements, cartes cadeaux, audit ; recherche par nom ou e-mail. Actions : **mettre à jour l'e-mail** (motif ; change l'adresse à laquelle partent les propositions de menu, invalide les liens de choix en cours, rappelle de faire la même modification dans HubSpot), désactiver, exporter (`owner`), anonymiser (`owner`).
-  - **Engagement** : `upcoming` → `active` (à la première date) → `completed` (tous les passages terminés ou annulés) ; `cancelled` par la cheffe. Prix, taux de crédit et pièces du devis figés ; prix du passage différent de la grille = motif obligatoire.
-  - **Passage** : `planned` → `done` ; `planned` → `postponed` (même numéro, nouvelle date) ; `planned` → `cancelled_free` (≥ 48 h) ou `cancelled_billable` (< 48 h ou absence, **au prix du passage**). Transitions par **services** (jamais de champ modifié directement). **Règle des 48 h** calculée depuis `scheduled_at` ; dérogation motivée et journalisée.
-  - **Durée et dates** : durée libre, un seul champ date-heure par passage ; les 4 passages d'un mois ne sont pas forcément hebdomadaires mais tiennent dans une **fenêtre de 6 semaines** à compter du premier ; une seule cheffe. Un seul engagement actif par période (chevauchement signalé, dérogation possible). La cheffe date les passages dans la liste des passages « sans date » (modification rapide), avec une **aide à la saisie récurrente** (« tous les mardis à 18 h pendant N semaines ») qui remplit d'un coup les passages d'un engagement, chaque date restant modifiable ensuite. Indispensable pour un engagement long.
-  - **Report ou annulation par le client** : il prévient la cheffe par e-mail ou par téléphone ; elle reporte ou annule depuis l'administration (même règle des 48 h). L'action est journalisée et le client reçoit la confirmation par e-mail.
-  - **Réservations** (`Booking`, chef privé et cours) : **chef privé** : acompte (30 %), date confirmée seulement après paiement (B16), solde le soir, annulation sans frais plus de 7 jours avant sinon acompte conservé ; **cours** : sans frais jusqu'à 48 h. Écran de suivi : réservations à venir, acomptes en attente, menu à valider.
-- **Critères** : une transition interdite lève une erreur ; l'annulation à 48 h est testée aux limites (47 h 59, 48 h 00) ; les prix d'un engagement ne changent pas quand la grille change ; une référence de devis déjà utilisée est refusée (mais le devis reste facultatif) ; aucun champ ne porte d'allergie.
-- **Vous contrôlez** : créer un client et un engagement dans l'administration, planifier, annuler à 47 h puis 49 h, modifier un prix de grille, changer l'e-mail d'un client.
+#### B15. Clients, engagements, passages et réservations
+- **Branche** : `feat/b15-clients-engagements` · **Taille** : grande · **Dépend de** : B01, B04, B05 · **Débloque** : B16, B17, B18, B20, B21, B22, B23.
+- **Objectif** : Créer le cœur du suivi dans l'administration : fiche client, engagements, passages (cycle d'une semaine, 1.3) et réservations de chef privé et de cours. Report et annulation restent à la main de la cheffe, sans règle de montant automatique.
+- **Fonctionnalités et règles** (modèles : 8.4, 8.6 et 8.7)
+  - **Client** : lié à un **contact** (B05) qui porte prénom, nom, e-mail, téléphone et adresse ; compte URSSAF prêt ; **statut Actif / Inactif calculé** (Actif tant qu'un engagement a des passages non clôturés, jamais saisi). Le client est créé à l'ouverture du premier dossier (B16). Pas de profil alimentaire ; les allergies restent hors de l'outil (1.2).
+  - **Fiche client** (une seule page) : identité (celle du contact), deals et devis, engagements et passages, pièces du devis (téléchargement protégé), plans de repas et choix, factures et statut URSSAF (liens), paiements, audit ; recherche par nom ou e-mail. Actions : **mettre à jour l'e-mail** (motif ; modifie le contact ; invalide les liens de choix en cours), désactiver, exporter et anonymiser (`owner`).
+  - **Engagement** : `upcoming` → `active` (à la première date) → `completed` (tous les passages terminés ou annulés) ; `cancelled` par la cheffe. Prix, taux de crédit et pièces du devis figés ; prix différent de la grille = motif obligatoire. Un seul engagement actif par période (chevauchement signalé, dérogation possible).
+  - **Passage** : `to_date` → `scheduled` → `menu_sent` → `menu_ready` → `done` → `invoiced` → `closed` ; `cancelled` hors cycle (statuts : 1.3). `menu_sent` et `menu_ready` suivent le plan de repas (B18), `invoiced` et `closed` la facture (B20). Transitions par **services** (jamais de champ modifié directement) ; **tout statut est corrigeable à la main**, avec motif et audit.
+  - **Dates** : durée libre, une date-heure par passage ; les 4 passages d'un mois tiennent dans une **fenêtre de 6 semaines** à compter du premier. La cheffe crée les passages « À dater », puis les date d'un coup avec l'**aide à la saisie récurrente** (« tous les mardis à 18 h pendant N semaines »), chaque date restant modifiable.
+  - **Passages créés / prévus** : pour chaque client Actif, passages créés (hors annulés) sur `sessions_total` ; tant que c'est inférieur, le client est dans le filtre « À planifier » (compteur du tableau de bord : B17).
+  - **Report** (étape 12) : change la date ; statut, lien de choix et menu validé sont conservés, l'ancienne date est gardée dans l'historique. **Annulation** : statut `cancelled`, motif obligatoire, indicateur `billable` et prix décidés par la cheffe, **aucune règle de montant** ; le passage sort des passages créés (le filtre « À planifier » se rouvre) et peut être replanifié (nouveau passage « À dater »). Action journalisée ; le client reçoit la confirmation par e-mail.
+  - **Réservations** (`Booking`, chef privé et cours) : chef privé = acompte de 30 %, date confirmée après paiement (B21), solde le soir ; cours = sans acompte. Conditions d'annulation (ex. chef privé : sans frais plus de 7 jours avant, sinon acompte conservé ; cours : sans frais jusqu'à 48 h) = **texte informatif** repris du devis (`cancellation_policy`) ; la cheffe choisit le statut d'annulation et le montant à la main. Écran : réservations à venir, acomptes en attente. **Pas de cycle de statuts de semaine ni de lien de choix** pour le chef privé et les cours.
+- **Critères** :
+  - Une transition interdite lève une erreur ; un statut se corrige à la main avec trace d'audit.
+  - Un report conserve statut, lien et menu.
+  - Un passage annulé sort de « passages créés », et aucun montant n'est calculé automatiquement.
+  - Le statut Actif / Inactif suit les passages non clôturés.
+  - Les prix d'un engagement ne changent pas quand la grille change.
+  - Une référence de devis déjà utilisée est refusée, le devis restant facultatif.
+  - Aucun champ ne porte d'allergie.
+- **Vous contrôlez** : créer un client et un engagement, planifier, reporter puis annuler un passage, voir le compteur 2/4 changer, modifier un prix de grille, changer l'e-mail d'un client.
 
-#### B11. Créer un client et un engagement depuis un devis accepté (page A-Dossier), notes HubSpot
-- **Branche** : `feat/b11-create-from-quote` · **Taille** : moyenne à grande · **Dépend de** : B02, B04, B10 · **Débloque** : B12, B19.
-- **Objectif** : C'est l'étape qui transforme un prospect en client. Aujourd'hui, quand le client répond « bon pour accord » à votre devis (fait dans Google Docs, envoyé depuis HubSpot), rien ne se passe dans un administration. Cette PR ajoute une page unique où vous créez, en quelques minutes, le client, son engagement et ses passages, en y joignant le PDF du devis et l'e-mail d'accord comme preuves. Le prix est prérempli depuis la grille ; si vous le modifiez, vous indiquez pourquoi. Pour un renouvellement, vous ajoutez un engagement au client existant, **sans devis obligatoire**. Django ne garde que le nécessaire : téléphone, adresse, allergies et historique restent dans HubSpot.
-- **Le devis (hors Django)** : rédigé dans Google Docs depuis les modèles de **M1.1**, avec les chiffres et le texte fournis par la page A-Devis (**B04b**), puis envoyé depuis HubSpot. Ce qui compte pour cette PR : la **référence unique** `DEV-AAAA-NNN`, la **validité de 30 jours**, la version des CGV, et le fait que **l'accord se donne par e-mail seulement** (ni SMS ni oral), par la phrase « En répondant "bon pour accord", vous acceptez ce devis et nos conditions générales de vente ».
-- **Fonctionnalités et règles** : page **A-Dossier** en quatre étapes, tout est saisi à la main (aucun fichier n'est lu automatiquement).
-  1. **Client** : choisir un client existant (recherche nom ou e-mail) ou en créer un (e-mail, prénom, nom, identifiant ou lien de la fiche HubSpot). Si l'e-mail ou l'identifiant existe déjà, la page propose le client trouvé.
-  2. **Prestation** : *batch* (**offre** si l'engagement en relève, pack, formule, dîners, nombre de passages 1 ou 4 ou saisi, **portions par passage** défaut 4, date de début, **prix par passage avant crédit** prérempli depuis la grille, **motif obligatoire** s'il est modifié) ; *chef privé ou cours* (date, convives, total, acompte prérempli à 30 % pour le chef privé, notes de menu).
-  3. **Pièces (toutes facultatives)** : référence du devis (**unique si renseignée**), PDF du devis, e-mail d'accord (`.eml`, PDF, image ou texte), date d'accord, version des CGV (préremplie), plus une **note de source** libre (« accord oral », « reconduction à l'identique »…). **Un devis n'est pas obligatoire** : un renouvellement ou un engagement convenu sans devis se crée normalement ; la page affiche seulement un avertissement non bloquant « aucune pièce jointe ». Fichiers privés, type vérifié par le contenu, 10 Mo au plus.
-  4. **Récapitulatif** : montants avant et après crédit pour vérification ; case « envoyer l'e-mail de bienvenue » (nouveau client) ou « envoyer l'e-mail de nouvel engagement » (client existant). Il n'y a pas d'invitation à envoyer : le client reçoit son lien de choix à chaque passage. La fiche client est créée dans tous les cas, y compris pour le chef privé et les cours : la réservation, l'acompte, le suivi de facture et l'avis y sont rattachés.
-  - **À la création** (transaction atomique) : client si nouveau, engagement et passages non datés (ou réservation), audit. Ensuite : e-mail choisi, **note « dossier créé » dans HubSpot** (asynchrone, jamais bloquante ; notes seulement, **aucune lecture ni écriture d'identité**, aucune allergie), tâche « dater les passages » (relance du registre, B12) et **déplacement du deal HubSpot à « Dossier créé »**, qui arrête ses relances. Une double soumission est sans effet.
-  - **Le déplacement du deal, et pourquoi il vaut la peine d'être automatisé** : l'oublier ne gêne pas votre travail, il fait relancer HubSpot à J+7 et J+14 **un client qui a déjà signé**. C'est la seule étape manuelle de cette page dont la conséquence sorte de votre bureau. Le droit existe déjà : l'application privée de M1.5 peut écrire des deals.
-    - **« Gagné » est absorbé, pas automatisé** : la création du dossier **est** la preuve de l'accord, donc l'administration déplace le deal vers « Dossier créé » **depuis l'étape où il se trouve**, sans exiger qu'il soit passé par « Gagné ». Un pipeline HubSpot n'oblige pas à franchir les étapes une à une. Vous n'avez donc plus à marquer « Gagné » du tout : c'est une étape de moins à ne pas oublier.
-    - **La page ne devine jamais** : elle cherche les deals du contact et ne décide que s'il n'y a **aucune ambiguïté**. Un seul deal dans une étape antérieure à « Dossier créé » : elle le déplace. Plusieurs ou aucun — le cas d'un client fidèle, dont chaque renouvellement a créé son deal — elle affiche la liste dans le récapitulatif et vous choisissez. **Vous ne collez jamais d'identifiant.**
-    - **Asynchrone, jamais bloquant, idempotent** : le dossier se crée même si HubSpot est indisponible ; un deal déjà à « Dossier créé » ne bouge pas ; l'échec produit une ligne « intégration en échec » dans le registre (B12) et le rappel manuel reste le filet.
-    - **L'identifiant de l'étape est une donnée de configuration**, modifiable dans l'administration : les identifiants de pipeline HubSpot sont opaques et vous pouvez recréer un pipeline. L'ancien `AuditEvent` enregistre l'étape avant et après.
-  - **Ce que Django écrit dans HubSpot, et ce qu'il n'y écrit pas.** Cette PR élargit délibérément l'écriture de « des notes seulement » à « des notes et l'étape d'un deal ». Aucune donnée d'identité, de santé ou de paiement n'est écrite ni lue, donc aucun interdit de 7.4 n'est en cause — mais c'est un écart au principe « HubSpot fait foi sur la relation client » qu'il valait mieux écrire que glisser.
+#### B16. Créer un client et un engagement depuis un deal gagné (page A-Dossier)
+- **Branche** : `feat/b16-create-from-deal` · **Taille** : moyenne à grande · **Dépend de** : B02, B04, B05, B15 · **Débloque** : B17, B23 · **Prérequis** : M4 (e-mails).
+- **Objectif** : Transformer un deal « Gagné » (accord reçu par e-mail) en client Actif avec son engagement et ses passages, en quelques minutes et sans ressaisie. Un renouvellement ajoute un engagement à un client existant, sans devis obligatoire.
+- **Le devis** : créé depuis A-Devis (B07) ou importé en PDF, **rattaché au deal**, envoyé par vous depuis votre messagerie ; l'acceptation vient d'un e-mail ou du lien facultatif (B08). Retenir : référence unique `DEV-AAAA-NNN`, validité de 30 jours, version des CGV, accord **par e-mail seulement** (ni SMS ni oral) via « En répondant "bon pour accord", vous acceptez ce devis et nos conditions générales de vente ».
+- **Fonctionnalités et règles** : page **A-Dossier** unique (1.3 étape 7), ouverte par « Ouvrir le dossier » sur un deal Gagné, quatre blocs affichés ensemble, récapitulatif mis à jour en direct.
+  1. **Client** : prénom, nom, e-mail, téléphone et adresse repris du **contact** du deal, modifiables ; ou choix d'un client existant (renouvellement ou second service). Un e-mail déjà connu rattache au client trouvé, sans doublon.
+  2. **Prestation** : *batch* = offre (si elle s'applique), pack, formule, dîners, passages (1, 4 ou saisi), **portions par passage** (défaut 4), date de début, **prix par passage avant crédit** prérempli depuis la grille (**motif obligatoire** si modifié), envoi automatique du lien de choix (selon le réglage global, activé ou désactivé pour ce client) ; *chef privé ou cours* = date, convives, total, acompte prérempli à 30 % (chef privé), notes de menu.
+  3. **Pièces** (facultatives, bloc replié) : le **devis du deal** (déjà rattaché, on choisit la version acceptée), e-mail d'accord (`.eml`, PDF, image ou texte), date d'accord, version des CGV (préremplie), note de source libre. **Un devis n'est jamais obligatoire** : seul un avertissement non bloquant « aucune pièce jointe » s'affiche. Fichiers privés, type vérifié par le contenu, 10 Mo au plus.
+  4. **Récapitulatif** : montants avant et après crédit ; case « envoyer l'e-mail de bienvenue » (nouveau client) ou « de nouvel engagement » (client existant). Pas d'invitation : le client reçoit un lien de choix à chaque passage. La fiche client est créée aussi pour le chef privé et les cours (réservation, acompte, facture, avis).
+  - **À la création** (transaction atomique) : `Client` si nouveau (**Actif**), engagement et passages **À dater** (ou réservation) liés au deal, note « dossier créé » sur le deal, audit ; puis e-mail choisi. Une double soumission est sans effet. Le deal reste **Gagné**.
+- **Critères** :
+  - Client, engagement et passages sont créés en une transaction (un échec ne crée rien) ; le client créé est Actif.
+  - Création possible sans aucune pièce de devis, et seulement depuis un deal Gagné ou un client existant.
+  - Un second engagement ne crée aucun doublon ; référence ou e-mail déjà utilisé : refusé ou rattaché sans doublon.
+  - Prix modifié sans motif refusé.
+  - E-mail de bienvenue ou de nouvel engagement envoyé seulement si la case est cochée.
+- **Vous contrôlez** : ouvrir le dossier depuis un deal Gagné de test (coordonnées reprises) ; créer un engagement d'un mois (4 passages non datés) puis un second au même client ; vérifier le devis rattaché et la note « dossier créé » sur le deal.
 
-**Les six étapes du pipeline**, qui les pose et ce qui les clôt : **section 2.3**. Cette PR en livre une, « Dossier créé » ; B04c livre « Devis envoyé » et S00 « Nouveau ».
-  - Notes HubSpot ultérieures (jeton d'application privée, droit d'écrire des notes) : nouvel engagement, passage réalisé, liste envoyée, facture émise, carte cadeau utilisée, avec reprises exponentielles. Limites de l'offre gratuite **[À VÉRIFIER]**.
-- **Critères** : client, engagement et passages créés en une transaction (un échec ne crée rien) ; une référence déjà utilisée ou un e-mail déjà utilisé refusés ou rattachés sans doublon ; **création possible sans aucune pièce de devis** ; prix modifié sans motif refusé ; l'e-mail de bienvenue ou de nouvel engagement n'est envoyé que si la case est cochée ; un second engagement sur le même client ne crée aucun doublon ; l'échec de HubSpot ne bloque pas ; **un deal déjà à « Dossier créé » n'est pas redéplacé**, et deux deals éligibles déclenchent un choix au lieu d'une décision automatique.
-- **Vous contrôlez** : créer un engagement d'un mois (4 passages non datés), en ajouter un second au même client, réutiliser la même référence, couper HubSpot ; puis vérifier dans HubSpot que le deal est passé à « Dossier créé » **et que ses relances se sont arrêtées**, et refaire l'opération sur un client qui a deux deals pour constater qu'on vous demande lequel. **Avant (test réel)** : M1.1, M1.2, M1.5, M1.17.
+#### B17. Suivi : tableau de bord, vues, filtres et flux iCal
+- **Branche** : `feat/b17-followups` · **Taille** : grande · **Dépend de** : B06, B15, B16 · **Débloque** : B18, B20, B22
+- **Objectif** : Rendre visible ce qui demande l'attention de la cheffe sans lui envoyer aucune notification : tableau de bord à six compteurs, vues Clients et Semaines filtrables, page Indicateurs, registre des e-mails automatiques aux clients, flux iCal. Contenu à l'écran : 1.5 à 1.7.
+- **Fonctionnalités et règles** (modèles : 8.12)
+  - **Tableau de bord** (accueil de l'administration) : les **six compteurs** de 1.6, chacun lien vers sa liste filtrée, calculés à l'ouverture, un compteur à zéro restant affiché en grisé. Fenêtres réglables : `dashboard_window_days` (7 j, compteurs « Liens de choix à envoyer » et « Mes semaines à préparer ») et `renewal_window_days` (10 j, « Engagements bientôt terminés »). Avec l'envoi automatique du lien activé, « Liens de choix à envoyer » ne montre plus que les cas où cet envoi est coupé ou en échec. Le bandeau affiche « N relances désactivées » et la suspension globale.
+  - **Vue Clients** : colonnes, tri, recherche et filtres de 1.6 (**à confirmer avec la cheffe avant de les construire** ; proposition : Actif / Inactif, À planifier, Lien à envoyer, Fin d'engagement proche, Compte URSSAF non prêt sans compteur, statut de semaine), au-dessus du tableau, avec compteur sur chaque filtre.
+  - **Vue Semaines** : colonnes, tri, filtres et définition du **« en retard »** de 1.6 ; actions groupées reporter, annuler avec motif, marquer réalisée (l'envoi groupé du lien de choix est ajouté par B18) ; correction manuelle de statut, date et date limite, avec audit.
+  - **Renouvellement** (fiche client, filtre « Fin d'engagement proche », 1.3 étape 18) :
+    - **« Créer un deal de renouvellement »** : crée sur le contact un deal « Nouveau » nommé « Renouvellement — prénom nom », lié à l'engagement terminé, **idempotent** (`renewal_deal_created_at` affiché, bouton « Deal déjà créé »). Il n'est jamais déplacé par le système.
+    - **« Pas de renouvellement »** : motif court (`renewal_declined_reason`, horodaté), sort le client du compteur.
+    - Les deux actions sont journalisées et n'envoient aucun e-mail.
+  - **Page Indicateurs** (1.7) : liée depuis les trois chiffres du mois sous les compteurs ; sélecteur de mois, six derniers mois, clic sur un chiffre = liste des clients, export CSV. Calcul à la demande (historique `django-simple-history`, `InvoiceRecord`, engagements), sans table dédiée, deals compris (demandes, conversion). Le chiffre d'affaires ne se calcule qu'une fois B20 livrée (nul avant).
+  - **Registre `FollowUp`** (e-mails au client uniquement, jamais saisi à la main) : une tâche **horaire** idempotente compare l'état réel aux règles de 1.4, crée la ligne, envoie l'e-mail (`EmailLog`) et **clôt la ligne** quand la situation est résolue. Une situation = une ligne ; limites de 1.4 (un e-mail par client et par jour, jamais entre 21 h et 8 h). Chaque PR déclare ses e-mails : B18 (suivi du menu, rappel de passage), B22 (avis).
+  - **Liste « Relances »** : filtres par type, statut, client ; actions groupées reporter, annuler, envoyer maintenant, suspendre les relances d'un client.
+  - **Réglage des relances** (`FollowUpRule` en tableau + `FollowUpSettings`) : actif, délai, nombre d'envois, modèle ; coupure **globale** (bandeau permanent tant qu'elle est active), **par type**, **par client** (`Client.automatic_emails_enabled`). Les e-mails du service (lien de choix, liste d'ingrédients) n'y figurent pas. Chaque changement est journalisé.
+  - **Chronologie** des e-mails automatiques envoyés, sur chaque fiche (client, engagement, passage, plan de repas, facture, réservation).
+  - **Flux iCal** : `GET /ical/<jeton>.ics`, lecture seule, `ICAL_FEED_TOKEN` (comparaison en temps constant, rotation par changement de variable), passages datés des 12 prochains mois, titre « Passage : prénom », sans adresse ni donnée de santé, identifiant d'événement stable. À confirmer : l'agenda est Google Agenda.
+- **Critères** :
+  - Une situation ne crée jamais deux lignes ni deux e-mails.
+  - **Aucun e-mail ni alerte à la cheffe** (test).
+  - Chaque compteur est égal au nombre de lignes de sa liste filtrée.
+  - Un client sort de « À planifier » dès créés = prévus.
+  - Un client entre dans « Engagements bientôt terminés » quand le dernier passage non annulé tombe dans la fenêtre, et en sort au nouvel engagement ou à « Pas de renouvellement ».
+  - « Créer un deal de renouvellement » ne crée jamais deux deals et n'écrit que le nom et le rattachement.
+  - Les indicateurs sont cohérents avec leurs listes et se recalculent à l'identique depuis les historiques d'étapes.
+  - Chaque filtre de statut ne renvoie que les lignes concernées.
+  - Relance désactivée = non envoyée ; au plus un e-mail par client et par jour, jamais entre 21 h et 8 h.
+  - Requêtes en nombre constant ; mauvais jeton iCal = 404 ; aucune donnée de santé dans le registre ni le flux.
+- **Vous contrôlez** : créer 2 passages sur 4 et voir « Clients à planifier » monter (2/4), puis disparaître ; dater le dernier passage dans les 10 jours, voir « Engagements bientôt terminés » monter, créer le deal de renouvellement (un second clic n'en crée pas), puis le nouvel engagement ; tester « Pas de renouvellement » ; recouper un mois sur la page Indicateurs ; filtrer par chaque statut ; couper une relance client ; s'abonner au flux dans Google Agenda.
 
-#### B12. Suivi et relances : tableau « à faire » et flux iCal
-- **Branche** : `feat/b12-followups` · **Taille** : grande · **Dépend de** : B10, B11 · **Débloque** : B13, B15, B18, B21.
-- **Objectif** : Votre process est fait d'attentes : un client qui ne répond pas, un menu non choisi, une facture non payée, un acompte oublié. Le risque n'est pas technique, c'est d'oublier. Cette PR crée **un registre unique de tout ce qui doit être suivi** et la page d'accueil de votre administration : chaque matin, trois chiffres vous disent ce qui est **en retard**, ce que vous devez faire **aujourd'hui** et ce qui **attend un client**, et chaque ligne indique son statut, son échéance, le nombre de relances déjà faites et la prochaine. Django envoie lui-même les relances simples aux clients (proposition de menu sans réponse, rappel de passage) et vous alerte pour le reste, **sans jamais doubler ce que HubSpot, l'URSSAF ou votre outil de facturation envoient déjà** (qui relance quoi : section 2.3). Elle ajoute aussi un lien d'abonnement pour voir vos passages dans Google Agenda.
-- **Fonctionnalités et règles** (modèles : section 9.12)
-  - **Registre `FollowUp`** : jamais saisi à la main. Une tâche planifiée **toutes les heures** (idempotente) compare l'état réel des objets aux règles de 2.3 : elle crée la ligne quand une situation apparaît, met à jour ses échéances, envoie l'e-mail au client quand le propriétaire est « client_email » (modèle de B02, `EmailLog`), et **clôt la ligne seule** quand la situation est résolue. Une situation = une ligne ; les limites d'envoi de 2.3 s'appliquent ; au-delà du nombre d'envois maximal d'un type, l'alerte passe à la cheffe. Délais et plages réglables dans `FollowUpSettings`.
-  - **Chaque PR déclare ses relances**, et les 25 situations de 2.3 sont toutes attribuées. **B12** fournit le moteur et celles des objets déjà existants : passage sans date, passage réalisé non clôturé, **report ou annulation demandé par le client** (le client prévient par e-mail ou par téléphone, la ligne reste ouverte tant que vous ne l'avez pas saisi — B10 décrit la transition, B12 la suit), client sans engagement, engagement sans pièce, renouvellement à proposer, e-mails échoués, intégrations en échec. Les autres sont ajoutées par **B13** (menus et rappel de passage), **B15** (factures, URSSAF, attestation fiscale), **B16** (acompte), **B17** (cartes), **B18** (avis) et **B19** (RGPD) ; leurs compteurs s'activent à ce moment. **Les cinq relances d'avant-dossier ne sont déclarées par aucune PR** : elles vivent dans HubSpot et se règlent en M1.5 ; la page A-Suivi se contente d'afficher les liens des trois vues.
-  - **Page A-Suivi**, intitulée « À faire » à l'écran (accueil de l'administration) : en haut trois totaux (**en retard**, **à faire aujourd'hui**, **en attente du client**) ; puis quatre blocs : **À faire par vous** (trié : retard en rouge, aujourd'hui en orange, à venir en gris ; chaque ligne : client, objet, depuis quand, échéance, boutons *Ouvrir*, *Fait*, *Reporter*, *Annuler avec motif*) ; **En attente du client** (relances automatiques : nombre d'envois, dernier et prochain envoi) ; **Dans HubSpot** (liens vers les vues « devis sans réponse » et « deals Gagné sans dossier ») ; **Résolu récemment** (7 jours).
-  - **Liste « Relances »** de l'administration : filtres par type, propriétaire, statut, en retard, client ; actions groupées : marquer fait, reporter, annuler, envoyer maintenant (relances par e-mail), suspendre les relances d'un client.
-  - **Résumé quotidien par e-mail** : une tâche planifiée à l'heure choisie envoie « ce qui est en retard » puis « ce qui est à faire aujourd'hui », une ligne par situation avec un lien direct. **Aucun envoi les jours où il n'y a rien** — c'est la règle qui empêche l'e-mail de devenir du bruit et d'être ignoré. L'objet porte les chiffres (« Table et Tribu — 2 en retard, 3 aujourd'hui ») pour trier sans ouvrir. Pas de section « à venir ». Le message se termine par un rappel des vues HubSpot, sans en recopier le contenu (Django ne lit pas HubSpot).
-  - **Trois alertes immédiates**, parce qu'attendre le résumé du lendemain ferait rater l'échéance : menu non envoyé alors que le passage est dans 3 jours, passage demain dont le menu n'est pas relu, demande URSSAF refusée. Un seul interrupteur les couvre, actif par défaut, avec un avertissement explicite au moment de le couper.
-  - **Écran de réglage des relances** (`FollowUpRule` en tableau + `FollowUpSettings`), deux sections : **relances aux clients** (actif, délai, nombre d'envois, modèle d'e-mail) et **mes e-mails de suivi** (résumé quotidien et alertes). Trois niveaux de coupure : **globale** (frein d'urgence), **par type**, **par client**. **Couper une relance client ne supprime jamais le suivi** : la ligne change de propriétaire et revient dans « à faire par vous » — sans cette règle, désactiver un e-mail créerait un trou silencieux. Les e-mails **du service** (proposition de menu, liste d'ingrédients, lien d'acompte, carte cadeau) ne figurent pas dans cet écran. Chaque changement est journalisé, un **bandeau permanent** s'affiche tant que la suspension globale est active, et la page A-Suivi indique en permanence « N relances désactivées » pour qu'un interrupteur oublié ne devienne pas invisible.
-  - **Statut de suivi sur chaque fiche** (client, engagement, passage, plan de repas, facture, réservation) : un bandeau (vert *tout est à jour*, orange *à traiter*, bleu *en attente du client*, rouge *en retard*) et la **chronologie** des relances et des e-mails envoyés pour cet objet.
-  - **Flux iCal** : `GET /ical/<jeton>.ics` en lecture seule, jeton `ICAL_FEED_TOKEN` (comparaison en temps constant, rotation en changeant la variable), passages datés des 12 prochains mois, titre « Passage : prénom », sans adresse ni donnée de santé, identifiant d'événement stable. À confirmer : l'agenda est bien Google Agenda.
-- **Critères** : une même situation ne crée jamais deux lignes ni deux e-mails ; aucun résumé quotidien n'est envoyé un jour sans rien à faire ; une relance désactivée bascule en « à faire par vous » et reste suivie ; une situation résolue clôt sa ligne automatiquement ; au plus un e-mail de relance par client et par jour, jamais entre 21 h et 8 h ; une relance reportée réapparaît à la date choisie ; chaque total mène à la liste filtrée ; requêtes en nombre constant ; un mauvais jeton iCal donne 404 ; aucune donnée de santé dans le registre ni dans le flux.
-- **Vous contrôlez** : créer des situations (passage sans date, menu non proposé), voir apparaître les lignes et leurs couleurs, reporter une ligne, régler un délai dans `FollowUpSettings`, confirmer qu'un deuxième e-mail n'est pas envoyé le même jour, couper une relance et vérifier qu'elle réapparaît dans vos actions, vous abonner au flux dans Google Agenda.
+#### B18. Menus par passage : choix par le client, validation et listes d'ingrédients
+- **Branche** : `feat/b18-meal-plans` · **Taille** : grande · **Dépend de** : B02, B13, B15, B17 · **Débloque** : B19 · **Prérequis** : M4 (e-mails).
+- **Objectif** : Remplacer les échanges d'e-mails et de SMS sur le menu. Le menu appartient au **passage** (un mois = quatre menus indépendants) ; la cheffe ne compose rien : le client reçoit un lien avec une liste de recettes prédéfinie, la garde ou la modifie, valide, et reçoit un PDF unique (menu retenu + liste d'ingrédients). Sans réponse, la cheffe valide la liste d'un clic : rien ne bloque.
+- **Fonctionnalités et règles** (modèles : 8.8 ; process : 1.3 étapes 9 à 11)
+  - **États du plan de repas**, reportés sur le statut du passage : **envoyé** (Menu envoyé) → **validé** (par le lien, par e-mail ou par la cheffe ; Menu prêt) → **préparé** (PDF produit) ; **à revoir** quand le client demande un changement : réouverture, nouveau lien.
+  - **Envoyer le lien de choix** : bouton sur un passage **Planifiée** ; crée le plan avec sa liste prédéfinie, génère le lien, envoie l'e-mail, passe à **Menu envoyé**. Lien copiable (SMS, WhatsApp) ; **envoi en lot** depuis la vue Semaines (B17). **Date limite** par défaut 2 jours avant le passage (`menu_deadline_days`), modifiable par passage.
+  - **Envoi automatique (option, désactivée par défaut)** : si `auto_menu_link` est activée, la tâche planifiée envoie le lien `auto_menu_link_days` jours avant (7 par défaut) pour chaque passage Planifiée sans lien, même liste, même e-mail, passage à Menu envoyé. Réglage global (`FollowUpSettings`), forçable ou coupable par engagement ; un passage planifié à moins de 7 jours reçoit son lien à la prochaine exécution, jamais entre 21 h et 8 h ; ignore les passages annulés ou déjà envoyés à la main ; arrêté par la suspension globale ; un report après envoi ne renvoie rien. Envois journalisés (`validation_source`, audit). Le bouton manuel reste toujours disponible.
+  - **Liste prédéfinie** : `quota` recettes des séries autorisées du pack, **en évitant celles des deux derniers passages du client** (`chosen_by = default`) ; modifiable par la cheffe avant l'envoi, par le client dans la limite du quota. Quota = nombre de dîners (3, 4 ou 5), un dîner = une recette ; portions = `Engagement.servings`.
+  - **Validation** : par le lien (B19), **hors ligne** (bouton « Validé par le client », date et e-mail en pièce facultative, `validation_source = email`), ou **par la cheffe d'un clic** à la date limite (`staff`) ; jamais automatique.
+  - **Allergènes** : affichés sur chaque recette et ingrédient, page et PDF. Aucun blocage automatique : le client choisit sous sa responsabilité (son accord écrit vaut confirmation). La cheffe relit chaque menu validé avec sa note d'allergies (hors de l'outil) et le marque **« relu »** (`reviewed_at`) ; non relu, il passe **en retard 48 h avant le passage** (colonne « relu » de la vue Semaines), sans notification.
+  - **PDF unique** (WeasyPrint) à la validation, envoyé au client : menu retenu (plats, descriptions, allergènes) puis liste d'ingrédients par rayon. La fiche de préparation de la cheffe est produite à part, dans tous les cas. Régénération idempotente.
+  - **Liste d'ingrédients** : quantités × portions / portions de référence, agrégées par ingrédient, conversion g↔kg et ml↔l, unités incompatibles non fusionnées, arrondi (pièces à l'unité supérieure, poids au 5 g), aucun ingrédient exclu. Mode de courses par engagement (défaut : la cheffe).
+  - **Courses facturées au réel** : montant et justificatifs saisis après le passage, ligne non éligible au crédit d'impôt (B20), avertissement au-delà de +20 % de l'estimation.
+  - **E-mails automatiques au client** (1.4) : **suivi du menu non rempli, 3 au plus, un tous les 2 jours** (J+2, J+4, J+6), chacun rappelant la date limite avec le lien ; arrêt à la validation, à l'annulation ou au passage ; les 3 envois faits, le client reste dans le filtre « Menu envoyé » et la cheffe l'appelle. Un report déplace la date limite sans remettre le compte à zéro. **Rappel de passage 24 h avant**. Nombre d'envois et intervalle réglables dans `FollowUpRule`. Aucune notification à la cheffe.
+  - **Actions d'administration** : envoyer le lien (un ou lot), copier le lien, choisir ou valider à la place du client, marquer « relu », rouvrir, régénérer le PDF. **Gabarits** : lien de choix ; menu validé avec la liste.
+- **Critères** :
+  - Une validation hors quota ou hors pack est refusée ; le PDF régénéré est identique.
+  - Une réouverture crée un nouveau lien et invalide le précédent.
+  - Envoi du lien (manuel ou automatique) = Menu envoyé ; validation = Menu prêt.
+  - L'envoi automatique est désactivé par défaut, ne concerne que les passages Planifiée à `auto_menu_link_days` jours ou moins, ne part jamais entre 21 h et 8 h, ne renvoie jamais un lien déjà envoyé et respecte la suspension globale.
+  - Date limite par défaut 2 jours, modifiable.
+  - La liste prédéfinie évite les recettes des deux derniers passages.
+  - Au plus 3 e-mails de suivi, un tous les 2 jours, aucun après validation, annulation ou passage.
+  - Un menu non validé à l'échéance reste dans « Menu envoyé » et ne se valide jamais seul.
+  - Aucune donnée de santé dans le plan.
+- **Vous contrôlez** : créer un engagement d'un mois, dater les passages, envoyer le lien, vérifier la liste prédéfinie reçue, remplacer une recette, valider, contrôler à la main les quantités du PDF, rouvrir pour un second choix, changer une date limite.
 
-#### B13. Menus par passage : proposition, validation et listes d'ingrédients
-- **Branche** : `feat/b13-meal-plans` · **Taille** : grande · **Dépend de** : B02, B08, B10, B12 · **Débloque** : B14.
-- **Objectif** : C'est ce qui remplace les allers-retours d'e-mails et de SMS pour décider du menu. **Le menu appartient au passage, pas à l'engagement** : un engagement d'un mois donne quatre menus indépendants, un engagement d'un an en donne quarante-huit — les recettes dépendent de la saison et de ce que vous avez sous la main, un menu décidé à l'avance pour l'année ne tiendrait pas. Pour chaque passage, vous préparez une proposition de recettes, le client l'ajuste et la valide, puis le système produit **un seul PDF pour le client**, reprenant le menu retenu et la liste d'ingrédients (votre fiche de préparation, elle, est à part), additionnée recette par recette et mise à l'échelle des portions. S'il ne répond pas, votre proposition devient le menu : rien ne bloque jamais.
-- **Fonctionnalités et règles** (modèles : section 9.7)
-  - **Six états**, visibles dans l'administration : **brouillon** (créé 7 jours avant le passage par une tâche planifiée) → **proposition prête** (vous choisissez les recettes, ou partez du pré-remplissage) → **envoyée** (e-mail au client avec son lien de choix) → **validée** (par le lien, par e-mail, ou par vous faute de réponse) → **préparée** (PDF produit). L'état **à revoir** sert quand le client demande un changement : vous modifiez et renvoyez une **version 2**, avec un nouveau lien.
-  - **Pré-remplissage de la proposition** : le système propose `quota` recettes des séries autorisées du pack, en évitant celles des deux derniers passages du même client. Vous remplacez librement ce que vous voulez avant d'envoyer.
-  - **Quota et portions** : un dîner = une recette ; quota = nombre de dîners (3, 4 ou 5) ; portions = `Engagement.servings`.
-  - **Allergènes** : affichés sur chaque recette et chaque ingrédient, dans le PDF comme sur la page de choix. **Aucun blocage automatique** : le client choisit sous sa responsabilité, et **son accord écrit vaut confirmation** — ce qui est plus solide qu'une case cochée. Vous relisez chaque menu validé avec la note HubSpot du client et le marquez **« relu »** (`reviewed_at`) ; un menu non relu reste dans « à faire » et passe **en retard 48 h avant le passage**.
-  - **Échéance** : date limite 3 jours avant le passage. Sans réponse, une ligne « valider la proposition » apparaît dans « à faire » ; vous validez d'un clic (`validation_source = staff`). Aucun choix n'est fait automatiquement sans vous.
-  - **Validation hors ligne** : si le client répond « d'accord » par e-mail plutôt que par le lien, vous cliquez **« Validé par le client »** en indiquant la date et, en pièce facultative, son e-mail (`validation_source = email`).
-  - **PDF unique** (WeasyPrint), produit à la validation et envoyé au client : d'abord **le menu retenu** (plats, descriptions, allergènes), puis **la liste d'ingrédients** groupée par rayon. Votre **fiche de préparation** (passage, recettes, quantités) est produite dans tous les cas. Régénération idempotente.
-  - **Calcul de la liste** : quantités de chaque recette × portions / portions de référence, **agrégées par ingrédient**, conversion des unités compatibles (g↔kg, ml↔l), unités incompatibles non fusionnées, arrondi (pièces à l'unité supérieure, poids au 5 g), **aucun ingrédient exclu**. Mode de courses configurable par engagement (défaut : la cheffe).
-  - **Courses facturées au réel** (si la cheffe les fait) : saisie du montant et des justificatifs après le passage, ligne non éligible au crédit d'impôt sur la facture (B15), avertissement au-delà de +20 % de l'estimation.
-  - **Relances déclarées** (2.3) : menu à proposer (7 jours avant, en retard à 4 jours), proposition sans réponse (**deux e-mails**, voir ci-dessous), menu à relire, rappel de passage 24 h avant.
-  - **Les deux relances du menu** : la première **2 jours après l'envoi** du lien, la seconde **24 h avant la date limite** — dernier moment utile pour obtenir la trace écrite des allergènes acceptés, ce qui est la vraie raison de relancer : sans réponse la prestation a lieu quand même, mais le dossier n'a plus que votre validation (`validation_source = staff`). C'est la **seule relance du projet calculée à rebours d'une échéance** et non en avant d'un envoi ; les autres partent toutes d'une date de départ. Deux conséquences à traiter : si la proposition part tard, les deux envois peuvent tomber le même jour ou dans le désordre — on n'en envoie alors **qu'un seul**, le dernier ; et la règle « au plus un e-mail par client et par jour » s'applique comme partout.
-  - **Actions d'administration** : préparer, envoyer, valider à la place du client, marquer « relu », rouvrir, régénérer le PDF. **Gabarits d'e-mail** : proposition avec lien, puis menu validé accompagné de la liste.
-  - **`menu_mode`** est posé sur l'engagement mais une seule valeur est implémentée : « la cheffe propose ». La valeur « le client choisit » reste inerte, prête pour un éventuel espace client.
-- **Critères** : une validation hors quota ou hors pack est refusée ; le PDF régénéré est identique ; un renvoi crée une version 2 avec un nouveau lien et invalide le précédent ; un menu non validé à l'échéance apparaît dans « à faire » et ne se valide jamais tout seul ; aucune donnée de santé n'entre dans le plan.
-- **Vous contrôlez** : créer un engagement d'un mois, dater les passages, préparer et envoyer une proposition, valider à la place du client, ouvrir le PDF et vérifier les quantités à la main, demander une version 2. **Avant (test réel)** : M1.2.
+#### B19. Page de choix du menu (lien à usage unique)
+- **Branche** : `feat/b19-menu-choice-page` · **Taille** : petite à moyenne · **Dépend de** : B18 · **Débloque** : rien.
+- **Objectif** : Laisser le client choisir ses recettes **sans compte** : il ouvre son lien, voit la liste prédéfinie avec les allergènes, remplace ce qu'il ne veut pas, valide. La validation est enregistrée, datée et tracée.
+- **Fonctionnalités et règles** (accès : section 7)
+  - **Page servie par Django**, aux couleurs du site (`styles/tokens.css`), **sans compte, session ni cookie d'authentification**.
+  - **Jeton** aléatoire de 32 octets, **stocké haché**, lié à un seul plan de repas, valable jusqu'à la date limite, **invalidé après validation** et à chaque nouvelle version du plan. Comparaison en temps constant, limitation de débit par IP, `noindex` et `Referrer-Policy: no-referrer`.
+  - **Expose** : prénom, date du passage, quota, **liste prédéfinie** et recettes disponibles du pack, ingrédients **sans quantités**, **allergènes de la recette et de chaque ingrédient**. Rien d'autre (ni adresse, téléphone, facture, autre passage, donnée de santé).
+  - **Accepte** : remplacement de recettes dans le quota et les séries du pack, une note libre, puis la validation, qui verrouille le plan et déclenche le PDF (B18). Le serveur refuse tout dépassement et toute requête après la date limite, avec un message invitant à contacter la cheffe.
+  - **États** : lien inconnu ou expiré, menu déjà validé (récapitulatif en lecture seule), date limite dépassée, erreur. Utilisable à 375 px, au clavier et **sans JavaScript** (formulaire natif).
+- **Critères** :
+  - Un jeton ne donne jamais accès au plan, au client ni aux documents d'un autre (404).
+  - Aucune quantité ni donnée de santé exposée.
+  - Un lien déjà utilisé n'ouvre que le récapitulatif.
+  - Tests : jeton inconnu, expiré, déjà utilisé, d'un autre plan ; dépassement de quota ; recette hors pack ; requête après l'échéance ; validation sans JavaScript ; limitation de débit.
+- **Vous contrôlez** : envoyer un lien à votre adresse, l'ouvrir sur téléphone, choisir, valider, rouvrir le lien et vérifier qu'il ne permet plus de modifier.
 
-#### B14. Page de choix du menu (lien à usage unique)
-- **Branche** : `feat/b14-menu-choice-page` · **Taille** : petite à moyenne · **Dépend de** : B13 · **Débloque** : rien.
-- **Objectif** : Donner au client la main sur la seule chose qui compte vraiment pour lui — ce qu'il va manger — **sans lui imposer un compte**. Il reçoit un e-mail, clique sur un lien, voit les plats que vous proposez avec leurs allergènes, remplace ceux qu'il ne veut pas, valide. Rien à créer, rien à retenir : un lien cliquable obtient toujours plus de réponses qu'une connexion à retrouver dans sa boîte mail. Pour vous, c'est l'étape qui transforme le menu d'un aller-retour par e-mail en une validation enregistrée, datée et tracée.
-- **Fonctionnalités et règles** (accès : section 8)
-  - **Page servie par Django**, gabarit aux couleurs du site (`styles/tokens.css`), **sans compte, sans session, sans cookie d'authentification**.
-  - **Jeton** aléatoire de 32 octets, **stocké haché**, lié à un seul plan de repas, valable jusqu'à la date limite, **invalidé après validation** et à chaque nouvelle version de la proposition. Comparaison en temps constant, limitation de débit par adresse IP, `noindex` et `Referrer-Policy: no-referrer` pour que le lien ne fuite pas par le référent.
-  - **Ce qu'elle expose** : prénom, date du passage, quota, recettes proposées et recettes disponibles du pack, avec ingrédients **sans quantités** et **allergènes de la recette et de chaque ingrédient**. Rien d'autre : ni adresse, ni téléphone, ni facture, ni autre passage, ni donnée de santé.
-  - **Ce qu'elle accepte** : remplacement des recettes dans la limite du quota et des séries du pack, une note libre, puis la validation — qui verrouille le plan et déclenche le PDF (B13). Le serveur refuse tout dépassement et toute requête après la date limite, avec un message invitant à contacter la cheffe.
-  - **Feuille de style** reprenant les couleurs du site (`styles/tokens.css`).
-  - **États** : lien inconnu ou expiré, menu déjà validé (récapitulatif en lecture seule), date limite dépassée, erreur. Utilisable à 375 px, au clavier, et **sans JavaScript** (formulaire natif) — un client sur un téléphone ancien doit pouvoir valider.
-- **Critères** : un jeton ne donne jamais accès au plan, au client ni aux documents d'un autre (404) ; aucune quantité ni donnée de santé n'est exposée ; un lien utilisé deux fois n'ouvre que le récapitulatif. **Cas à couvrir par les tests** : jeton inconnu, expiré, déjà utilisé, jeton d'un autre plan, dépassement de quota, recette hors pack, requête après l'échéance, validation sans JavaScript, limitation de débit.
-- **Vous contrôlez** : envoyer une proposition à votre propre adresse, ouvrir le lien sur téléphone, changer un plat, valider, puis rouvrir le même lien et vérifier qu'il ne permet plus de modifier.
+#### B20. Facturation par passage et suivi URSSAF (saisie manuelle)
+- **Branche** : `feat/b20-billing` · **Taille** : moyenne · **Dépend de** : B15, B17, **décision M14** · **Débloque** : B21, B23. **Prérequis** : M10, M14.
+- **Objectif** : Garantir qu'aucun passage réalisé n'échappe à la facturation. Vous émettez la facture dans votre outil externe et saisissez son numéro et son statut (étapes 14 et 15) ; Django ne numérote jamais les factures. Pour le batch cooking, la PR suit aussi la demande d'avance immédiate URSSAF.
+- **Fonctionnalités et règles** (modèles : section 8.9)
+  - Quand un passage `done` (ou `cancelled` que la cheffe marque **facturable**) apparaît, création **idempotente** d'un `InvoiceRecord` (`to_issue`) avec prix figé, part crédit d'impôt, part client et référence du devis. Montant éligible au crédit : prix × taux figé, corrigeable avec motif **[À VÉRIFIER]** avec le comptable (lignes non éligibles).
+  - Interface `InvoicingProvider`, une seule implémentation : **`ManualProvider`** (numéro, statut et lien saisis à la main). Export CSV.
+  - Statuts du passage (1.3) : numéro saisi → **Facturée** ; facture marquée payée → **Clôturée**. Avoirs et annulations après facturation : gérés dans l'outil, Django garde le lien.
+  - Alimente les compteurs **« Semaines à facturer »** (filtre Réalisée) et **« Factures à suivre »** (filtre Facturée) de B17 ; aucune alerte, aucun rappel de paiement au client (l'outil et l'URSSAF s'en chargent).
+  - **Batch** : `UrssafPaymentRequest` à statuts saisis à la main (envoyée, validée par le client, refusée, expirée, payée), affichée dans l'écran de facturation ; aucun appel à l'URSSAF ; **avertissement non bloquant** si le compte particulier.urssaf.fr n'est pas prêt avant le premier passage (case « compte URSSAF prêt », B17). Le client ne règle que sa part via l'URSSAF (pas de Stripe pour le batch).
+  - Acompte du chef privé : facture via l'outil. **Attestation fiscale** : envoyée par l'outil ; Django n'envoie rien (1.3 étape 16).
+- **Critères** : un passage réalisé génère exactement un enregistrement ; une annulation facturable génère le bon montant ; montants avant/après crédit cohérents ; saisie de facture → Facturée, paiement → Clôturée ; aucune alerte envoyée.
+- **Vous contrôlez** : marquer un passage réalisé, le retrouver dans « Semaines à facturer », saisir la facture puis la marquer payée, et vérifier le passage à Clôturée.
 
-#### B15. Facturation par passage et suivi URSSAF (saisie manuelle)
-- **Branche** : `feat/b15-billing` · **Taille** : moyenne · **Dépend de** : B10, B12, **décision M1.15** · **Débloque** : B16, B19, B21.
-- **Objectif** : Aujourd'hui rien ne garantit qu'un passage réalisé a bien été facturé. Cette PR crée automatiquement, à chaque passage réalisé (ou annulé de façon facturable), une ligne « facture à émettre » avec le bon montant, la part prise en charge par le crédit d'impôt et la référence du devis. Vous émettez la facture dans votre outil de facturation (choix encore à faire), puis saisissez son numéro et son statut : le système ne numérote jamais les factures lui-même. Pour le batch cooking, elle suit aussi la demande d'avance immédiate URSSAF (envoyée, validée par le client sous 48 h, payée) et vous alerte si le client tarde, pour éviter les impayés.
-- **Fonctionnalités et règles** (modèles : section 9.8)
-  - À chaque passage `done` ou `cancelled_billable`, création **idempotente** d'un `InvoiceRecord` (`to_issue`) avec le prix figé, la part crédit, la part client et la référence du devis. **Montant éligible au crédit** : par défaut prix × taux figé, corrigeable avec motif si le devis contient des lignes non éligibles **[À VÉRIFIER]** avec le comptable.
-  - Interface `InvoicingProvider`, une seule implémentation : **`ManualProvider`** : la cheffe émet dans l'outil externe puis saisit numéro, statut et lien (jamais numérotées par Django). Écran « factures à émettre », export CSV. Avoirs et annulations après facturation : gérés dans l'outil, Django garde le lien. Délai de paiement et pénalités : selon les CGV.
-  - **Batch** : `UrssafPaymentRequest` suivie (envoyé, validé par le client, payé) ; statuts saisis à la main (aucun appel automatique à l'URSSAF) ; **avertissement non bloquant** si le client n'a pas activé son compte particulier.urssaf.fr avant le premier passage. **Attestation fiscale annuelle** : fournie par l'outil, Django envoie un rappel en janvier. Le client ne règle que sa part via l'URSSAF (pas de Stripe pour le batch). Facture d'acompte du chef privé via l'outil.
-  - **Relances (2.3)** : **compte URSSAF non confirmé** 7 jours avant le premier passage (sans ce compte, l'avance immédiate est impossible et vous encaissez 100 % à la place de 50 % — c'est la relance la plus rentable de la PR) ; **attestation fiscale** : un rappel en janvier, une fois, pour vérifier que l'outil de facturation l'a bien envoyée ; facture à émettre (le lendemain du passage) ; **facture émise non payée** : alerte à l'échéance + 3 jours puis + 10 jours (`due_date`), l'enregistrement affichant « relance envoyée le … » que vous saisissez ; **demande URSSAF** refusée ou expirée : alerte immédiate, non validée : alerte à 72 h. **Django n'envoie aucun rappel de paiement au client** : l'outil de facturation et l'URSSAF le font déjà (à confirmer avec l'outil choisi) ; c'est vous qui relancez si besoin, depuis l'outil ou HubSpot.
-- **Critères** : un passage réalisé génère exactement un enregistrement ; une annulation facturable génère le bon montant ; montants avant et après crédit cohérents ; une demande non validée à 72 h apparaît dans « à faire » (A-Suivi).
-- **Vous contrôlez** : clôturer un passage et suivre la chaîne jusqu'à « payée ». **Avant** : M1.14, M1.15 (un branchement automatique ferait une PR dédiée).
+#### B21. Paiements Stripe : acompte du chef privé
+- **Branche** : `feat/b21-payments` · **Taille** : moyenne · **Dépend de** : B15, B20 · **Débloque** : B23. **Prérequis** : M10, M16.
+- **Objectif** : Permettre au client du chef privé de régler l'acompte de 30 % par un lien Stripe sécurisé, la date n'étant confirmée qu'une fois le paiement validé. Le batch cooking n'est pas concerné (URSSAF, B20) ; pas d'acompte pour les cours.
+- **Fonctionnalités et règles** (modèles : section 8.10)
+  - Lien envoyé par e-mail (à la main, depuis la réservation) vers une page Django qui crée la **session Stripe Checkout à la demande** (une session expire au plus tard après 24 h **[À VÉRIFIER]**). Carte et SEPA, frais à la charge de la cheffe. Aucun numéro de carte ne passe par Django.
+  - **Aucune relance automatique, aucune alerte** : l'acompte en attente se lit dans l'écran de suivi des réservations ; relancer ou **libérer la date** est une décision manuelle. La date reste « non confirmée » tant que l'acompte n'est pas payé.
+  - Webhook `/webhooks/stripe` : **signature vérifiée**, idempotence par `WebhookEvent.event_id`, rejeu manuel ; la réservation passe à « acompte payé » **seulement après le webhook**.
+  - Remboursement par action d'administration, avec motif.
+- **Critères** : tests avec événements simulés (succès, échec, rejeu, signature invalide, remboursement) ; aucune relance automatique créée.
+- **Vous contrôlez** : payer un acompte avec une carte de test, puis rejouer l'événement.
 
-#### B16. Paiements Stripe : acompte du chef privé
-- **Branche** : `feat/b16-payments` · **Taille** : moyenne · **Dépend de** : B10, B15 · **Débloque** : B17.
-- **Objectif** : Pour le chef privé, vous demandez 30 % d'acompte avant de bloquer la date. Cette PR permet d'envoyer au client un lien de paiement sécurisé (Stripe) directement depuis la réservation : il règle par carte ou prélèvement, sans qu'aucun numéro de carte ne passe par vos systèmes. La date n'est confirmée qu'une fois le paiement confirmé par Stripe, et vous pouvez rembourser depuis l'administration en indiquant un motif. Le batch cooking n'est pas concerné : il passe par l'URSSAF (B15).
-- **Fonctionnalités et règles** (modèles : section 9.9)
-  - Lien de paiement **Stripe Checkout** hébergé généré depuis la réservation et envoyé par e-mail ; **aucun numéro de carte ne passe par Django**. Moyens : carte et SEPA, frais pris par la cheffe. Pas d'acompte pour les cours.
-  - **Relances de l'acompte (2.3)** : le lien de l'e-mail ouvre une page de Django qui crée la session Stripe **à la demande** (une session Stripe expire au plus tard après 24 h **[À VÉRIFIER]**, un lien direct serait vite périmé) ; relances e-mail au client à J+3 et J+7 ; à J+10 alerte pour vous : relancer par téléphone ou **libérer la date** (décision manuelle, jamais automatique). La date reste « non confirmée » tant que l'acompte n'est pas payé.
-  - Webhook `/webhooks/stripe` : **signature vérifiée**, idempotence par `WebhookEvent.event_id` (un événement rejoué est sans effet), rejeu manuel ; la réservation passe à « acompte payé » **seulement après le webhook**. Remboursement par action d'administration avec motif.
-- **Critères** : tests avec événements simulés (succès, échec, rejeu, signature invalide, remboursement).
-- **Vous contrôlez** : payer un acompte avec une carte de test, rejouer l'événement. **Avant** : M1.6.
+#### B22. Avis des clients
+- **Branche** : `feat/b22-reviews` · **Taille** : petite · **Dépend de** : B02, B15, B17 · **Débloque** : rien.
+- **Objectif** : Collecter des avis sans effort et n'en publier aucun sans votre validation ni le consentement du client (1.3 étape 17).
+- **Fonctionnalités et règles** (modèle : section 8.11)
+  - E-mail de demande à **J+2** après le dernier passage d'un engagement (ou une réservation), **une seule** relance à **J+7** ; ce sont des lignes du registre `FollowUp` (1.4) : au plus deux e-mails par prestation, arrêt dès réception de l'avis.
+  - Le client répond par e-mail en autorisant la publication de son prénom et de son texte ; **la cheffe saisit l'avis** dans l'administration (`ReviewRequest`), puis le valide, le refuse ou le publie.
+  - Un avis approuvé devient un `Review` publié à la prochaine publication (A-Publier), avec le prénom et, si ajoutée, une photo ; jamais de lien externe.
+- **Critères** : aucun avis publié sans validation ni consentement ; une seule relance ; arrêt des envois à la réception de l'avis.
+- **Vous contrôlez** : terminer un passage de test, déclencher l'envoi, saisir une réponse, valider, publier.
 
-#### B17. Cartes cadeaux
-- **Branche** : `feat/b17-giftcards` · **Taille** : grande · **Dépend de** : B16 · **Débloque** : B19, B21, S03.
-- **Objectif** : Les cartes cadeaux ouvrent un nouveau canal de vente : un visiteur du site offre un montant (ou un cours), paie en ligne, et le destinataire reçoit un PDF avec un code personnel. Cette PR gère tout le cycle : paiement, émission du code uniquement après confirmation du paiement, envoi à la date choisie, utilisation partielle, appliquée par vous à la création d'un engagement ou d'une réservation, expiration et rappel avant échéance. Elle protège contre la fraude et contre le double usage. Le traitement comptable et la TVA sont à valider avec votre comptable avant l'ouverture à la vente.
-- **Fonctionnalités et règles** (modèles : section 9.10)
-  - **Achat invité** (aucun compte) : montant libre entre 20 € et 500 € plus un produit « cours » à prix fixe ; **seuil anti-fraude** : 500 € et 3 achats par jour par e-mail ; un seul modèle visuel, message libre ; **PDF et e-mail seulement** (pas de carte physique). Route serveur à serveur `POST /api/v1/giftcards/checkout` (secret partagé, jeton Turnstile, limitation de débit).
-  - **Aucune carte émise avant le webhook de paiement confirmé**. Code de 16 caractères en base 32 sans caractères ambigus (`XXXX-XXXX-XXXX-XXXX`), généré avec `secrets` ; valable **12 mois**, prolongation possible par la cheffe ; par défaut valable sur **tous les services** (`scope` = "any"), restreignable à un seul. Envoi au destinataire immédiat ou à la date choisie, reçu à l'acheteur.
-  - **Commandes abandonnées** : une commande non payée est annulée automatiquement après 48 h, **sans relance** (c'est un visiteur anonyme), et comptée en information dans « à faire ».
-  - **Utilisation** par la cheffe, à la création d'un engagement ou d'une réservation (page A-Dossier) : contrôle de validité, solde et périmètre, **débit partiel**, cumul de plusieurs cartes autorisé, transaction atomique avec verrou de ligne (jamais de double débit, jamais de solde négatif). **Anti-essais** : 5 en 15 minutes par IP et par session, puis blocage temporaire ; même message pour code inconnu ou invalide. Batch avec avance immédiate : la carte s'impute sur la **part client** **[À VÉRIFIER]**.
-  - **Expiration** : tâche quotidienne, rappel 30 jours avant. **Cessible** ; **remboursable seulement dans les 14 jours** (décision de la cheffe, via Stripe). Traitement comptable et TVA **[À VÉRIFIER]** avant l'ouverture à la vente.
-  - Administration : renvoyer l'e-mail, ajuster le solde (motif), bloquer, prolonger, rembourser ; transactions en lecture seule.
-- **Critères** : un même code utilisé en parallèle n'est débité qu'une fois (test de concurrence) ; une carte expirée est refusée ; vente bloquée en production tant que `LegalIdentity` est incomplète.
-- **Vous contrôlez** : acheter avec une carte de test, recevoir le PDF, utiliser une partie du solde, rejouer et deviner un code. **Avant** : M1.4, M1.14.
-
-#### B18. Avis des clients
-- **Branche** : `feat/b18-reviews` · **Taille** : petite · **Dépend de** : B02, B10, B12 · **Débloque** : rien.
-- **Objectif** : Les avis clients nourrissent la confiance dans votre site, mais les collecter à la main est fastidieux. Cette PR envoie la demande automatiquement et n'insiste qu'une fois. Le client répond par e-mail en autorisant la publication ; **rien ne paraît sans votre validation et son consentement**.
-- **Fonctionnalités et règles** (modèle : section 9.11) : e-mail de demande **2 jours après le dernier passage** d'un engagement (ou une réservation), une relance à 7 jours. La demande part par e-mail ; le client répond par e-mail en autorisant la publication de son prénom et de son texte, et **la cheffe saisit l'avis dans l'administration** ; la cheffe valide, refuse ou publie ; un avis approuvé devient un `Review` publié à la prochaine publication, **avec le prénom et, si vous en ajoutez une, sa photo** ; jamais de lien externe.
-  - Les envois (demande à J+2, relance à J+7) sont des **relances du registre** (B12, 2.3) : jamais plus de deux e-mails par prestation, arrêt dès réception de l'avis.
-- **Critères** : aucun avis publié sans validation ni consentement ; une seule relance.
-- **Vous contrôlez** : terminer un passage de test, déclencher la tâche, répondre, valider, publier.
-
-#### B19. RGPD, conservation et exports
-- **Branche** : `feat/b19-gdpr` · **Taille** : moyenne · **Dépend de** : B10, B11, B15, B17 · **Débloque** : rien.
-- **Objectif** : Vous traitez des données de clients : vous devez pouvoir leur remettre une copie de leurs données, les effacer à leur demande, et ne pas conserver plus que nécessaire. Cette PR ajoute ces outils à l'administration : export d'un client, anonymisation (identité effacée, montants et documents légaux conservés), registre des consentements, durées de conservation appliquées automatiquement. Comme les données d'un client sont aussi dans HubSpot, Brevo, Stripe et votre outil de facturation, elle produit à chaque demande la liste des suppressions à faire à la main, avec une procédure écrite.
+#### B23. RGPD, conservation et exports
+- **Branche** : `feat/b23-gdpr` · **Taille** : moyenne · **Dépend de** : B15, B16, B20, B21 · **Débloque** : rien. **Prérequis** : M10, M13.
+- **Objectif** : Pouvoir remettre ou effacer les données d'un client à sa demande et ne pas conserver plus que nécessaire. Les données étant aussi dans Brevo, Stripe et l'outil de facturation, chaque demande produit la liste des suppressions à faire à la main.
 - **Fonctionnalités et règles**
-  - **Export** des données d'un client (JSON et PDF) ; **anonymisation** (efface e-mail, prénom, nom, lien HubSpot ; conserve montants et documents de facturation exigés par la loi **[À VÉRIFIER]**) avec confirmation forte, `owner` seulement ; demande traitée sous **30 jours**.
+  - **Export** des données d'un client (JSON et PDF) ; **anonymisation** (efface e-mail, prénom, nom, téléphone, adresse, notes du contact, et les textes de ses deals ; conserve montants et documents de facturation exigés par la loi **[À VÉRIFIER]**), confirmation forte, `owner` seulement.
+  - **`DataRequest`** (8.11) : reçue par e-mail ou téléphone, saisie par la cheffe ; échéance de **30 jours** affichée dans la liste (rouge une fois dépassée), **sans notification** ; le traitement clôt la demande, sans e-mail automatique.
   - Registre des consentements (marketing, publication d'avis) avec date ; journal d'audit non modifiable depuis l'administration.
-  - **Demandes de données (`DataRequest`)** : reçues par e-mail ou par téléphone et saisies par la cheffe ; délai de **30 jours** à compter de la réception ; relance « à traiter » pour vous immédiatement, rappel à J+20, **en retard** à J+30 ; le traitement (export ou anonymisation) clôt la ligne et envoie la confirmation au client.
-  - **Durées** : pièces du devis 10 ans ; journaux selon la politique ; **notes d'allergies dans HubSpot : 3 ans après le dernier passage** (effacement manuel).
-  - Le rapport liste aussi **les suppressions à répéter à la main** dans HubSpot (dont les notes d'allergies), l'outil de facturation, Brevo et Stripe ; `docs/RGPD.md` décrit la procédure.
+  - **Durées** : pièces du devis 10 ans ; journaux selon la politique ; **prospects** (deals Perdu, ou sans suite, et contacts sans client) : **3 ans après le dernier échange** **[À VÉRIFIER]**, via une action « Purger les prospects périmés » qui produit d'abord son rapport.
+  - Le rapport liste les **suppressions manuelles** (outil de facturation, Brevo, Stripe) ; `docs/RGPD.md` décrit la procédure.
 - **Critères** : après anonymisation, aucune donnée personnelle ne reste dans Django hors documents légaux ; l'opération est journalisée ; le rapport est exact.
-- **Vous contrôlez** : exporter un client de test, l'anonymiser, vérifier qu'il ne reste rien d'identifiable, et relire le rapport des suppressions à faire à la main chez HubSpot, Brevo, Stripe et l'outil de facturation.
-- **Avant** : M1.11, M1.14, M1.17.
+- **Vous contrôlez** : exporter puis anonymiser un client de test, vérifier qu'il ne reste rien d'identifiable, relire le rapport des suppressions manuelles.
 
-#### B20. Durcissement et préparation de la production
-- **Branche** : `feat/b20-production` · **Taille** : moyenne · **Dépend de** : toutes les PR précédentes, et les décisions **hébergement**, **outil de facturation** et **informations légales** (section 5.1) · **Débloque** : B20b.
-- **Objectif** : Avant d'accueillir de vrais clients, il faut s'assurer que tout tient : sécurité vérifiée point par point, sauvegardes réellement restaurées (une sauvegarde jamais testée ne sert à rien), surveillance des erreurs (Sentry), alertes si une tâche automatique ne tourne pas, et un guide d'exploitation. C'est la PR du « go / no-go » : on y vérifie aussi que les informations légales sont saisies, que les clés Stripe sont passées en réel et que l'administration n'est joignable que sous son adresse non évidente, avec la double authentification.
-- **Fonctionnalités et règles** : revue de sécurité selon la section 7.5 (`check --deploy` sans avertissement, en-têtes, cookies, limitations de débit, fichiers privés signés, secrets) ; **Sentry en région UE** sans donnée personnelle ; alertes e-mail (tâche planifiée manquée, intégration en échec répété, webhook rejeté, nombreuses tentatives de codes) ; **test de restauration des sauvegardes** (quotidiennes, 30 jours, base chiffrée) ; tests de charge légers (page de choix du menu sous 300 ms côté serveur) ; administration joignable **uniquement** sous son préfixe et avec 2FA ; vérification que la page de choix n'expose rien au-delà de son propre plan de repas ; `docs/RUNBOOK.md` ; environnement GitHub `production` avec approbation.
-- **Critères** : sauvegarde restaurée avec succès ; aucune alerte critique ouverte ; tous les interdits de la section 7.4 testés ; couverture conforme à la section 11.3.
-- **Vous contrôlez** : dérouler la checklist de la section 6, ligne par ligne. C'est le « go / no-go » : tant qu'une ligne résiste, on n'ouvre pas.
-- **Avant** : M1.11, M1.13, M1.16, M1.9 (production), DNS et TLS de production, secrets `production`, clés Stripe réelles, SEPA.
-
-#### B20b. Déploiement de la production et retour arrière
-- **Branche** : `feat/b20b-deploy-prod` · **Taille** : moyenne · **Dépend de** : B07, B20 · **Débloque** : rien.
-- **Objectif** : Deux manques que le reste du plan ne couvre pas. **B07 met le backend en ligne pour l'environnement de test seulement** : rien ne dit comment il atteint la production. Et surtout, **rien ne dit comment défaire un déploiement raté** — le plan sait restaurer une sauvegarde de base, ce qui est une opération lourde et perdante, mais pas revenir à la version d'avant. C'est le genre d'absence qu'on ne remarque que le soir où on en a besoin. Cette PR livre le chemin vers la production et le chemin du retour.
+#### B24. Durcissement et préparation de la production
+- **Branche** : `feat/b24-production` · **Taille** : moyenne · **Dépend de** : toutes les PR précédentes (B08 facultative), et les décisions **hébergement**, **outil de facturation** et **informations légales** (section 4.1) · **Débloque** : B25. **Prérequis** : M17, M18, M19, M5 (production), DNS et TLS de production, secrets `production`, clés Stripe réelles, SEPA.
+- **Objectif** : PR du « go / no-go » : vérifier que tout tient avant les vrais clients (sécurité, sauvegardes réellement restaurées, surveillance, informations légales saisies, clés Stripe réelles, administration joignable seulement sous son préfixe avec 2FA).
 - **Fonctionnalités et règles**
-  - **Workflow de production** : environnement GitHub `production` avec **votre approbation manuelle** avant tout déploiement (M0.3), journal des déploiements, et interdiction de déployer depuis une autre branche que `main`.
-  - **On promeut l'image validée, on ne la reconstruit pas** : le conteneur déployé en production est **exactement celui** qui a été vérifié sur l'environnement de test, repris par son empreinte. Reconstruire, c'est déployer autre chose que ce qu'on a testé.
-  - **Migrations compatibles en avant** : une migration ne doit jamais empêcher la version précédente de fonctionner, sinon le retour arrière devient impossible. Conséquence concrète et contraignante : **une suppression de colonne ou de table se fait en deux déploiements** — d'abord le code cesse de s'en servir, ensuite seulement la base la perd. La migration destructrice est toujours la seconde.
-  - **Procédure de retour arrière**, écrite dans `docs/RUNBOOK.md` et **exécutée une fois pour de vrai** sur l'environnement de test : redéployer l'image précédente, et la conduite à tenir selon qu'une migration a tourné ou non. Une procédure jamais essayée ne compte pas, exactement comme une sauvegarde jamais restaurée.
-  - **Ce que le retour arrière ne rattrape pas**, et qu'il faut savoir avant : un e-mail parti, un paiement encaissé, une note écrite dans HubSpot. Le retour arrière restaure le code, pas les effets. D'où l'intérêt des tâches idempotentes et du journal des webhooks.
-  - **Ordre de bascule** le jour de l'ouverture : backend en production, vérification de `/healthz` et de l'administration, puis seulement la bascule du site (S02), pour que le site ne construise jamais ses pages contre un backend absent.
-- **Critères** : aucun déploiement en production sans approbation ; l'image déployée est celle validée en test (empreinte identique) ; **un retour arrière a réellement été effectué sur l'environnement de test** et sa durée est notée ; toute migration de la PR est réversible ; `docs/RUNBOOK.md` décrit la bascule et le retour.
-- **Vous contrôlez** : déclencher un déploiement et constater qu'il attend votre approbation ; puis demander un retour arrière sur l'environnement de test et vérifier que l'administration répond toujours. **Avant** : M1.9 (production), secrets `production`, DNS et TLS.
+  - Revue de sécurité selon 6.5 : `check --deploy` sans avertissement, en-têtes, cookies, limitations de débit, fichiers privés signés, secrets.
+  - **Sentry en région UE** sans donnée personnelle ; alertes techniques (tâche planifiée manquée, intégration en échec répété, webhook rejeté, nombreuses tentatives de codes), adressées à l'exploitation et non à la cheffe (1.3 étape 20).
+  - **Sauvegardes** quotidiennes, 30 jours, base chiffrée, avec **test de restauration**.
+  - Test de charge léger : page de choix sous 300 ms côté serveur ; elle n'expose rien au-delà de son propre plan de repas.
+  - Administration **uniquement** sous son préfixe et avec 2FA ; `docs/RUNBOOK.md` ; environnement GitHub `production` avec approbation.
+- **Critères** : sauvegarde restaurée avec succès ; aucune alerte critique ouverte ; tous les interdits de 6.4 testés ; couverture conforme à 10.3.
+- **Vous contrôlez** : dérouler la checklist de la section 5 ligne par ligne ; tant qu'une ligne résiste, on n'ouvre pas.
 
-#### B21. Programme de fidélité par points
-- **Branche** : `feat/b21-loyalty` · **Taille** : moyenne · **Dépend de** : B04c, B12, B15, B17 · **Débloque** : rien.
-- **Objectif** : Le point faible commercial de ce métier est écrit noir sur blanc en section 2.3 : **il n'y a aucune reconduction automatique**, chaque mois est revendu. Un programme de points attaque précisément cet endroit. À chaque passage réalisé, le client accumule des points ; quand son solde devient convertible, il reçoit une carte cadeau à valoir sur sa prochaine commande. Mais le vrai levier n'est pas le cadeau, c'est **l'e-mail de renouvellement** : « vous avez 120 points, soit 24 € à faire valoir sur votre prochain mois » convainc mieux qu'une relance sèche. Les points existent pour donner une raison de revenir, au moment exact où la relance part.
-- **Quand la faire** : **après B20**, donc après l'ouverture. Un programme de fidélité sans clients n'a aucun effet, et son traitement comptable doit être tranché avant d'être proposé (M1.14). Si vous voulez un levier de rétention **tout de suite**, il existe et il coûte presque rien : l'**offre de renouvellement** de B04, une remise nommée que la relance de fin d'engagement propose déjà. Les points sont le raffinement, pas le remède.
-- **Le choix d'architecture** : les points ne sont **pas** une monnaie parallèle. Ils se convertissent en **carte cadeau** (B17), et c'est tout. Tout le reste existe déjà : solde, transactions, débit partiel, verrou de ligne contre le double usage, péremption, imputation sur la part client, traitement comptable en cours de validation. Autrement dit **cette PR n'invente qu'un compteur et un barème** — elle ne crée ni nouvelle facture, ni nouvelle remise, ni nouveau chemin d'encaissement. C'est ce qui la rend moyenne et non grande, et c'est ce qui évite de reposer au comptable une question déjà posée pour les cartes cadeaux.
-- **Fonctionnalités et règles** (modèles : section 9.13)
-  - **Acquisition automatique** : à chaque passage `done`, une transaction "earn" crédite `points_per_session` points, **une seule fois par passage** (unicité en base, donc rejouer la tâche ne double rien). Un passage annulé, même facturable, ne crédite rien.
-  - **Barème par défaut proposé** : **10 points par passage réalisé**, **100 points = 20 €**, conversion à partir de 100 points. Un mois de quatre passages rapporte donc 40 points, soit environ **2,5 % du montant** — assez pour être agréable, assez peu pour ne jamais peser sur la marge. **Ce barème est une proposition** : il se règle entièrement dans l'administration (décision ouverte, section 5.1).
-  - **Pourquoi par passage et non par euro dépensé** : des points indexés sur l'argent se rapprochent d'un moyen de paiement, avec les questions fiscales que cela traîne ; des points par passage récompensent **la régularité**, qui est exactement le comportement recherché, et restent trivialement vérifiables.
-  - **Conversion** : à la demande du client ou de la cheffe, `conversion_points` points deviennent une carte cadeau de `conversion_cents`, émise par la machinerie de B17 (code, validité 12 mois, usage partiel). La transaction "convert" débite le solde et **pointe vers la carte émise** : on peut toujours retrouver d'où vient une carte. Opération atomique, avec verrou : **jamais de solde négatif, jamais de double conversion**.
-  - **Péremption** : les points expirent après `expiry_months` sans aucun passage, avec un e-mail d'avertissement 30 jours avant. Sans cette règle, le solde cumulé devient une dette ouverte sans limite.
-  - **Où le client voit son solde** : il n'y a pas d'espace client, donc nulle part en autonomie — et c'est assumé. Le solde apparaît **sur sa fiche dans l'administration**, dans le **repère `{{points}}` du devis** quand il est convertible, et surtout dans **l'e-mail de relance de renouvellement** (B12), qui est le seul endroit où il change quelque chose.
-  - **Ajustements à la main** : accorder des points (parrainage abouti, geste commercial, erreur réparée) ou en retirer, **toujours avec un motif**, journalisé dans `AuditEvent` comme l'ajustement d'une carte cadeau.
-  - **Interrupteur global** : le programme entier s'éteint d'un réglage, sans perdre les soldes. Tant qu'il est éteint, aucune acquisition, aucune mention dans les e-mails ni les devis.
-  - **Aucune donnée nouvelle sur le client** : un solde de points, rien d'autre. Pas de profil, pas de segmentation, pas de score.
-- **Critères** : un passage ne crédite jamais deux fois, même si la tâche est rejouée ; deux conversions simultanées n'émettent qu'une carte et ne rendent jamais le solde négatif ; un passage annulé ne crédite rien ; programme éteint = aucune acquisition et aucune mention nulle part ; le solde affiché égale toujours la somme des transactions (test de cohérence) ; un ajustement sans motif est refusé.
-- **Vous contrôlez** : clôturer quatre passages et voir 40 points apparaître, convertir en carte cadeau, utiliser cette carte sur un nouvel engagement, accorder 50 points de parrainage avec motif, puis éteindre le programme et vérifier que plus rien n'en parle. **Avant** : **M1.14** (comptable : traitement des points convertis en carte cadeau).
-- **Risque** : un programme de fidélité est facile à lancer et pénible à arrêter — les clients s'y habituent. D'où l'interrupteur global, la péremption, et un barème volontairement modeste au départ : il est plus facile d'être généreux ensuite que de reprendre.
+#### B25. Déploiement de la production et retour arrière
+- **Branche** : `feat/b25-deploy-prod` · **Taille** : moyenne · **Dépend de** : B12, B24 · **Débloque** : rien. **Prérequis** : M5 (production), M1, secrets `production`, DNS et TLS.
+- **Objectif** : B12 ne met le backend en ligne que pour le test, et rien ne dit comment défaire un déploiement raté (restaurer une sauvegarde est lourd et perdant). Cette PR livre le chemin vers la production et le chemin du retour.
+- **Fonctionnalités et règles**
+  - **Workflow de production** : environnement GitHub `production` avec **approbation manuelle** (M1), journal des déploiements, déploiement depuis `main` uniquement.
+  - **On promeut l'image validée, on ne la reconstruit pas** : la production reçoit le conteneur vérifié en test, repris par son empreinte.
+  - **Migrations compatibles en avant** : jamais de migration qui empêche la version précédente de tourner ; **une suppression de colonne ou de table se fait en deux déploiements** (le code cesse de s'en servir, puis la migration destructrice).
+  - **Retour arrière** décrit dans `docs/RUNBOOK.md` et **exécuté une fois pour de vrai** sur le test : redéployer l'image précédente, avec la conduite à tenir selon qu'une migration a tourné ou non.
+  - Le retour arrière restaure le code, pas les effets (e-mail parti, paiement encaissé) : d'où des tâches idempotentes et le journal des webhooks.
+  - **Ordre de bascule** : backend en production, vérification de `/healthz` et de l'administration, puis seulement la bascule du site (S03).
+- **Critères** : aucun déploiement en production sans approbation ; image de production = image validée en test (empreinte identique) ; un retour arrière réellement effectué sur le test, durée notée ; migrations réversibles ; `docs/RUNBOOK.md` décrit bascule et retour.
+- **Vous contrôlez** : déclencher un déploiement et constater qu'il attend votre approbation ; demander un retour arrière sur le test et vérifier que l'administration répond.
 
 ### 3.3 Pull Requests du site (`chefmeemz`)
 
-> **Consignes communes aux PR du site.** Lire `AGENTS.md` et, dans `node_modules/next/dist/docs/01-app/02-guides/`, `authentication.md`, `data-security.md`, `backend-for-frontend.md`, `forms.md`, `server-and-client-boundary.md`, `production-checklist.md` ; dans `03-api-reference/03-file-conventions/` : `proxy.md`, `route-groups.md`, `layout.md`. **Réutiliser l'existant** avant de créer : `components/ui/*` (`Button`, `Field`, `TextField`, `SelectField`, `ModalShell`, `Switch`, `FilterMenu`, `FaqAccordion`, `Icon`, `Section`, `RecipeCard`, `PickedChoice`, `ArrowScroller`), `styles/tokens.css`, CSS Modules, `lucide-react`, `clsx`, `zod`, `lib/i18n.ts` ; un composant par fichier, textes dans `messages/fr.json`. **L'API Django fait foi** : aucune règle métier (quota, 48 h, solde) n'est décidée seulement côté Next.js ; le site affiche et pré-vérifie, le backend refuse, ses messages d'erreur sont affichés tels quels. **Jamais** de jeton, de clé ni de donnée de santé dans le JavaScript du navigateur.
+> **Consignes communes aux PR du site.** Lire `AGENTS.md` et, dans `node_modules/next/dist/docs/01-app/02-guides/`, `authentication.md`, `data-security.md`, `backend-for-frontend.md`, `forms.md`, `server-and-client-boundary.md`, `production-checklist.md` ; dans `03-api-reference/03-file-conventions/` : `proxy.md`, `route-groups.md`, `layout.md`. **Réutiliser l'existant** avant de créer : `components/ui/*` (`Button`, `Field`, `TextField`, `SelectField`, `ModalShell`, `Switch`, `FilterMenu`, `FaqAccordion`, `Icon`, `Section`, `RecipeCard`, `PickedChoice`, `ArrowScroller`), `styles/tokens.css`, CSS Modules, `lucide-react`, `clsx`, `zod`, `lib/i18n.ts` ; un composant par fichier, textes dans `messages/fr.json`. **L'API Django fait foi** : aucune règle métier (quota, solde, délai) n'est décidée seulement côté Next.js ; le site affiche et pré-vérifie, le backend refuse, ses messages d'erreur sont affichés tels quels. **Jamais** de jeton, de clé ni de donnée de santé dans le JavaScript du navigateur.
 
-#### S00. Envoyer les demandes du site vers HubSpot
-- **Branche** : `feat/s00-lead-to-hubspot` · **Taille** : petite à moyenne · **Dépend de** : rien (ni de Django, ni d'une autre PR) · **Débloque** : rien.
-- **Objectif** : **C'est le seul chantier qui rapporte de l'argent dès la semaine suivante.** Aujourd'hui, un visiteur remplit le formulaire, le serveur du site vérifie sa saisie, affiche « merci »… et la demande est perdue : `app/api/lead/route.ts` se termine sur un `console.info` et un commentaire `TODO`. Autrement dit, le site génère peut-être déjà des demandes que personne ne voit. Chaque demande perdue, c'est un mois d'engagement en moins, soit plusieurs centaines d'euros. Cette PR fait arriver la demande à bon port — dans le CRM et dans votre boîte mail — et la protège contre les robots. Elle ne touche pas à Django : conformément au principe du projet, **aucun prospect n'entre dans l'administration** tant que rien n'est signé.
-- **Contexte technique** : la route `app/api/lead/route.ts` existe déjà et fait la moitié du travail : lecture du corps, **champ piège** anti-spam (si `website` est rempli, elle répond « ok » sans rien traiter), validation du téléphone et de l'e-mail, construction d'un objet `lead` complet (source, service, prénom, téléphone, e-mail, pack, formule, dîners, prix après crédit, foyer, nombre de repas, date d'événement, convives, lieu, occasion, message). Elle est appelée par `lib/lead/submit.ts`. Elle s'exécute **côté serveur**, dans le Worker Cloudflare : c'est ce qui permet d'y mettre des secrets. **Turnstile n'existe nulle part dans le code** pour l'instant, malgré ce que laissait entendre la documentation.
+#### S00. Recevoir les demandes du site par e-mail
+- **Branche** : `feat/s00-lead-by-email` · **Taille** : petite · **Dépend de** : rien (ni de Django, ni d'une autre PR) · **Débloque** : S01. **Prérequis** : M3 (Turnstile), M4 (Brevo et domaine d'envoi authentifié).
+- **Objectif** : `app/api/lead/route.ts` se termine aujourd'hui sur un `console.info` et un `TODO` : les demandes du formulaire sont perdues. Cette PR les fait arriver dans votre boîte mail, avec tout leur contenu, et les protège des robots. Le pipeline de Django (S01) prend le relais au palier 3 ; d'ici là, vous suivez vos demandes depuis votre boîte.
 - **Fonctionnalités et règles**
-  - **Anti-robots** : widget **Cloudflare Turnstile** sur les formulaires (clé de site publique), jeton transmis avec la demande et **vérifié côté serveur** avec la clé secrète. Jeton absent ou invalide : refus avec un message clair. Le champ piège existant est **conservé** : les deux protections se complètent.
-  - **Création du contact dans HubSpot** : jeton d'application privée (jamais exposé au navigateur), **création ou mise à jour par e-mail** pour ne jamais créer de doublon ; à défaut d'e-mail, par téléphone. Seules les **propriétés standard** sont renseignées (prénom, nom, e-mail, téléphone) : l'offre gratuite limite les propriétés personnalisées (une source cite 10) **[À VÉRIFIER]**. Tout le détail de la demande part donc dans une **note rattachée au contact**, mise en forme pour être lisible d'un coup d'œil : service demandé, pack, dîners, prix affiché, foyer, date, convives, lieu, occasion, message. Le deal est créé à l'étape « Nouveau » du pipeline, **avec une tâche « rappeler ce contact » à 24 h** (relance de 2.3, réglée dans HubSpot en M1.5). **[À VÉRIFIER]** : si l'offre gratuite ne crée pas cette tâche automatiquement, c'est S00 qui la crée par l'API au même moment — la créer à la main à chaque demande n'aurait aucun sens, puisque c'est justement l'oubli qu'elle évite.
-  - **Ne jamais perdre une demande** — c'est l'exigence centrale de cette PR. Trois garde-fous :
-    1. **La réponse au visiteur ne dépend jamais de HubSpot.** La demande est validée, le visiteur reçoit sa confirmation, et l'envoi vers HubSpot se fait ensuite.
-    2. **Un e-mail de notification vous est envoyé à chaque demande**, avec son contenu complet. C'est le vrai filet : si HubSpot est indisponible ou si le jeton a expiré, vous avez quand même la demande sous les yeux et vous créez le contact à la main. Deux canaux indépendants valent mieux qu'un canal fiable.
-    3. **Un échec d'envoi vers HubSpot déclenche une alerte** (Sentry), **sans aucune donnée personnelle** dans le message : seulement « échec d'envoi d'une demande », conformément à l'interdit 4 de la section 7.4.
-  - **Accusé de réception au visiteur** : un e-mail court confirmant la réception et annonçant un délai de réponse. Le délai de réponse est un facteur de conversion direct (section 2.3, étape 3) : dire « je vous réponds sous 24 h » vaut mieux que le silence.
-  - **Limitation de débit** par adresse IP, pour qu'un robot qui passerait Turnstile ne puisse pas saturer votre boîte ni votre quota d'e-mails.
-  - **Variables d'environnement** : `TURNSTILE_SECRET_KEY`, `HUBSPOT_PRIVATE_APP_TOKEN`, `BREVO_API_KEY`, `LEAD_NOTIFY_EMAIL`. La page de confidentialité est mise à jour dans la même PR.
-  - **RGPD** : la demande est traitée au titre des **mesures précontractuelles**, donc sans case à cocher — mais la page de confidentialité doit mentionner **HubSpot comme sous-traitant** et le transfert hors Union européenne **[À VÉRIFIER]**. Un lien vers cette page figure sous le formulaire. Aucun envoi commercial n'est fait sans consentement distinct, et ce projet n'en prévoit aucun.
-- **Critères** : une demande valide crée **un seul** contact avec sa note ; une seconde demande du même e-mail met à jour le contact au lieu d'en créer un autre ; **une demande arrive toujours jusqu'à vous même si HubSpot est indisponible** (test avec un client HubSpot en échec) ; un jeton Turnstile absent ou invalide est refusé ; le champ piège fonctionne toujours ; aucun secret et aucune donnée personnelle dans les journaux ni dans Sentry ; le visiteur obtient sa réponse sans attendre les appels externes.
-- **Vous contrôlez** : envoyer une vraie demande depuis le site de test, vérifier le contact et sa note dans HubSpot, recevoir les deux e-mails ; puis fausser volontairement le jeton HubSpot et vérifier que vous recevez quand même la notification.
-- **Étapes manuelles avant** : **M1.4** (Turnstile), **M1.5** (application privée HubSpot et pipeline), **M1.2** (Brevo et domaine d'envoi authentifié).
-- **Risque** : les limites de l'offre gratuite de HubSpot (propriétés, débit d'API) et de Brevo (300 e-mails par jour) ne sont pas vérifiées. À votre volume, la limite d'e-mails n'est pas un sujet ; celle des propriétés est contournée par l'usage des notes.
+  - **Anti-robots** : **Cloudflare Turnstile** sur les formulaires (clé de site publique), jeton **vérifié côté serveur** avec la clé secrète ; jeton absent ou invalide : refus avec message clair. Le **champ piège** `website` existant est conservé.
+  - **E-mail à la cheffe** à chaque demande, avec son contenu complet et lisible (service, pack, dîners, prix affiché, foyer, date, convives, lieu, occasion, message, coordonnées), envoyé par Brevo à `LEAD_NOTIFY_EMAIL`.
+  - **Accusé de réception** au visiteur : e-mail court annonçant un délai de réponse (« sous 24 h », 1.3 étape 2).
+  - **La réponse au visiteur ne dépend jamais de l'envoi** : la demande est validée, le visiteur reçoit sa confirmation, puis l'e-mail part ; un échec d'envoi déclenche une **alerte Sentry sans donnée personnelle** (6.4, interdit 4) et une nouvelle tentative.
+  - **Limitation de débit** par IP.
+  - Variables : `TURNSTILE_SECRET_KEY`, `BREVO_API_KEY`, `LEAD_NOTIFY_EMAIL`.
+  - **RGPD** : traitement au titre des mesures précontractuelles, sans case à cocher ; la page de confidentialité est mise à jour dans cette PR (lien sous le formulaire). Aucun envoi commercial.
+- **Critères** : une demande valide arrive dans votre boîte avec tout son contenu ; le visiteur reçoit son accusé ; jeton Turnstile absent ou invalide refusé ; champ piège toujours actif ; aucun secret ni donnée personnelle dans les journaux ou Sentry ; le visiteur n'attend pas l'envoi.
+- **Vous contrôlez** : envoyer une vraie demande depuis le site de test, recevoir les deux e-mails ; fausser le jeton Brevo et vérifier l'alerte et la nouvelle tentative.
+- **Risque** : limite de Brevo (300 e-mails par jour) non vérifiée ; sans conséquence à votre volume.
 
 #### S00b. Skills de l'agent : Next.js, React, référencement et accessibilité
-- **Branche** : `feat/s00b-agent-skills` · **Taille** : moyenne · **Dépend de** : rien (le dépôt existe déjà) · **Débloque** : **toutes les PR du site**, qui s'écrivent avec ces règles.
-- **Objectif** : Toutes les PR de ce plan sont écrites par un agent. Aujourd'hui, la seule chose qui l'encadre est `AGENTS.md` et un paragraphe de consignes communes qu'il doit **penser** à lire. Un *skill* fait l'inverse : il se charge tout seul quand la tâche le concerne. L'enjeu n'est pas le confort, c'est la **régularité** — sur vingt PR écrites à des semaines d'intervalle, c'est ce qui fait la différence entre un code homogène et vingt styles différents à relire. Cette PR est la première du dépôt du site parce que tout ce qui la suit en bénéficie.
-- **La contrainte qui décide de la forme** : cette version de Next.js **comporte des changements incompatibles avec ce que les modèles ont appris** — `AGENTS.md` le dit explicitement, et `middleware.ts` s'appelle désormais `proxy.ts`. Un skill qui recopierait l'API de mémoire **produirait du code faux**, et avec l'autorité d'une règle maison. Les skills `nextjs` et `react` sont donc des **cartes vers la documentation vendorisée** dans `node_modules/next/dist/docs/` : ils disent **quel guide lire avant quelle tâche**, et n'ajoutent de leur cru que les conventions du projet. Aucun skill ne décrit une API de framework.
+- **Branche** : `feat/s00b-agent-skills` · **Taille** : moyenne · **Dépend de** : rien · **Débloque** : **toutes les PR du site**.
+- **Objectif** : Rendre le code des PR du site homogène : un *skill* se charge tout seul quand la tâche le concerne, alors qu'`AGENTS.md` et les consignes communes doivent être pensés. Cette version de Next.js a des changements incompatibles avec ce que les modèles ont appris (`middleware.ts` devient `proxy.ts`) : les skills `nextjs` et `react` sont des **cartes vers la documentation vendorisée** (`node_modules/next/dist/docs/`) et n'ajoutent que les conventions du projet ; **aucun skill ne décrit une API de framework**.
 - **Fonctionnalités et règles** : cinq skills dans `.claude/skills/<nom>/SKILL.md`, chacun avec une description qui déclenche son chargement.
-  - **`nextjs`** — la carte des guides : `forms.md` avant un formulaire, `data-security.md` et `backend-for-frontend.md` avant tout appel serveur, `authentication.md` avant un jeton, `keeping-pages-static.md` avant d'ajouter une page, `environment-variables.md` avant un secret, `content-security-policy.md` et `json-ld.md` quand c'est le sujet, `03-api-reference/03-file-conventions/proxy.md`, `route-groups.md` et `layout.md` pour les conventions de fichiers. Conventions du projet : **site entièrement statique**, aucune règle métier décidée côté site (l'API Django fait foi), validation **Zod** de toute réponse d'API, aucun secret ni jeton dans le JavaScript du navigateur, et la limite de **temps de calcul** du Worker Cloudflare pour la seule page dynamique.
-  - **`react`** — un composant par fichier ; **réutiliser `components/ui/*` avant de créer** (`Button`, `Field`, `TextField`, `SelectField`, `ModalShell`, `Switch`, `FilterMenu`, `FaqAccordion`, `Icon`, `Section`, `RecipeCard`, `PickedChoice`, `ArrowScroller`) ; CSS Modules et `styles/tokens.css`, jamais de valeur de couleur en dur ; textes dans `messages/fr.json`, jamais dans le composant ; frontière serveur/client explicite ; **aucune donnée de santé** ne transite par un composant.
-  - **`seo`** — métadonnées par page, URL canonique, plan du site, **hiérarchie des titres**, `alt` obligatoire, et surtout les **données structurées `LocalBusiness` et `Service`** (guide `json-ld.md`) : pour une cheffe à domicile, c'est le référencement local qui amène les demandes que S00 capte. `npm run test:seo` doit passer. Cœurs de métrique web (*Core Web Vitals*) à ne pas dégrader.
-  - **`accessibilite`** — **WCAG 2.2 AA en continu** plutôt qu'un audit tardif : clavier seul, focus visible, message d'erreur rattaché à son champ, aucune information portée par la seule couleur, utilisable à 375 px. S04 cesse d'être une découverte pour devenir une vérification.
-  - **`tests`** — Vitest pour les unités, Playwright pour les parcours, `npm run test:seo` pour le référencement. **Un seul parcours mérite un test de bout en bout** : l'achat d'une carte cadeau, seule page dynamique ; tout le reste étant figé, un test de rendu suffit. Deux règles qui évitent des tests trompeurs : ne jamais vérifier une **règle métier** côté site (c'est l'API qui décide, le site affiche), et ne jamais simuler l'API dans un test de parcours sans vérifier que le schéma **Zod** est celui du vrai contrat. S01 ajoute le test de parité HTML avant/après migration.
-  - **`revue-projet`** — la liste de contrôle propre au projet, en **complément** de la commande `/code-review` fournie par Claude Code, pas à sa place : interdits de la section 7.4, bonnes pratiques de 7.5, règles de revue de 1.4, et le rappel que le site ne décide d'aucune règle métier.
-  - **Ce qu'un skill ne contient jamais** : une API de framework recopiée, un secret, une valeur de prix ou de délai (elles sont dans l'administration ou dans ce document, jamais figées dans un skill).
-- **Critères** : chaque skill a une description qui le déclenche sur les bonnes tâches ; **aucun skill ne décrit une API de Next.js ou de React** (revue) ; un test de CI vérifie que **tous les chemins de documentation cités existent réellement** dans `node_modules/next/dist/docs/` — c'est ce qui révélera qu'un skill a vieilli à la prochaine montée de version ; `npm run test:seo` passe toujours.
-- **Vous contrôlez** : demander à l'agent une petite modification de formulaire et vérifier qu'il cite `forms.md` avant d'écrire ; puis lui demander une nouvelle page et vérifier qu'il ne casse pas le caractère statique du site.
+  - **`nextjs`** : quel guide lire avant quelle tâche (`forms.md` avant un formulaire ; `data-security.md` et `backend-for-frontend.md` avant tout appel serveur ; `authentication.md` avant un jeton ; `keeping-pages-static.md` avant une page ; `environment-variables.md` avant un secret ; `content-security-policy.md` et `json-ld.md` selon le sujet ; `proxy.md`, `route-groups.md`, `layout.md` pour les conventions de fichiers). Conventions : site **entièrement statique**, aucune règle métier côté site, **Zod** sur toute réponse d'API, aucun secret dans le JavaScript du navigateur, limite de temps de calcul du Worker Cloudflare pour la seule page dynamique.
+  - **`react`** : un composant par fichier ; réutiliser `components/ui/*` ; CSS Modules et `styles/tokens.css`, aucune couleur en dur ; textes dans `messages/fr.json` ; frontière serveur/client explicite ; aucune donnée de santé dans un composant.
+  - **`seo`** : métadonnées par page, URL canonique, plan du site, hiérarchie des titres, `alt` obligatoire, données structurées `LocalBusiness` et `Service` (`json-ld.md`), Core Web Vitals non dégradés ; `npm run test:seo` doit passer.
+  - **`accessibilite`** : WCAG 2.2 AA en continu (clavier, focus visible, erreur rattachée au champ, information jamais portée par la seule couleur, 375 px).
+  - **`tests`** : Vitest (unités), Playwright (parcours), `npm run test:seo`. **Un seul parcours de bout en bout** : le formulaire de demande ; le reste, un test de rendu. Ne jamais vérifier une règle métier côté site ; ne jamais simuler l'API sans vérifier que le schéma Zod est celui du vrai contrat. S02 ajoute le test de parité HTML.
+  - **`revue-projet`** : liste de contrôle du projet, en **complément** de `/code-review` : interdits 6.4, bonnes pratiques 6.5, règles de revue de l'Avant-propos, site sans règle métier.
+  - Un skill ne contient jamais : une API de framework recopiée, un secret, une valeur de prix ou de délai.
+- **Critères** : chaque skill se déclenche sur les bonnes tâches ; aucun skill ne décrit une API de Next.js ou de React (revue) ; un test de CI vérifie que **tous les chemins de documentation cités existent** dans `node_modules/next/dist/docs/` ; `npm run test:seo` passe.
+- **Vous contrôlez** : demander une petite modification de formulaire et vérifier que l'agent cite `forms.md` avant d'écrire ; demander une nouvelle page et vérifier que le site reste statique.
 
-#### S01. Lire le contenu depuis l'API au moment de la construction
-- **Branche** : `feat/s01-content-from-api` · **Taille** : grande · **Dépend de** : B05, B06, B06b, B07 · **Débloque** : rien.
-- **Objectif** : Aujourd'hui le contenu de votre site est dans des fichiers du dépôt. Cette PR fait lire ce contenu à Django au moment de la construction du site : le visiteur ne verra aucune différence (mêmes pages, même vitesse, même référencement), mais c'est ce qui transforme vos modifications dans l'administration en pages du site. Si Django est indisponible pendant la construction, la construction échoue plutôt que de publier un site vide, et le site en ligne reste celui d'avant. **C'est cette PR qui supprime les anciens fichiers de contenu**, et seulement après comparaison des pages avant et après : laisser `content/` en place plus longtemps serait un piège, car le dossier ressemblerait encore à la source de vérité et quelqu'un y modifierait un fichier sans effet.
-- **Fonctionnalités et règles** : remplacer la lecture de `content/`, de la FAQ, des avis, des zones, des tarifs, des recettes, des pages légales et des réglages par des appels à l'API **au moment de la construction**, avec **validation Zod** (`API_BASE_URL`, secret `BUILD_API_TOKEN`). **Suppression des anciens fichiers de contenu** (`content/`, FAQ, avis, zones, recettes, pages légales, réglages), **qu'après** contrôle de parité (HTML identique à la normalisation près). **Blocs vendeurs** : `lib/i18n.ts` superpose le calque de `page-texts` (B06b) à `messages/fr.json` avant toute lecture — un seul point de chargement à modifier, aucun composant touché ; les clés non migrées continuent de venir du fichier, qui **reste dans le dépôt** (contrairement à `content/`, puisqu'il porte encore les 1 231 libellés d'interface). Marqueurs de prix résolus par l'API. À savoir : la commande d'import de B06 lit ces fichiers (`--site-path`) ; elle a déjà tourné au palier 2, et s'il fallait réimporter, les fichiers se récupèrent dans l'historique git.
-- **Critères** : site identique visuellement ; un échec de l'API **fait échouer la construction** sans publier ; `npm run test:seo` passe ; aucun fichier de contenu ne subsiste dans le dépôt après la PR, **à l'exception de `messages/fr.json`** qui garde les libellés d'interface ; sans aucune édition en base, le fichier fusionné est identique au fichier d'origine.
-- **Vous contrôlez** : `npm run build` avec l'API locale puis en test, comparer des pages clés.
-
-#### S02. Déclenchement de la publication et déploiement
-- **Branche** : `feat/s02-publish-workflow` · **Taille** : petite à moyenne · **Dépend de** : B07, B09, M1.8 · **Débloque** : rien.
-- **Objectif** : C'est le dernier maillon de la chaîne de publication : quand vous cliquez sur « Publier » dans l'administration, le site se reconstruit et se met en ligne tout seul, d'abord sur le site de test puis, avec votre approbation, en production. Un seul déploiement à la fois, et un déploiement qui échoue ne remplace jamais le site en ligne.
-- **Fonctionnalités et règles** : workflow GitHub Actions déclenché par `repository_dispatch` (`content-updated`) et par `push` ; environnements `test` et `production` (approbation pour la production) ; déploiement avec `opennextjs-cloudflare` et les environnements de `wrangler.jsonc` ; secrets : jeton Cloudflare, identifiant de compte, jeton de lecture de l'API ; `concurrency` (une seule construction à la fois) ; une construction échouée ne remplace pas le site en ligne ; statut lisible par le backend.
-- **Critères** : un dispatch de test déclenche une construction ; un échec n'écrase pas le site.
-- **Vous contrôlez** : cliquer sur **Publier** dans l'administration et suivre la construction jusqu'au site de test ; puis provoquer volontairement un échec et vérifier que le site en ligne ne bouge pas.
-
-#### S03. Carte cadeau : page publique d'achat
-- **Branche** : `feat/s03-giftcard` · **Taille** : moyenne · **Dépend de** : B17 · **Débloque** : S04.
-- **Objectif** : Cette PR ouvre la vente de cartes cadeaux au public : une page du site où un visiteur choisit un montant, renseigne l'acheteur et le destinataire, un message et une date d'envoi, puis paie via Stripe. Le code ne s'affiche jamais à l'écran : il part par e-mail une fois le paiement confirmé. Le formulaire est protégé contre les robots. C'est la seule page dynamique du site ; l'utilisation du code, elle, se fait par vous à la création de l'engagement.
+#### S01. Envoyer les demandes du site vers l'administration
+- **Branche** : `feat/s01-lead-to-django` · **Taille** : petite · **Dépend de** : S00, B05, B12 · **Débloque** : rien.
+- **Objectif** : Remplacer le seul e-mail de S00 : chaque demande crée un contact et un deal « Nouveau » dans le pipeline de Django. L'e-mail complet à la cheffe continue de partir.
 - **Fonctionnalités et règles**
-  - **Page « Acheter »** (`/carte-cadeau`) : montant (libre entre le minimum et le maximum), prénom et e-mail de l'acheteur et du destinataire, message, date d'envoi (immédiate ou programmée), acceptation des conditions, jeton Turnstile. L'action serveur appelle `POST /giftcards/checkout` puis redirige vers le paiement Stripe hébergé — le secret partagé et la clé Turnstile restent côté serveur, jamais dans le navigateur.
-  - **Page « Merci »** (`/carte-cadeau/merci`) : confirmation et récapitulatif, sans jamais révéler le code. **Page « Annulé »** (`/carte-cadeau/annule`) : message neutre et lien pour réessayer.
-- **Critères** : aucune carte annoncée comme émise avant le retour de paiement ; Turnstile et limitation de débit actifs ; erreurs par champ ; la page « merci » ne contient pas le code.
-- **Vous contrôlez** : acheter une carte cadeau avec une carte de test depuis le site de test, vérifier que le code n'apparaît nulle part à l'écran, et le recevoir par e-mail. **Avant** : M1.4.
+  - `app/api/lead/route.ts` appelle `POST /api/v1/leads` (9.2) avec un jeton serveur à serveur (jamais exposé au navigateur) et un **identifiant de demande** (rejeu sans doublon).
+  - **Ne jamais perdre une demande** : la réponse au visiteur ne dépend jamais de Django ; l'e-mail complet part **avant** l'appel et n'en dépend pas ; un échec de Django déclenche une alerte Sentry sans donnée personnelle et une **nouvelle tentative** ; la demande reste dans l'e-mail pour une saisie manuelle.
+  - Turnstile, champ piège, accusé de réception, limitation de débit : inchangés (S00).
+  - **Page de confidentialité** : Django, hébergé dans l'UE, comme outil de gestion des prospects.
+  - Variable : `LEAD_API_TOKEN`.
+- **Critères** : une demande valide crée **un seul** contact et un deal « Nouveau » ; une seconde du même e-mail ajoute un deal au même contact ; **la demande arrive jusqu'à vous même si Django est en échec** (test avec Django factice en échec) ; aucun secret ni donnée personnelle dans les journaux ou Sentry ; le visiteur n'attend pas l'appel à Django.
+- **Vous contrôlez** : envoyer une vraie demande depuis le site de test et la retrouver dans la colonne « Nouveau » ; couper Django et vérifier que l'e-mail arrive quand même.
+
+#### S02. Lire le contenu depuis l'API au moment de la construction
+- **Branche** : `feat/s02-content-from-api` · **Taille** : grande · **Dépend de** : B09, B10, B11, B12 · **Débloque** : rien.
+- **Objectif** : Faire lire à la construction du site son contenu à Django, pour que vos modifications dans l'administration deviennent des pages, sans différence visible (mêmes pages, vitesse, référencement). Si Django est indisponible, la construction échoue et le site en ligne reste celui d'avant. Cette PR supprime les anciens fichiers de contenu, **seulement après comparaison avant/après** : les laisser serait un piège (on y modifierait un fichier sans effet).
+- **Fonctionnalités et règles**
+  - Remplacer la lecture de `content/`, de la FAQ, des avis, des zones, des tarifs, des recettes, des pages légales et des réglages par des appels à l'API (9.1) **à la construction**, avec **validation Zod** (`API_BASE_URL`, secret `BUILD_API_TOKEN`). Marqueurs de prix résolus par l'API.
+  - **Blocs vendeurs** : `lib/i18n.ts` superpose le calque `page-texts` (B11) à `messages/fr.json` avant toute lecture (un seul point de chargement, aucun composant touché). `messages/fr.json` **reste dans le dépôt** (1 231 libellés d'interface) ; les clés non migrées en viennent.
+  - **Suppression des anciens fichiers de contenu** uniquement après contrôle de parité (HTML identique à la normalisation près). La commande d'import de B10 (`--site-path`) lit ces fichiers : s'il fallait réimporter, les récupérer dans l'historique git.
+- **Critères** : site visuellement identique ; un échec de l'API **fait échouer la construction** sans publier ; `npm run test:seo` passe ; aucun fichier de contenu ne subsiste hors `messages/fr.json` ; sans édition en base, le fichier fusionné est identique au fichier d'origine.
+- **Vous contrôlez** : `npm run build` avec l'API locale puis en test, et comparer des pages clés.
+
+#### S03. Déclenchement de la publication et déploiement
+- **Branche** : `feat/s03-publish-workflow` · **Taille** : petite à moyenne · **Dépend de** : B12, B14 · **Débloque** : S04. **Prérequis** : M12.
+- **Objectif** : Dernier maillon de la publication : le clic sur « Publier » (A-Publier) reconstruit et met le site en ligne, d'abord sur le test puis, avec votre approbation, en production. Un déploiement raté ne remplace jamais le site en ligne.
+- **Fonctionnalités et règles**
+  - Workflow GitHub Actions déclenché par `repository_dispatch` (`content-updated`) et par `push` ; environnements `test` et `production` (approbation pour la production).
+  - Déploiement par `opennextjs-cloudflare` et les environnements de `wrangler.jsonc` ; secrets : jeton Cloudflare, identifiant de compte, jeton de lecture de l'API.
+  - `concurrency` : une seule construction à la fois ; statut lisible par le backend.
+- **Critères** : un dispatch de test déclenche une construction ; un échec n'écrase pas le site en ligne.
+- **Vous contrôlez** : cliquer sur **Publier** et suivre la construction jusqu'au site de test ; provoquer un échec et vérifier que le site en ligne ne bouge pas.
 
 #### S04. Site : durcissement
 - **Branche** : `feat/s04-hardening` · **Taille** : moyenne · **Dépend de** : S03 · **Débloque** : rien.
-- **Objectif** : La dernière PR avant l'ouverture : on vérifie que le site est utilisable par tous (accessibilité, clavier, téléphone), que la sécurité tient, et que les parcours complets fonctionnent avec des tests automatiques. On met aussi à jour la page de confidentialité : qui reçoit les données, où sont les allergies, combien de temps on les garde.
-- **Fonctionnalités et règles** : audit d'accessibilité **WCAG 2.2 AA** (clavier, focus visible, erreurs liées aux champs, pas d'information portée par la seule couleur, mobile d'abord) ; revue de sécurité ; tests de bout en bout Playwright sur le parcours de carte cadeau ; **page de confidentialité mise à jour** (sous-traitants, allergies conservées dans HubSpot avec consentement explicite, durées de conservation) ; erreurs du site envoyées à Sentry sans donnée personnelle. Le formulaire de demande reste inchangé (HubSpot direct).
-- **Critères** : l'audit d'accessibilité ne laisse aucune anomalie bloquante ; tout le parcours de carte cadeau passe de bout en bout sous Playwright ; aucune donnée personnelle n'arrive dans Sentry ; la page de confidentialité cite chaque sous-traitant et chaque durée de conservation.
-- **Vous contrôlez** : parcourir le site au clavier seul, puis sur téléphone ; acheter une carte cadeau de test de bout en bout ; relire la page de confidentialité.
+- **Objectif** : Dernière PR avant l'ouverture : vérifier que le site est utilisable par tous, que la sécurité tient et que le parcours du formulaire est couvert par un test de bout en bout ; mettre à jour la page de confidentialité.
+- **Fonctionnalités et règles**
+  - Audit **WCAG 2.2 AA** (clavier, focus visible, erreurs liées aux champs, pas d'information par la seule couleur, mobile d'abord) ; revue de sécurité.
+  - Test Playwright de bout en bout du formulaire de demande (S00, puis S01).
+  - **Page de confidentialité** : sous-traitants, allergies recueillies avec consentement et conservées hors de l'outil, durées de conservation (prospects compris).
+  - Erreurs du site envoyées à Sentry sans donnée personnelle.
+- **Critères** : aucune anomalie d'accessibilité bloquante ; parcours du formulaire vert sous Playwright ; aucune donnée personnelle dans Sentry ; la page de confidentialité cite chaque sous-traitant et chaque durée.
+- **Vous contrôlez** : parcourir le site au clavier seul puis sur téléphone ; envoyer une demande de test de bout en bout ; relire la page de confidentialité.
 
-## 4. Étapes manuelles : comptes, secrets, décisions
+## 4. Décisions ouvertes et points à vérifier
 
-Chaque étape indique **avant quelle PR** elle est nécessaire. Les décisions encore ouvertes sont marquées **DÉCISION**.
+Toutes les autres décisions sont prises et intégrées aux PR. Seules restent celles-ci ; le détail de chacune est dans le prérequis cité.
 
-### M0. Avant la première PR
-- **M0.1 Créer le dépôt GitHub `chefmeemz-backend`** : privé, dans votre compte ou l'organisation voulue, branche par défaut `main`, **sans** README ni `.gitignore` initiaux (la PR B00 les apporte). Cloner à côté de `chefmeemz`.
-- **M0.2 Protéger `main`** (Settings → Branches) : pull request obligatoire, au moins une approbation, vérifications de la CI obligatoires, branches à jour avant fusion, historique linéaire, interdiction du *force push*. Activer **Dependabot alerts** et **secret scanning**.
-- **M0.3 Environnements GitHub** (Settings → Environments) : `test` et `production` ; pour `production`, exiger votre approbation avant déploiement.
-- **M0.4 Poste de travail** : Docker Desktop, Python 3.12 ou plus, `uv`, Git, `make`. Node.js est déjà présent pour le site.
-- **M0.5 Donner à Claude l'accès aux deux dépôts** : ouvrir la session avec `chefmeemz-backend` comme dossier de travail et `chefmeemz` en dossier supplémentaire.
-- **M0.6 Copier ce document** dans `chefmeemz-backend/docs/PROJECT.md` (il sert de référence unique à Claude) et créer `docs/DECISIONS.md` vide avec un titre. *(La PR B00 vérifie leur présence.)*
+### 4.1 Décisions à prendre
 
-### M1. Avant la PR indiquée
-- **M1.1 Questionnaire client** (avant **B11**) :créer le **questionnaire client** (formulaire HubSpot ou document) : adresse, téléphone, foyer, allergies, régimes, goûts, compte URSSAF, avec une **case de consentement explicite** pour les allergies (voir M1.17).
-- **M1.19 Habiller les trois modèles de devis** (**pendant B04c**, pas avant) : les trois documents (batch cooking, chef privé, cours) sont créés dans votre Drive par le bouton « Créer les modèles » de la page A-Devis — **ne les créez pas à la main**, l'application n'y aurait pas accès. Vous les habillez ensuite dans Google Docs : **parties fixes rédigées** (identité, modalités de paiement, conditions d'annulation propres au service, lien et version des CGV, phrase d'acceptation) et **repères** `{{…}}` aux emplacements variables, dont la page A-Devis donne la liste. Le numéro est attribué par l'administration, donc **aucun registre manuel à tenir**.
-- **M1.20 Arbitrer les treize questions à double réponse** (**pendant B06b**, après l'import) : votre FAQ existe aujourd'hui en **118 exemplaires pour 70 questions**, et treize d'entre elles ont une réponse différente selon la page — souvent une version plus courte sur l'accueil, une version propre au service sur la page de service. En collection unique, une question n'a qu'une réponse. L'import garde celle de la page FAQ et vous remet la liste des variantes écartées : vous relisez ces treize entrées et gardez la formulation que vous préférez. **Ce que vous y gagnez** : aujourd'hui, corriger une réponse demande de la retrouver dans jusqu'à trois fichiers ; demain, vous l'écrivez une fois. Si une variante vous manque vraiment, la question peut être dédoublée en deux entrées placées différemment.
-- **M1.2 Brevo** (avant **B02** pour les tests, **B13** pour l'envoi réel) : créer le compte, **authentifier le domaine d'envoi** (enregistrements DNS SPF, DKIM, DMARC chez votre gestionnaire de DNS), créer une clé d'API par environnement. Confirmer l'adresse d'expédition retenue, `contact@tabletribu.com`. **[À VÉRIFIER]** : limites de l'offre gratuite.
-- **M1.3 Stockage de fichiers** (avant **B02**) : **DÉCISION** : fournisseur compatible S3, hébergé dans l'UE. Créer, par environnement, un espace **public** (images du site) et un espace **privé** (devis, preuves, PDF), des clés d'accès à portée limitée, la configuration CORS pour l'espace public. Tant que ce n'est pas fait, B02 et B03 utilisent le stockage local de développement.
-- **M1.4 Cloudflare Turnstile** (avant **S00** pour le formulaire de demande, **S03** pour la carte cadeau) : créer un widget pour `tabletribu.com` et `test.tabletribu.com` ; noter la clé de site (publique) et la clé secrète (à garder côté serveur).
-- **M1.5 HubSpot** (avant **S00** pour les demandes du site, **B11** pour les notes de dossier) : créer une **application privée** avec les droits d'**écrire des contacts, des notes et des deals** (S00 crée le contact ; B11 n'ajoute que des notes) ; noter le jeton ; **connecter votre messagerie** à HubSpot (enregistrement des e-mails) ; définir les étapes du pipeline (Nouveau, Qualifié, Devis envoyé, Gagné, **Dossier créé**, Perdu) et **relever les identifiants internes** des étapes « Devis envoyé » et « Dossier créé », que l'administration déplace elle-même (B04c, B11) : ces identifiants sont opaques et se saisissent dans l'administration, jamais dans le code. **Relances HubSpot (2.3)** : tâche **« rappeler ce contact » dès la création du deal, échéance à 24 h** (c'est l'étape dont le retard coûte le plus cher, et la seule relance portant sur un prospect pas encore appelé), tâche **« envoyer le devis » à 48 h** dès le passage à « Qualifié » (sans elle, un prospect qualifié et intéressé attend son devis sans que rien ne vous le rappelle — c'est le prospect le plus coûteux à perdre, puisque l'appel est déjà passé), tâches de relance du devis (J+7, J+14, expiration à J+30), du questionnaire (J+3) et « créer le dossier Django » dès « Gagné » ; **arrêter toute séquence ou tâche** quand le deal passe à « Dossier créé » ; enregistrer trois vues (« deals sans devis depuis plus de 3 jours », « devis sans réponse », « deals Gagné sans dossier ») dont les adresses se saisissent dans l'administration (`FollowUpSettings`). **[À VÉRIFIER]** : tâches automatiques disponibles ou non en offre gratuite ; sinon les créer à la main. **[À VÉRIFIER]** : limites de l'offre gratuite (propriétés, appels d'API) ; HubSpot n'a pas de bac à sable gratuit, donc un compte séparé pour les tests ou le client factice.
-- **M1.6 Stripe** (avant **B16**) : créer le compte, rester en **mode test**, noter les clés de test, enregistrer plus tard l'adresse du webhook par environnement ; activer le prélèvement SEPA et personnaliser la page de paiement avant la production.
-- **M1.7 Jeton de publication** (avant **B09**) : créer un **jeton GitHub à portée minimale** pour déclencher un workflow du dépôt `chefmeemz` (`repository_dispatch`), l'enregistrer comme secret du backend ; **à vérifier** : les droits exacts requis par ce jeton.
-- **M1.8 Cloudflare** (avant **S02**) : vérifier votre **offre Workers** (limite de temps de calcul par requête), créer un **jeton d'API** pour le déploiement depuis GitHub Actions, enregistrer les secrets du dépôt `chefmeemz` (jeton, identifiant de compte).
-- **M1.9 Hébergement de Django** (avant **B07**) : **DÉCISION, et la seule bloquante**. Il faut un hébergeur de conteneurs, une base PostgreSQL gérée avec sauvegardes, un stockage, des noms de domaine (hypothèse `api.test.tabletribu.com` et `api.tabletribu.com`), et un certificat TLS. Le choix doit tenir compte de l'exposition (page de choix du menu joignable publiquement par son lien signé ; administration derrière 2FA et préfixe non évident). **Si cela passe par Teads : #ask-devx pour le chemin approuvé et #ask-security pour la sécurité.** Aucune PR avant B07 n'en dépend.
-- **M1.10 DNS** (avant **B07**) : créer les enregistrements des domaines du backend selon la décision d'hébergement (**M1.9**) ; vérifier ceux de `test.tabletribu.com` (déjà dans `wrangler.jsonc`).
-- **M1.11 Sentry** (avant **B20**, optionnel plus tôt) : créer un projet en région UE par environnement ; noter les DSN.
-- **M1.12 Votre compte** (après **B01**) : créer votre compte, activer l'authentification à deux facteurs avec une application TOTP, conserver les codes de secours.
-- **M1.13 Informations légales** (avant la production) : **DÉCISION**. raison sociale, forme juridique, SIRET, adresse, numéro de déclaration de services à la personne, assurance, médiateur de la consommation. À saisir dans l'administration (`LegalIdentity`) ; tant qu'elles manquent, la vente de cartes cadeaux est bloquée en production (bandeau d'avertissement dans l'administration).
-- **M1.14 Comptable** (avant **B04b** et **B04c** pour l'éligibilité des lignes au crédit d'impôt, **B11**, **B15**, **B17**, et avant **B21** pour les points) : valider par écrit les mentions du devis, la TVA, l'éligibilité au crédit d'impôt par ligne (déplacement, options, plats sur mesure), la valeur d'un accord par e-mail, le traitement des cartes cadeaux, l'articulation carte cadeau et avance immédiate, et — avant **B21** seulement — le traitement des **points de fidélité convertis en carte cadeau**.
-- **M1.15 Outil de facturation** (avant **B15**) : **DÉCISION** (gère-t-il l'avance immédiate URSSAF, a-t-il une interface de programmation ?). Tant que ce n'est pas décidé, B15 livre la saisie manuelle.
-- **M1.16 FAQ et CGV** (avant la production) : aligner les textes (règle des 48 h, changement de formule, délais d'annulation) ; reporté pour l'instant.
-- **M1.17 Allergies et RGPD** (avant **B11**, et avant toute collecte réelle) : les allergies sont des données de santé gardées **dans HubSpot** (jamais dans Django). À faire : (1) **consentement explicite** dans le questionnaire (case dédiée, texte précis, retirable) ; (2) **registre des traitements** (même simple) ; (3) **politique de confidentialité** mise à jour (finalités, durée, HubSpot comme sous-traitant, transfert hors UE **[À VÉRIFIER]**) ; (4) **clause de responsabilité** des CGV (le client choisit ses recettes après lecture des allergènes) à faire valider **[À VÉRIFIER]** ; (5) vérifier si HubSpot gratuit permet de restreindre l'accès aux champs sensibles **[À VÉRIFIER]**.
-- **M1.18 Compte Google pour la génération des devis** (avant **B04c**) : créer un **projet Google Cloud** (gratuit), y activer l'**API Drive** et l'**API Docs**, créer un **identifiant OAuth 2.0**, et demander le seul périmètre **`drive.file`**. Deux points qui font échouer l'installation si on les manque : (1) **publier l'écran de consentement en « production »** — tant qu'il reste en « test », Google **périme le jeton de rafraîchissement au bout de 7 jours** et la génération s'arrête toute seule chaque semaine ; (2) ne demander **aucun périmètre sensible** (`documents`, `drive`, `drive.readonly`), sans quoi la publication déclenche une procédure de validation. Puis exécuter la commande de première autorisation (B04c), accepter dans le navigateur, et enregistrer le **jeton de rafraîchissement** comme secret. **[À VÉRIFIER]** : si votre compte est un compte Google Workspace et non un Gmail personnel, l'écran de consentement peut rester « interne », ce qui évite la publication **[À VÉRIFIER]**.
-
-## 5. Décisions ouvertes et points à vérifier
-
-Toutes les autres décisions sont prises et intégrées aux PR (section 3). Seules restent celles-ci.
-
-### 5.1 Décisions à prendre
-
-Index des décisions encore ouvertes. Le **détail et le travail à faire** sont dans l'étape manuelle citée (section 4) : ils ne sont pas répétés ici.
-
-| Décision | Bloque | Détail | Tant que ce n'est pas tranché |
+| Décision | Bloque | Prérequis | Tant que ce n'est pas tranché |
 | --- | --- | --- | --- |
-| **Hébergement de l'administration** `[BLOQUANT]` | B07, B20 | M1.9 | développement local avec Docker |
-| **Outil de facturation** | B15 | M1.15 | `ManualProvider` (saisie à la main) |
-| **Informations légales** | production | M1.13 | vente de cartes cadeaux bloquée en production |
-| **Comptable** : mentions du devis, TVA, crédit d'impôt par ligne | B04b, B04c, B11, B15, B17 | M1.14 | lignes supposées non éligibles par prudence |
-| **FAQ et CGV à aligner** (48 h, changement de formule) | production | M1.16 | textes du site divergents (voir 2.6) |
-| **Clause de responsabilité sur les allergènes** (juriste) | production | M1.17 | affichage des allergènes et accord écrit du client |
-| **Domaine du backend** | B07 | 7.2 | `api.test.tabletribu.com`, `api.tabletribu.com` |
-| **Version de Django (LTS)** | B00 | 3.1 | 5.2 LTS, à confirmer sur le site officiel |
-| **Agenda de la cheffe** | B12 | — | Google Agenda supposé, à confirmer |
-| **Durée de validité du lien de choix** | B13, B14 | — | jusqu'à la date limite du plan (environ 4 jours) |
-| **Barème des points de fidélité** | B21 | B21 | 10 points par passage, 100 points = 20 €, conversion dès 100 points |
-| **Espace client avec comptes** | — | 2.5 | reporté ; à reconsidérer au-delà d'une trentaine de clients actifs par mois, quand préparer les propositions à la main devient trop lourd. Les modèles l'accueillent sans rien défaire (`Engagement.menu_mode`) |
+| **Hébergement de l'administration** `[BLOQUANT]` | B12, B24 | M5 | développement local avec Docker |
+| **Stockage de fichiers** | B02 | M7 | stockage local |
+| **Outil de facturation** | B20 | M14 | `ManualProvider` (saisie à la main) |
+| **Informations légales** | production | M18 | bandeau d'avertissement dans l'administration |
+| **Comptable** : mentions du devis, TVA, crédit d'impôt par ligne | B07, B16, B20, B21 | M10 | lignes supposées non éligibles par prudence |
+| **FAQ et CGV à aligner** (annulation, changement de formule) | production | M19 | textes du site divergents (voir 1.9) |
+| **Domaine du backend** | B12 | M6 | `api.test.tabletribu.com`, `api.tabletribu.com` |
+| **Version de Django (LTS)** | B00 | 6.1 | 5.2 LTS, à confirmer sur le site officiel |
+| **Agenda de la cheffe** | B17 | — | Google Agenda supposé, à confirmer |
+| **Espace client avec comptes** | — | 1.8 | reporté ; à reconsidérer au-delà d'une trentaine de clients actifs par mois. Les modèles l'accueillent sans rien défaire |
 
-### 5.2 Points à vérifier
-- **HubSpot Free** : limite de propriétés personnalisées (une source cite 10), connexion de la messagerie, notification par e-mail à chaque demande, formulaire gratuit pour le questionnaire, absence probable de droits par champ pour les données de santé, débit d'API.
+### 4.2 Points à vérifier
+- **Vie privée** : durée de conservation des prospects (3 ans proposés) et de votre support privé d'allergies, à valider.
 - **E-mail** : limites de l'offre gratuite de Brevo, domaine d'envoi authentifié.
-- **Cloudflare** : offre Workers et temps de calcul par requête pour la seule page dynamique restante, l'achat de carte cadeau (contrainte réelle : le temps de calcul, pas la taille).
-- **Outil de facturation, Cal.com et autres tarifs** : chiffres issus de sites tiers, parfois contradictoires ; à confirmer sur les sites officiels.
+- **Outil de facturation, Cal.com et autres tarifs** : chiffres de sites tiers, parfois contradictoires ; à confirmer sur les sites officiels.
 
-**Sources consultées le 11/11/2026** : [HubSpot](https://www.spotdev.co.uk/blog/is-hubspot-free) · [HubSpot, devis et signature](https://knowledge.hubspot.com/quotes/use-e-signatures-with-quotes?tr=true) · [Stripe](https://stripe.com/fr/pricing/) · [Brevo](https://www.sendx.io/blog/brevo-pricing-plans-costs-alternatives-2026) · [Indy](https://www.indy.fr/guide/facturation/logiciel/gratuit/) · [comparatif facturation](https://digitiz.fr/facturation-electronique-gratuite/) · [Cal.com](https://costbench.com/software/scheduling/cal-com/free-plan/)
+**Sources consultées le 11/11/2026** : [Stripe](https://stripe.com/fr/pricing/) · [Brevo](https://www.sendx.io/blog/brevo-pricing-plans-costs-alternatives-2026) · [Indy](https://www.indy.fr/guide/facturation/logiciel/gratuit/) · [comparatif facturation](https://digitiz.fr/facturation-electronique-gratuite/) · [Cal.com](https://costbench.com/software/scheduling/cal-com/free-plan/)
 
-## 6. Checklist avant la mise en production
-- Toutes les PR B00 à B20 et S00 à S04 fusionnées, CI verte.
-- **S00 vérifiée sur le site réel** : une demande de test crée bien le contact et déclenche les deux e-mails.
-- **M1.13** : informations légales saisies ; la vente de cartes cadeaux est débloquée en production.
-- **M1.14** : réponses du comptable appliquées (mentions, TVA, crédit d'impôt par ligne, cartes cadeaux).
-- **M1.15** : outil de facturation choisi, ou procédure manuelle documentée.
-- **M1.16** : FAQ et CGV alignées sur les règles réelles (48 h, annulation, changement de formule).
+## 5. Checklist avant la mise en production
+- Toutes les PR B00 à B25 et S00 à S04 fusionnées, CI verte.
+- **S00 et S01 vérifiées sur le site réel** : une demande de test arrive par e-mail avec tout son contenu, l'accusé part au visiteur, et la demande apparaît dans la colonne « Nouveau » du pipeline.
+- **M18** : informations légales saisies. **M10** : réponses du comptable appliquées. **M14** : outil de facturation choisi, ou procédure manuelle documentée. **M19** : FAQ et CGV alignées.
+- **M13** : support privé des allergies choisi, consentement explicite, registre des traitements, politique de confidentialité et clause de responsabilité validés.
 - Sauvegardes restaurées avec succès, supervision active, accès administrateur protégé (2FA, préfixe).
-- Stripe en mode réel, SEPA activé, webhooks de production enregistrés, domaine d'envoi authentifié.
-- **M1.18** fait : écran de consentement Google **publié en production** (sinon le jeton expire tous les 7 jours), génération d'un devis vérifiée de bout en bout.
-- **M1.1** et **M1.17** faits : modèle de devis, questionnaire avec consentement explicite, registre des traitements, politique de confidentialité et clause de responsabilité validées.
-- La **page de choix du menu** testée depuis un téléphone, avec un lien expiré et un lien déjà utilisé ; relances et résumé quotidien activés un par un et vérifiés sur votre propre adresse.
-- Dernier contrôle des **données de santé** : aucune allergie dans Django, Stripe, les journaux, les e-mails marketing ni les PDF ; les allergies sont dans HubSpot avec consentement explicite.
+- Stripe en mode réel, SEPA activé, webhooks de production enregistrés, domaine d'envoi authentifié (SPF, DKIM, DMARC : PASS).
+- **Page de choix du menu** testée depuis un téléphone, avec un lien expiré et un lien déjà utilisé ; relances client activées une par une et vérifiées sur votre adresse ; tableau de bord et liens de ses compteurs vérifiés.
+- Dernier contrôle des **données de santé** : aucune allergie dans Django, l'API, l'historique, les journaux, Stripe, les e-mails ni les PDF ; elles sont uniquement dans votre support privé, avec consentement.
 
 # Partie III — La technique
 
 Les choix d'architecture, les données et les contrats. Destinée à qui écrit le code.
 
 
-## 7. Stack et conventions
+## 6. Stack et conventions
 
-### 7.1 Choix par défaut
+### 6.1 Choix par défaut
 - **Python 3.12+**, **Django LTS courant** (5.2 LTS à la date de rédaction ; vérifier s'il existe une LTS plus récente), **PostgreSQL**.
-- **API** : Django REST Framework + `drf-spectacular` (schéma OpenAPI) pour la **lecture par la construction du site** (authentifiée par `BUILD_API_TOKEN`, voir section 8), la route serveur à serveur de la carte cadeau et les webhooks. **Aucune route n'est ouverte sans authentification**, et **aucun JavaScript de navigateur n'appelle cette API** : elle n'est consommée que de serveur à serveur.
-- **Page de choix du menu** : page servie par **Django** (gabarit et CSS aux couleurs du site), détaillée en **B14**.
-- **Administration de la cheffe et édition du contenu (le « CMS », voir glossaire)** : **administration Django avec le thème Unfold** (aux couleurs du site), plus **4 pages sur mesure** — `A-Dossier`, `A-Suivi`, `A-Publier`, `A-Devis` (voir le glossaire) — construites en templates Django et HTMX (B04b, B04c, B09, B11, B12). **Pas d'API d'administration** : la cheffe n'utilise que l'administration, qui s'appuie sur les sessions Django.
+- **API** : Django REST Framework + `drf-spectacular` (schéma OpenAPI) pour la **lecture par la construction du site** (authentifiée par `BUILD_API_TOKEN`, voir section 7), les webhooks. **Aucune route n'est ouverte sans authentification**, et **aucun JavaScript de navigateur n'appelle cette API** : elle n'est consommée que de serveur à serveur.
+- **Page de choix du menu** : page servie par **Django** (gabarit et CSS aux couleurs du site), détaillée en **B19**.
+- **Administration de la cheffe et édition du contenu (le « CMS », voir glossaire)** : **administration Django avec le thème Unfold** (aux couleurs du site), plus **3 pages sur mesure** — `A-Dossier`, `A-Publier`, `A-Devis` (voir le glossaire) — construites en templates Django et HTMX (B07, B14, B16), et **deux vues avec filtres** (Clients, Semaines) livrées par B17 dans l'administration. **Pas d'API d'administration** : la cheffe n'utilise que l'administration, qui s'appuie sur les sessions Django.
 - **Tâches asynchrones** : **Procrastinate** (file adossée à Postgres, pas de Redis).
-- **PDF** : **WeasyPrint** (listes d'ingrédients, cartes cadeaux).
+- **PDF** : **WeasyPrint** (listes d'ingrédients).
 - **E-mail** : Brevo (API ou SMTP).
 - **Stockage des fichiers** : stockage compatible S3 via `django-storages`, **privé** par défaut.
 - **Qualité** : `pytest-django`, `factory-boy`, `ruff`, `mypy` (strict sur les apps métier), `pre-commit`, GitHub Actions.
 - **Observabilité** : Sentry (offre gratuite) + route `/healthz`.
 
-### 7.2 Conventions de code
+### 6.2 Conventions de code
 - **Montants** : entiers en **centimes** (`amount_cents`), jamais de flottants. Taux en basis points ou `Decimal`.
 - **Identifiants publics** : UUID (pas d'ID séquentiels exposés).
 - **Dates** : toujours timezone-aware, stockées en UTC.
-- **Configuration** par variables d'environnement (section 11.1) ; aucun secret dans le dépôt.
+- **Configuration** par variables d'environnement (section 10.1) ; aucun secret dans le dépôt.
 - **Services** : la logique métier va dans `services.py` par app (pas dans les vues ni les modèles), testée sans HTTP.
-- **Intégrations externes** derrière une interface (`Protocol`) avec une implémentation réelle et une implémentation factice pour les tests (`HubSpotClient`, `StripeGateway`, `Mailer`, `InvoicingProvider`, `GoogleDocsClient`).
+- **Intégrations externes** derrière une interface (`Protocol`) avec une implémentation réelle et une implémentation factice pour les tests (`StripeGateway`, `Mailer`, `InvoicingProvider`).
 - Toute action sensible écrit une ligne dans `AuditEvent` (qui, quoi, quand, objet, avant/après).
 
-### 7.3 Apps
-`core` (utilitaires, audit, fichiers), `accounts` (staff), `content` (CMS), `catalog` (recettes, ingrédients, allergènes), `pricing` (packs, grille, zones), `clients` (dossier client), `engagements` (engagements, passages, réservations), `planning` (plans de repas, choix, listes d'ingrédients), `billing` (références de facture, URSSAF), `payments` (Stripe), `giftcards`, `loyalty` (points de fidélité), `notifications`, `integrations` (HubSpot, GitHub, Stripe, Brevo, Google Docs), `reviews`, `staffdesk` (registre de suivi et relances, tableau « à faire »), `mealchoice` (page de choix du menu, voir B14).
+### 6.3 Apps
+`core` (utilitaires, audit, fichiers), `accounts` (staff), `content` (CMS), `catalog` (recettes, ingrédients, allergènes), `pricing` (packs, grille, zones), `crm` (contacts, deals, pipeline), `clients` (dossier client), `engagements` (engagements, passages, réservations), `planning` (plans de repas, choix, listes d'ingrédients), `billing` (références de facture, URSSAF), `payments` (Stripe), `notifications`, `integrations` (GitHub, Stripe, Brevo), `reviews`, `staffdesk` (tableau de bord, vues Clients et Semaines, registre des relances aux clients), `mealchoice` (page de choix du menu, voir B19).
 
-### 7.4 Interdits (à tester)
-1. **Aucun prospect** dans la base avant la création manuelle du dossier (page A-Dossier). Le **registre des devis émis** (`IssuedQuote`) ne fait pas exception : il ne porte ni nom, ni e-mail, ni téléphone, ni montant.
-2. **Aucune allergie, aucun régime, aucune donnée de santé de client** dans Django (ni champ, ni note interne), et aucune dans les journaux, Stripe, les e-mails marketing ni les PDF. Un test vérifie qu'aucun modèle ne porte ce type de champ ; la note interne du client affiche un avertissement.
+### 6.4 Interdits (à tester)
+1. **Prospects : conservation limitée.** Un prospect perdu ou sans suite est purgé après la durée de conservation (3 ans après le dernier échange **[À VÉRIFIER]**) ; l'export et la suppression sur demande fonctionnent sur le contact et ses deals (B23). Le **registre des devis émis** (`IssuedQuote`) est rattaché à un deal et tombe avec lui à l'anonymisation, hors pièces légales.
+2. **Aucune allergie, aucun régime, aucune donnée de santé de client** dans Django (ni champ, ni note de contact, de deal ou de client), et aucune dans les journaux, Stripe, les e-mails marketing ni les PDF. Un test vérifie qu'aucun modèle ne porte ce type de champ ; les zones de notes affichent un avertissement.
 3. **Aucun numéro de carte bancaire** ne passe par Django (Stripe Checkout hébergé).
 4. **Aucun secret** dans les logs, les messages d'erreur, les fixtures.
 5. Les **factures** ne sont pas numérotées par Django (c'est la suite continue de l'outil de facturation).
 
-### 7.5 Bonnes pratiques officielles de Django et DRF
-Ces règles viennent des recommandations officielles de Django et de DRF (sources en fin de section, consultées le 11/11/2026). Les règles marquées **(projet)** sont nos conventions, pas une recommandation de la documentation. Chacune est vérifiable par un test, par la CI ou en revue (voir 1.4 et B00).
+### 6.5 Bonnes pratiques officielles de Django et DRF
+Ces règles viennent des recommandations officielles de Django et de DRF (sources en fin de section, consultées le 11/11/2026). Les règles marquées **(projet)** sont nos conventions, pas une recommandation de la documentation. Chacune est vérifiable par un test, par la CI ou en revue (voir l'Avant-propos et B00).
 
 **Django : réglages et sécurité**
 1. **Production** : `DEBUG = False` ; `SECRET_KEY` lue dans l'environnement (rotation avec `SECRET_KEY_FALLBACKS`) ; `ALLOWED_HOSTS` explicite ; `DEFAULT_FROM_EMAIL` et `SERVER_EMAIL` définis ; `LOGGING` relu ; pages 400, 403, 404 et 500 personnalisées ; connexions persistantes (`CONN_MAX_AGE`). La CI exécute `manage.py check --deploy` avec les réglages de production : aucun avertissement non justifié.
@@ -883,33 +1321,32 @@ Ces règles viennent des recommandations officielles de Django et de DRF (source
 1. **Permissions par défaut** : le défaut de DRF est `AllowAny`. On met `DEFAULT_PERMISSION_CLASSES = [IsAuthenticated]` ; toute route publique déclare `AllowAny` explicitement sur la vue et figure dans `docs/API.md`. Un test parcourt les routes et échoue si une vue n'a pas de permission explicite ou héritée du défaut sûr.
 2. **Authentification** : par défaut DRF active `SessionAuthentication` et `BasicAuthentication`. Pour l'API on les retire et on déclare les classes par groupe de routes : jeton `Bearer` de construction, secret partagé du serveur à serveur, jeton signé de la page de choix.
 3. **Pagination** : par défaut aucune. `DEFAULT_PAGINATION_CLASS` et `PAGE_SIZE` définis ; l'API de construction n'est pas paginée mais bornée (moins de 500 objets) et documentée comme exception.
-4. **Limitation de débit** : par défaut aucune. Débits par portée (`ScopedRateThrottle`) pour la page de choix du menu, la saisie d'un code de carte cadeau et la route de commande de carte cadeau. `NUM_PROXIES` réglé selon l'hébergement. La documentation DRF précise que la limitation n'est **pas une mesure de sécurité à elle seule** et qu'elle utilise le cache de Django : les compteurs critiques (essais de code de carte cadeau) sont donc **aussi appliqués par la logique métier, comptés en base**, et un cache local à un processus ne suffit pas avec plusieurs processus.
+4. **Limitation de débit** : par défaut aucune. Débits par portée (`ScopedRateThrottle`) pour la page de choix du menu. `NUM_PROXIES` réglé selon l'hébergement. La documentation DRF précise que la limitation n'est **pas une mesure de sécurité à elle seule** et qu'elle utilise le cache de Django : les compteurs critiques (essais sur un lien de choix) sont donc **aussi appliqués par la logique métier, comptés en base**, et un cache local à un processus ne suffit pas avec plusieurs processus.
 5. **Rendu et JSON** : `BrowsableAPIRenderer` retiré en production ; `STRICT_JSON` conservé.
 6. **Erreurs** : un seul gestionnaire d'exceptions au format `{code, message, fields}`, sans détail interne.
 7. **Version** : `/api/v1/` avec `ALLOWED_VERSIONS` ; les versions inconnues sont refusées.
 
 **DRF : vues, permissions et sérialiseurs**
 1. **Permissions d'objet** : DRF n'applique pas `has_object_permission` aux listes ni aux créations. La page de choix ne lit donc **que le plan de repas désigné par son jeton**, les créations sont restreintes dans `perform_create()`, et tout `get_object()` surchargé appelle `check_object_permissions()`.
-2. **Sérialiseurs (projet)** : champs listés explicitement (pas de `__all__`) ; sérialiseurs distincts en lecture et en écriture ; aucune logique métier dans les sérialiseurs ni les vues : elles appellent `services.py` (7.2).
+2. **Sérialiseurs (projet)** : champs listés explicitement (pas de `__all__`) ; sérialiseurs distincts en lecture et en écriture ; aucune logique métier dans les sérialiseurs ni les vues : elles appellent `services.py` (6.2).
 3. **Filtrage (projet)** : champs filtrables et triables listés explicitement.
 4. **Schéma** : `drf-spectacular` généré en CI avec validation stricte (`spectacular --validate --fail-on-warn`) ; le schéma documente l'API de lecture et les webhooks.
 5. **Tests** : `APIClient` ; tests d'isolation entre clients ; `assertNumQueries` pour éviter les requêtes N+1 ; un test par code d'erreur du gestionnaire.
 
 **Sources** : [Django, liste de contrôle de déploiement](https://docs.djangoproject.com/en/stable/howto/deployment/checklist/) · [Django, sécurité](https://docs.djangoproject.com/en/stable/topics/security/) · [DRF, réglages](https://www.django-rest-framework.org/api-guide/settings/) · [DRF, permissions](https://www.django-rest-framework.org/api-guide/permissions/) · [DRF, limitation de débit](https://www.django-rest-framework.org/api-guide/throttling/). La version de Django (LTS) reste à confirmer en B00.
 
-## 8. Authentification et permissions
+## 7. Authentification et permissions
 
 - **Équipe** : mot de passe + double authentification obligatoire en production, verrouillage après 5 échecs, groupes `owner` et `assistant` (détail : B01).
 - **Client** : **aucun compte, aucun mot de passe.** Le client accède à sa page de choix par un **lien signé à usage unique** (jeton aléatoire stocké haché, lié à un seul plan de repas, valable jusqu'à la date limite, invalidé après validation), sans session. La page n'expose que le prénom et le menu : ni adresse, ni téléphone, ni donnée de paiement, ni allergie enregistrée.
 - **API de construction** : jeton `Bearer` à portée lecture seule (`BUILD_API_TOKEN`), comparé en temps constant.
-- **Route serveur à serveur** (création de session de carte cadeau) : secret partagé + vérification d'un jeton Turnstile.
 - **Webhooks entrants** : signature vérifiée (Stripe), liste d'adresses ou secret pour les autres.
 
-## 9. Modèle de données
+## 8. Modèle de données
 
 Convention : `id` UUID, `created_at`, `updated_at` sur tous les modèles ; `is_published` et `published_at` sur le contenu public. Les champs entre guillemets sont des choix fermés.
 
-### 9.1 `content` (CMS)
+### 8.1 `content` (CMS)
 Les formes de sortie de l'API doivent **reproduire les schémas Zod existants** (`lib/content/schemas.ts`), clés en camelCase.
 
 - **`Project`** (réalisation) : `slug` (unique), `title`, `order`, `date`, `excerpt`, `categories` (liste de textes), `image` (fichier + `alt` obligatoire, largeur et hauteur extraites automatiquement), `thumbnail` (optionnel), `gallery` (liste ordonnée de `ProjectImage` : fichier, `alt`, `order`), `service` ("batch", "chef", "cours"), `occasion`, `tags`, `city`, `guest_count`, `diets` (liste), `duration`, `guests`, `menu` (liste de lignes), `review_quote`, `review_author`, `client`, `location`, `url`, `related` (liste de slugs).
@@ -918,19 +1355,19 @@ Les formes de sortie de l'API doivent **reproduire les schémas Zod existants** 
 - **`FaqSection`** : `slug`, `kicker`, `tab`, `title`, `order`. **`FaqEntry`** : `section`, `question`, `answer` (Markdown, liens internes autorisés), `order`, `is_published`. Plus une page FAQ distincte pour les FAQ de tarifs et de zones : champ `placement` ("faq", "tarifs", "zones", "batch", "chef", "cours").
 - **`LegalPage`** : `slug` ("cgv", "confidentialite", "mentions-legales"), `title`, `description`, `body` (Markdown), `version` (texte, ex. `2026-11`), `updated`. Les CGV portent un numéro de version, recopié dans `cgv_version` de l'engagement pour tracer la version acceptée.
 - **`SiteSettings`** (singleton) : `name`, `phone`, `phone_href`, `email`, `address`, `area`, `hours`, `provisional` (booléen), `social_links` (liste : nom, URL).
-- **`LegalIdentity`** (singleton, **éditable en administration**, utilisé sur les cartes cadeaux et les pages légales, et comme référence pour remplir le modèle de devis) : `legal_name`, `legal_form`, `siret`, `legal_address`, `sap_declaration_number` (déclaration de services à la personne), `insurer_name`, `insurance_policy_number`, `mediator_name`, `mediator_contact`, `vat_mention`. Tous les champs sont **vides au départ** : les informations seront saisies plus tard.
+- **`LegalIdentity`** (singleton, **éditable en administration**, utilisé sur les pages légales, et comme référence pour remplir le modèle de devis) : `legal_name`, `legal_form`, `siret`, `legal_address`, `sap_declaration_number` (déclaration de services à la personne), `insurer_name`, `insurance_policy_number`, `mediator_name`, `mediator_contact`, `vat_mention`. Tous les champs sont **vides au départ** : les informations seront saisies plus tard.
 - **`Zone`** : `code` ("z1", "z2", "z3"), `label`, `description`, `travel_fee_cents`, `min_order_cents` (optionnel). **`Commune`** : `name`, `zone`, `lat`, `lon`, `label_side` ("left", "right", "top", "bottom").
-- **`PageBlock`** (B06b) : `page` ("home", "batchPage", "chefPage", "coursPage", "tarifsPage", "zonesPage", "contact", "servicesPage", "realisationsPage", "recipesPage", "inspirationsPage"), `section` (la clé de second niveau de `messages/fr.json`, par exemple "audience" ou "packages"), `kicker`, `title`, `body` (Markdown), `seo_title`, `seo_description`, `order`, `is_published`. Unicité `(page, section)`. **`PageBlockItem`** : `block`, `title`, `body` (Markdown), `order` — les listes d'arguments.
+- **`PageBlock`** (B11) : `page` ("home", "batchPage", "chefPage", "coursPage", "tarifsPage", "zonesPage", "contact", "servicesPage", "realisationsPage", "recipesPage", "inspirationsPage"), `section` (la clé de second niveau de `messages/fr.json`, par exemple "audience" ou "packages"), `kicker`, `title`, `body` (Markdown), `seo_title`, `seo_description`, `order`, `is_published`. Unicité `(page, section)`. **`PageBlockItem`** : `block`, `title`, `body` (Markdown), `order` — les listes d'arguments.
 - **Libellés d'interface** (boutons, onglets, filtres, unités, messages de formulaire, navigation, pied de page) : **non migrés**, ils restent dans `messages/fr.json` et dans le code du site. Ils commandent le comportement des composants (voir « Ce que le CMS ne permet pas » en B03).
 
-### 9.2 `catalog`
+### 8.2 `catalog`
 - **`Allergen`** : `code` (les 14 allergènes UE, mêmes clés que `ALLERGENS` dans `lib/recipes.ts`), `label`.
 - **`Ingredient`** : `name` (unique), `default_unit` ("g", "kg", "ml", "l", "piece", "tbsp", "tsp"), `category` (rayon : fruits-légumes, boucherie, poissonnerie, crèmerie, épicerie, surgelés, autre), `allergens` (M2M).
 - **`Recipe`** : `slug`, `title`, `alt`, `photo`, `dish_type` ("viande", "poisson", "vegetarien"), `pack_tier` ("classiques", "signature"), `description`, `diets` ("vegetarien", "vegan"), `origin`, `spice` ("doux", "releve", "epice"), `cost_level` (1 à 4), `season`, `fridge_days`, `freezable`, `reheat`, `base_servings` (nombre de portions de la fiche, défaut 4), `is_published` (visible sur le site), `is_available` (proposée aux clients), `main_ingredients` (liste de textes courts pour la fiche publique, sans quantités).
 - **`RecipeIngredient`** : `recipe`, `ingredient`, `quantity` (Decimal), `unit`, `note` (ex. « émincé »), `order`. **Les quantités ne sont jamais exposées par l'API publique de build** ; elles servent aux listes d'ingrédients.
 - **Calcul dérivé** : `Recipe.allergens` est l'**union** des allergènes de ses ingrédients, plus un champ manuel `extra_allergens` (traces, adaptations). Un test vérifie la cohérence.
 
-### 9.3 `pricing`
+### 8.3 `pricing`
 - **`Pack`** : `code` ("essentiel", "signature", "surmesure"), `label`, `description`, `allowed_recipe_tiers` (liste : "classiques", "signature"), `is_custom` (vrai pour sur mesure).
 - **`PriceEntry`** : `pack`, `period` ("week", "month"), `dinners` (3, 4, 5), `price_per_session_cents` (avant crédit d'impôt). Reproduit `PRICES` de `lib/lead/pricing.ts`. Unicité `(pack, period, dinners)`.
 - **`Offer`** (offre commerciale, **créée et modifiée par la cheffe**) : `code`, `label` (« Offre Post-partum »), `service` ("batch", "chef", "cours", ou vide si elle vaut pour tous), `pitch` (une phrase pour le devis et le site), `description` (Markdown, le paragraphe inséré dans le devis), `valid_from` et `valid_until` (campagne, vides = permanente), `is_active`, `is_public` (visible sur le site ou réservée au devis), `order`.
@@ -940,151 +1377,144 @@ Les formes de sortie de l'API doivent **reproduire les schémas Zod existants** 
 - **`PricingSettings`** (singleton) : `tax_credit_rate_bp` (5000 = 50 %), `chef_price_per_person_cents` (« à partir de 35 € »), `course_price_per_person_cents` (« à partir de 45 € »), `chef_deposit_rate_bp` (3000).
 - **Source de vérité** : les prix sont **ici**, jamais dans le code du site ; la gestion est **dynamique** (modifiable en administration, effet à la prochaine publication). Cette grille **préremplit** le prix d'un engagement (page A-Dossier) et alimente le site ; elle ne génère aucun devis. **La grille du code est la référence** (39,50 € après crédit d'impôt pour 3 dîners au mois) ; la FAQ qui annonce « 49,50 € » est obsolète. Pour éviter que des textes citent des prix périmés, le Markdown (FAQ, pages) accepte des **marqueurs de prix** que l'API remplace avant d'envoyer le contenu : `{{price.batch_from_after_credit}}`, `{{price.batch_from_before_credit}}`, `{{price.chef_per_person}}`, `{{price.course_per_person}}`, `{{tax_credit_percent}}`. Un test échoue si un marqueur inconnu est utilisé.
 
-### 9.4 Pièces du devis (sur l'engagement et la réservation)
+### 8.4 Pièces du devis (sur l'engagement et la réservation)
 Aucune table de devis. Chaque `Engagement` et chaque `Booking` peut porter ses pièces, **toutes facultatives** (un devis n'est jamais un prérequis) : `quote_reference` (texte, **unique** quand renseigné ; format recommandé `DEV-AAAA-NNN`), `quote_file` (PDF envoyé, privé), `agreement_file` (e-mail d'accord : `.eml`, PDF, image ou texte, privé), `agreement_date`, `cgv_version`, `source_note` (texte libre : « accord oral », « reconduction à l'identique »…). Ces pièces n'existent qu'après la confirmation du client ; quand elles existent, elles sont conservées 10 ans.
 
-**Registre des numéros émis** — **`IssuedQuote`** (B04b, B04c) : `reference` (unique, `DEV-AAAA-NNN`), `service` ("batch", "chef", "cours"), `issued_at`, `issued_by`, `status` ("reserved", "created", "failed"), `google_doc_id` et `google_doc_url` (vides tant que B04c n'est pas livrée). **Aucun champ d'identité** : ni nom, ni e-mail, ni téléphone, ni montant — ce registre sert uniquement à ne jamais réattribuer un numéro, pas à suivre une affaire (c'est le rôle de HubSpot). Un test vérifie l'absence de ces champs.
+**Devis** — **`Quote`** (B07, B08) : `deal` (obligatoire), `reference` (unique, `DEV-AAAA-NNN`, attribuée à la première finalisation, jamais réattribuée), `version` (1, 2, 3… par référence), `status` ("draft" brouillon sans numéro, "final" figé, "imported" PDF fait ailleurs), `service` ("batch", "chef", "cours"), `lines` (JSON : libellé, quantité, prix, éligibilité au crédit), `text_blocks` (JSON, Markdown), `offer` (facultative), `total_before_credit_cents`, `total_after_credit_cents`, `deposit_cents`, `totals_forced_reason` (motif quand un total est forcé à la main), `cgv_version`, `valid_until`, `pdf_file` (privé), `finalized_at`, `finalized_by`, `accepted_online_at`, `accepted_online_name` et `acceptance_token` (haché, B08). Le nom du client se lit sur le contact du deal. **`QuoteTextBlock`** : bibliothèque de textes réutilisables (`key`, `service`, `body` Markdown). Quand le dossier est créé, le devis retenu alimente `quote_reference` et `quote_file` de l'engagement (ci-dessus).
 
-### 9.5 `clients`
-- **`Client`** : `hubspot_contact_id` (unique, sert au lien vers la fiche HubSpot), `first_name`, `last_name`, `email` (unique, en minuscules, identifiant du client et adresse d'envoi), `status` ("active", "inactive", "archived"), `urssaf_account_ready` (booléen) et `urssaf_account_checked_at`, `marketing_consent` (booléen + date), `notes_internal` (texte libre réservé à l'équipe, **jamais d'allergie ni de donnée de santé**), `anonymized_at`. **Pas** de téléphone, d'adresse, de taille de foyer ni de profil alimentaire : HubSpot fait foi pour l'identité et la santé.
-- Pas de journal des échanges : seulement le lien vers HubSpot.
+### 8.5 `crm` (contacts, deals, pipeline)
+- **`Contact`** (la personne, prospect ou client) : `first_name`, `last_name`, `email` (unique, en minuscules), `phone`, `address`, `city`, `postal_code`, `zone` (optionnelle), `household_size` (optionnel), `source` ("site", "word_of_mouth", "other"), `marketing_consent` (booléen + date), `notes_internal` (texte libre, avertissement « aucune allergie ni donnée de santé ici »), `anonymized_at`. Le `Client` (8.6) lui est lié en 1-1 à l'ouverture du premier dossier.
+- **`Deal`** : `contact`, `service` ("batch", "chef", "cours"), `stage` ("new" Nouveau, "qualified" Qualifié, "quote_sent" Devis envoyé, "won" Gagné, "lost" Perdu), `stage_changed_at`, `request_detail` (texte lisible : pack, dîners, prix affiché, foyer, date, convives, lieu, occasion, message), `estimated_cents` (optionnel), `offer` (optionnelle), `source`, `lost_reason` (**obligatoire** si Perdu), `is_renewal` et `renewed_engagement` (renouvellement), `request_id` (unique, idempotence de l'intake), `created_at`.
+- **`DealStageChange`** : `deal`, `from_stage`, `to_stage`, `changed_by` (ou « site »), `changed_at`. Aucune étape ne change toute seule.
+- **`CrmNote`** : `contact` et/ou `deal`, `text`, `author`, `created_at` (avec le même avertissement : aucune donnée de santé).
+- **`SavedView`** : `owner`, `name`, `filters` (JSON des filtres de la vue Pipeline, 1.6).
+- Un deal « Gagné » ne crée rien tout seul : le `Client` naît à l'ouverture du dossier (B16).
 
-### 9.6 `engagements`
-- **`Engagement`** (batch cooking) : `client`, `pack`, `formula` ("week", "month", "custom"), `dinners_per_session` (3, 4, 5 ou libre en custom), `sessions_total` (1 pour une semaine, 4 pour un mois, saisi pour le sur mesure), `servings` (**portions par passage**, défaut 4, remplace la taille du foyer), `menu_mode` ("chef" par défaut : la cheffe propose ; "client" : réservé à un futur espace client, inutilisé aujourd'hui), `start_date`, `status` ("upcoming", "active", "completed", "cancelled"), `session_price_cents` (avant crédit, **prérempli depuis la grille**, modifiable à la création, figé ensuite), `offer` (l'offre commerciale qui a vendu l'engagement, facultative), `price_override_reason` (obligatoire si le prix diffère de la grille **et ne vient pas d'une offre**), `tax_credit_rate_bp` (taux figé à la création), les pièces du devis (9.4), `window_end_date` (date limite pour réaliser tous les passages : 6 semaines après le premier pour une formule mensuelle, **proportionnelle à la durée pour un sur mesure**, modifiable).
-- **`Session`** (un passage) : `engagement`, `sequence` (1..N), `scheduled_at` (date et heure, peut être vide tant que non planifié), `status` ("planned", "done", "postponed", "cancelled_free", "cancelled_billable"), `done_at`, `billable` (booléen), `price_cents` (copié de l'engagement ; modifiable par la cheffe pour un sur mesure, avec motif), `notes_internal`.
-- **`Booking`** (chef privé et cours) : `client`, `service` ("chef", "cours"), `event_date`, `guest_count`, `menu_notes`, les pièces du devis (9.4), `offer` (facultative), `total_cents` (saisi), `deposit_cents` (30 % pour le chef privé), `status` ("confirmed", "deposit_pending", "deposit_paid", "done", "cancelled_free", "cancelled_deposit_kept"), `cancellation_policy` (texte repris du devis, saisi).
+### 8.6 `clients`
+- **`Client`** : `contact` (1-1, porte l'identité : prénom, nom, e-mail, téléphone, adresse), `status` ("active" Actif, "inactive" Inactif — **calculé** : Actif tant qu'un engagement a des passages non clôturés), `urssaf_account_ready` (booléen) et `urssaf_account_checked_at`, `automatic_emails_enabled` (8.12). **Pas** de profil alimentaire : les allergies restent hors de l'outil (1.2).
+- Pas de journal des échanges : vos e-mails restent dans votre messagerie ; les notes se trouvent sur le contact et le deal (8.5).
 
-### 9.7 `planning`
-- **`MealPlan`** : `session` (1-1), `status` ("draft" brouillon, "proposed" proposition prête, "sent" envoyée au client, "validated" validée, "prepared" liste produite, "revision" à revoir), `opens_at`, `deadline_at`, `quota` (nombre de recettes à choisir, copié de l'engagement), `servings_per_recipe` (par défaut `Engagement.servings`), `proposal_sent_at`, `validated_at`, `validation_source` ("link" par le lien de choix, "email" accord par e-mail, "staff" validée par la cheffe faute de réponse), `validation_proof` (fichier facultatif : l'e-mail d'accord), `revision_number` (1, 2, 3… à chaque renvoi), `choice_token` (haché) et `token_expires_at`, `reviewed_at` et `reviewed_by` (la cheffe marque le menu « relu » après avoir contrôlé les allergies avec la note HubSpot).
+### 8.7 `engagements`
+- **`Engagement`** (batch cooking) : `client`, `pack`, `formula` ("week", "month", "custom"), `dinners_per_session` (3, 4, 5 ou libre en custom), `sessions_total` (1 pour une semaine, 4 pour un mois, saisi pour le sur mesure), `servings` (**portions par passage**, défaut 4, remplace la taille du foyer), `renewal_declined_at` et `renewal_declined_reason` (« Pas de renouvellement »), `renewal_deal_created_at` (date de création du deal de renouvellement, jamais l'identifiant du deal), `auto_menu_link` (« selon le réglage global » par défaut, ou forcé activé / désactivé pour cet engagement), `start_date`, `status` ("upcoming", "active", "completed", "cancelled"), `session_price_cents` (avant crédit, **prérempli depuis la grille**, modifiable à la création, figé ensuite), `offer` (l'offre commerciale qui a vendu l'engagement, facultative), `price_override_reason` (obligatoire si le prix diffère de la grille **et ne vient pas d'une offre**), `tax_credit_rate_bp` (taux figé à la création), les pièces du devis (8.4), `window_end_date` (date limite pour réaliser tous les passages : 6 semaines après le premier pour une formule mensuelle, **proportionnelle à la durée pour un sur mesure**, modifiable).
+- **`Session`** (un passage) : `engagement`, `sequence` (1..N), `scheduled_at` (date et heure, vide tant que « À dater »), `status` ("to_date" À dater, "scheduled" Planifiée, "menu_sent" Menu envoyé, "menu_ready" Menu prêt, "done" Réalisée, "invoiced" Facturée, "closed" Clôturée, "cancelled" Annulée ; **corrigeable à la main, avec trace d'audit**), `rescheduled_from` (ancienne date lors d'un report, détail dans `AuditEvent`), `cancel_reason`, `done_at`, `billable` (booléen décidé par la cheffe, en cas d'annulation aussi), `price_cents` (copié de l'engagement ; modifiable par la cheffe, avec motif), `menu_deadline_at` (date limite de choix, défaut `scheduled_at` − 2 jours, modifiable), `notes_internal`. **Passages créés** d'un engagement = ses passages non annulés ; comparés à `sessions_total`.
+- **`Booking`** (chef privé et cours) : `client`, `service` ("chef", "cours"), `event_date`, `guest_count`, `menu_notes`, les pièces du devis (8.4), `offer` (facultative), `total_cents` (saisi), `deposit_cents` (30 % pour le chef privé), `status` ("confirmed", "deposit_pending", "deposit_paid", "done", "cancelled_free", "cancelled_deposit_kept"), `cancellation_policy` (texte repris du devis, saisi).
+
+### 8.8 `planning`
+- **`MealPlan`** : `session` (1-1), `status` ("sent" lien envoyé, "validated" validé, "prepared" liste produite, "revision" à revoir ; le statut du passage suit : Menu envoyé puis Menu prêt), `deadline_at` (copiée de `Session.menu_deadline_at`), `quota` (nombre de recettes à choisir, copié de l'engagement), `servings_per_recipe` (par défaut `Engagement.servings`), `link_sent_at`, `validated_at`, `validation_source` ("link" par le lien de choix, "email" accord par e-mail, "staff" validé par la cheffe faute de réponse), `validation_proof` (fichier facultatif : l'e-mail d'accord), `revision_number` (1, 2, 3… à chaque réouverture), `choice_token` (haché) et `token_expires_at`, `reviewed_at` et `reviewed_by` (la cheffe marque le menu « relu » après avoir contrôlé les allergies avec sa propre note d'allergies, hors de l'outil).
 - **`MealChoice`** : `meal_plan`, `recipe`, `servings`, `note`, `chosen_by` ("client", "staff", "default"), `created_at`.
 - **`ShoppingList`** : `meal_plan`, `generated_at`, `lines` (JSON : ingrédient, quantité, unité, rayon), `pdf_file`, `sent_to_client_at`, `sent_to_chef_at`, `grocery_mode` ("chef_buys", "client_buys").
 - **`GroceryReceipt`** (si la cheffe fait les courses, facturées au coût réel) : `session`, `file`, `amount_cents`, `note`.
 
-### 9.8 `billing`
-- **`InvoiceRecord`** : `session` ou `booking` (un seul des deux), `provider` ("manual", puis l'outil retenu), `external_id`, `number` (numéro attribué par l'outil), `amount_cents`, `credit_amount_cents`, `client_share_cents`, `status` ("to_issue", "issued", "paid", "overdue", "cancelled"), `pdf_url`, `issued_at`, `quote_reference`. `due_date` (échéance, base des relances d'impayé).
-- **`UrssafPaymentRequest`** : `invoice_record`, `status` ("to_send", "sent", "client_validated", "paid", "rejected", "expired"), `sent_at`, `validated_at`, `paid_at`, `external_reference`, `error_message`. Le détail du flux dépend de l'outil.
-- Interface `InvoicingProvider` : `issue_invoice(record)`, `send_urssaf_request(record)`, `get_status(record)`. Première implémentation **`ManualProvider`** : la cheffe saisit le numéro et le statut dans l'administration ; un écran liste les « factures à émettre » (passages réalisés sans facture).
+### 8.9 `billing`
+- **`InvoiceRecord`** : `session` ou `booking` (un seul des deux), `provider` ("manual", puis l'outil retenu), `external_id`, `number` (numéro attribué par l'outil), `amount_cents`, `credit_amount_cents`, `client_share_cents`, `status` ("to_issue", "issued", "paid", "cancelled" ; le retard est **calculé** à partir de `due_date`), `pdf_url`, `issued_at`, `quote_reference`. `due_date` (échéance, sert à l'indicateur « en retard » et au compteur « Factures à suivre »).
+- **`UrssafPaymentRequest`** : `invoice_record`, `status` ("sent", "client_validated", "paid", "rejected", "expired"), `sent_at`, `validated_at`, `paid_at`, `external_reference`, `error_message`. Le détail du flux dépend de l'outil.
+- Interface `InvoicingProvider` : `get_status(record)` (les autres méthodes sont ajoutées avec l'outil retenu). Première implémentation **`ManualProvider`** : la cheffe saisit le numéro et le statut dans l'administration ; un écran liste les « factures à émettre » (passages réalisés sans facture).
 
-### 9.9 `payments`
-- **`Payment`** : `stripe_payment_intent_id`, `stripe_checkout_session_id`, `purpose` ("gift_card", "booking_deposit", "client_share"), `amount_cents`, `status` ("pending", "succeeded", "failed", "refunded", "partially_refunded"), `client` (optionnel), `booking` / `gift_card_order` / `invoice_record` (optionnels), `raw_event_ids`.
+### 8.10 `payments`
+- **`Payment`** : `stripe_payment_intent_id`, `stripe_checkout_session_id`, `purpose` ("booking_deposit", "client_share"), `amount_cents`, `status` ("pending", "succeeded", "failed", "refunded", "partially_refunded"), `client` (optionnel), `booking` / `invoice_record` (optionnels), `raw_event_ids`.
 - **`WebhookEvent`** : `provider`, `event_id` (unique), `type`, `received_at`, `processed_at`, `status`, `payload` (JSON), `error`. Sert à l'idempotence.
 
-### 9.10 `giftcards`
-- **`GiftCardOrder`** : `buyer_name`, `buyer_email`, `recipient_name`, `recipient_email`, `message`, `amount_cents`, `send_at` (date d'envoi), `status` ("pending_payment", "paid", "issued", "refunded"), `payment`.
-- **`GiftCard`** : `code` (unique, voir B17), `initial_cents`, `balance_cents`, `valid_until` (12 mois après l'achat), `status` ("active", "used", "expired", "refunded", "blocked"), `order`, `scope` ("any", ou un service), `issued_at`, `delivered_at`.
-- **`GiftCardTransaction`** : `gift_card`, `type` ("issue", "redeem", "refund", "expire", "adjust"), `amount_cents` (signé), `balance_after_cents`, `related_object` (réf. vers devis/engagement/réservation), `actor`, `created_at`.
-- **`GiftCardRedeemAttempt`** : `code_tried` (haché), `ip`, `success`, `created_at` (pour limiter les essais).
-
-### 9.11 `reviews`, `notifications`, `core`, `integrations`
-- **`ReviewRequest`** : `client`, `session` ou `booking`, `status` ("to_send", "sent", "received", "approved", "rejected"), `rating` (optionnel), `text`, `consent_publish` (booléen), `published_review` (FK `Review`).
+### 8.11 `reviews`, `notifications`, `core`, `integrations`
+- **`ReviewRequest`** : `client`, `session` ou `booking`, `status` ("sent", "received", "approved", "rejected"), `rating` (optionnel), `text`, `consent_publish` (booléen), `published_review` (FK `Review`).
 - **`DataRequest`** (demande RGPD reçue par e-mail ou par téléphone, saisie par la cheffe) : `client`, `kind` ("export", "deletion"), `status` ("pending", "done", "refused"), `received_at`, `due_at` (réception + 30 jours), `handled_at`, `handled_by`.
 - **`EmailTemplate`** : `key`, `subject`, `body_html`, `body_text`, modifiable en administration. **`EmailLog`** : destinataire, gabarit, statut, identifiant du fournisseur, objet lié (sans corps du message).
-- **`HubSpotSettings`** (singleton, **éditable en administration**, livré par B02) : `pipeline_id`, `stage_quote_sent_id`, `stage_file_created_id`, `view_deals_without_quote_url`, `view_quotes_no_reply_url`, `view_won_without_file_url`. Champs vides au départ, bandeau tant qu'ils le sont ; un déplacement d'étape sans identifiant configuré échoue au lieu d'écrire au hasard. **Aucun identifiant de deal ni de contact n'y est stocké** (interdit 1).
 - **`AuditEvent`** : `actor`, `action`, `object_type`, `object_id`, `changes` (JSON), `ip`, `created_at`. **`PublishRun`** : `triggered_by`, `status` ("queued", "running", "success", "failed"), `github_run_url`, `started_at`, `finished_at`.
 
-### 9.12 `staffdesk` (suivi et relances)
-- **`FollowUp`** : une ligne par situation à suivre (liste en 2.3). `kind`, `target` (objet concerné : passage, plan de repas, facture, réservation, demande URSSAF, carte, avis, demande de données…), `client` (optionnel), `owner` ("client_email", "staff"), `status` ("scheduled" à venir, "due" à traiter, "waiting" en attente du client, "done", "cancelled"), `due_at`, `deadline_at` (au-delà : « en retard »), `next_send_at`, `attempts`, `max_attempts`, `last_sent_at`, `snoozed_until`, `resolved_at`, `resolution` ("auto" situation résolue, "manual", "expired"), `note`. Unicité `(kind, target)`.
-- **`FollowUpRule`** : une ligne par type de relance, modifiable en tableau dans l'administration : `kind`, `is_active`, `delay`, `max_attempts`, `email_template`, `family` ("client" ou "staff"). Les e-mails **du service** (proposition de menu, liste d'ingrédients, lien d'acompte, envoi d'une carte cadeau à son destinataire) n'y figurent pas : les couper casserait la prestation. Le **rappel d'expiration** d'une carte, lui, est bien une relance réglable.
-- **`FollowUpSettings`** (singleton, administration) : **suspension globale** des envois automatiques (bandeau permanent tant qu'elle est active), plage et fréquence d'envoi (règles en 2.3), **résumé quotidien** (actif, heure d'envoi, week-end ou non, adresse de destination), **interrupteur des alertes immédiates** (les adresses des vues HubSpot sont dans `HubSpotSettings`, 9.11).
+### 8.12 `staffdesk` (tableau de bord et relances aux clients)
+- **`FollowUp`** : une ligne par **e-mail automatique à suivre pour un client** (liste en 1.4). `kind`, `target` (objet concerné : plan de repas, passage, réservation, avis), `client`, `status` ("scheduled" à venir, "waiting" envoyé en attente du client, "done", "cancelled"), `due_at`, `next_send_at`, `attempts`, `max_attempts`, `last_sent_at`, `snoozed_until`, `resolved_at`, `resolution` ("auto" situation résolue, "manual", "expired"), `note`. Unicité `(kind, target)`. **Aucune ligne n'est destinée à la cheffe.**
+- **`FollowUpRule`** : une ligne par type de relance aux clients, modifiable en tableau dans l'administration : `kind`, `is_active`, `delay`, `max_attempts`, `email_template`. Les e-mails **du service** (lien de choix du menu, liste d'ingrédients) n'y figurent pas : les couper casserait la prestation.
+- **`FollowUpSettings`** (singleton, administration) : **suspension globale** des envois automatiques (bandeau permanent tant qu'elle est active), plage et fréquence d'envoi (règles en 1.4), `menu_deadline_days` (date limite de choix par défaut, 2 jours avant le passage), `auto_menu_link` (envoi automatique du lien de choix, **désactivé par défaut**) et `auto_menu_link_days` (7 par défaut), `renewal_window_days` (fenêtre du compteur « Engagements bientôt terminés », 10 jours par défaut), `dashboard_window_days` (fenêtre des compteurs « Liens de choix à envoyer » et « Mes semaines à préparer », 7 jours par défaut). **Aucun réglage de notification pour la cheffe.**
 - **`Client.automatic_emails_enabled`** : permet de suspendre tous les envois automatiques à un client donné (il demande à n'être contacté que par téléphone, par exemple).
 
-### 9.13 `loyalty` (points de fidélité)
-- **`LoyaltyAccount`** : un compte par client (1-1). `client`, `balance_points`, `lifetime_points` (cumul historique, jamais décrémenté), `is_active`.
-- **`LoyaltyTransaction`** : `account`, `type` ("earn" acquis sur un passage, "grant" accordé à la main, "convert" converti en carte cadeau, "expire", "adjust"), `points` (signé), `balance_after`, `session` (le passage qui l'a généré, pour les acquisitions), `gift_card` (la carte émise, pour les conversions), `reason` (obligatoire pour "grant" et "adjust"), `actor`, `created_at`. Unicité `(type, session)` pour les acquisitions : **un passage ne crédite jamais deux fois**.
-- **`LoyaltySettings`** (singleton, administration) : `is_active` (le programme entier peut être éteint), `points_per_session`, `conversion_points` et `conversion_cents` (le barème : combien de points pour combien d'euros), `min_conversion_points`, `expiry_months` (péremption après inactivité), `email_on_threshold` (prévenir le client quand son solde devient convertible).
-- **Pas de table de parrainage** : un parrainage se récompense par une transaction "grant" avec son motif. Automatiser le parrainage serait une autre PR, et rien ne dit qu'elle sera utile.
-
-## 10. API et contrat avec le site Next.js
+## 9. API et contrat avec le site Next.js
 
 **Principe** : le site lit Django **au moment de la construction**, jamais au chargement d'une page. L'API de lecture est versionnée (`/api/v1/`), authentifiée par `BUILD_API_TOKEN`, et ne renvoie que le contenu **publié**.
 
-### 10.1 Routes de lecture (pour la construction du site)
+### 9.1 Routes de lecture (pour la construction du site)
 Toutes les clés en camelCase, identiques aux schémas Zod existants ; une collection par route, sans pagination pour moins de 500 éléments, avec `updatedAt` par objet et ETag.
 - `GET /api/v1/content/projects` : liste (forme de `projectSchema`, avec `slug`, `modified`).
 - `GET /api/v1/content/inspirations`, `/reviews`, `/zones` (zones + communes), `/faq` (sections et entrées, par `placement`), `/legal-pages` et `/legal-pages/{slug}`, `/site-settings`.
 - `GET /api/v1/content/recipes` : fiches **publiques**, sans quantités, avec `allergens` calculés (forme de `Recipe` de `lib/recipes.ts`).
 - `GET /api/v1/pricing` : packs, grille de prix, taux de crédit d'impôt, prix chef privé et cours (forme de `PACKS`, `PRICES`, `TAX_CREDIT`).
-- `GET /api/v1/content/page-texts` : le **calque des blocs vendeurs** (B06b), de la même forme que `messages/fr.json`, limité aux clés éditées et publiées.
+- `GET /api/v1/content/page-texts` : le **calque des blocs vendeurs** (B11), de la même forme que `messages/fr.json`, limité aux clés éditées et publiées.
 - `GET /api/v1/content/manifest` : `lastModified` par collection (utile au sitemap et au cache de construction).
 - Les URL d'images sont **absolues** et servies par un CDN ou le stockage public.
-- Le contenu Markdown (FAQ, pages) est renvoyé avec les marqueurs de prix déjà remplacés (voir 9.3).
+- Le contenu Markdown (FAQ, pages) est renvoyé avec les marqueurs de prix déjà remplacés (voir 8.3).
 
-### 10.2 Routes serveur à serveur (appelées par le site)
-- `POST /api/v1/giftcards/checkout` : crée la commande et la session Stripe. Entrée : montant, acheteur, destinataire, message, date d'envoi, jeton Turnstile. Sortie : URL de paiement. Limité en débit.
-- (Aucune route pour les demandes du site : elles vont directement dans HubSpot.)
+### 9.2 Routes serveur à serveur (appelées par le site)
+- `POST /api/v1/leads` (B05) : reçoit une demande du site (S01). Jeton serveur à serveur (`LEAD_API_TOKEN`, comparaison en temps constant), identifiant de demande pour l'idempotence, limitation de débit ; crée le contact, le deal « Nouveau » et sa note de détail ; ne renvoie aucune donnée de la base.
 
-### 10.2b Page de choix du menu (servie par Django)
-La page de choix **n'est pas une API** : c'est une page publique servie par Django, atteinte par un lien signé (`GET /menu/<jeton>` affiche le menu, `POST /menu/<jeton>` le valide). Elle est entièrement décrite en **B14** ; l'accès et le jeton en section 8.
+### 9.3 Page de choix du menu (servie par Django)
+La page de choix **n'est pas une API** : c'est une page publique servie par Django, atteinte par un lien signé (`GET /menu/<jeton>` affiche le menu, `POST /menu/<jeton>` le valide). Elle est entièrement décrite en **B19** ; l'accès et le jeton en section 7.
 
-### 10.2c Pas d'API pour l'administration
+### 9.4 Pas d'API pour l'administration
 
-La cheffe utilise l'**administration Django** (session et 2FA) ; il n'y a donc **aucune API d'administration** à construire ni à exposer. Ces quatre pages appellent des **vues internes** de Django (formulaires, fragments HTMX, téléchargement des pièces) et le **flux iCal** (adresse secrète, lecture seule) sous le préfixe `ADMIN_URL_PREFIX`, protégées par la session, le CSRF et les permissions. Les actions sensibles (annulation facturable, ajustement d'une carte cadeau, remboursement, prix différent de la grille, changement d'e-mail) exigent un **motif** et sont journalisées dans `AuditEvent`.
+La cheffe utilise l'**administration Django** (session et 2FA) ; il n'y a donc **aucune API d'administration** à construire ni à exposer. Les pages de l'administration appellent des **vues internes** de Django (formulaires, fragments HTMX, téléchargement des pièces) et le **flux iCal** (adresse secrète, lecture seule) sous le préfixe `ADMIN_URL_PREFIX`, protégées par la session, le CSRF et les permissions. Les actions sensibles (annulation d'un passage, remboursement, prix différent de la grille, changement d'e-mail) exigent un **motif** et sont journalisées dans `AuditEvent`.
 
-### 10.3 Webhooks entrants
+### 9.5 Webhooks entrants
 - `POST /webhooks/stripe` : signature vérifiée, idempotence par `WebhookEvent`.
 - `POST /webhooks/invoicing` : défini quand l'outil est choisi.
 
-### 10.4 Sortants
+### 9.6 Sortants
 - **GitHub** : `POST /repos/{owner}/{repo}/dispatches` (type `content-updated`) pour déclencher le déploiement du site, avec un jeton limité à ce dépôt.
-- **HubSpot**, **Stripe**, **Brevo** : voir B11, B16 et B02.
+- **Stripe** (B21), **Brevo** (B02).
 
-### 10.5 Changements attendus côté site
+### 9.7 Changements attendus côté site
 Remplacer la lecture de `content/`, des FAQ, avis, zones, recettes et prix par des appels à l'API au moment de la construction ; garder Zod pour valider les réponses ; ajouter le workflow GitHub Actions qui répond à `repository_dispatch`.
 
-## 11. Environnements, configuration et exigences transversales
+## 10. Environnements, configuration et exigences transversales
 
-### 11.1 Configuration (variables d'environnement)
+### 10.1 Configuration (variables d'environnement)
 
-`DJANGO_SECRET_KEY`, `DJANGO_ALLOWED_HOSTS`, `DATABASE_URL`, `STORAGE_*` (bucket, clés, URL publique), `BUILD_API_TOKEN`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `HUBSPOT_PRIVATE_APP_TOKEN`, `BREVO_API_KEY`, `EMAIL_FROM`, `GITHUB_DISPATCH_TOKEN`, `GITHUB_REPO`, `TURNSTILE_SECRET_KEY`, `SENTRY_DSN`, `SITE_BASE_URL`, `MENU_BASE_URL`, `ADMIN_URL_PREFIX`, `HUBSPOT_PORTAL_ID` (pour construire le lien vers la fiche), `ICAL_FEED_TOKEN` (adresse secrète du flux iCal), `GOOGLE_OAUTH_CLIENT_ID`, `GOOGLE_OAUTH_CLIENT_SECRET`, `GOOGLE_OAUTH_REFRESH_TOKEN` (génération des devis ; les identifiants du dossier et des modèles sont en base, pas ici). Fournir `.env.example` sans valeur secrète.
+`DJANGO_SECRET_KEY`, `DJANGO_ALLOWED_HOSTS`, `DATABASE_URL`, `STORAGE_*` (bucket, clés, URL publique), `BUILD_API_TOKEN`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `LEAD_API_TOKEN`, `BREVO_API_KEY`, `EMAIL_FROM`, `GITHUB_DISPATCH_TOKEN`, `GITHUB_REPO`, `SENTRY_DSN`, `SITE_BASE_URL`, `MENU_BASE_URL`, `ADMIN_URL_PREFIX`, `ICAL_FEED_TOKEN` (adresse secrète du flux iCal). Fournir `.env.example` sans valeur secrète.
 
-### 11.2 Environnements et domaines
-- **local** : Docker, base locale, e-mails écrits dans la console, Stripe en mode test, HubSpot et GitHub remplacés par des clients factices.
+### 10.2 Environnements et domaines
+- **local** : Docker, base locale, e-mails écrits dans la console, Stripe en mode test, GitHub remplacé par des clients factices.
 - **test** (préproduction) : site sur `test.tabletribu.com`. **Backend : domaine à confirmer** ; hypothèse de travail `api.test.tabletribu.com`. Stripe en mode test, base de test séparée, e-mails **uniquement vers une liste d'adresses autorisées**, aucune donnée réelle de client, publication vers le site de test.
 - **production** : site sur `tabletribu.com`. **Backend : domaine à confirmer** ; hypothèse de travail `api.tabletribu.com`. Administration sous un préfixe non évident (`ADMIN_URL_PREFIX`).
 - Chaque environnement a ses propres secrets, sa base et son stockage. Aucune donnée réelle de client en local ni en test.
 - La page de choix du menu est servie par Django (`MENU_BASE_URL`, par exemple `api.tabletribu.com/menu/...`) et son adresse figure dans les e-mails envoyés au client.
 
-### 11.3 Exigences non fonctionnelles
+### 10.3 Exigences non fonctionnelles
 
 - **Performance** : page de choix du menu < 300 ms côté serveur ; API de construction avec ETag ; pas de requêtes N+1 (tests `assertNumQueries`).
 - **Fiabilité** : tâches rejouables et idempotentes ; reprises exponentielles ; aucune perte de webhook (journal).
-- **Sécurité** : sections 7.4, 7.5 et 8, et B19 ; dépendances à jour (Dependabot) ; secrets en variables d'environnement.
+- **Sécurité** : sections 6.4, 6.5 et 7, et B24 ; dépendances à jour (Dependabot) ; secrets en variables d'environnement.
 - **Sauvegardes** : base chiffrée, quotidienne, rétention 30 jours, test de restauration documenté.
 - **Hébergement** : non spécifié ; le backend doit tourner en conteneur (Dockerfile + compose pour dev).
-- **Couverture de tests** : ≥ 85 % sur `engagements`, `planning`, `giftcards`, `payments`, `clients` — un **plancher**, pas un objectif ; la doctrine (quoi tester, à quel niveau, ce qu'on ne simule jamais) est dans le skill `tests` livré par B00b ; tests de bout en bout pour les flux B11 (page A-Dossier), B13 (plans de repas) et B17 (cartes cadeaux).
+- **Couverture de tests** : ≥ 85 % sur `engagements`, `planning`, `payments`, `clients` — un **plancher**, pas un objectif ; la doctrine (quoi tester, à quel niveau, ce qu'on ne simule jamais) est dans le skill `tests` livré par B00b ; tests de bout en bout pour les flux B16 (page A-Dossier), B18 (plans de repas) et B20 (facturation).
 
-### 11.4 Données de démonstration et tests
+### 10.4 Données de démonstration et tests
 
-- Fixtures de développement : 1 compte d'équipe, 3 clients, 5 recettes avec ingrédients et quantités, 1 pack de chaque, 1 engagement par formule, passages à différents états, 1 carte cadeau active et 1 expirée.
-- Tests de non-régression des interdits de la section 7.4.
+- Fixtures de développement : 1 compte d'équipe, 3 clients, 5 recettes avec ingrédients et quantités, 1 pack de chaque, 1 engagement par formule, passages à différents états.
+- Tests de non-régression des interdits de la section 6.4.
 
 # Partie IV — Annexe
 
 
-## 12. Glossaire
+## 11. Glossaire
 
-### 12.1 Termes du métier
+### 11.1 Termes du métier
 - **Engagement** : contrat d'un client pour une formule de batch cooking (1 semaine, 1 mois de 4 passages, ou sur mesure).
 - **Passage** (`Session`) : visite de la cheffe chez le client pour préparer les dîners.
 - **Réservation** (`Booking`) : chef privé ou cours (hors packs).
 - **Plan de repas** (`MealPlan`) : le menu d'un passage, de la proposition de la cheffe jusqu'à la validation du client.
 - **Lien de choix** : adresse à usage unique, envoyée par e-mail, qui ouvre la page où le client ajuste et valide le menu d'un passage, sans compte ni mot de passe.
 - **Avance immédiate URSSAF** : dispositif où l'URSSAF règle la part de crédit d'impôt (50 %) après validation du client sous 48 h.
-- **Référence de devis** : identifiant unique (`DEV-AAAA-NNN`) attribué par la page A-Devis, inscrit dans le document généré et refusé en double par Django, distinct de la numérotation continue des factures.
-- **Pages « A-… »** : les quatre écrans de l'administration **construits sur mesure**, par opposition aux listes et formulaires que Django génère tout seul. **A-Dossier** : créer un client et un engagement à partir d'un devis accepté. **A-Suivi** : le tableau « à faire », page d'accueil. **A-Publier** : mettre le site en ligne. **A-Devis** : calculer un devis et le générer dans Google Docs. Ce sont les étiquettes de ce document, pas les titres affichés à l'écran.
-- **Point de fidélité** : unité gagnée à chaque passage réalisé, convertible en **carte cadeau** selon un barème réglable. Les points ne sont pas une monnaie : ils n'ont pas d'autre usage que cette conversion, et ils expirent après une période sans passage.
-- **Relance** : situation suivie dans le registre de Django (`FollowUp`) ; elle a un propriétaire (HubSpot, Django ou vous), un statut (*à venir*, *à traiter*, *en attente du client*, *en retard*, *résolu*, *annulé*) et se clôt seule quand la situation est résolue.
+- **Référence de devis** : identifiant unique (`DEV-AAAA-NNN`) attribué par l'éditeur de devis à la finalisation, inscrit dans le PDF et refusé en double par Django, distinct de la numérotation continue des factures.
+- **Pages « A-… »** : les trois écrans de l'administration **construits sur mesure**, par opposition aux listes et formulaires que Django génère tout seul. **A-Dossier** : créer un client et un engagement à partir d'un devis accepté. **A-Publier** : mettre le site en ligne. **A-Devis** : créer, modifier et finaliser un devis. Ce sont les étiquettes de ce document, pas les titres affichés à l'écran.
+- **Relance** : e-mail automatique envoyé à un client (menu non rempli, rappel de passage, acompte, avis…), suivi dans le registre de Django (`FollowUp`) ; elle se clôt seule quand la situation est résolue. La cheffe ne reçoit aucune relance : elle lit un **tableau de bord**.
 - **Offre commerciale** (`Offer`) : un nom, un paragraphe de devis et, parfois, une remise, posés par-dessus un service existant pour le vendre à un moment de vie précis — *Post-partum*, *Senior*, *Anniversaire*, *Renouvellement*. Créée par la cheffe dans l'administration, attachée à l'engagement qu'elle a vendu, et sans aucun effet sur l'exécution de la prestation.
 - **Marqueur de prix** : texte comme `{{price.batch_from_after_credit}}` remplacé par l'API avec le prix réel, pour éviter des chiffres périmés dans la FAQ et les pages.
-### 12.2 Sigles et termes techniques
+### 11.2 Sigles et termes techniques
 Par ordre alphabétique. Les termes de cette liste sont employés tels quels dans le reste du document.
 
 - **API** (*interface de programmation*) : porte d'entrée par laquelle deux logiciels se parlent sans intervention humaine. Ici, celle par laquelle le site lit les contenus de Django.
-- **BFF** (*Backend For Frontend*) : principe selon lequel le serveur du site appelle l'API à la place du navigateur, qui ne parle jamais directement à Django. Il ne subsiste que pour la page d'achat de carte cadeau (S03), seule page dynamique du site.
+- **BFF** (*Backend For Frontend*) : principe selon lequel le serveur du site appelle l'API à la place du navigateur, qui ne parle jamais directement à Django. Aucune page du site n'en a besoin pour l'instant : le site est entièrement statique.
 - **CGV** : conditions générales de vente, publiées sur le site et **versionnées** — la version acceptée est recopiée dans chaque engagement.
 - **CMS** (*Content Management System*, système de gestion de contenu) : la partie de l'administration où la cheffe modifie elle-même le contenu du site — réalisations, avis, FAQ, pages légales — sans développeur. Ce n'est pas un logiciel séparé : c'est l'administration Django (B03).
 - **Construction du site** (*build*) : l'opération qui transforme les contenus en pages figées. Elle lit Django **une fois**, au moment de la publication ; aucune page ne l'interroge ensuite quand un visiteur la consulte.
-- **CRM** (*Customer Relationship Management*, gestion de la relation client) : l'outil qui garde les contacts, les échanges, les devis envoyés et les tâches de relance. Ici **HubSpot**, dans son offre gratuite.
+- **CRM** (*Customer Relationship Management*, gestion de la relation client) : l'outil qui garde les contacts, les affaires en cours (deals), les notes et les devis envoyés. Ici, le **CRM interne** de l'administration Django (B05, B06).
 - **Double authentification** (*2FA*, par *TOTP*) : en plus du mot de passe, un code à six chiffres qui change toutes les trente secondes, lu dans une application sur votre téléphone. Obligatoire en production.
 - **Intégration continue** (*CI*) : les vérifications automatiques qui s'exécutent à chaque proposition de modification du code — tests, sécurité, migrations. Une PR dont l'intégration continue échoue n'est pas fusionnée.
 - **LTS** (*Long Term Support*, support à long terme) : version de Django maintenue plusieurs années, choisie pour éviter une mise à jour majeure tous les six mois.
